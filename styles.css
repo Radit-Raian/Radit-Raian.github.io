@@ -24,8 +24,6 @@ nav {
   border-bottom: 1px solid #1e293b;
 }
 
-nav strong { color: #93c5fd; letter-spacing: 1px; }
-
 nav a {
   margin-left: 24px;
   color: #94a3b8;
@@ -69,14 +67,6 @@ h2 {
   transition: 0.3s;
 }
 
-.item:hover {
-  border-color: #3b82f6;
-  transform: translateY(-4px);
-}
+.item:hover { border-color: #3b82f6; transform: translateY(-4px); }
 
 footer { text-align: center; padding: 60px; color: #475569; border-top: 1px solid #1e293b; }
-
-/* Custom Scrollbar */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #010409; }
-::-webkit-scrollbar-thumb { background: #1e40af; border-radius: 10px; }
