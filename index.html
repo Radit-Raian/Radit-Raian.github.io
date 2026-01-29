@@ -24,34 +24,14 @@
 <section id="hero">
   <div class="hero-content">
     <h1>Exploring the Universe<br><span>Through Physics & Code</span></h1>
-    <p>Aspiring astrophysicist focused on observational cosmology, PSF modeling, and computational astronomy.</p>
+    <p>Aspiring astrophysicist focused on observational cosmology and computational astronomy.</p>
   </div>
 </section>
 
 <section id="about">
   <h2>About Me</h2>
-  <p>Researcher at Dhaka Medical College focusing on computational models. Passionate about bridging clinical data with high-level simulations using ML, COMSOL, and Ansys.</p>
+  <p>Researcher at Dhaka Medical College. I specialize in bridging medical data with computational models like COMSOL and Ansys simulations.</p>
 </section>
-
-<section id="research">
-  <h2>Research & Experience</h2>
-  <div class="grid">
-    <div class="item">
-      <strong>Climate & Health</strong><br>
-      Evaluating thermal stress impacts on clinical outcomes for Dengue patients.
-    </div>
-    <div class="item">
-      <strong>Medical Education</strong><br>
-      Researching challenges in undergraduate medical small-group teaching in Bangladesh.
-    </div>
-    <div class="item">
-      <strong>Biomedical Simulations</strong><br>
-      Developing 3D Bioheat Transfer models using COMSOL and Ansys 2024/2025.
-    </div>
-  </div>
-</section>
-
-<footer>© 2026 Radit Raian</footer>
 
 <script>
 const canvas = document.getElementById('space');
@@ -68,63 +48,52 @@ resize();
 let scrollY = 0;
 window.addEventListener('scroll', () => scrollY = window.pageYOffset);
 
-// Star Colors (Stellar Classification)
-const starColors = ['#ffffff', '#fff4ea', '#f8f7ff', '#93c5fd', '#ffcc33'];
-const layers = [
-  { count: 250, speed: 0.02, stars: [] },
-  { count: 150, speed: 0.05, stars: [] },
-  { count: 80,  speed: 0.12, stars: [] }
-];
-
-layers.forEach(l => {
-  for (let i = 0; i < l.count; i++) {
-    l.stars.push({
-      x: Math.random() * w,
-      y: Math.random() * h,
-      r: Math.random() * 1.4,
-      color: starColors[Math.floor(Math.random() * starColors.length)],
-      o: Math.random(),
-      t: 0.005 + Math.random() * 0.01
-    });
-  }
-});
+// Star Generation
+const stars = [];
+for(let i=0; i<400; i++) {
+  stars.push({
+    x: Math.random() * 2000, // Wide spread
+    y: Math.random() * 2000,
+    r: Math.random() * 1.2,
+    o: Math.random(),
+    t: 0.005 + Math.random() * 0.01
+  });
+}
 
 function draw() {
-  // Clear with transparent to see CSS background or solid black
+  // 1. Fill base black
   ctx.fillStyle = '#010409';
   ctx.fillRect(0, 0, w, h);
 
-  // Milky Way Nebula (Radial Gradient to avoid stripes)
+  // 2. DRAW THE GALAXY CLOUD (No more stripes!)
   ctx.save();
-  ctx.translate(w / 2, h / 2);
-  ctx.rotate(-0.45);
+  ctx.translate(w/2, h/2);
+  ctx.rotate(-0.4);
   
-  const nebula = ctx.createRadialGradient(0, scrollY * 0.1, 0, 0, scrollY * 0.1, w * 0.8);
-  nebula.addColorStop(0, 'rgba(20, 35, 75, 0.4)'); // Deep Blue Core
-  nebula.addColorStop(0.5, 'rgba(10, 15, 40, 0.2)');
+  // This creates the soft "cloudy" center from your reference photo
+  const nebula = ctx.createRadialGradient(0, scrollY*0.2, 0, 0, scrollY*0.2, w);
+  nebula.addColorStop(0, 'rgba(25, 45, 100, 0.3)'); 
+  nebula.addColorStop(0.5, 'rgba(10, 20, 50, 0.1)');
   nebula.addColorStop(1, 'rgba(0, 0, 0, 0)');
   
   ctx.fillStyle = nebula;
-  ctx.fillRect(-w, -h * 2, w * 2, h * 4);
+  ctx.fillRect(-w, -h*2, w*2, h*4);
   ctx.restore();
 
-  // Stars
-  layers.forEach(l => {
-    l.stars.forEach(s => {
-      s.o += s.t;
-      if (s.o > 1 || s.o < 0.3) s.t *= -1;
+  // 3. DRAW TWINKLING STARS
+  stars.forEach(s => {
+    s.o += s.t;
+    if(s.o > 1 || s.o < 0.2) s.t *= -1;
+    
+    // Parallax scroll
+    let py = (s.y + (scrollY * 0.1)) % h;
+    if(py < 0) py += h;
 
-      let displayY = (s.y + (scrollY * l.speed)) % h;
-      if (displayY < 0) displayY += h;
-
-      ctx.beginPath();
-      ctx.arc(s.x, displayY, s.r, 0, Math.PI * 2);
-      ctx.fillStyle = s.color;
-      ctx.globalAlpha = s.o;
-      ctx.fill();
-    });
+    ctx.beginPath();
+    ctx.arc(s.x % w, py, s.r, 0, Math.PI*2);
+    ctx.fillStyle = `rgba(255, 255, 255, ${s.o})`;
+    ctx.fill();
   });
-  ctx.globalAlpha = 1.0;
 
   requestAnimationFrame(draw);
 }
