@@ -91,34 +91,64 @@
 <canvas id="cosmos-engine"></canvas>
 
 <nav>
-    <strong>RADIT RAIAN</strong>
-    <div style="display: flex; gap: 20px;">
-        <a href="#research" style="color: #94a3b8; text-decoration: none;">Research</a>
-        <a href="#projects" style="color: #94a3b8; text-decoration: none;">Projects</a>
+    <div class="nav-pill-box">
+        <a href="#hero" class="nav-link">Home</a>
+        <a href="#research" class="nav-link">Research</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#contact" class="nav-link">Contact</a>
     </div>
 </nav>
 
 <section id="hero">
     <div>
-        <h1>Exploring the Universe<br><span>Through Physics & Code</span></h1>
-        <p style="color: #94a3b8; max-width: 600px;">Observational cosmology focusing on Supernova Spectroscopy, Cold Front Detection, and PSF modeling.</p>
+        <h1 style="text-align: center;">EXPLORING THE UNIVERSE<br><span>THROUGH PHYSICS & CODE</span></h1>
+        <p style="color: #94a3b8; max-width: 800px; margin: 0 auto; text-align: center; font-family: 'JetBrains Mono', monospace; border-top: 1px solid rgba(147, 197, 253, 0.2); padding-top: 20px;">
+            Decoding Cosmological Parameters through Supernova Spectroscopy and Galaxy Cluster Dynamics.
+        </p>
     </div>
 </section>
 
 <section id="research">
-    <h2 style="color: #7dd3fc; margin-bottom: 40px;">Research</h2>
+    <div class="pill-header-container">
+        <span class="pill-header">Research Initiatives</span>
+    </div>
+    
     <div class="grid">
         <div class="item">
-            <h3 style="color: #93c5fd; margin-bottom: 15px;">Supernova Cosmology</h3>
-            <p>Analyzing Type Ia supernovae to constrain cosmological parameters.</p>
+            <h3>Supernova Cosmology</h3>
         </div>
         <div class="item">
-            <h3 style="color: #93c5fd; margin-bottom: 15px;">Cold Front Detection</h3>
-            <p>Identifying temperature discontinuities in galaxy clusters.</p>
+            <h3>Cold Front Detection</h3>
+        </div>
+        <div class="item">
+            <h3>PSF Modeling</h3>
         </div>
     </div>
 </section>
 
+<section id="projects">
+    <div class="pill-header-container">
+        <span class="pill-header">Technical Projects</span>
+    </div>
+    
+    <div class="grid">
+        <div class="item">
+            <h3>Cosmo-Sim</h3>
+        </div>
+        <div class="item">
+            <h3>Cluster-Finder</h3>
+        </div>
+        <div class="item">
+            <h3>PSF-Gen</h3>
+        </div>
+    </div>
+</section>
+
+<section id="contact">
+    <div class="pill-header-container">
+        <span class="pill-header">System Uplink</span>
+    </div>
+</section>
 <script>
     const canvas = document.getElementById('cosmos-engine');
     const ctx = canvas.getContext('2d');
