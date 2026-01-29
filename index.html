@@ -3,175 +3,188 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Radit Raian | Portfolio</title>
+<title>Radit Raian - Astrophysics Portfolio</title>
 <style>
+  /* ---------- Root Colors ---------- */
+  :root {
+    --primary-blue: #0d1b2a;
+    --secondary-blue: #1b263b;
+    --accent-gold: #c9a961;
+    --text-light: #ffffff;
+    --text-muted: #b8c5d0;
+  }
+
   /* ---------- Reset ---------- */
-  * { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', sans-serif; }
-  html, body { height:100%; overflow-x:hidden; scroll-behavior:smooth; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--primary-blue);
+    overflow-x: hidden;
+    color: var(--text-light);
+  }
 
   /* ---------- Cosmic Background ---------- */
-  body {
-    background: #000;
-    color: #fff;
-    position: relative;
-  }
-
-  #cosmos {
+  body::before {
+    content: '';
     position: fixed;
-    top:0; left:0; width:100%; height:100%;
-    overflow:hidden;
-    z-index:-1;
+    width:100%;
+    height:100%;
+    top:0; left:0;
+    background: radial-gradient(ellipse at center, #0d1b2a 0%, #000000 100%);
+    z-index: -3;
   }
 
-  /* Nebula layers */
-  .nebula {
-    position:absolute;
-    width:200%; height:200%;
-    border-radius:50%;
-    background: radial-gradient(circle, #0033cc 0%, #000033 70%, transparent 100%);
-    filter: blur(140px) brightness(1.5);
-    opacity:0.7;
-    animation: drift 120s linear infinite, aurora 200s ease-in-out infinite;
-  }
-  .nebula:nth-child(2) {
-    background: radial-gradient(circle, #00ffff 0%, #001133 70%, transparent 100%);
-    filter: blur(160px) brightness(1.4);
-    opacity:0.6;
-    animation-duration: 150s;
-  }
-  .nebula:nth-child(3) {
-    background: radial-gradient(circle, #6600ff 0%, #000022 70%, transparent 100%);
-    filter: blur(180px) brightness(1.3);
-    opacity:0.5;
-    animation-duration: 180s;
+  canvas {
+    position: fixed;
+    top:0; left:0;
+    width:100%;
+    height:100%;
+    z-index:-2;
   }
 
-  @keyframes drift {
-    0% { transform: translate(0,0) rotate(0deg); }
-    100% { transform: translate(-500px, -300px) rotate(360deg); }
-  }
-  @keyframes aurora {
-    0% { transform: translateX(0) translateY(0);}
-    50% { transform: translateX(50px) translateY(-30px);}
-    100% { transform: translateX(0) translateY(0);}
-  }
-
-  /* Stars */
-  .star {
-    position:absolute;
-    background: linear-gradient(white, #00d1ff);
-    border-radius:50%;
-    box-shadow: 0 0 2px #00d1ff, 0 0 4px #00d1ff;
-    animation: twinkle 3s infinite alternate;
-  }
-  .star.large { width:3px; height:3px; box-shadow:0 0 6px #00d1ff, 0 0 10px #00ffff; }
-  .star.small { width:1px; height:1px; box-shadow:0 0 1px #00d1ff, 0 0 2px #00ffff; }
-
-  @keyframes twinkle {
-    0% { opacity:0.2; transform: scale(0.8);}
-    50% { opacity:1; transform: scale(1.2);}
-    100% { opacity:0.2; transform: scale(1);}
-  }
-
-  /* Color overlay for cosmic shimmer */
-  #cosmos::after {
-    content:"";
-    position:absolute;
-    top:0; left:0; width:100%; height:100%;
-    background: radial-gradient(circle, rgba(0,50,255,0.1) 0%, transparent 70%);
-    mix-blend-mode: screen;
-    z-index:1;
-  }
-
-  /* ---------- Sections ---------- */
+  /* ---------- Glass Sections ---------- */
   section {
-    min-height:100vh;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    padding:50px 20px;
+    position: relative;
+    max-width: 1200px;
+    margin: 3rem auto;
+    padding: 2rem 3rem;
+    background: rgba(10, 14, 20, 0.6);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    border: 1px solid rgba(201,169,97,0.15);
+    box-shadow: 0 0 40px rgba(0,0,0,0.5);
+    overflow: hidden;
   }
 
-  section h1 {
-    font-size:3em;
-    margin-bottom:20px;
-    text-shadow: 0 0 15px #00d1ff, 0 0 30px #0033cc;
+  section h2 {
+    font-size: 2rem;
+    color: var(--accent-gold);
+    text-align: center;
+    margin-bottom: 1rem;
   }
+
   section p {
-    font-size:1.2em;
-    max-width:700px;
-    line-height:1.6;
-    color:#cce7ff;
-    text-shadow: 0 0 5px #0033cc;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text-muted);
+    text-align: justify;
   }
 
-  /* Gradient buttons */
+  /* ---------- Hero ---------- */
+  .hero {
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align:center;
+  }
+
+  .hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .hero p {
+    font-size: 1.2rem;
+    max-width: 800px;
+  }
+
+  /* ---------- Button ---------- */
   .btn {
-    margin-top:30px;
-    padding:15px 30px;
-    background: linear-gradient(45deg, #00ffff, #0033cc);
+    margin-top: 2rem;
+    padding: 0.9rem 2rem;
+    border-radius: 25px;
+    font-weight:600;
+    color: var(--primary-blue);
+    background: linear-gradient(135deg, var(--accent-gold), #d4b56d);
     border:none;
-    border-radius:10px;
-    color:white;
-    font-size:1em;
     cursor:pointer;
-    transition:0.3s;
-    box-shadow: 0 0 10px #00ffff, 0 0 20px #0033cc;
-  }
-  .btn:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 15px #00ffff, 0 0 30px #0033cc;
+    transition: all 0.3s ease;
   }
 
+  .btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 0 20px var(--accent-gold);
+  }
 </style>
 </head>
 <body>
 
-<div id="cosmos">
-  <div class="nebula"></div>
-  <div class="nebula"></div>
-  <div class="nebula"></div>
-</div>
-
-<!-- Stars -->
-<script>
-  const starsCount = 150;
-  for(let i=0; i<starsCount; i++){
-    const star = document.createElement('div');
-    star.classList.add('star');
-    star.classList.add(Math.random() > 0.7 ? 'large' : 'small');
-    star.style.top = Math.random()*100 + 'vh';
-    star.style.left = Math.random()*100 + 'vw';
-    star.style.animationDuration = (Math.random()*3 + 2)+'s';
-    document.body.appendChild(star);
-  }
-</script>
-
-<!-- ---------- Sections ---------- -->
-<section style="background:transparent;">
+<!-- Hero Section -->
+<section class="hero">
   <h1>Radit Raian</h1>
-  <p>Aspiring Astrophysicist & Developer exploring the depths of the cosmos and code.</p>
-  <button class="btn">View Portfolio</button>
+  <p>Aspiring Astrophysicist | Researcher in Cosmic Structures | Python & Astronomy Enthusiast</p>
+  <button class="btn">Explore My Work</button>
 </section>
 
-<section style="background:transparent;">
-  <h1>About Me</h1>
-  <p>I am passionate about astrophysics, mathematics, and programming. I love building projects that merge science and creativity, bringing the universe to your screen.</p>
+<!-- About Section -->
+<section id="about">
+  <h2>About Me</h2>
+  <p>I am a high school student with deep passion in astrophysics, participating in national and international olympiads, and developing research projects in gravitational lensing, supernova analysis, and cosmic phenomena. I aspire to study at top-tier universities and contribute to modern astrophysical research.</p>
 </section>
 
-<section style="background:transparent;">
-  <h1>Projects</h1>
-  <p>From Type Ia Supernova analysis to PSF development pipelines, I build software tools to explore and understand the universe. Each project is a journey into the cosmos of data and discovery.</p>
+<!-- Research Section -->
+<section id="research">
+  <h2>Research & Projects</h2>
+  <p>Worked on MiMiC PSF development, Type Ia supernova spectral analysis, and more. Developed Python pipelines integrating SExtractor, Photutils, and GALFIT for precise astronomical measurements. Interested in gravitational lensing and cosmic microwave background studies.</p>
 </section>
 
-<section style="background:transparent;">
-  <h1>Contact</h1>
-  <p>Reach out via email or GitHub. Let's explore the universe together.</p>
-  <button class="btn">Contact Me</button>
+<!-- Skills Section -->
+<section id="skills">
+  <h2>Skills & Interests</h2>
+  <p>Python, MATLAB, C basics, GALFIT, PSFEx, Topcat, DS9, Astronomy & Astrophysics Olympiads, Data Analysis, Observational Techniques, Research Methodology.</p>
 </section>
 
+<!-- Contact Section -->
+<section id="contact">
+  <h2>Contact Me</h2>
+  <p>Email: radit@example.com | LinkedIn: linkedin.com/in/raditraian | GitHub: github.com/rabbit2307</p>
+</section>
+
+<!-- Cosmic Canvas -->
+<canvas id="cosmos"></canvas>
+
+<script>
+  // ---------- Animated Stars ----------
+  const canvas = document.getElementById('cosmos');
+  const ctx = canvas.getContext('2d');
+  let stars = [];
+  let w, h;
+
+  function initCanvas(){
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+    stars = [];
+    for(let i=0;i<200;i++){
+      stars.push({
+        x: Math.random()*w,
+        y: Math.random()*h,
+        r: Math.random()*1.5+0.5,
+        d: Math.random()*0.5
+      });
+    }
+  }
+
+  function drawStars(){
+    ctx.clearRect(0,0,w,h);
+    for(let i=0;i<stars.length;i++){
+      let s = stars[i];
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+      ctx.fillStyle = `rgba(255,255,255,${0.5 + 0.5*Math.sin(Date.now()/1000)})`;
+      ctx.fill();
+      s.y += s.d;
+      if(s.y>h){ s.y=0; s.x=Math.random()*w; }
+    }
+    requestAnimationFrame(drawStars);
+  }
+
+  window.addEventListener('resize', initCanvas);
+  initCanvas();
+  drawStars();
+</script>
 </body>
 </html>
+
 
