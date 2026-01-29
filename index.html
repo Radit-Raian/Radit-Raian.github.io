@@ -7,8 +7,8 @@
 <style>
   /* ---------- Root Colors ---------- */
   :root {
-    --primary-blue: #0d1b2a;
-    --secondary-blue: #1b263b;
+    --primary-black: #0b0c10;
+    --primary-blue: #1f2833;
     --accent-gold: #c9a961;
     --text-light: #ffffff;
     --text-muted: #b8c5d0;
@@ -18,37 +18,18 @@
   * { margin:0; padding:0; box-sizing:border-box; }
   body {
     font-family: 'Inter', sans-serif;
-    background: var(--primary-blue);
+    background: linear-gradient(to bottom, var(--primary-black), var(--primary-blue));
     overflow-x: hidden;
     color: var(--text-light);
   }
 
-  /* ---------- Cosmic Background ---------- */
-  body::before {
-    content: '';
-    position: fixed;
-    width:100%;
-    height:100%;
-    top:0; left:0;
-    background: radial-gradient(ellipse at center, #0d1b2a 0%, #000000 100%);
-    z-index: -3;
-  }
-
-  canvas {
-    position: fixed;
-    top:0; left:0;
-    width:100%;
-    height:100%;
-    z-index:-2;
-  }
-
-  /* ---------- Glass Sections ---------- */
+  /* ---------- Sections ---------- */
   section {
     position: relative;
     max-width: 1200px;
-    margin: 3rem auto;
+    margin: 5rem auto;
     padding: 2rem 3rem;
-    background: rgba(10, 14, 20, 0.6);
+    background: rgba(15, 18, 25, 0.6);
     backdrop-filter: blur(15px);
     border-radius: 20px;
     border: 1px solid rgba(201,169,97,0.15);
@@ -96,7 +77,7 @@
     padding: 0.9rem 2rem;
     border-radius: 25px;
     font-weight:600;
-    color: var(--primary-blue);
+    color: var(--primary-black);
     background: linear-gradient(135deg, var(--accent-gold), #d4b56d);
     border:none;
     cursor:pointer;
@@ -106,6 +87,15 @@
   .btn:hover {
     transform: translateY(-3px) scale(1.05);
     box-shadow: 0 0 20px var(--accent-gold);
+  }
+
+  /* ---------- Cosmic Canvas ---------- */
+  canvas {
+    position: fixed;
+    top:0; left:0;
+    width:100%;
+    height:100%;
+    z-index:-1;
   }
 </style>
 </head>
@@ -146,43 +136,75 @@
 <canvas id="cosmos"></canvas>
 
 <script>
-  // ---------- Animated Stars ----------
-  const canvas = document.getElementById('cosmos');
-  const ctx = canvas.getContext('2d');
-  let stars = [];
-  let w, h;
+const canvas = document.getElementById('cosmos');
+const ctx = canvas.getContext('2d');
+let stars = [];
+let shootingStars = [];
+let w, h;
 
-  function initCanvas(){
+function initCanvas() {
     w = canvas.width = window.innerWidth;
     h = canvas.height = window.innerHeight;
+
     stars = [];
-    for(let i=0;i<200;i++){
-      stars.push({
-        x: Math.random()*w,
-        y: Math.random()*h,
-        r: Math.random()*1.5+0.5,
-        d: Math.random()*0.5
-      });
+    for(let i=0;i<250;i++){
+        stars.push({
+            x: Math.random()*w,
+            y: Math.random()*h,
+            r: Math.random()*1.5+0.5,
+            d: Math.random()*0.5
+        });
     }
-  }
 
-  function drawStars(){
+    shootingStars = [];
+}
+
+function drawStars() {
     ctx.clearRect(0,0,w,h);
-    for(let i=0;i<stars.length;i++){
-      let s = stars[i];
-      ctx.beginPath();
-      ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
-      ctx.fillStyle = `rgba(255,255,255,${0.5 + 0.5*Math.sin(Date.now()/1000)})`;
-      ctx.fill();
-      s.y += s.d;
-      if(s.y>h){ s.y=0; s.x=Math.random()*w; }
+    
+    // Draw normal stars
+    for(let s of stars){
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+        ctx.fillStyle = `rgba(255,255,255,${0.5 + 0.5*Math.sin(Date.now()/1000)})`;
+        ctx.fill();
     }
-    requestAnimationFrame(drawStars);
-  }
 
-  window.addEventListener('resize', initCanvas);
-  initCanvas();
-  drawStars();
+    // Occasionally spawn shooting stars
+    if(Math.random() < 0.005 && shootingStars.length < 2){
+        shootingStars.push({
+            x: Math.random()*w,
+            y: Math.random()*h/2,
+            len: Math.random()*150+100,
+            speed: Math.random()*8+4,
+            angle: Math.random()*Math.PI/6+Math.PI/12
+        });
+    }
+
+    // Draw shooting stars
+    for(let i=shootingStars.length-1;i>=0;i--){
+        let sh = shootingStars[i];
+        ctx.beginPath();
+        ctx.moveTo(sh.x, sh.y);
+        ctx.lineTo(sh.x - sh.len*Math.cos(sh.angle), sh.y - sh.len*Math.sin(sh.angle));
+        ctx.strokeStyle = "rgba(255,255,255,0.8)";
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        sh.x += sh.speed*Math.cos(sh.angle);
+        sh.y += sh.speed*Math.sin(sh.angle);
+
+        if(sh.x > w || sh.y > h){
+            shootingStars.splice(i,1);
+        }
+    }
+
+    requestAnimationFrame(drawStars);
+}
+
+window.addEventListener('resize', initCanvas);
+initCanvas();
+drawStars();
 </script>
 </body>
 </html>
