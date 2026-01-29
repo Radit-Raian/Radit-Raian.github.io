@@ -3,14 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Radit Raian | Astrophysics</title>
+  <title>Radit Raian | Astrophysics & Research</title>
+
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
+
   <style>
+    /* Internal styles for layout consistency */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     
     html, body {
       font-family: 'Inter', sans-serif;
-      background: #010409;
+      background: #020617;
       color: #e5e7eb;
       scroll-behavior: smooth;
       overflow-x: hidden;
@@ -18,52 +23,71 @@
 
     canvas {
       position: fixed;
-      top: 0; left: 0;
-      width: 100vw; height: 100vh;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
       z-index: -1;
       pointer-events: none;
     }
 
     nav {
-      position: fixed; top: 0; width: 100%;
+      position: fixed;
+      top: 0;
+      width: 100%;
       padding: 20px 32px;
-      display: flex; justify-content: space-between; align-items: center;
-      background: rgba(1, 4, 9, 0.5);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(2, 6, 23, 0.7);
       backdrop-filter: blur(12px);
-      z-index: 10;
-      border-bottom: 1px solid rgba(147, 197, 253, 0.05);
+      z-index: 100;
+      border-bottom: 1px solid rgba(147, 197, 253, 0.1);
     }
 
     nav strong { color: #93c5fd; font-size: 1.2rem; letter-spacing: 1px; }
     nav a { margin-left: 24px; color: #94a3b8; text-decoration: none; font-weight: 500; transition: 0.3s; }
-    nav a:hover { color: #93c5fd; text-shadow: 0 0 8px rgba(147, 197, 253, 0.5); }
+    nav a:hover { color: #93c5fd; }
 
-    section { max-width: 1100px; margin: auto; padding: 140px 24px; position: relative; }
-    
+    section {
+      max-width: 1100px;
+      margin: auto;
+      padding: 140px 24px;
+      position: relative;
+    }
+
     #hero { min-height: 100vh; display: flex; align-items: center; }
-    h1 { font-size: clamp(2.5rem, 8vw, 4.2rem); line-height: 1.1; margin-bottom: 20px; font-weight: 700; }
-    h1 span { color: #93c5fd; display: block; opacity: 0.9; }
+    h1 { font-size: clamp(2.5rem, 8vw, 4rem); line-height: 1.1; margin-bottom: 20px; }
+    h1 span { color: #93c5fd; display: block; }
     
-    p { font-size: 1.15rem; line-height: 1.8; color: #94a3b8; max-width: 650px; }
+    p { font-size: 1.1rem; line-height: 1.8; color: #cbd5e1; max-width: 700px; }
 
-    h2 { font-size: 2.2rem; color: #7dd3fc; margin-bottom: 40px; position: relative; display: inline-block; }
-    h2::after { content: ''; position: absolute; bottom: -10px; left: 0; width: 60%; height: 2px; background: #1e40af; }
-
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; margin-top: 40px; }
-    .item { 
-      background: rgba(30, 41, 59, 0.15); 
-      border: 1px solid rgba(147, 197, 253, 0.1); 
-      padding: 30px; 
-      border-radius: 12px; 
-      transition: all 0.4s ease;
-    }
-    .item:hover { 
-      transform: translateY(-8px); 
-      border-color: rgba(147, 197, 253, 0.4);
-      background: rgba(30, 41, 59, 0.25);
+    h2 {
+      font-size: 2.2rem;
+      color: #7dd3fc;
+      margin-bottom: 40px;
+      border-bottom: 1px solid #1e40af;
+      display: inline-block;
+      padding-bottom: 8px;
     }
 
-    footer { text-align: center; padding: 80px 24px; color: #475569; font-size: 0.9rem; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+    }
+
+    .item {
+      background: rgba(30, 41, 59, 0.3);
+      border: 1px solid rgba(147, 197, 253, 0.1);
+      padding: 24px;
+      border-radius: 12px;
+      transition: transform 0.3s ease;
+    }
+
+    .item:hover { transform: translateY(-5px); border-color: #3b82f6; }
+
+    footer { text-align: center; padding: 60px 24px; color: #64748b; font-size: 0.9rem; }
   </style>
 </head>
 <body>
@@ -83,31 +107,46 @@
 <section id="hero">
   <div>
     <h1>Exploring the Universe<br><span>Through Physics & Code</span></h1>
-    <p>Aspiring astrophysicist focused on observational cosmology, PSF modeling, and computational astronomy.</p>
+    <p>Aspiring astrophysicist and medical researcher focused on observational cosmology and computational health models.</p>
   </div>
 </section>
 
 <section id="about">
   <h2>About Me</h2>
-  <p>Researcher at Dhaka Medical College with a focus on integrating medical data with computational models. Currently bridging the gap between clinical research and data science through ML and simulation.</p>
+  <p>Currently a 5th-year medical student at Dhaka Medical College. I specialize in bridging medical research with computational engineering, utilizing tools like <strong>Ansys</strong> and <strong>COMSOL</strong> for bio-heat transfer simulations and clinical data analysis.</p>
 </section>
 
 <section id="research">
   <h2>Research & Experience</h2>
   <div class="grid">
     <div class="item">
-      <strong>Climate & Health</strong><br>
-      Evaluating thermal stress impacts on clinical outcomes for Dengue patients.
+      <strong>Ambient Thermal Stress</strong><br>
+      Researching impacts on clinical outcomes and health-seeking behavior among Dengue patients.
     </div>
     <div class="item">
       <strong>Medical Education</strong><br>
-      Researching challenges in undergraduate medical small-group teaching in Bangladesh.
+      Evaluating challenges of small group teaching in undergraduate medical education in Bangladesh.
     </div>
     <div class="item">
-      <strong>Biomedical Simulations</strong><br>
-      Developing 3D Bioheat Transfer models using COMSOL and Ansys.
+      <strong>Engineering Physics</strong><br>
+      Project management and structural planning for G+8 reinforced concrete building simulations.
     </div>
   </div>
+</section>
+
+<section id="projects">
+  <h2>Projects</h2>
+  <div class="grid">
+    <div class="item"><strong>VaxSafe</strong>: A digital medical vaccination service platform.</div>
+    <div class="item"><strong>Biomedical Simulations</strong>: 3D modeling using Ansys 2024 R1 and 2025 R2.</div>
+    <div class="item"><strong>Pet Daycare</strong>: A home-environment project concept for pet care.</div>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Contact</h2>
+  <p>GitHub: <a href="https://github.com/rabbit2307" style="color:#93c5fd">rabbit2307</a><br>
+     Email: <a href="mailto:your@email.com" style="color:#93c5fd">your@email.com</a></p>
 </section>
 
 <footer>© 2026 Radit Raian</footer>
@@ -125,75 +164,67 @@ window.addEventListener('resize', resize);
 resize();
 
 let scrollY = 0;
-window.addEventListener('scroll', () => scrollY = window.pageYOffset);
+window.addEventListener('scroll', () => {
+  scrollY = window.pageYOffset;
+});
 
-// Star properties (colors based on real star types)
-const starColors = ['#ffffff', '#fff4ea', '#f8f7ff', '#93c5fd', '#ffcc33'];
-
+// Parallax star layers
 const layers = [
-  { count: 250, speed: 0.02, stars: [] }, // Far
-  { count: 150, speed: 0.05, stars: [] }, // Mid
-  { count: 80,  speed: 0.12, stars: [] }  // Near
+  { count: 180, speed: 0.04, stars: [] },
+  { count: 250, speed: 0.10, stars: [] },
+  { count: 100, speed: 0.20, stars: [] }
 ];
 
+// Initialize stars
 layers.forEach(l => {
   for (let i = 0; i < l.count; i++) {
     l.stars.push({
       x: Math.random() * w,
       y: Math.random() * h,
-      r: Math.random() * 1.4,
-      color: starColors[Math.floor(Math.random() * starColors.length)],
-      o: Math.random(), // initial opacity
-      t: 0.005 + Math.random() * 0.015 // twinkle speed
+      r: Math.random() * 1.3,
+      o: Math.random()
     });
   }
 });
 
 function draw() {
-  // 1. Clear with Deepest Space Black
-  ctx.fillStyle = '#010409';
+  // Clear the canvas
+  ctx.fillStyle = '#020617';
   ctx.fillRect(0, 0, w, h);
 
-  // 2. The Milky Way Nebula (Cloudy effect from reference)
+  // 1. Draw Milky Way Band (Radial Gradient - NO STRIPES)
   ctx.save();
   ctx.translate(w / 2, h / 2);
-  ctx.rotate(-0.45); // Tilts the galaxy
+  ctx.rotate(-0.4); // Angle of the galaxy
   
-  // Create a large, soft radial gradient for the "cloud"
-  const nebula = ctx.createRadialGradient(0, scrollY * 0.15, 0, 0, scrollY * 0.15, w * 0.9);
-  nebula.addColorStop(0, 'rgba(15, 23, 42, 0.5)');   // Core blue-gray
-  nebula.addColorStop(0.4, 'rgba(7, 12, 30, 0.3)');  // Fading
-  nebula.addColorStop(1, 'rgba(1, 4, 9, 0)');        // Edge
+  // Creates a soft cloudy glow instead of lines
+  const nebula = ctx.createRadialGradient(0, scrollY * 0.1, 0, 0, scrollY * 0.1, w * 0.8);
+  nebula.addColorStop(0, 'rgba(25, 45, 110, 0.3)'); // Deep blue core
+  nebula.addColorStop(0.5, 'rgba(10, 20, 50, 0.15)'); // Mid-glow
+  nebula.addColorStop(1, 'rgba(0, 0, 0, 0)');        // Transparent
   
   ctx.fillStyle = nebula;
   ctx.fillRect(-w, -h * 2, w * 2, h * 4);
   ctx.restore();
 
-  // 3. Animated Stars
+  // 2. Draw Stars with Parallax and Subtle Twinkle
   layers.forEach(l => {
     l.stars.forEach(s => {
-      // Twinkle Logic
-      s.o += s.t;
-      if (s.o > 1 || s.o < 0.2) s.t *= -1;
-
-      // Parallax Movement
       let displayY = (s.y + (scrollY * l.speed)) % h;
       if (displayY < 0) displayY += h;
 
       ctx.beginPath();
       ctx.arc(s.x, displayY, s.r, 0, Math.PI * 2);
-      ctx.fillStyle = s.color;
-      ctx.globalAlpha = s.o;
+      ctx.fillStyle = `rgba(226, 232, 240, ${s.o})`;
       ctx.fill();
     });
   });
-  ctx.globalAlpha = 1.0;
 
   requestAnimationFrame(draw);
 }
 
 draw();
 </script>
+
 </body>
-</html>
 </html>
