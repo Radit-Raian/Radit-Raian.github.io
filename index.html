@@ -3,99 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Radit Raian | Astrophysics & Cosmology</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <title>Radit Raian | Astrophysics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
     
     <style>
-        /* --- CORE ARCHITECTURE --- */
-        :root {
-            --bg: #010409;
-            --accent: #93c5fd;
-            --text: #e5e7eb;
-            --dim: #94a3b8;
-            --border: #1e293b;
-        }
-
+        /* THE "STARS VISIBILITY" FIX */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body { 
-            background: var(--bg); 
-            color: var(--text); 
-            font-family: 'Inter', sans-serif; 
-            overflow-x: hidden;
-            line-height: 1.6;
+        
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            min-height: 100%;
+            font-family: 'Inter', sans-serif;
+            color: #e5e7eb;
+            /* Critical: Background must be transparent to see the canvas */
+            background-color: transparent !important;
+            scroll-behavior: smooth;
         }
 
-        /* Fixed Background Canvas */
+        /* The Canvas Engine Layer */
         #cosmos-engine {
             position: fixed;
-            top: 0; left: 0;
-            width: 100vw; height: 100vh;
-            z-index: -1;
-            background: #010409;
-            pointer-events: none;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1; /* Sits behind everything */
+            background-color: #010409; /* Deep space black */
+            display: block;
         }
 
-        /* Navigation Systems */
+        /* NAVIGATION */
         nav {
-            position: fixed; top: 0; width: 100%;
-            padding: 1.5rem 3rem;
-            display: flex; justify-content: space-between; align-items: center;
-            background: rgba(1, 4, 9, 0.85);
-            backdrop-filter: blur(12px);
+            position: fixed;
+            top: 0; width: 100%;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(1, 4, 9, 0.8);
+            backdrop-filter: blur(10px);
             z-index: 1000;
-            border-bottom: 1px solid var(--border);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
-        nav strong { font-family: 'JetBrains Mono', monospace; color: var(--accent); letter-spacing: 2px; }
-        .nav-links a { 
-            margin-left: 2rem; color: var(--dim); text-decoration: none; 
-            font-size: 0.85rem; font-weight: 500; transition: 0.3s;
-        }
-        .nav-links a:hover { color: var(--accent); }
+        nav strong { font-family: 'JetBrains Mono', monospace; color: #93c5fd; }
+        .links a { color: #94a3b8; text-decoration: none; margin-left: 20px; font-size: 0.9rem; }
 
-        /* Section Layouts */
+        /* CONTENT SECTIONS */
         section {
-            max-width: 1100px;
+            max-width: 1000px;
             margin: 0 auto;
             padding: 160px 24px;
-            background: transparent !important; /* Critical to show stars */
+            background: transparent !important; /* Forces stars to show through */
         }
 
-        #hero { 
-            height: 100vh; display: flex; align-items: center; 
-            position: relative;
-        }
-
-        h1 { 
-            font-size: clamp(2.5rem, 8vw, 4.5rem); 
-            line-height: 1.1; margin-bottom: 2rem;
-            text-shadow: 0 0 20px rgba(147, 197, 253, 0.2);
-        }
-        h1 span { color: var(--accent); display: block; }
-
-        .hero-desc { font-size: 1.2rem; color: var(--dim); max-width: 600px; }
-
-        h2 { 
-            font-size: 2.2rem; color: var(--accent); margin-bottom: 3rem; 
-            display: inline-block; border-bottom: 2px solid #1e40af;
-        }
-
-        /* Research Grid */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; }
+        #hero { height: 100vh; display: flex; align-items: center; }
+        
+        h1 { font-size: clamp(2.5rem, 8vw, 4rem); line-height: 1.1; margin-bottom: 20px; }
+        h1 span { color: #93c5fd; }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
         .item { 
-            background: #0d1117; border: 1px solid var(--border); 
-            padding: 2.5rem; border-radius: 12px; transition: 0.4s;
+            background: rgba(15, 23, 42, 0.8); 
+            border: 1px solid rgba(147, 197, 253, 0.2); 
+            padding: 30px; border-radius: 12px; 
         }
-        .item:hover { border-color: var(--accent); transform: translateY(-8px); }
-        .item h3 { margin-bottom: 1rem; color: var(--accent); font-size: 1.4rem; }
-
-        /* Footer */
-        footer { padding: 80px 24px; text-align: center; color: var(--dim); border-top: 1px solid var(--border); }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: var(--bg); }
-        ::-webkit-scrollbar-thumb { background: #1e40af; border-radius: 10px; }
+        .item h3 { color: #93c5fd; margin-bottom: 10px; }
     </style>
 </head>
 <body>
@@ -103,66 +77,43 @@
 <canvas id="cosmos-engine"></canvas>
 
 <nav>
-    <strong>RADIT_RAIAN</strong>
-    <div class="nav-links">
-        <a href="#about">ABOUT</a>
-        <a href="#research">RESEARCH</a>
-        <a href="#projects">PROJECTS</a>
-        <a href="#contact">CONTACT</a>
+    <strong>RADIT RAIAN</strong>
+    <div class="links">
+        <a href="#about">About</a>
+        <a href="#research">Research</a>
+        <a href="#projects">Projects</a>
     </div>
 </nav>
 
 <section id="hero">
     <div>
-        <h1>EXPLORING THE UNIVERSE<br><span>THROUGH PHYSICS & CODE</span></h1>
-        <p class="hero-desc">High school researcher focusing on Supernova Cosmology, Cold Front detection in galaxy clusters, and PSF modeling.</p>
+        <h1>Exploring the Universe<br><span>Through Physics & Code</span></h1>
+        <p>Focusing on Supernova Cosmology, Cold Front detection, and PSF modeling.</p>
     </div>
 </section>
 
 <section id="research">
-    <h2>RESEARCH_INITIATIVES</h2>
+    <h2 style="font-size: 2rem; margin-bottom: 40px; color: #93c5fd;">Research</h2>
     <div class="grid">
         <div class="item">
-            <h3>SUPERNOVA COSMOLOGY</h3>
-            <p>Analyzing Type Ia supernovae to constrain cosmological parameters and expansion history.</p>
+            <h3>Supernova Cosmology</h3>
+            <p>Analyzing Type Ia supernovae to constrain cosmological parameters.</p>
         </div>
         <div class="item">
-            <h3>COLD FRONT DETECTION</h3>
-            <p>Developing robust algorithms for identifying thermal discontinuities in galaxy cluster dynamics.</p>
+            <h3>Cold Front Detection</h3>
+            <p>Developing algorithms for identifying sharp temperature discontinuities in galaxy clusters.</p>
         </div>
         <div class="item">
-            <h3>PSF MODELING</h3>
-            <p>Improving Point Spread Function models for accurate weak lensing and galaxy morphology analysis.</p>
+            <h3>PSF Modeling</h3>
+            <p>Improving Point Spread Function models for accurate weak lensing analysis.</p>
         </div>
     </div>
 </section>
-
-<section id="projects">
-    <h2>TECHNICAL_PROJECTS</h2>
-    <div class="grid">
-        <div class="item">
-            <h3>COSMO-SIM</h3>
-            <p>Computational pipeline for spectral analysis and cosmological simulations.</p>
-        </div>
-        <div class="item">
-            <h3>CLUSTER-FINDER</h3>
-            <p>Automated detection of cluster dynamics using X-ray data.</p>
-        </div>
-    </div>
-</section>
-
-<footer>
-    © 2026 RADIT RAIAN | DEEP_SPACE_OBSERVATORY
-</footer>
 
 <script>
-    /** --- ADVANCED COSMOS PHYSICS ENGINE --- **/
     const canvas = document.getElementById('cosmos-engine');
     const ctx = canvas.getContext('2d');
     let w, h, scrollY = 0;
-
-    // Stellar Temperature Color Map (H-R Diagram)
-    const STAR_COLORS = ['#9bb0ff', '#aabfff', '#ffffff', '#f8f7ff', '#fff4ea', '#ffd2a1', '#ffcc6f'];
 
     function resize() {
         w = canvas.width = window.innerWidth;
@@ -172,91 +123,74 @@
     window.addEventListener('scroll', () => scrollY = window.pageYOffset);
     resize();
 
+    // Temperature-based colors (O, B, A, F, G, K, M)
+    const STAR_COLORS = ['#9bb0ff', '#aabfff', '#ffffff', '#f8f7ff', '#fff4ea', '#ffd2a1', '#ffcc6f'];
+
     class Star {
-        constructor(speed, size) {
-            this.reset();
-            this.speed = speed;
-            this.maxSize = size;
-        }
-        reset() {
+        constructor() {
             this.x = Math.random() * w;
             this.y = Math.random() * h;
-            this.r = Math.random() * this.maxSize + 0.1;
+            this.r = Math.random() * 1.5 + 0.2;
             this.color = STAR_COLORS[Math.floor(Math.random() * STAR_COLORS.length)];
+            this.speed = Math.random() * 0.15 + 0.02;
             this.opacity = Math.random();
-            this.twinkle = (Math.random() * 0.012) + 0.004;
+            this.twinkle = Math.random() * 0.01 + 0.005;
         }
         update() {
             this.opacity += this.twinkle;
             if (this.opacity > 1 || this.opacity < 0.2) this.twinkle *= -1;
-            // Parallax movement
+            // Scroll Parallax
             this.renderY = (this.y + (scrollY * this.speed)) % h;
             if (this.renderY < 0) this.renderY += h;
         }
         draw() {
+            ctx.globalAlpha = this.opacity;
+            ctx.fillStyle = this.color;
             ctx.beginPath();
             ctx.arc(this.x, this.renderY, this.r, 0, Math.PI * 2);
-            ctx.fillStyle = this.color;
-            ctx.globalAlpha = this.opacity;
             ctx.fill();
         }
     }
 
     class Meteor {
-        constructor() { this.reset(); }
+        constructor() {
+            this.reset();
+        }
         reset() {
-            // Start meteors near the top heading part
             this.x = Math.random() * w;
-            this.y = Math.random() * (h * 0.3); 
-            // Shorter and thicker parameters
-            this.vx = -(Math.random() * 10 + 15); // Faster
-            this.vy = Math.random() * 8 + 10;
-            this.len = Math.random() * 40 + 20; // Shorter length
-            this.thickness = Math.random() * 2 + 2.5; // Thicker
+            this.y = Math.random() * (h * 0.3); // Starts in the heading area
+            this.vx = -(Math.random() * 12 + 10);
+            this.vy = Math.random() * 10 + 8;
+            this.len = Math.random() * 30 + 15; // Shorter
             this.opacity = 1;
-            this.active = true;
         }
         update() {
-            this.x += this.vx; this.y += this.vy;
-            this.opacity -= 0.025; // Fades faster
-            if (this.opacity <= 0) this.active = false;
+            this.x += this.vx;
+            this.y += this.vy;
+            this.opacity -= 0.02;
+            if (this.opacity <= 0) this.reset();
         }
         draw() {
-            ctx.save();
             ctx.globalAlpha = this.opacity;
             ctx.strokeStyle = '#ffffff';
-            ctx.lineWidth = this.thickness;
+            ctx.lineWidth = 3; // Thicker
             ctx.lineCap = 'round';
             ctx.beginPath();
             ctx.moveTo(this.x, this.y);
             ctx.lineTo(this.x + this.len, this.y - (this.len * 0.8));
             ctx.stroke();
-            ctx.restore();
         }
     }
 
-    // High Density Population Layers
-    const stars = [
-        ...Array.from({length: 450}, () => new Star(0.03, 0.7)), // Far
-        ...Array.from({length: 300}, () => new Star(0.09, 1.1)), // Mid
-        ...Array.from({length: 120}, () => new Star(0.22, 1.7))  // Near
-    ];
-
-    let meteors = [];
-    setInterval(() => {
-        if (document.visibilityState === 'visible' && meteors.length < 4) {
-            meteors.push(new Meteor());
-        }
-    }, 2500); // More frequent meteors in the heading part
+    const stars = Array.from({length: 600}, () => new Star());
+    const meteors = Array.from({length: 3}, () => new Meteor());
 
     function animate() {
-        ctx.clearRect(0, 0, w, h);
+        ctx.globalAlpha = 1;
         ctx.fillStyle = '#010409';
         ctx.fillRect(0, 0, w, h);
 
         stars.forEach(s => { s.update(); s.draw(); });
-        
-        meteors = meteors.filter(m => m.active);
         meteors.forEach(m => { m.update(); m.draw(); });
 
         requestAnimationFrame(animate);
