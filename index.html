@@ -139,29 +139,45 @@ function drawMilkyWay(){
 function draw(){
   ctx.clearRect(0,0,w,h);
 
-  // Color temperature shift
-  const temp=Math.min(scrollY/1500,1);
-  ctx.fillStyle=`rgba(${10+temp*10},${15+temp*20},${40+temp*40},0.4)`;
+  // Base space background (VERY dark, not blue wash)
+  ctx.fillStyle = 'rgb(2,6,23)';
   ctx.fillRect(0,0,w,h);
 
-  drawMilkyWay();
+  // Milky Way band (diagonal, visible)
+  ctx.save();
+  ctx.translate(w/2, h/2);
+  ctx.rotate(-0.25);
+  for(let y=-h;y<h;y+=3){
+    const n = Math.sin((y+scrollY*0.2)*0.01);
+    const alpha = 0.06 + Math.abs(n)*0.08;
+    ctx.fillStyle = `rgba(96,165,250,${alpha})`;
+    ctx.fillRect(-w, y, w*2, 2);
+  }
+  ctx.restore();
 
-  // Stars
+  // Stars (parallax layers)
   layers.forEach(l=>{
     l.stars.forEach(s=>{
-      s.y+=l.speed*(1+scrollY*0.0002);
-      if(s.y>h)s.y=0;
-      ctx.fillStyle='rgba(147,197,253,0.8)';
-      ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fill();
+      s.y += l.speed*(1+scrollY*0.0003);
+      if(s.y > h) s.y = 0;
+      ctx.fillStyle = 'rgba(147,197,253,1)';
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+      ctx.fill();
     });
   });
 
-  // Meteors
+  // Shooting stars
   for(let i=meteors.length-1;i>=0;i--){
-    const m=meteors[i];m.x+=m.vx;m.y+=m.vy;m.l++;
-    ctx.strokeStyle='rgba(125,211,252,0.9)';ctx.lineWidth=2;
-    ctx.beginPath();ctx.moveTo(m.x,m.y);ctx.lineTo(m.x+25,m.y-25);ctx.stroke();
-    if(m.l>35)meteors.splice(i,1);
+    const m = meteors[i];
+    m.x += m.vx; m.y += m.vy; m.l++;
+    ctx.strokeStyle = 'rgba(186,230,253,1)';
+    ctx.lineWidth = 2.5;
+    ctx.beginPath();
+    ctx.moveTo(m.x, m.y);
+    ctx.lineTo(m.x + 30, m.y - 30);
+    ctx.stroke();
+    if(m.l > 40) meteors.splice(i,1);
   }
 
   requestAnimationFrame(draw);
@@ -172,5 +188,6 @@ draw();
 
 </body>
 </html>
+
 
 
