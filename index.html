@@ -1,148 +1,123 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Radit Raian | Astrophysics Portfolio</title>
-  <link rel="stylesheet" href="styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-</head>
-<body>
+/**
+ * COSMOS ENGINE CORE v3.0
+ * Features:
+ * - Stellar temperature color mapping (H-R Diagram compliant)
+ * - Multi-layer parallax scroll system
+ * - Vector-based shooting star trajectories
+ * - Dynamic Twinkle (Luminosity fluctuation)
+ */
 
-<canvas id="space"></canvas>
+class CosmosEngine {
+    constructor() {
+        this.canvas = document.getElementById('cosmos-engine');
+        this.ctx = this.canvas.getContext('2d');
+        this.w = 0;
+        this.h = 0;
+        this.scrollY = 0;
+        
+        // Spectral types: O (Blue), B (Blue-White), A (White), F (Yellow-White), G (Yellow), K (Orange), M (Red)
+        this.colors = ['#9bb0ff', '#aabfff', '#ffffff', '#f8f7ff', '#fff4ea', '#ffd2a1', '#ffcc6f'];
+        
+        this.stars = [];
+        this.meteors = [];
+        this.init();
+    }
 
-<nav>
-  <strong>Radit Raian</strong>
-  <div class="nav-links">
-    <a href="#about">About</a>
-    <a href="#research">Research</a>
-    <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
-  </div>
-</nav>
+    init() {
+        this.resize();
+        window.addEventListener('resize', () => this.resize());
+        window.addEventListener('scroll', () => {
+            this.scrollY = window.pageYOffset;
+        });
 
-<section id="hero">
-  <div>
-    <h1>Exploring the Universe<br><span>Through Physics & Code</span></h1>
-    <p>Focusing on supernova cosmology, cold front detection in galaxy clusters, and PSF modeling.</p>
-  </div>
-</section>
+        // Layer 1: Background (Distant)
+        this.generateStars(400, 0.03, 0.6);
+        // Layer 2: Midground
+        this.generateStars(250, 0.08, 1.1);
+        // Layer 3: Foreground (Bright)
+        this.generateStars(100, 0.18, 1.6);
 
-<section id="research">
-  <h2>Research & Experience</h2>
-  <div class="grid">
-    <div class="item">
-      <strong>Supernova Cosmology</strong><br>
-      Analyzing Type Ia supernovae to constrain cosmological parameters.
-    </div>
-    <div class="item">
-      <strong>Cold Front Detection</strong><br>
-      Identifying temperature discontinuities in galaxy clusters.
-    </div>
-    <div class="item">
-      <strong>PSF Modeling</strong><br>
-      Improving Point Spread Function models for galaxy morphology.
-    </div>
-  </div>
-</section>
+        this.animate();
+        this.startMeteors();
+    }
 
-<footer>© 2026 Radit Raian</footer>
+    resize() {
+        this.w = this.canvas.width = window.innerWidth;
+        this.h = this.canvas.height = window.innerHeight;
+    }
 
-<script>
-const canvas = document.getElementById('space');
-const ctx = canvas.getContext('2d');
-let w, h;
+    generateStars(count, speed, maxRadius) {
+        for (let i = 0; i < count; i++) {
+            this.stars.push({
+                x: Math.random() * this.w,
+                y: Math.random() * this.h,
+                r: Math.random() * maxRadius + 0.1,
+                color: this.colors[Math.floor(Math.random() * this.colors.length)],
+                speed: speed,
+                opacity: Math.random(),
+                twinkle: (Math.random() * 0.02) + 0.005
+            });
+        }
+    }
 
-function resize() {
-  w = canvas.width = window.innerWidth;
-  h = canvas.height = window.innerHeight;
+    startMeteors() {
+        setInterval(() => {
+            if (document.visibilityState === 'visible' && this.meteors.length < 3) {
+                this.spawnMeteor();
+            }
+        }, 4000);
+    }
+
+    spawnMeteor() {
+        this.meteors.push({
+            x: Math.random() * this.w,
+            y: Math.random() * (this.h * 0.4),
+            vx: -(Math.random() * 8 + 5),
+            vy: Math.random() * 8 + 5,
+            len: Math.random() * 120 + 60,
+            opacity: 1
+        });
+    }
+
+    draw() {
+        this.ctx.fillStyle = '#010409'; // Pure Dark
+        this.ctx.fillRect(0, 0, this.w, this.h);
+
+        // Update & Draw Stars
+        this.stars.forEach(s => {
+            s.opacity += s.twinkle;
+            if (s.opacity > 1 || s.opacity < 0.2) s.twinkle *= -1;
+
+            let py = (s.y + (this.scrollY * s.speed)) % this.h;
+            if (py < 0) py += this.h;
+
+            this.ctx.beginPath();
+            this.ctx.arc(s.x, py, s.r, 0, Math.PI * 2);
+            this.ctx.fillStyle = s.color;
+            this.ctx.globalAlpha = s.opacity;
+            this.ctx.fill();
+        });
+
+        // Update & Draw Meteors
+        this.ctx.globalAlpha = 1.0;
+        for (let i = this.meteors.length - 1; i >= 0; i--) {
+            let m = this.meteors[i];
+            this.ctx.strokeStyle = `rgba(255, 255, 255, ${m.opacity})`;
+            this.ctx.lineWidth = 2;
+            this.ctx.beginPath();
+            this.ctx.moveTo(m.x, m.y);
+            this.ctx.lineTo(m.x + m.len, m.y - m.len);
+            this.ctx.stroke();
+
+            m.x += m.vx; m.y += m.vy; m.opacity -= 0.015;
+            if (m.opacity <= 0) this.meteors.splice(i, 1);
+        }
+    }
+
+    animate() {
+        this.draw();
+        requestAnimationFrame(() => this.animate());
+    }
 }
-window.addEventListener('resize', resize);
-resize();
 
-let scrollY = 0;
-window.addEventListener('scroll', () => {
-  scrollY = window.pageYOffset;
-});
-
-// Stellar Classification Colors (O, B, A, F, G, K, M)
-const starColors = ['#9bb0ff', '#aabfff', '#ffffff', '#f8f7ff', '#fff4ea', '#ffd2a1', '#ffcc6f'];
-
-const layers = [
-  { count: 300, speed: 0.04, stars: [] },
-  { count: 180, speed: 0.12, stars: [] },
-  { count: 80,  speed: 0.25, stars: [] }
-];
-
-layers.forEach(l => {
-  for (let i = 0; i < l.count; i++) {
-    l.stars.push({
-      x: Math.random() * w,
-      y: Math.random() * h,
-      r: Math.random() * 1.5,
-      color: starColors[Math.floor(Math.random() * starColors.length)],
-      opacity: 0.2 + Math.random() * 0.8,
-      twinkle: 0.005 + Math.random() * 0.015
-    });
-  }
-});
-
-// Shooting Stars (Meteors)
-const meteors = [];
-function createMeteor() {
-  if (document.visibilityState === 'visible') {
-    meteors.push({
-      x: Math.random() * w,
-      y: Math.random() * (h * 0.4),
-      vx: -(Math.random() * 6 + 4),
-      vy: Math.random() * 6 + 4,
-      len: Math.random() * 100 + 50,
-      opacity: 1
-    });
-  }
-}
-setInterval(createMeteor, 3000);
-
-function draw() {
-  // Clear with deep space black
-  ctx.fillStyle = '#010409';
-  ctx.fillRect(0, 0, w, h);
-
-  // Draw Stars
-  layers.forEach(l => {
-    l.stars.forEach(s => {
-      s.opacity += s.twinkle;
-      if (s.opacity > 1 || s.opacity < 0.2) s.twinkle *= -1;
-
-      let py = (s.y + (scrollY * l.speed)) % h;
-      if (py < 0) py += h;
-
-      ctx.beginPath();
-      ctx.arc(s.x, py, s.r, 0, Math.PI * 2);
-      ctx.fillStyle = s.color;
-      ctx.globalAlpha = s.opacity;
-      ctx.fill();
-    });
-  });
-
-  // Draw Shooting Stars
-  ctx.globalAlpha = 1.0;
-  for (let i = meteors.length - 1; i >= 0; i--) {
-    let m = meteors[i];
-    ctx.strokeStyle = `rgba(255, 255, 255, ${m.opacity})`;
-    ctx.lineWidth = 1.5;
-    ctx.beginPath();
-    ctx.moveTo(m.x, m.y);
-    ctx.lineTo(m.x + m.len, m.y - m.len);
-    ctx.stroke();
-
-    m.x += m.vx; m.y += m.vy; m.opacity -= 0.015;
-    if (m.opacity <= 0) meteors.splice(i, 1);
-  }
-
-  requestAnimationFrame(draw);
-}
-draw();
-</script>
-</body>
-</html>
+new CosmosEngine();
