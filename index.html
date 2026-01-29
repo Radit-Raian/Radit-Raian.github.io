@@ -7,7 +7,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
     
     <style>
-        /* --- CORE VISIBILITY --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         html, body {
@@ -20,35 +19,27 @@
             overflow-x: hidden;
         }
 
-        /* --- THE NEBULA BACKGROUND --- */
         #cosmos-engine {
             position: fixed;
             top: 0; left: 0;
             width: 100vw; height: 100vh;
             z-index: -1;
-            /* Mix of Midnight Blue, Violet, and Deep Space Black */
             background: linear-gradient(135deg, #020617 0%, #0f172a 35%, #1e1b4b 70%, #020617 100%);
             display: block;
         }
 
-        /* --- NAVIGATION --- */
         nav {
-            position: fixed;
-            top: 0; width: 100%;
+            position: fixed; top: 0; width: 100%;
             padding: 20px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            display: flex; justify-content: space-between; align-items: center;
             background: rgba(1, 4, 9, 0.8);
             backdrop-filter: blur(12px);
             z-index: 1000;
             border-bottom: 1px solid rgba(147, 197, 253, 0.1);
         }
-        nav strong { font-family: 'JetBrains Mono', monospace; color: #93c5fd; letter-spacing: 1px; }
-        .links a { color: #94a3b8; text-decoration: none; margin-left: 20px; font-size: 0.9rem; transition: 0.3s; }
-        .links a:hover { color: #93c5fd; }
 
-        /* --- CONTENT --- */
+        nav strong { font-family: 'JetBrains Mono', monospace; color: #93c5fd; letter-spacing: 1px; }
+
         section {
             max-width: 1100px;
             margin: 0 auto;
@@ -59,9 +50,6 @@
         #hero { height: 100vh; display: flex; align-items: center; }
         h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); line-height: 1.1; margin-bottom: 24px; }
         h1 span { color: #93c5fd; display: block; }
-        .desc { font-size: 1.2rem; color: #94a3b8; max-width: 650px; }
-
-        h2 { font-size: 2.2rem; color: #7dd3fc; margin-bottom: 40px; display: inline-block; border-bottom: 2px solid #1e40af; }
 
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 32px; }
         .item { 
@@ -70,15 +58,6 @@
             padding: 32px; border-radius: 12px; 
             transition: transform 0.3s, border-color 0.3s;
         }
-        .item:hover { transform: translateY(-8px); border-color: #3b82f6; }
-        .item h3 { color: #93c5fd; margin-bottom: 12px; }
-
-        footer { text-align: center; padding: 80px 24px; color: #475569; border-top: 1px solid #1e293b; }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #020617; }
-        ::-webkit-scrollbar-thumb { background: #1e40af; border-radius: 10px; }
     </style>
 </head>
 <body>
@@ -87,53 +66,32 @@
 
 <nav>
     <strong>RADIT_RAIAN</strong>
-    <div class="links">
-        <a href="#about">About</a>
-        <a href="#research">Research</a>
-        <a href="#projects">Projects</a>
+    <div style="display: flex; gap: 20px;">
+        <a href="#research" style="color: #94a3b8; text-decoration: none;">Research</a>
+        <a href="#projects" style="color: #94a3b8; text-decoration: none;">Projects</a>
     </div>
 </nav>
 
 <section id="hero">
     <div>
         <h1>Exploring the Universe<br><span>Through Physics & Code</span></h1>
-        <p class="desc">High school researcher focusing on Supernova Cosmology, Cold Front detection, and PSF modeling.</p>
+        <p style="color: #94a3b8; max-width: 600px;">Observational cosmology focusing on Supernova Spectroscopy, Cold Front Detection, and PSF modeling.</p>
     </div>
 </section>
 
 <section id="research">
-    <h2>Research & Experience</h2>
+    <h2 style="color: #7dd3fc; margin-bottom: 40px;">Research</h2>
     <div class="grid">
         <div class="item">
-            <h3>Supernova Cosmology</h3>
-            <p>Analyzing Type Ia supernovae to constrain cosmological parameters and expansion history.</p>
+            <h3 style="color: #93c5fd; margin-bottom: 15px;">Supernova Cosmology</h3>
+            <p>Analyzing Type Ia supernovae to constrain cosmological parameters.</p>
         </div>
         <div class="item">
-            <h3>Cold Front Detection</h3>
-            <p>Developing algorithms for identifying sharp pressure/temperature discontinuities in galaxy clusters.</p>
-        </div>
-        <div class="item">
-            <h3>PSF Modeling</h3>
-            <p>Improving Point Spread Function models for accurate weak lensing and galaxy morphology analysis.</p>
+            <h3 style="color: #93c5fd; margin-bottom: 15px;">Cold Front Detection</h3>
+            <p>Identifying temperature discontinuities in galaxy clusters.</p>
         </div>
     </div>
 </section>
-
-<section id="projects">
-    <h2>Technical Projects</h2>
-    <div class="grid">
-        <div class="item">
-            <h3>Cosmo-Sim</h3>
-            <p>Computational pipeline for spectral analysis and cosmological simulations.</p>
-        </div>
-        <div class="item">
-            <h3>Cluster-Finder</h3>
-            <p>Automated detection of galaxy cluster dynamics using X-ray data.</p>
-        </div>
-    </div>
-</section>
-
-<footer>© 2026 Radit Raian | Designed for the Stars</footer>
 
 <script>
     const canvas = document.getElementById('cosmos-engine');
@@ -148,7 +106,6 @@
     window.addEventListener('scroll', () => scrollY = window.pageYOffset);
     resize();
 
-    // Star Colors based on Temperature (O-B-A-F-G-K-M)
     const STAR_COLORS = ['#9bb0ff', '#aabfff', '#ffffff', '#f8f7ff', '#fff4ea', '#ffd2a1', '#ffcc6f'];
 
     class Star {
@@ -177,24 +134,30 @@
     }
 
     class Meteor {
-        constructor() { this.reset(); }
-        reset() {
+        constructor() {
+            this.active = false;
+        }
+        spawn() {
+            this.active = true;
             this.x = Math.random() * w;
-            this.y = Math.random() * (h * 0.4);
-            this.vx = -(Math.random() * 10 + 10);
-            this.vy = Math.random() * 10 + 5;
-            this.len = Math.random() * 25 + 15; // Shorter
+            this.y = Math.random() * (h * 0.3);
+            this.vx = -(Math.random() * 8 + 12);
+            this.vy = Math.random() * 6 + 8;
+            this.len = Math.random() * 20 + 15;
             this.opacity = 1;
         }
         update() {
-            this.x += this.vx; this.y += this.vy;
+            if (!this.active) return;
+            this.x += this.vx;
+            this.y += this.vy;
             this.opacity -= 0.015;
-            if (this.opacity <= 0) this.reset();
+            if (this.opacity <= 0) this.active = false;
         }
         draw() {
+            if (!this.active) return;
             ctx.globalAlpha = this.opacity;
             ctx.strokeStyle = '#ffffff';
-            ctx.lineWidth = 3.5; // Thicker
+            ctx.lineWidth = 4;
             ctx.lineCap = 'round';
             ctx.beginPath();
             ctx.moveTo(this.x, this.y);
@@ -203,31 +166,30 @@
         }
     }
 
-    const layers = [
-        Array.from({length: 300}, () => new Star(0.05)),
-        Array.from({length: 200}, () => new Star(0.12)),
-        Array.from({length: 100}, () => new Star(0.25))
-    ];
-    const meteors = Array.from({length: 2}, () => new Meteor());
+    const stars = Array.from({length: 600}, () => new Star(Math.random() * 0.2));
+    const shootingStar = new Meteor();
+
+    // TRIGGER METEOR RARELY (Every 8 seconds)
+    setInterval(() => {
+        if (!shootingStar.active) shootingStar.spawn();
+    }, 8000);
 
     function animate() {
-        // Clear with slight darkness to show the CSS nebula mix
         ctx.globalAlpha = 1;
         ctx.fillStyle = '#010409';
         ctx.fillRect(0, 0, w, h);
 
-        // Add subtle Nebula Glow (Violet and Blue)
+        // Nebula Glow
         const nebula = ctx.createRadialGradient(w * 0.7, h * 0.3, 0, w * 0.7, h * 0.3, w);
         nebula.addColorStop(0, 'rgba(30, 27, 75, 0.3)'); 
         nebula.addColorStop(0.5, 'rgba(15, 23, 42, 0.2)');
-        nebula.addColorStop(1, 'rgba(2, 6, 23, 0)');
+        nebula.addColorStop(1, 'rgba(0, 0, 0, 0)');
         ctx.fillStyle = nebula;
         ctx.fillRect(0, 0, w, h);
 
-        layers.forEach(l => l.forEach(s => { s.update(); s.draw(); }));
-        
-        // Meteors move only every 10 seconds (managed by opacity reset in class)
-        meteors.forEach(m => { m.update(); m.draw(); });
+        stars.forEach(s => { s.update(); s.draw(); });
+        shootingStar.update();
+        shootingStar.draw();
 
         requestAnimationFrame(animate);
     }
