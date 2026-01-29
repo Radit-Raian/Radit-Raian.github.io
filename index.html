@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Radit Raian | Astrophysics & Medical Research</title>
+  <title>Radit Raian | Astrophysics Portfolio</title>
   <link rel="stylesheet" href="styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
@@ -22,41 +22,36 @@
 </nav>
 
 <section id="hero">
-  <div class="hero-content">
+  <div>
     <h1>Exploring the Universe<br><span>Through Physics & Code</span></h1>
-    <p>Aspiring astrophysicist and medical researcher bridging the gap between clinical data and computational simulations.</p>
+    <p>Focusing on observational cosmology, galaxy cluster dynamics, and astronomical image processing.</p>
   </div>
-</section>
-
-<section id="about">
-  <h2>About Me</h2>
-  <p>5th-year medical student at Dhaka Medical College. I specialize in using computational tools like Ansys and COMSOL to model complex biological and structural systems.</p>
 </section>
 
 <section id="research">
   <h2>Research & Experience</h2>
   <div class="grid">
     <div class="item">
-      <strong>Ambient Thermal Stress</strong><br>
-      Evaluating impacts on clinical outcomes for Dengue patients.
+      <strong>Supernova Cosmology</strong><br>
+      Analyzing Type Ia supernovae to constrain cosmological parameters and expansion history.
     </div>
     <div class="item">
-      <strong>Medical Education</strong><br>
-      Researching challenges in undergraduate small-group teaching in Bangladesh.
+      <strong>Cold Front Detection</strong><br>
+      Developing algorithms for identifying sharp pressure/temperature discontinuities in galaxy clusters.
     </div>
     <div class="item">
-      <strong>Engineering Simulations</strong><br>
-      Structural planning and thermal modeling for G+8 reinforced concrete buildings.
+      <strong>PSF Modeling</strong><br>
+      Improving Point Spread Function models for more accurate weak lensing and galaxy morphology analysis.
     </div>
   </div>
 </section>
 
 <section id="projects">
-  <h2>Projects</h2>
+  <h2>Technical Projects</h2>
   <div class="grid">
-    <div class="item"><strong>VaxSafe</strong>: Digital medical vaccination service platform.</div>
-    <div class="item"><strong>Pet Daycare</strong>: Home-environment care service concept.</div>
-    <div class="item"><strong>BME Modeling</strong>: 3D Bioheat Transfer models in Ansys 2025 R2.</div>
+    <div class="item"><strong>Cosmo-Sim</strong>: Computational pipeline for spectral analysis.</div>
+    <div class="item"><strong>Cluster-Finder</strong>: Automated cold front detection using X-ray data.</div>
+    <div class="item"><strong>PSF-Gen</strong>: Modeling tool for astronomical instrumentation.</div>
   </div>
 </section>
 
@@ -79,12 +74,13 @@ window.addEventListener('scroll', () => {
   scrollY = window.pageYOffset;
 });
 
-// Star Configuration (Stellar Classification Colors)
-const starColors = ['#9bb0ff', '#ffffff', '#fff4ea', '#ffd2a1', '#ffcc6f'];
+// Stellar Classification Colors (O, B, A, F, G, K, M)
+const starColors = ['#9bb0ff', '#aabfff', '#ffffff', '#f8f7ff', '#fff4ea', '#ffd2a1', '#ffcc6f'];
+
 const layers = [
-  { count: 250, speed: 0.04, stars: [] },
-  { count: 150, speed: 0.10, stars: [] },
-  { count: 80,  speed: 0.20, stars: [] }
+  { count: 300, speed: 0.04, stars: [] },
+  { count: 180, speed: 0.12, stars: [] },
+  { count: 80,  speed: 0.25, stars: [] }
 ];
 
 layers.forEach(l => {
@@ -94,33 +90,37 @@ layers.forEach(l => {
       y: Math.random() * h,
       r: Math.random() * 1.4,
       color: starColors[Math.floor(Math.random() * starColors.length)],
-      o: Math.random(),
-      t: 0.005 + Math.random() * 0.015
+      opacity: 0.2 + Math.random() * 0.8,
+      twinkle: 0.005 + Math.random() * 0.02
     });
   }
 });
+
+// Shooting Stars (Meteors)
+const meteors = [];
+function createMeteor() {
+  if (document.visibilityState === 'visible') {
+    meteors.push({
+      x: Math.random() * w,
+      y: Math.random() * (h * 0.5),
+      vx: -(Math.random() * 5 + 5),
+      vy: Math.random() * 5 + 5,
+      len: Math.random() * 80 + 20,
+      opacity: 1
+    });
+  }
+}
+setInterval(createMeteor, 3500);
 
 function draw() {
   ctx.fillStyle = '#010409';
   ctx.fillRect(0, 0, w, h);
 
-  // 1. THE MILKY WAY BAND (Cloudy Gradient)
-  ctx.save();
-  ctx.translate(w / 2, h / 2);
-  ctx.rotate(-0.5);
-  const band = ctx.createLinearGradient(0, -h, 0, h);
-  band.addColorStop(0.4, 'rgba(20, 40, 100, 0)');
-  band.addColorStop(0.5, 'rgba(50, 70, 140, 0.2)'); // Core glow
-  band.addColorStop(0.6, 'rgba(20, 40, 100, 0)');
-  ctx.fillStyle = band;
-  ctx.fillRect(-w * 2, -h / 3 + (scrollY * 0.05), w * 4, h / 1.5);
-  ctx.restore();
-
-  // 2. THE STARS ENGINE (Twinkling & Parallax)
+  // Draw Stars
   layers.forEach(l => {
     l.stars.forEach(s => {
-      s.o += s.t;
-      if (s.o > 1 || s.o < 0.2) s.t *= -1;
+      s.opacity += s.twinkle;
+      if (s.opacity > 1 || s.opacity < 0.2) s.twinkle *= -1;
 
       let py = (s.y + (scrollY * l.speed)) % h;
       if (py < 0) py += h;
@@ -128,11 +128,28 @@ function draw() {
       ctx.beginPath();
       ctx.arc(s.x, py, s.r, 0, Math.PI * 2);
       ctx.fillStyle = s.color;
-      ctx.globalAlpha = s.o;
+      ctx.globalAlpha = s.opacity;
       ctx.fill();
     });
   });
+
+  // Draw Shooting Stars
   ctx.globalAlpha = 1.0;
+  for (let i = meteors.length - 1; i >= 0; i--) {
+    let m = meteors[i];
+    ctx.strokeStyle = `rgba(255, 255, 255, ${m.opacity})`;
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.moveTo(m.x, m.y);
+    ctx.lineTo(m.x + m.len, m.y - m.len);
+    ctx.stroke();
+
+    m.x += m.vx;
+    m.y += m.vy;
+    m.opacity -= 0.02;
+
+    if (m.opacity <= 0) meteors.splice(i, 1);
+  }
 
   requestAnimationFrame(draw);
 }
@@ -140,3 +157,4 @@ draw();
 </script>
 </body>
 </html>
+
