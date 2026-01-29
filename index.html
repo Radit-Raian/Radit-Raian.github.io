@@ -1,211 +1,263 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Radit Raian - Astrophysics Portfolio</title>
-<style>
-  /* ---------- Root Colors ---------- */
-  :root {
-    --primary-black: #0b0c10;
-    --primary-blue: #1f2833;
-    --accent-gold: #c9a961;
-    --text-light: #ffffff;
-    --text-muted: #b8c5d0;
-  }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Radit Raian | Astrophysics</title>
 
-  /* ---------- Reset ---------- */
-  * { margin:0; padding:0; box-sizing:border-box; }
-  body {
-    font-family: 'Inter', sans-serif;
-    background: linear-gradient(to bottom, var(--primary-black), var(--primary-blue));
-    overflow-x: hidden;
-    color: var(--text-light);
-  }
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-  /* ---------- Sections ---------- */
-  section {
-    position: relative;
-    max-width: 1200px;
-    margin: 5rem auto;
-    padding: 2rem 3rem;
-    background: rgba(15, 18, 25, 0.6);
-    backdrop-filter: blur(15px);
-    border-radius: 20px;
-    border: 1px solid rgba(201,169,97,0.15);
-    box-shadow: 0 0 40px rgba(0,0,0,0.5);
-    overflow: hidden;
-  }
+  <style>
+    /* ---------- GLOBAL ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  section h2 {
-    font-size: 2rem;
-    color: var(--accent-gold);
-    text-align: center;
-    margin-bottom: 1rem;
-  }
+    html, body {
+      font-family: 'Inter', sans-serif;
+      background: #020617;
+      color: #e5e7eb;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
 
-  section p {
-    font-size: 1rem;
-    line-height: 1.7;
-    color: var(--text-muted);
-    text-align: justify;
-  }
+    canvas {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+    }
 
-  /* ---------- Hero ---------- */
-  .hero {
-    min-height: 90vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align:center;
-  }
+    section {
+      max-width: 1100px;
+      margin: auto;
+      padding: 120px 24px;
+    }
 
-  .hero h1 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-  }
+    h1, h2, h3 {
+      color: #93c5fd;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
 
-  .hero p {
-    font-size: 1.2rem;
-    max-width: 800px;
-  }
+    h1 {
+      font-size: 3.4rem;
+      margin-bottom: 16px;
+    }
 
-  /* ---------- Button ---------- */
-  .btn {
-    margin-top: 2rem;
-    padding: 0.9rem 2rem;
-    border-radius: 25px;
-    font-weight:600;
-    color: var(--primary-black);
-    background: linear-gradient(135deg, var(--accent-gold), #d4b56d);
-    border:none;
-    cursor:pointer;
-    transition: all 0.3s ease;
-  }
+    h2 {
+      font-size: 2.2rem;
+      margin-bottom: 32px;
+    }
 
-  .btn:hover {
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 0 20px var(--accent-gold);
-  }
+    p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: #cbd5f5;
+    }
 
-  /* ---------- Cosmic Canvas ---------- */
-  canvas {
-    position: fixed;
-    top:0; left:0;
-    width:100%;
-    height:100%;
-    z-index:-1;
-  }
-</style>
+    a {
+      color: #60a5fa;
+      text-decoration: none;
+    }
+
+    /* ---------- NAV ---------- */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 20px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(2, 6, 23, 0.6);
+      backdrop-filter: blur(6px);
+      z-index: 10;
+    }
+
+    nav a {
+      margin-left: 24px;
+      font-weight: 500;
+    }
+
+    /* ---------- HERO ---------- */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+    }
+
+    #hero span {
+      color: #38bdf8;
+    }
+
+    /* ---------- GRID SECTIONS ---------- */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 28px;
+    }
+
+    .item {
+      border-left: 2px solid #1e3a8a;
+      padding-left: 16px;
+    }
+
+    /* ---------- FOOTER ---------- */
+    footer {
+      padding: 80px 24px;
+      text-align: center;
+      color: #94a3b8;
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 768px) {
+      h1 { font-size: 2.6rem; }
+      h2 { font-size: 1.8rem; }
+    }
+  </style>
 </head>
 <body>
 
-<!-- Hero Section -->
-<section class="hero">
-  <h1>Radit Raian</h1>
-  <p>Aspiring Astrophysicist | Researcher in Cosmic Structures | Python & Astronomy Enthusiast</p>
-  <button class="btn">Explore My Work</button>
+<canvas id="space"></canvas>
+
+<nav>
+  <strong>Radit Raian</strong>
+  <div>
+    <a href="#about">About</a>
+    <a href="#research">Research</a>
+    <a href="#projects">Projects</a>
+    <a href="#achievements">Achievements</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<section id="hero">
+  <div>
+    <h1>Exploring the Universe<br><span>Through Physics & Code</span></h1>
+    <p>Aspiring astrophysicist working on gravitational lensing, PSF modeling,
+       supernova spectroscopy, and computational astronomy.</p>
+  </div>
 </section>
 
-<!-- About Section -->
 <section id="about">
   <h2>About Me</h2>
-  <p>I am a high school student with deep passion in astrophysics, participating in national and international olympiads, and developing research projects in gravitational lensing, supernova analysis, and cosmic phenomena. I aspire to study at top-tier universities and contribute to modern astrophysical research.</p>
+  <p>
+    I am a Bangladeshi high school researcher passionate about observational
+    astrophysics, cosmology, and scientific computing. My work focuses on
+    point-spread function modeling, lensing simulations, and Type Ia supernova
+    spectral analysis.
+  </p>
 </section>
 
-<!-- Research Section -->
 <section id="research">
-  <h2>Research & Projects</h2>
-  <p>Worked on MiMiC PSF development, Type Ia supernova spectral analysis, and more. Developed Python pipelines integrating SExtractor, Photutils, and GALFIT for precise astronomical measurements. Interested in gravitational lensing and cosmic microwave background studies.</p>
+  <h2>Research & Experience</h2>
+  <div class="grid">
+    <div class="item">High School Intern — CASSA, IUB</div>
+    <div class="item">MiMiC Project — PSF Pipeline Development</div>
+    <div class="item">Type Ia SN Spectral Velocity Extraction</div>
+  </div>
 </section>
 
-<!-- Skills Section -->
-<section id="skills">
-  <h2>Skills & Interests</h2>
-  <p>Python, MATLAB, C basics, GALFIT, PSFEx, Topcat, DS9, Astronomy & Astrophysics Olympiads, Data Analysis, Observational Techniques, Research Methodology.</p>
+<section id="projects">
+  <h2>Selected Projects</h2>
+  <div class="grid">
+    <div class="item">PSF Modeling Package (Python)</div>
+    <div class="item">Gravitational Lensing Simulations</div>
+    <div class="item">Supernova Feature Analysis</div>
+  </div>
 </section>
 
-<!-- Contact Section -->
+<section id="achievements">
+  <h2>Achievements</h2>
+  <div class="grid">
+    <div class="item">International Youth Math Challenge — Gold</div>
+    <div class="item">Bangladesh Astronomy Olympiad — National Winner</div>
+    <div class="item">Iranian Geometry Olympiad — Honorable Mention</div>
+  </div>
+</section>
+
 <section id="contact">
-  <h2>Contact Me</h2>
-  <p>Email: radit@example.com | LinkedIn: linkedin.com/in/raditraian | GitHub: github.com/rabbit2307</p>
+  <h2>Contact</h2>
+  <p>Email: your@email.com<br>GitHub: github.com/rabbit2307</p>
 </section>
 
-<!-- Cosmic Canvas -->
-<canvas id="cosmos"></canvas>
+<footer>
+  © 2026 Radit Raian — Built with curiosity and starlight
+</footer>
 
 <script>
-const canvas = document.getElementById('cosmos');
-const ctx = canvas.getContext('2d');
-let stars = [];
-let shootingStars = [];
-let w, h;
+  const canvas = document.getElementById('space');
+  const ctx = canvas.getContext('2d');
+  let w, h;
 
-function initCanvas() {
+  function resize() {
     w = canvas.width = window.innerWidth;
     h = canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
 
-    stars = [];
-    for(let i=0;i<250;i++){
-        stars.push({
-            x: Math.random()*w,
-            y: Math.random()*h,
-            r: Math.random()*1.5+0.5,
-            d: Math.random()*0.5
-        });
+  const stars = Array.from({ length: 350 }, () => ({
+    x: Math.random() * w,
+    y: Math.random() * h,
+    r: Math.random() * 1.2,
+    a: Math.random(),
+    s: Math.random() * 0.02 + 0.005
+  }));
+
+  const meteors = [];
+
+  function spawnMeteor() {
+    meteors.push({
+      x: Math.random() * w,
+      y: 0,
+      vx: -6,
+      vy: 6,
+      life: 0
+    });
+  }
+
+  setInterval(spawnMeteor, 3500);
+
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+
+    // Stars
+    for (const s of stars) {
+      s.a += s.s;
+      const alpha = 0.3 + Math.abs(Math.sin(s.a)) * 0.7;
+      ctx.fillStyle = `rgba(147,197,253,${alpha})`;
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fill();
     }
 
-    shootingStars = [];
-}
+    // Meteors
+    for (let i = meteors.length - 1; i >= 0; i--) {
+      const m = meteors[i];
+      m.x += m.vx;
+      m.y += m.vy;
+      m.life++;
 
-function drawStars() {
-    ctx.clearRect(0,0,w,h);
-    
-    // Draw normal stars
-    for(let s of stars){
-        ctx.beginPath();
-        ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
-        ctx.fillStyle = `rgba(255,255,255,${0.5 + 0.5*Math.sin(Date.now()/1000)})`;
-        ctx.fill();
+      ctx.strokeStyle = 'rgba(96,165,250,0.8)';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(m.x, m.y);
+      ctx.lineTo(m.x + 20, m.y - 20);
+      ctx.stroke();
+
+      if (m.life > 40) meteors.splice(i, 1);
     }
 
-    // Occasionally spawn shooting stars
-    if(Math.random() < 0.005 && shootingStars.length < 2){
-        shootingStars.push({
-            x: Math.random()*w,
-            y: Math.random()*h/2,
-            len: Math.random()*150+100,
-            speed: Math.random()*8+4,
-            angle: Math.random()*Math.PI/6+Math.PI/12
-        });
-    }
+    requestAnimationFrame(draw);
+  }
 
-    // Draw shooting stars
-    for(let i=shootingStars.length-1;i>=0;i--){
-        let sh = shootingStars[i];
-        ctx.beginPath();
-        ctx.moveTo(sh.x, sh.y);
-        ctx.lineTo(sh.x - sh.len*Math.cos(sh.angle), sh.y - sh.len*Math.sin(sh.angle));
-        ctx.strokeStyle = "rgba(255,255,255,0.8)";
-        ctx.lineWidth = 2;
-        ctx.stroke();
-
-        sh.x += sh.speed*Math.cos(sh.angle);
-        sh.y += sh.speed*Math.sin(sh.angle);
-
-        if(sh.x > w || sh.y > h){
-            shootingStars.splice(i,1);
-        }
-    }
-
-    requestAnimationFrame(drawStars);
-}
-
-window.addEventListener('resize', initCanvas);
-initCanvas();
-drawStars();
+  draw();
 </script>
+
 </body>
 </html>
 
