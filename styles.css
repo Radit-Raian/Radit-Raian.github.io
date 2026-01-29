@@ -1,137 +1,155 @@
-/* --- FUNDAMENTAL VISIBILITY FIX --- */
+/* --- FUNDAMENTAL VISIBILITY & RESET --- */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 html, body {
-  width: 100%;
-  min-height: 100%;
-  font-family: 'Inter', sans-serif;
-  color: #e5e7eb;
-  /* CRITICAL: Background must be transparent to see the star canvas */
-  background: transparent !important;
-  scroll-behavior: smooth;
-  overflow-x: hidden;
+    width: 100%;
+    min-height: 100%;
+    font-family: 'Inter', sans-serif;
+    color: #e5e7eb;
+    background: transparent !important; /* Critical for canvas visibility */
+    scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 /* --- BACKGROUND ENGINE LAYER --- */
 #cosmos-engine {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: -1; /* Keeps stars behind all text */
-  background: linear-gradient(135deg, #020617 0%, #0f172a 35%, #1e1b4b 70%, #020617 100%);
-  display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    /* Nebula Mix: Midnight Blue and Deep Indigo/Violet */
+    background: linear-gradient(135deg, #020617 0%, #0f172a 35%, #1e1b4b 70%, #020617 100%);
+    display: block;
 }
 
-/* --- NAVIGATION --- */
+/* --- NAVIGATION: CENTERED PILL STYLE --- */
 nav {
-  position: fixed;
-  top: 0; 
-  width: 100%;
-  padding: 20px 40px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: rgba(1, 4, 9, 0.8); /* Semi-transparent midnight */
-  backdrop-filter: blur(12px); /* Only blurs the stars, doesn't hide them */
-  z-index: 1000;
-  border-bottom: 1px solid rgba(147, 197, 253, 0.1);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 30px 0;
+    display: flex;
+    justify-content: center; /* Centered like reference image */
+    z-index: 1000;
 }
 
-nav strong {
-  font-family: 'JetBrains Mono', monospace;
-  color: #93c5fd;
-  letter-spacing: 1px;
+.nav-pill-box {
+    display: flex;
+    gap: 10px;
+    padding: 8px 20px;
+    background: rgba(1, 4, 9, 0.8);
+    border-radius: 50px;
+    border: 1px solid rgba(147, 197, 253, 0.2);
+    backdrop-filter: blur(12px);
 }
 
-nav a {
-  color: #94a3b8;
-  text-decoration: none;
-  margin-left: 24px;
-  font-size: 0.9rem;
-  transition: 0.3s;
+.nav-link {
+    color: #94a3b8;
+    text-decoration: none;
+    font-size: 0.85rem;
+    padding: 8px 18px;
+    border-radius: 50px;
+    transition: 0.3s;
 }
 
-nav a:hover {
-  color: #93c5fd;
+.nav-link:hover {
+    color: #93c5fd;
+    background: rgba(147, 197, 253, 0.1);
 }
 
-/* --- CONTENT SECTIONS --- */
+/* --- SECTION PILL HEADERS --- */
+.pill-header-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 60px;
+    width: 100%;
+}
+
+.pill-header {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    color: #93c5fd;
+    padding: 12px 40px;
+    border-radius: 50px;
+    background: rgba(147, 197, 253, 0.03);
+    border: 1.5px solid rgba(147, 197, 253, 0.4); /* Blue Border */
+    box-shadow: 0 0 15px rgba(147, 197, 253, 0.2); /* Blue Glow */
+    text-transform: uppercase;
+    backdrop-filter: blur(8px);
+}
+
+/* --- CONTENT LAYOUT --- */
 section {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 160px 24px;
-  /* ENSURES NO SOLID BLOCKS HIDE THE BACKGROUND */
-  background: transparent !important;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 160px 24px;
+    background: transparent !important;
 }
 
 #hero {
-  height: 100vh;
-  display: flex;
-  align-items: center;
+    height: 100vh;
+    display: flex;
+    align-items: center;
 }
 
 h1 {
-  font-size: clamp(2.5rem, 8vw, 4.5rem);
-  line-height: 1.1;
-  margin-bottom: 24px;
-  color: #f8fafc;
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
+    line-height: 1.1;
+    margin-bottom: 24px;
+    color: #f8fafc;
 }
 
 h1 span {
-  color: #93c5fd;
-  display: block;
-}
-
-h2 {
-  font-size: 2.2rem;
-  color: #7dd3fc;
-  margin-bottom: 40px;
-  display: inline-block;
-  border-bottom: 2px solid #1e40af;
+    color: #93c5fd;
+    display: block;
 }
 
 /* --- PROJECT & RESEARCH GRID --- */
 .grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 32px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 32px;
 }
 
 .item {
-  background: #0f172a; /* Solid dark blue for readability */
-  border: 1px solid #1e293b;
-  padding: 32px;
-  border-radius: 12px;
-  transition: transform 0.3s, border-color 0.3s;
+    background: rgba(15, 23, 42, 0.5) !important; /* Semi-transparent for depth */
+    border: 1px solid rgba(147, 197, 253, 0.15) !important; /* Blue border */
+    padding: 40px 30px;
+    border-radius: 20px !important; /* Rounder corners like reference */
+    text-align: center;
+    transition: transform 0.4s ease, border-color 0.4s ease;
 }
 
 .item:hover {
-  transform: translateY(-8px);
-  border-color: #3b82f6;
+    transform: translateY(-8px);
+    border-color: rgba(147, 197, 253, 0.5) !important;
+    box-shadow: 0 0 25px rgba(147, 197, 253, 0.15);
 }
 
 .item h3 {
-  color: #93c5fd;
-  margin-bottom: 12px;
-  font-size: 1.4rem;
+    color: #93c5fd;
+    font-size: 1.3rem;
+    margin-bottom: 12px;
 }
 
 /* --- SCROLLBAR --- */
 ::-webkit-scrollbar {
-  width: 6px;
+    width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #010409;
+    background: #020617;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1e40af;
-  border-radius: 10px;
+    background: #1e40af;
+    border-radius: 10px;
 }
