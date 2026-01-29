@@ -4,137 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Radit Raian | Astrophysics</title>
-
+  <link rel="stylesheet" href="styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    
-    html, body {
-      font-family: 'Inter', sans-serif;
-      background: transparent; /* Allows canvas background to show */
-      color: #e5e7eb;
-      scroll-behavior: smooth;
-      overflow-x: hidden;
-    }
-
-    /* Fixed the canvas visibility and positioning */
-    canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: -1;
-      background: #020617; /* Deep space color */
-      pointer-events: none;
-    }
-
-    nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      padding: 20px 32px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(2, 6, 23, 0.7);
-      backdrop-filter: blur(8px);
-      z-index: 10;
-      border-bottom: 1px solid rgba(147, 197, 253, 0.1);
-    }
-
-    nav strong {
-      font-size: 1.2rem;
-      color: #93c5fd;
-      letter-spacing: 1px;
-    }
-
-    nav a {
-      margin-left: 24px;
-      color: #94a3b8;
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s;
-    }
-
-    nav a:hover {
-      color: #93c5fd;
-    }
-
-    section {
-      max-width: 1100px;
-      margin: auto;
-      padding: 120px 24px;
-      position: relative;
-    }
-
-    #hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-    }
-
-    h1 {
-      font-size: clamp(2.5rem, 8vw, 4rem);
-      color: #f8fafc;
-      line-height: 1.1;
-      margin-bottom: 20px;
-    }
-
-    h1 span {
-      color: #93c5fd;
-      display: block;
-    }
-
-    h2 {
-      font-size: 2.2rem;
-      color: #7dd3fc;
-      margin-bottom: 40px;
-      border-bottom: 1px solid #1e40af;
-      display: inline-block;
-      padding-bottom: 8px;
-    }
-
-    p {
-      font-size: 1.1rem;
-      line-height: 1.8;
-      color: #cbd5e1;
-      max-width: 700px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 32px;
-      margin-top: 20px;
-    }
-
-    .item {
-      background: rgba(30, 41, 59, 0.3);
-      border: 1px solid rgba(147, 197, 253, 0.1);
-      padding: 24px;
-      border-radius: 8px;
-      transition: transform 0.3s, border-color 0.3s;
-    }
-
-    .item:hover {
-      transform: translateY(-5px);
-      border-color: #3b82f6;
-    }
-
-    footer {
-      text-align: center;
-      padding: 60px 24px;
-      color: #64748b;
-      font-size: 0.9rem;
-    }
-
-    @media (max-width: 768px) {
-      nav { padding: 15px 20px; }
-      nav div { display: none; } /* Mobile menu could be added here */
-    }
-  </style>
 </head>
 <body>
 
@@ -142,17 +13,16 @@
 
 <nav>
   <strong>Radit Raian</strong>
-  <div>
+  <div class="nav-links">
     <a href="#about">About</a>
     <a href="#research">Research</a>
     <a href="#projects">Projects</a>
-    <a href="#achievements">Achievements</a>
     <a href="#contact">Contact</a>
   </div>
 </nav>
 
 <section id="hero">
-  <div>
+  <div class="hero-content">
     <h1>Exploring the Universe<br><span>Through Physics & Code</span></h1>
     <p>Aspiring astrophysicist focused on observational cosmology, PSF modeling, and computational astronomy.</p>
   </div>
@@ -160,49 +30,25 @@
 
 <section id="about">
   <h2>About Me</h2>
-  <p>High school researcher from Bangladesh working on gravitational lensing, supernova spectroscopy, and scientific computing. Passionate about bridging the gap between theoretical physics and modern data science.</p>
+  <p>Researcher at Dhaka Medical College focusing on computational models. Passionate about bridging clinical data with high-level simulations using ML, COMSOL, and Ansys.</p>
 </section>
 
 <section id="research">
   <h2>Research & Experience</h2>
   <div class="grid">
     <div class="item">
-      <strong>CASSA, IUB</strong><br>
-      Research Intern focusing on astronomical data processing.
+      <strong>Climate & Health</strong><br>
+      Evaluating thermal stress impacts on clinical outcomes for Dengue patients.
     </div>
     <div class="item">
-      <strong>MiMiC PSF Pipeline</strong><br>
-      Developing robust modeling tools for astronomical imaging.
+      <strong>Medical Education</strong><br>
+      Researching challenges in undergraduate medical small-group teaching in Bangladesh.
     </div>
     <div class="item">
-      <strong>Supernova Analysis</strong><br>
-      Type Ia Spectral Analysis and velocity extraction.
+      <strong>Biomedical Simulations</strong><br>
+      Developing 3D Bioheat Transfer models using COMSOL and Ansys 2024/2025.
     </div>
   </div>
-</section>
-
-<section id="projects">
-  <h2>Projects</h2>
-  <div class="grid">
-    <div class="item">PSF Modeling Package</div>
-    <div class="item">Gravitational Lensing Simulations</div>
-    <div class="item">SN Feature Velocity Extraction</div>
-  </div>
-</section>
-
-<section id="achievements">
-  <h2>Achievements</h2>
-  <div class="grid">
-    <div class="item">IYMC — Gold Medal</div>
-    <div class="item">Bangladesh Astronomy Olympiad — National Winner</div>
-    <div class="item">Iranian Geometry Olympiad — Honorable Mention</div>
-  </div>
-</section>
-
-<section id="contact">
-  <h2>Contact</h2>
-  <p>GitHub: <a href="https://github.com/rabbit2307" style="color:#93c5fd">rabbit2307</a><br>
-     Email: <a href="mailto:your@email.com" style="color:#93c5fd">your@email.com</a></p>
 </section>
 
 <footer>© 2026 Radit Raian</footer>
@@ -216,94 +62,73 @@ function resize() {
   w = canvas.width = window.innerWidth;
   h = canvas.height = window.innerHeight;
 }
-
 window.addEventListener('resize', resize);
 resize();
 
 let scrollY = 0;
-window.addEventListener('scroll', () => {
-  scrollY = window.pageYOffset;
-});
+window.addEventListener('scroll', () => scrollY = window.pageYOffset);
 
-function rand(a, b) { return a + Math.random() * (b - a); }
-
-// Parallax star layers
+// Star Colors (Stellar Classification)
+const starColors = ['#ffffff', '#fff4ea', '#f8f7ff', '#93c5fd', '#ffcc33'];
 const layers = [
+  { count: 250, speed: 0.02, stars: [] },
   { count: 150, speed: 0.05, stars: [] },
-  { count: 250, speed: 0.12, stars: [] },
-  { count: 350, speed: 0.25, stars: [] }
+  { count: 80,  speed: 0.12, stars: [] }
 ];
 
-// Initialize stars
 layers.forEach(l => {
   for (let i = 0; i < l.count; i++) {
     l.stars.push({
       x: Math.random() * w,
       y: Math.random() * h,
-      r: Math.random() * 1.2
+      r: Math.random() * 1.4,
+      color: starColors[Math.floor(Math.random() * starColors.length)],
+      o: Math.random(),
+      t: 0.005 + Math.random() * 0.01
     });
   }
 });
 
-const meteors = [];
-setInterval(() => {
-  if (document.visibilityState === 'visible') {
-    meteors.push({ x: rand(0, w), y: -50, vx: -8, vy: 8, l: 0 });
-  }
-}, 4000);
-
 function draw() {
-  // Clear the canvas
-  ctx.fillStyle = '#020617';
+  // Clear with transparent to see CSS background or solid black
+  ctx.fillStyle = '#010409';
   ctx.fillRect(0, 0, w, h);
 
-  // 1. Draw Milky Way Band (diagonal)
+  // Milky Way Nebula (Radial Gradient to avoid stripes)
   ctx.save();
   ctx.translate(w / 2, h / 2);
-  ctx.rotate(-0.25);
-  for (let y = -h; y < h; y += 4) {
-    const n = Math.sin((y + scrollY * 0.1) * 0.01);
-    const alpha = 0.04 + Math.abs(n) * 0.06;
-    ctx.fillStyle = `rgba(96, 165, 250, ${alpha})`;
-    ctx.fillRect(-w, y, w * 2, 2);
-  }
+  ctx.rotate(-0.45);
+  
+  const nebula = ctx.createRadialGradient(0, scrollY * 0.1, 0, 0, scrollY * 0.1, w * 0.8);
+  nebula.addColorStop(0, 'rgba(20, 35, 75, 0.4)'); // Deep Blue Core
+  nebula.addColorStop(0.5, 'rgba(10, 15, 40, 0.2)');
+  nebula.addColorStop(1, 'rgba(0, 0, 0, 0)');
+  
+  ctx.fillStyle = nebula;
+  ctx.fillRect(-w, -h * 2, w * 2, h * 4);
   ctx.restore();
 
-  // 2. Draw Stars with Parallax
+  // Stars
   layers.forEach(l => {
-    ctx.fillStyle = 'rgba(226, 232, 240, 0.8)';
     l.stars.forEach(s => {
-      // Automatic drift + scroll-based movement
+      s.o += s.t;
+      if (s.o > 1 || s.o < 0.3) s.t *= -1;
+
       let displayY = (s.y + (scrollY * l.speed)) % h;
       if (displayY < 0) displayY += h;
 
       ctx.beginPath();
       ctx.arc(s.x, displayY, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = s.color;
+      ctx.globalAlpha = s.o;
       ctx.fill();
     });
   });
-
-  // 3. Draw Shooting Stars
-  for (let i = meteors.length - 1; i >= 0; i--) {
-    const m = meteors[i];
-    m.x += m.vx; m.y += m.vy; m.l++;
-    ctx.strokeStyle = 'rgba(186, 230, 253, 0.6)';
-    ctx.lineWidth = 2;
-    ctx.beginPath();
-    ctx.moveTo(m.x, m.y);
-    ctx.lineTo(m.x + 25, m.y - 25);
-    ctx.stroke();
-    if (m.l > 60) meteors.splice(i, 1);
-  }
+  ctx.globalAlpha = 1.0;
 
   requestAnimationFrame(draw);
 }
-
 draw();
 </script>
-
 </body>
 </html>
-
-
-
