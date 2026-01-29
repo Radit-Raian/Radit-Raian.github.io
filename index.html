@@ -33,25 +33,16 @@
   <div class="grid">
     <div class="item">
       <strong>Supernova Cosmology</strong><br>
-      Analyzing Type Ia supernovae to constrain cosmological parameters and expansion history.
+      Analyzing Type Ia supernovae to constrain cosmological parameters.
     </div>
     <div class="item">
       <strong>Cold Front Detection</strong><br>
-      Identifying sharp temperature/pressure discontinuities in galaxy cluster dynamics.
+      Identifying temperature discontinuities in galaxy clusters.
     </div>
     <div class="item">
       <strong>PSF Modeling</strong><br>
-      Improving Point Spread Function models for accurate galaxy morphology analysis.
+      Improving Point Spread Function models for galaxy morphology.
     </div>
-  </div>
-</section>
-
-<section id="projects">
-  <h2>Technical Projects</h2>
-  <div class="grid">
-    <div class="item"><strong>Cosmo-Sim</strong>: Computational pipeline for spectral analysis.</div>
-    <div class="item"><strong>Cluster-Finder</strong>: Automated cold front detection using X-ray data.</div>
-    <div class="item"><strong>PSF-Gen</strong>: Modeling tool for astronomical instrumentation.</div>
   </div>
 </section>
 
@@ -88,34 +79,36 @@ layers.forEach(l => {
     l.stars.push({
       x: Math.random() * w,
       y: Math.random() * h,
-      r: Math.random() * 1.4,
+      r: Math.random() * 1.5,
       color: starColors[Math.floor(Math.random() * starColors.length)],
       opacity: 0.2 + Math.random() * 0.8,
-      twinkle: 0.005 + Math.random() * 0.02
+      twinkle: 0.005 + Math.random() * 0.015
     });
   }
 });
 
-// Shooting Stars
+// Shooting Stars (Meteors)
 const meteors = [];
 function createMeteor() {
   if (document.visibilityState === 'visible') {
     meteors.push({
       x: Math.random() * w,
-      y: Math.random() * (h * 0.5),
-      vx: -(Math.random() * 5 + 5),
-      vy: Math.random() * 5 + 5,
-      len: Math.random() * 80 + 20,
+      y: Math.random() * (h * 0.4),
+      vx: -(Math.random() * 6 + 4),
+      vy: Math.random() * 6 + 4,
+      len: Math.random() * 100 + 50,
       opacity: 1
     });
   }
 }
-setInterval(createMeteor, 3500);
+setInterval(createMeteor, 3000);
 
 function draw() {
+  // Clear with deep space black
   ctx.fillStyle = '#010409';
   ctx.fillRect(0, 0, w, h);
 
+  // Draw Stars
   layers.forEach(l => {
     l.stars.forEach(s => {
       s.opacity += s.twinkle;
@@ -132,6 +125,7 @@ function draw() {
     });
   });
 
+  // Draw Shooting Stars
   ctx.globalAlpha = 1.0;
   for (let i = meteors.length - 1; i >= 0; i--) {
     let m = meteors[i];
@@ -142,7 +136,7 @@ function draw() {
     ctx.lineTo(m.x + m.len, m.y - m.len);
     ctx.stroke();
 
-    m.x += m.vx; m.y += m.vy; m.opacity -= 0.02;
+    m.x += m.vx; m.y += m.vy; m.opacity -= 0.015;
     if (m.opacity <= 0) meteors.splice(i, 1);
   }
 
