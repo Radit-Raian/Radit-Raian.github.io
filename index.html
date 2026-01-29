@@ -24,7 +24,7 @@
 <section id="hero">
   <div>
     <h1>Exploring the Universe<br><span>Through Physics & Code</span></h1>
-    <p>Focusing on observational cosmology, galaxy cluster dynamics, and astronomical image processing.</p>
+    <p>Focusing on supernova cosmology, cold front detection in galaxy clusters, and PSF modeling.</p>
   </div>
 </section>
 
@@ -37,11 +37,11 @@
     </div>
     <div class="item">
       <strong>Cold Front Detection</strong><br>
-      Developing algorithms for identifying sharp pressure/temperature discontinuities in galaxy clusters.
+      Identifying sharp temperature/pressure discontinuities in galaxy cluster dynamics.
     </div>
     <div class="item">
       <strong>PSF Modeling</strong><br>
-      Improving Point Spread Function models for more accurate weak lensing and galaxy morphology analysis.
+      Improving Point Spread Function models for accurate galaxy morphology analysis.
     </div>
   </div>
 </section>
@@ -96,7 +96,7 @@ layers.forEach(l => {
   }
 });
 
-// Shooting Stars (Meteors)
+// Shooting Stars
 const meteors = [];
 function createMeteor() {
   if (document.visibilityState === 'visible') {
@@ -116,7 +116,6 @@ function draw() {
   ctx.fillStyle = '#010409';
   ctx.fillRect(0, 0, w, h);
 
-  // Draw Stars
   layers.forEach(l => {
     l.stars.forEach(s => {
       s.opacity += s.twinkle;
@@ -133,7 +132,6 @@ function draw() {
     });
   });
 
-  // Draw Shooting Stars
   ctx.globalAlpha = 1.0;
   for (let i = meteors.length - 1; i >= 0; i--) {
     let m = meteors[i];
@@ -144,10 +142,7 @@ function draw() {
     ctx.lineTo(m.x + m.len, m.y - m.len);
     ctx.stroke();
 
-    m.x += m.vx;
-    m.y += m.vy;
-    m.opacity -= 0.02;
-
+    m.x += m.vx; m.y += m.vy; m.opacity -= 0.02;
     if (m.opacity <= 0) meteors.splice(i, 1);
   }
 
@@ -157,4 +152,3 @@ draw();
 </script>
 </body>
 </html>
-
