@@ -1,66 +1,80 @@
-/* 1. Custom Space-Themed Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-track {
-  background: #020617;
-}
-::-webkit-scrollbar-thumb {
-  background: #1e40af;
-  border-radius: 10px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #3b82f6;
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  font-family: 'Inter', sans-serif;
+  background: #010409;
+  color: #e5e7eb;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
-/* 2. Glass-morphism for Cards */
-.item {
-  background: rgba(30, 41, 59, 0.2) !important;
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  border: 1px solid rgba(147, 197, 253, 0.1) !important;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+canvas {
+  position: fixed;
+  top: 0; left: 0;
+  z-index: -1;
+  pointer-events: none;
 }
 
-/* 3. Hero Text Animation */
-h1 span {
-  background: linear-gradient(90deg, #93c5fd, #60a5fa, #93c5fd);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: shine 4s linear infinite;
+nav {
+  position: fixed; top: 0; width: 100%;
+  padding: 20px 32px;
+  display: flex; justify-content: space-between; align-items: center;
+  background: rgba(1, 4, 9, 0.6);
+  backdrop-filter: blur(12px);
+  z-index: 100;
+  border-bottom: 1px solid rgba(147, 197, 253, 0.1);
 }
 
-@keyframes shine {
-  to { background-position: 200% center; }
-}
-
-/* 4. Link Hover Underline Effect */
 nav a {
-  position: relative;
-}
-nav a::after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 2px;
-  bottom: -4px;
-  left: 0;
-  background-color: #93c5fd;
-  transition: width 0.3s ease;
-}
-nav a:hover::after {
-  width: 100%;
+  margin-left: 24px;
+  color: #94a3b8;
+  text-decoration: none;
+  transition: 0.3s;
 }
 
-/* 5. Section Entrance Glow */
-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, #1e40af, transparent);
+nav a:hover { color: #93c5fd; text-shadow: 0 0 10px rgba(147, 197, 253, 0.5); }
+
+section {
+  max-width: 1100px;
+  margin: auto;
+  padding: 140px 24px;
 }
+
+h1 { font-size: clamp(2.5rem, 8vw, 4rem); margin-bottom: 20px; }
+h1 span { color: #93c5fd; }
+
+h2 {
+  font-size: 2.2rem;
+  color: #7dd3fc;
+  margin-bottom: 40px;
+  display: inline-block;
+  border-bottom: 2px solid #1e40af;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 32px;
+}
+
+.item {
+  background: rgba(30, 41, 59, 0.2);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(147, 197, 253, 0.1);
+  padding: 30px;
+  border-radius: 12px;
+  transition: 0.4s ease;
+}
+
+.item:hover {
+  transform: translateY(-8px);
+  border-color: #3b82f6;
+  background: rgba(30, 41, 59, 0.3);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #010409; }
+::-webkit-scrollbar-thumb { background: #1e40af; border-radius: 10px; }
+
+footer { text-align: center; padding: 80px 24px; color: #475569; }
