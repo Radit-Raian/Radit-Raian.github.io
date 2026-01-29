@@ -8,37 +8,132 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
   <style>
-    *{margin:0;padding:0;box-sizing:border-box}
-    html,body{
-      font-family:Inter,sans-serif;
-      background:#020617;
-      color:#e5e7eb;
-      scroll-behavior:smooth;
-      overflow-x:hidden
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    html, body {
+      font-family: 'Inter', sans-serif;
+      background: transparent; /* Allows canvas background to show */
+      color: #e5e7eb;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
     }
 
-    canvas{position:fixed;inset:0;z-index:-1}
-
-    nav{
-      position:fixed;top:0;width:100%;padding:20px 32px;
-      display:flex;justify-content:space-between;align-items:center;
-      background:rgba(2,6,23,.6);backdrop-filter:blur(6px);z-index:10
+    /* Fixed the canvas visibility and positioning */
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      background: #020617; /* Deep space color */
+      pointer-events: none;
     }
-    nav a{margin-left:24px;color:#93c5fd;font-weight:500}
 
-    section{max-width:1100px;margin:auto;padding:120px 24px}
-    #hero{min-height:100vh;display:flex;align-items:center}
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 20px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(2, 6, 23, 0.7);
+      backdrop-filter: blur(8px);
+      z-index: 10;
+      border-bottom: 1px solid rgba(147, 197, 253, 0.1);
+    }
 
-    h1{font-size:3.4rem;color:#93c5fd;margin-bottom:16px}
-    h2{font-size:2.2rem;color:#7dd3fc;margin-bottom:32px}
-    p{font-size:1.05rem;line-height:1.8;color:#c7d2fe}
+    nav strong {
+      font-size: 1.2rem;
+      color: #93c5fd;
+      letter-spacing: 1px;
+    }
 
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px}
-    .item{border-left:2px solid #1e40af;padding-left:16px}
+    nav a {
+      margin-left: 24px;
+      color: #94a3b8;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
 
-    footer{text-align:center;padding:80px 24px;color:#94a3b8}
+    nav a:hover {
+      color: #93c5fd;
+    }
 
-    @media(max-width:768px){h1{font-size:2.6rem}}
+    section {
+      max-width: 1100px;
+      margin: auto;
+      padding: 120px 24px;
+      position: relative;
+    }
+
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 8vw, 4rem);
+      color: #f8fafc;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    h1 span {
+      color: #93c5fd;
+      display: block;
+    }
+
+    h2 {
+      font-size: 2.2rem;
+      color: #7dd3fc;
+      margin-bottom: 40px;
+      border-bottom: 1px solid #1e40af;
+      display: inline-block;
+      padding-bottom: 8px;
+    }
+
+    p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #cbd5e1;
+      max-width: 700px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+      margin-top: 20px;
+    }
+
+    .item {
+      background: rgba(30, 41, 59, 0.3);
+      border: 1px solid rgba(147, 197, 253, 0.1);
+      padding: 24px;
+      border-radius: 8px;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+
+    .item:hover {
+      transform: translateY(-5px);
+      border-color: #3b82f6;
+    }
+
+    footer {
+      text-align: center;
+      padding: 60px 24px;
+      color: #64748b;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 15px 20px; }
+      nav div { display: none; } /* Mobile menu could be added here */
+    }
   </style>
 </head>
 <body>
@@ -58,22 +153,31 @@
 
 <section id="hero">
   <div>
-    <h1>Exploring the Universe<br>Through Physics & Code</h1>
+    <h1>Exploring the Universe<br><span>Through Physics & Code</span></h1>
     <p>Aspiring astrophysicist focused on observational cosmology, PSF modeling, and computational astronomy.</p>
   </div>
 </section>
 
 <section id="about">
   <h2>About Me</h2>
-  <p>High school researcher from Bangladesh working on gravitational lensing, supernova spectroscopy, and scientific computing.</p>
+  <p>High school researcher from Bangladesh working on gravitational lensing, supernova spectroscopy, and scientific computing. Passionate about bridging the gap between theoretical physics and modern data science.</p>
 </section>
 
 <section id="research">
   <h2>Research & Experience</h2>
   <div class="grid">
-    <div class="item">CASSA, IUB — Research Intern</div>
-    <div class="item">MiMiC — PSF Modeling Pipeline</div>
-    <div class="item">Type Ia Supernova Spectral Analysis</div>
+    <div class="item">
+      <strong>CASSA, IUB</strong><br>
+      Research Intern focusing on astronomical data processing.
+    </div>
+    <div class="item">
+      <strong>MiMiC PSF Pipeline</strong><br>
+      Developing robust modeling tools for astronomical imaging.
+    </div>
+    <div class="item">
+      <strong>Supernova Analysis</strong><br>
+      Type Ia Spectral Analysis and velocity extraction.
+    </div>
   </div>
 </section>
 
@@ -91,93 +195,105 @@
   <div class="grid">
     <div class="item">IYMC — Gold Medal</div>
     <div class="item">Bangladesh Astronomy Olympiad — National Winner</div>
-    <div class="item">Iranian Geometry Olympiad — HM</div>
+    <div class="item">Iranian Geometry Olympiad — Honorable Mention</div>
   </div>
 </section>
 
 <section id="contact">
   <h2>Contact</h2>
-  <p>GitHub: rabbit2307<br>Email: your@email.com</p>
+  <p>GitHub: <a href="https://github.com/rabbit2307" style="color:#93c5fd">rabbit2307</a><br>
+     Email: <a href="mailto:your@email.com" style="color:#93c5fd">your@email.com</a></p>
 </section>
 
 <footer>© 2026 Radit Raian</footer>
 
 <script>
-/* -------- CANVAS COSMOS ENGINE -------- */
-const canvas=document.getElementById('space');
-const ctx=canvas.getContext('2d');
-let w,h;function resize(){w=canvas.width=innerWidth;h=canvas.height=innerHeight}window.addEventListener('resize',resize);resize();
+const canvas = document.getElementById('space');
+const ctx = canvas.getContext('2d');
+let w, h;
 
-let scrollY=0;window.addEventListener('scroll',()=>scrollY=window.scrollY);
-
-function rand(a,b){return a+Math.random()*(b-a)}
-
-// Parallax star layers
-const layers=[
-  {count:120,speed:0.05,stars:[]},
-  {count:200,speed:0.12,stars:[]},
-  {count:300,speed:0.25,stars:[]}
-];
-
-layers.forEach(l=>{for(let i=0;i<l.count;i++)l.stars.push({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.3})});
-
-// Shooting stars
-const meteors=[];setInterval(()=>meteors.push({x:rand(0,w),y:-50,vx:-8,vy:8,l:0}),4500);
-
-// Simple Perlin-like noise for Milky Way
-function noise(x,y){return Math.sin(x*0.02)+Math.sin(y*0.02)}
-
-function drawMilkyWay(){
-  for(let y=0;y<h;y+=4){
-    const n=noise(y,scrollY*0.1);
-    const alpha=0.03+Math.abs(n)*0.05;
-    ctx.fillStyle=`rgba(96,165,250,${alpha})`;
-    ctx.fillRect(0,y,w,3);
-  }
+function resize() {
+  w = canvas.width = window.innerWidth;
+  h = canvas.height = window.innerHeight;
 }
 
-function draw(){
-  ctx.clearRect(0,0,w,h);
+window.addEventListener('resize', resize);
+resize();
 
-  // Base space background (VERY dark, not blue wash)
-  ctx.fillStyle = 'rgb(2,6,23)';
-  ctx.fillRect(0,0,w,h);
+let scrollY = 0;
+window.addEventListener('scroll', () => {
+  scrollY = window.pageYOffset;
+});
 
-  // Milky Way band (diagonal, visible)
+function rand(a, b) { return a + Math.random() * (b - a); }
+
+// Parallax star layers
+const layers = [
+  { count: 150, speed: 0.05, stars: [] },
+  { count: 250, speed: 0.12, stars: [] },
+  { count: 350, speed: 0.25, stars: [] }
+];
+
+// Initialize stars
+layers.forEach(l => {
+  for (let i = 0; i < l.count; i++) {
+    l.stars.push({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      r: Math.random() * 1.2
+    });
+  }
+});
+
+const meteors = [];
+setInterval(() => {
+  if (document.visibilityState === 'visible') {
+    meteors.push({ x: rand(0, w), y: -50, vx: -8, vy: 8, l: 0 });
+  }
+}, 4000);
+
+function draw() {
+  // Clear the canvas
+  ctx.fillStyle = '#020617';
+  ctx.fillRect(0, 0, w, h);
+
+  // 1. Draw Milky Way Band (diagonal)
   ctx.save();
-  ctx.translate(w/2, h/2);
+  ctx.translate(w / 2, h / 2);
   ctx.rotate(-0.25);
-  for(let y=-h;y<h;y+=3){
-    const n = Math.sin((y+scrollY*0.2)*0.01);
-    const alpha = 0.06 + Math.abs(n)*0.08;
-    ctx.fillStyle = `rgba(96,165,250,${alpha})`;
-    ctx.fillRect(-w, y, w*2, 2);
+  for (let y = -h; y < h; y += 4) {
+    const n = Math.sin((y + scrollY * 0.1) * 0.01);
+    const alpha = 0.04 + Math.abs(n) * 0.06;
+    ctx.fillStyle = `rgba(96, 165, 250, ${alpha})`;
+    ctx.fillRect(-w, y, w * 2, 2);
   }
   ctx.restore();
 
-  // Stars (parallax layers)
-  layers.forEach(l=>{
-    l.stars.forEach(s=>{
-      s.y += l.speed*(1+scrollY*0.0003);
-      if(s.y > h) s.y = 0;
-      ctx.fillStyle = 'rgba(147,197,253,1)';
+  // 2. Draw Stars with Parallax
+  layers.forEach(l => {
+    ctx.fillStyle = 'rgba(226, 232, 240, 0.8)';
+    l.stars.forEach(s => {
+      // Automatic drift + scroll-based movement
+      let displayY = (s.y + (scrollY * l.speed)) % h;
+      if (displayY < 0) displayY += h;
+
       ctx.beginPath();
-      ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+      ctx.arc(s.x, displayY, s.r, 0, Math.PI * 2);
       ctx.fill();
     });
   });
 
-  // Shooting stars
-  for(let i=meteors.length-1;i>=0;i--){
+  // 3. Draw Shooting Stars
+  for (let i = meteors.length - 1; i >= 0; i--) {
     const m = meteors[i];
     m.x += m.vx; m.y += m.vy; m.l++;
-    ctx.strokeStyle = 'rgba(186,230,253,1)';
-    ctx.lineWidth = 2.5;
+    ctx.strokeStyle = 'rgba(186, 230, 253, 0.6)';
+    ctx.lineWidth = 2;
     ctx.beginPath();
     ctx.moveTo(m.x, m.y);
-    ctx.lineTo(m.x + 30, m.y - 30);
+    ctx.lineTo(m.x + 25, m.y - 25);
     ctx.stroke();
-    if(m.l > 40) meteors.splice(i,1);
+    if (m.l > 60) meteors.splice(i, 1);
   }
 
   requestAnimationFrame(draw);
