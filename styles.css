@@ -24,7 +24,7 @@ html, body {
   width: 100vw;
   height: 100vh;
   z-index: -1; /* Keeps stars behind all text */
-  background-color: #010409; /* Deep space black */
+  background: linear-gradient(135deg, #020617 0%, #0f172a 35%, #1e1b4b 70%, #020617 100%);
   display: block;
 }
 
