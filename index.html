@@ -3,220 +3,173 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Radit Raian - Astrophysics & Math</title>
+<title>Radit Raian | Portfolio</title>
 <style>
-/* ======== Base ======== */
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body {
-  font-family: 'Inter', sans-serif;
-  background: #000; 
-  color: #fff;
-  overflow-x: hidden;
-}
+  /* ---------- Reset ---------- */
+  * { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', sans-serif; }
+  html, body { height:100%; overflow-x:hidden; scroll-behavior:smooth; }
 
-/* ======== Cosmic Layers ======== */
-#cosmos {
-  position: fixed;
-  top:0; left:0;
-  width:100%; height:100%;
-  z-index:0;
-  overflow:hidden;
-  background: radial-gradient(circle at bottom, #0a0f1f 0%, #000 100%);
-}
+  /* ---------- Cosmic Background ---------- */
+  body {
+    background: #000;
+    color: #fff;
+    position: relative;
+  }
 
-/* Nebula / Aurora Flow */
-.nebula {
-  position:absolute;
-  width:200%;
-  height:200%;
-  top:-50%; left:-50%;
-  background: radial-gradient(circle, #0c1e40 0%, #051021 70%, transparent 100%);
-  animation: drift 60s linear infinite;
-  filter: blur(120px) brightness(1.3);
-  opacity:0.6;
-}
+  #cosmos {
+    position: fixed;
+    top:0; left:0; width:100%; height:100%;
+    overflow:hidden;
+    z-index:-1;
+  }
 
-.nebula:nth-child(2){
-  background: radial-gradient(circle, #003366 0%, #000022 70%, transparent 100%);
-  animation-duration: 90s;
-  opacity:0.5;
-}
+  /* Nebula layers */
+  .nebula {
+    position:absolute;
+    width:200%; height:200%;
+    border-radius:50%;
+    background: radial-gradient(circle, #0033cc 0%, #000033 70%, transparent 100%);
+    filter: blur(140px) brightness(1.5);
+    opacity:0.7;
+    animation: drift 120s linear infinite, aurora 200s ease-in-out infinite;
+  }
+  .nebula:nth-child(2) {
+    background: radial-gradient(circle, #00ffff 0%, #001133 70%, transparent 100%);
+    filter: blur(160px) brightness(1.4);
+    opacity:0.6;
+    animation-duration: 150s;
+  }
+  .nebula:nth-child(3) {
+    background: radial-gradient(circle, #6600ff 0%, #000022 70%, transparent 100%);
+    filter: blur(180px) brightness(1.3);
+    opacity:0.5;
+    animation-duration: 180s;
+  }
 
-/* Stars */
-.star {
-  position:absolute;
-  width:2px; height:2px; background:white; border-radius:50%;
-  animation: twinkle 3s infinite;
-}
-.star.large { width:3px; height:3px; box-shadow:0 0 6px 2px rgba(255,255,255,0.3);}
-@keyframes twinkle {0%,100%{opacity:0.3;}50%{opacity:1;}}
+  @keyframes drift {
+    0% { transform: translate(0,0) rotate(0deg); }
+    100% { transform: translate(-500px, -300px) rotate(360deg); }
+  }
+  @keyframes aurora {
+    0% { transform: translateX(0) translateY(0);}
+    50% { transform: translateX(50px) translateY(-30px);}
+    100% { transform: translateX(0) translateY(0);}
+  }
 
-/* Drift Animation */
-@keyframes drift {0%{transform:translate(0,0);}50%{transform:translate(50px, -30px);}100%{transform:translate(0,0);}}
+  /* Stars */
+  .star {
+    position:absolute;
+    background: linear-gradient(white, #00d1ff);
+    border-radius:50%;
+    box-shadow: 0 0 2px #00d1ff, 0 0 4px #00d1ff;
+    animation: twinkle 3s infinite alternate;
+  }
+  .star.large { width:3px; height:3px; box-shadow:0 0 6px #00d1ff, 0 0 10px #00ffff; }
+  .star.small { width:1px; height:1px; box-shadow:0 0 1px #00d1ff, 0 0 2px #00ffff; }
 
-/* ======== Navigation ======== */
-nav {
-  position: fixed; top:0; width:100%; z-index:10;
-  display:flex; justify-content:center; background: rgba(0,0,0,0.5);
-  padding:1rem 0; backdrop-filter: blur(10px);
-}
-nav ul { list-style:none; display:flex; gap:1rem;}
-nav a {
-  color:#a8d0ff; text-decoration:none; padding:0.5rem 1rem; border-radius:25px;
-  background: rgba(0,0,0,0.3); border:1px solid rgba(168,208,255,0.3);
-  transition:0.4s;
-}
-nav a:hover { background: rgba(168,208,255,0.4); color:#00d1ff; transform:translateY(-3px); }
+  @keyframes twinkle {
+    0% { opacity:0.2; transform: scale(0.8);}
+    50% { opacity:1; transform: scale(1.2);}
+    100% { opacity:0.2; transform: scale(1);}
+  }
 
-/* ======== Hero ======== */
-.hero {
-  position: relative; z-index:5;
-  display:flex; flex-direction:column; align-items:center; justify-content:center;
-  min-height:90vh; text-align:center;
-  padding:2rem;
-}
-.hero h1 { font-size:3rem; color:#a8d0ff; margin-bottom:1rem; text-shadow: 0 0 15px #00d1ff;}
-.hero h2 { font-size:1.5rem; color:#00d1ff; margin-bottom:1.5rem; }
-.profile-picture {
-  width:220px; height:220px; border-radius:50%; object-fit:cover;
-  border:3px solid rgba(0,209,255,0.4); margin-bottom:1rem;
-}
+  /* Color overlay for cosmic shimmer */
+  #cosmos::after {
+    content:"";
+    position:absolute;
+    top:0; left:0; width:100%; height:100%;
+    background: radial-gradient(circle, rgba(0,50,255,0.1) 0%, transparent 70%);
+    mix-blend-mode: screen;
+    z-index:1;
+  }
 
-/* ======== Sections ======== */
-section {
-  padding:2rem 1rem; max-width:1000px; margin:0 auto; position:relative; z-index:5;
-}
-.section-header { text-align:center; margin-bottom:2rem;}
-.section-header h2 { font-size:2rem; margin-bottom:0.5rem; color:#a8d0ff;}
-.section-line { width:80px; height:4px; background: linear-gradient(135deg,#00d1ff,#a8d0ff); margin:0 auto 2rem auto; border-radius:2px; }
+  /* ---------- Sections ---------- */
+  section {
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:50px 20px;
+  }
 
-/* About Content */
-.about-content {
-  background: rgba(0,0,0,0.3); padding:2rem; border-radius:20px; backdrop-filter: blur(10px); line-height:1.7; color:#cdd6f4;
-}
+  section h1 {
+    font-size:3em;
+    margin-bottom:20px;
+    text-shadow: 0 0 15px #00d1ff, 0 0 30px #0033cc;
+  }
+  section p {
+    font-size:1.2em;
+    max-width:700px;
+    line-height:1.6;
+    color:#cce7ff;
+    text-shadow: 0 0 5px #0033cc;
+  }
 
-/* Cards */
-.card-grid { display:grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap:1.5rem; }
-.card {
-  background: rgba(0,0,0,0.25); padding:1.5rem; border-radius:20px; backdrop-filter: blur(8px);
-  transition:0.3s;
-}
-.card:hover { transform:translateY(-5px); background: rgba(0,0,0,0.35); }
-
-/* Skills */
-.skills-grid { display:flex; flex-wrap:wrap; gap:0.8rem; justify-content:center; }
-.skill {
-  background: rgba(0,0,0,0.3); padding:0.5rem 1rem; border-radius:20px;
-  transition:0.3s; color:#a8d0ff;
-}
-.skill:hover { color:#00d1ff; background: rgba(0,0,0,0.5); transform:translateY(-2px); }
-
-/* Social */
-.social-links { display:flex; justify-content:center; gap:1rem; margin-top:1rem;}
-.social-icon {
-  width:45px; height:45px; border-radius:50%; display:flex; align-items:center; justify-content:center;
-  background: rgba(0,0,0,0.3); color:#a8d0ff; text-decoration:none; transition:0.3s;
-}
-.social-icon:hover { background: rgba(0,0,0,0.5); color:#00d1ff; transform:translateY(-3px); }
+  /* Gradient buttons */
+  .btn {
+    margin-top:30px;
+    padding:15px 30px;
+    background: linear-gradient(45deg, #00ffff, #0033cc);
+    border:none;
+    border-radius:10px;
+    color:white;
+    font-size:1em;
+    cursor:pointer;
+    transition:0.3s;
+    box-shadow: 0 0 10px #00ffff, 0 0 20px #0033cc;
+  }
+  .btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px #00ffff, 0 0 30px #0033cc;
+  }
 
 </style>
 </head>
 <body>
 
-<!-- Cosmic Background -->
 <div id="cosmos">
   <div class="nebula"></div>
   <div class="nebula"></div>
-  <!-- Random stars -->
-  <script>
-    const starsCount = 120;
-    for(let i=0;i<starsCount;i++){
-      const star = document.createElement('div');
-      star.classList.add('star');
-      if(Math.random()>0.8) star.classList.add('large');
-      star.style.top = Math.random()*100+'%';
-      star.style.left = Math.random()*100+'%';
-      document.getElementById('cosmos').appendChild(star);
-    }
-  </script>
+  <div class="nebula"></div>
 </div>
 
-<!-- Navigation -->
-<nav>
-  <ul>
-    <li><a href="#about">About</a></li>
-    <li><a href="#research">Research</a></li>
-    <li><a href="#projects">Skills</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</nav>
+<!-- Stars -->
+<script>
+  const starsCount = 150;
+  for(let i=0; i<starsCount; i++){
+    const star = document.createElement('div');
+    star.classList.add('star');
+    star.classList.add(Math.random() > 0.7 ? 'large' : 'small');
+    star.style.top = Math.random()*100 + 'vh';
+    star.style.left = Math.random()*100 + 'vw';
+    star.style.animationDuration = (Math.random()*3 + 2)+'s';
+    document.body.appendChild(star);
+  }
+</script>
 
-<!-- Hero -->
-<section class="hero">
-  <img src="profile.jpg" alt="Radit Raian" class="profile-picture">
+<!-- ---------- Sections ---------- -->
+<section style="background:transparent;">
   <h1>Radit Raian</h1>
-  <h2>Aspiring Astrophysicist | Olympiad Medalist</h2>
+  <p>Aspiring Astrophysicist & Developer exploring the depths of the cosmos and code.</p>
+  <button class="btn">View Portfolio</button>
 </section>
 
-<!-- About -->
-<section id="about">
-  <div class="section-header">
-    <h2>About Me</h2>
-    <div class="section-line"></div>
-  </div>
-  <div class="about-content">
-    <p>Class XII student from Bangladesh, passionate about astrophysics and mathematics. Active in national & international Olympiads. Research experience in Type Ia supernovae, PSF photometry, and gravitational lensing projects.</p>
-  </div>
+<section style="background:transparent;">
+  <h1>About Me</h1>
+  <p>I am passionate about astrophysics, mathematics, and programming. I love building projects that merge science and creativity, bringing the universe to your screen.</p>
 </section>
 
-<!-- Research -->
-<section id="research">
-  <div class="section-header">
-    <h2>Research & Positions</h2>
-    <div class="section-line"></div>
-  </div>
-  <div class="card-grid">
-    <div class="card">
-      <h3>High School Intern - CASSA</h3>
-      <p>MiMiC project: PSF pipeline, Type Ia SN analysis using Python & astronomy tools.</p>
-    </div>
-    <div class="card">
-      <h3>Astrophysics Research</h3>
-      <p>Worked on gravitational lensing data analysis and PSF photometry improvements.</p>
-    </div>
-  </div>
+<section style="background:transparent;">
+  <h1>Projects</h1>
+  <p>From Type Ia Supernova analysis to PSF development pipelines, I build software tools to explore and understand the universe. Each project is a journey into the cosmos of data and discovery.</p>
 </section>
 
-<!-- Skills -->
-<section id="projects">
-  <div class="section-header">
-    <h2>Skills & Interests</h2>
-    <div class="section-line"></div>
-  </div>
-  <div class="skills-grid">
-    <div class="skill">Python</div>
-    <div class="skill">MATLAB</div>
-    <div class="skill">C Basics</div>
-    <div class="skill">GALFIT</div>
-    <div class="skill">PSFEx</div>
-    <div class="skill">Topcat</div>
-    <div class="skill">DS9</div>
-    <div class="skill">Astrophysics</div>
-    <div class="skill">Mathematics</div>
-  </div>
-</section>
-
-<!-- Contact -->
-<section id="contact">
-  <div class="section-header">
-    <h2>Contact</h2>
-    <div class="section-line"></div>
-  </div>
-  <div class="social-links">
-    <a href="https://github.com/rabbit2307" class="social-icon" target="_blank">GH</a>
-    <a href="https://www.linkedin.com/in/raditraian/" class="social-icon" target="_blank">LI</a>
-    <a href="mailto:your-email@example.com" class="social-icon">✉️</a>
-  </div>
+<section style="background:transparent;">
+  <h1>Contact</h1>
+  <p>Reach out via email or GitHub. Let's explore the universe together.</p>
+  <button class="btn">Contact Me</button>
 </section>
 
 </body>
