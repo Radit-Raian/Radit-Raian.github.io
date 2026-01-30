@@ -10,7 +10,7 @@ html, body {
     min-height: 100%;
     font-family: 'Inter', sans-serif;
     color: #e5e7eb;
-    background: transparent !important; /* Critical for star engine visibility */
+    background: transparent !important; /* Preserves your star engine visibility */
     scroll-behavior: smooth;
     overflow-x: hidden;
 }
@@ -33,13 +33,14 @@ header.top-panel {
     top: 0;
     width: 100%;
     height: 85px;
-    background: rgba(1, 4, 9, 0.95); /* Dark panel background */
+    background: rgba(1, 4, 9, 0.95);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
     border-bottom: 1px solid rgba(147, 197, 253, 0.1);
-    backdrop-filter: blur(12px);
+    backdrop-filter: blur(20px); /* Enhanced blur from her version */
+    -webkit-backdrop-filter: blur(20px);
 }
 
 .pill-group {
@@ -48,23 +49,41 @@ header.top-panel {
 }
 
 .pill-btn {
+    position: relative; /* Required for shimmer effect */
+    overflow: hidden;   /* Required for shimmer effect */
     color: #94a3b8;
     text-decoration: none;
     font-size: 0.75rem;
     font-family: 'JetBrains Mono', monospace;
-    padding: 8px 18px;
+    padding: 10px 20px;
     border-radius: 50px;
-    border: 1.5px solid rgba(147, 197, 253, 0.2); /* Individual Pill Borders */
+    border: 1.5px solid rgba(147, 197, 253, 0.2);
     background: rgba(15, 23, 42, 0.5);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Shimmer Hover Effect (From her version) */
+.pill-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(147, 197, 253, 0.2), transparent);
+    transition: left 0.6s ease;
+}
+
+.pill-btn:hover::before {
+    left: 100%;
 }
 
 .pill-btn:hover, .pill-btn.active {
     color: #93c5fd;
     border-color: #93c5fd;
     background: rgba(147, 197, 253, 0.15);
-    box-shadow: 0 0 15px rgba(147, 197, 253, 0.3); /* Blue Glow */
-    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(147, 197, 253, 0.3);
+    transform: translateY(-3px);
 }
 
 /* --- HERO: CENTRAL SYMMETRY --- */
@@ -73,6 +92,16 @@ section {
     margin: 0 auto;
     padding: 160px 24px;
     background: transparent !important;
+    /* Added Reveal Transition */
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Triggered by JavaScript Observer */
+section.active {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 #hero {
@@ -82,7 +111,9 @@ section {
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding-top: 85px; /* Offset for top panel */
+    padding-top: 85px;
+    opacity: 1; /* Hero is visible by default */
+    transform: none;
 }
 
 h1 {
@@ -96,6 +127,7 @@ h1 {
 h1 span {
     color: #93c5fd;
     display: block;
+    text-shadow: 0 0 30px rgba(147, 197, 253, 0.3);
 }
 
 .punchline {
@@ -119,10 +151,10 @@ h1 span {
 }
 
 .stat-pill {
-    padding: 10px 22px;
+    padding: 12px 24px;
     border-radius: 50px;
-    background: rgba(147, 197, 253, 0.05);
-    border: 1px dashed rgba(147, 197, 253, 0.4); /* Techy dashed look */
+    background: rgba(147, 197, 253, 0.03);
+    border: 1px dashed rgba(147, 197, 253, 0.4);
     display: flex;
     gap: 10px;
     font-family: 'JetBrains Mono', monospace;
@@ -133,6 +165,7 @@ h1 span {
 .stat-pill:hover {
     background: rgba(147, 197, 253, 0.1);
     border-style: solid;
+    border-color: #93c5fd;
 }
 
 .stat-label { color: #64748b; }
@@ -150,13 +183,13 @@ h1 span {
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.8rem;
     font-weight: 600;
-    letter-spacing: 3px;
+    letter-spacing: 4px;
     color: #93c5fd;
-    padding: 12px 45px;
+    padding: 15px 50px;
     border-radius: 50px;
     background: rgba(147, 197, 253, 0.05);
-    border: 1.5px solid rgba(147, 197, 253, 0.4);
-    box-shadow: 0 0 20px rgba(147, 197, 253, 0.15);
+    border: 1.5px solid #93c5fd;
+    box-shadow: 0 0 25px rgba(147, 197, 253, 0.2);
     text-transform: uppercase;
     backdrop-filter: blur(10px);
 }
@@ -169,25 +202,28 @@ h1 span {
 }
 
 .item {
-    background: rgba(15, 23, 42, 0.45) !important;
-    border: 1.2px solid rgba(147, 197, 253, 0.12) !important;
-    padding: 50px 30px;
-    border-radius: 20px !important;
+    background: rgba(15, 23, 42, 0.5) !important;
+    backdrop-filter: blur(15px); /* Her glass effect */
+    -webkit-backdrop-filter: blur(15px);
+    border: 1.2px solid rgba(147, 197, 253, 0.15) !important;
+    padding: 60px 40px;
+    border-radius: 25px !important;
     text-align: center;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .item:hover {
-    transform: translateY(-12px);
-    border-color: rgba(147, 197, 253, 0.5) !important;
-    box-shadow: 0 15px 35px rgba(2, 6, 23, 0.6), 0 0 20px rgba(147, 197, 253, 0.1);
-    background: rgba(15, 23, 42, 0.6) !important;
+    transform: translateY(-15px) scale(1.02);
+    border-color: #93c5fd !important;
+    box-shadow: 0 20px 50px rgba(2, 6, 23, 0.8), 0 0 30px rgba(147, 197, 253, 0.1);
+    background: rgba(15, 23, 42, 0.7) !important;
 }
 
 .item h3 {
     color: #93c5fd;
     font-family: 'JetBrains Mono', monospace;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
+    letter-spacing: 1px;
 }
 
 /* --- SCROLLBAR --- */
