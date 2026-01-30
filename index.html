@@ -72,7 +72,7 @@
             transform: translateY(-2px);
         }
 
-        /* --- 4. HERO SECTION (HER LAYOUT ARCHITECTURE) --- */
+        /* --- 4. HERO SECTION (TWO-COLUMN ASYMMETRICAL) --- */
         main { position: relative; z-index: 10; }
         
         #hero { 
@@ -94,7 +94,6 @@
 
         .hero-text-content { text-align: left; }
 
-        /* Name Styling */
         .name-title {
             font-size: clamp(2.8rem, 6vw, 4.5rem);
             font-weight: 700;
@@ -103,7 +102,6 @@
             letter-spacing: -1.5px;
         }
 
-        /* Subtitle Styling */
         .subtitle {
             font-size: 1.4rem;
             color: var(--astro-blue);
@@ -112,12 +110,8 @@
             text-shadow: 0 0 30px var(--astro-blue-glow);
         }
 
-        /* Social Icons - Mimicking her style */
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 30px;
-        }
+        /* Social Icons mimicking her style */
+        .social-links { display: flex; gap: 15px; margin-bottom: 30px; }
         .social-btn {
             width: 42px; height: 42px;
             background: rgba(255, 255, 255, 0.05);
@@ -134,7 +128,6 @@
             color: var(--astro-blue);
         }
 
-        /* Bio Text Styling */
         .bio-text {
             font-size: 1rem;
             line-height: 1.8;
@@ -144,7 +137,6 @@
             max-width: 720px;
         }
 
-        /* Extra Design: Astro Stats Group */
         .stats-group { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 40px; }
         .stat-tag {
             padding: 8px 18px; border-radius: 50px;
@@ -154,7 +146,7 @@
             color: var(--astro-blue);
         }
 
-        /* Profile Image Container - Identical Positioning to Ref */
+        /* Profile Image Container - Identical Positioning to Adrita's */
         .hero-image-content { display: flex; justify-content: center; }
         .profile-wrapper {
             position: relative;
@@ -201,7 +193,6 @@
 
         footer { text-align: center; padding: 60px; border-top: 1px solid rgba(147, 197, 253, 0.1); color: #475569; }
 
-        /* Responsive Mobile Layout */
         @media (max-width: 1024px) {
             .hero-grid { grid-template-columns: 1fr; text-align: center; gap: 40px; }
             .hero-text-content { text-align: center; display: flex; flex-direction: column; align-items: center; }
@@ -222,7 +213,6 @@
     <nav>
         <ul class="nav-list">
             <li><a href="#hero" class="nav-link active">HOME</a></li>
-            <li><a href="#about" class="nav-link">ABOUT</a></li>
             <li><a href="#research" class="nav-link">RESEARCH</a></li>
             <li><a href="#projects" class="nav-link">PROJECTS</a></li>
             <li><a href="#contact" class="nav-link">CONTACT</a></li>
@@ -238,7 +228,7 @@
                 <p class="subtitle">Physics Student & Computational Astrophysics Aspirant</p>
                 
                 <div class="social-links">
-                    <a href="#" class="social-btn" title="GitHub"><i class="fab fa-github"></i>GH</a>
+                    <a href="#" class="social-btn" title="GitHub">GH</a>
                     <a href="#" class="social-btn" title="LinkedIn">IN</a>
                     <a href="#" class="social-btn" title="ORCID">ID</a>
                 </div>
@@ -287,6 +277,7 @@
     window.addEventListener('scroll', () => scrollY = window.pageYOffset);
     resize();
 
+    // H-R Diagram Temperature-based colors
     const STAR_COLORS = ['#9bb0ff', '#aabfff', '#ffffff', '#f8f7ff', '#fff4ea', '#ffd2a1', '#ffcc6f'];
 
     class Star {
@@ -314,14 +305,50 @@
         }
     }
 
+    /* --- FULLY RESTORED METEOR ENGINE --- */
+    class Meteor {
+        constructor() { this.active = false; }
+        spawn() {
+            this.active = true;
+            this.x = Math.random() * w;
+            this.y = Math.random() * (h * 0.3);
+            this.vx = -(Math.random() * 8 + 12);
+            this.vy = Math.random() * 6 + 8;
+            this.len = Math.random() * 20 + 15;
+            this.opacity = 1;
+        }
+        update() {
+            if (!this.active) return;
+            this.x += this.vx; this.y += this.vy;
+            this.opacity -= 0.015;
+            if (this.opacity <= 0) this.active = false;
+        }
+        draw() {
+            if (!this.active) return;
+            ctx.globalAlpha = this.opacity;
+            ctx.strokeStyle = '#ffffff';
+            ctx.lineWidth = 4;
+            ctx.lineCap = 'round';
+            ctx.beginPath();
+            ctx.moveTo(this.x, this.y);
+            ctx.lineTo(this.x + this.len, this.y - (this.len * 0.5));
+            ctx.stroke();
+        }
+    }
+
     const stars = Array.from({length: 650}, () => new Star(Math.random() * 0.15));
+    const shootingStar = new Meteor();
+
+    // Restoration of the 8-second spawn trigger
+    setInterval(() => {
+        if (!shootingStar.active) shootingStar.spawn();
+    }, 8000);
 
     function animate() {
         ctx.globalAlpha = 1;
         ctx.fillStyle = '#010409';
         ctx.fillRect(0, 0, w, h);
 
-        // Core Nebula Gradient (Violet/Midnight Mix)
         const nebula = ctx.createRadialGradient(w * 0.7, h * 0.3, 0, w * 0.7, h * 0.3, w);
         nebula.addColorStop(0, 'rgba(30, 27, 75, 0.25)'); 
         nebula.addColorStop(0.5, 'rgba(15, 23, 42, 0.15)');
@@ -330,6 +357,11 @@
         ctx.fillRect(0, 0, w, h);
 
         stars.forEach(s => { s.update(); s.draw(); });
+        
+        // Meteor rendering cycle restored
+        shootingStar.update();
+        shootingStar.draw();
+
         requestAnimationFrame(animate);
     }
     animate();
