@@ -248,3 +248,281 @@ footer { text-align:center; padding:35px 0; font-size:0.85rem; color:#94a3b8; }
   .hero-image-content { order:-1; }
   .profile-wrapper { width:300px;height:300px; }
 }
+
+/* ================= FORCE VISIBILITY FOR ACADEMICS ================= */
+/* This ensures the text appears immediately without scrolling */
+section.active {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  visibility: visible !important;
+}
+
+/* Optional: Make the cards fade in nicely */
+section.active .edu-card {
+  opacity: 1 !important;
+  transform: translateX(0) !important;
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }}
+
+/* ================= EDUCATION SECTION (Add this to styles.css) ================= */
+
+/* 1. The Container */
+.education-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 800px;
+  margin: 0 auto; /* Centers the cards */
+}
+
+/* 2. The Card Design */
+.edu-card {
+  background: rgba(147, 197, 253, 0.05); /* Glass effect */
+  border: 1px solid rgba(147, 197, 253, 0.1); /* Subtle border */
+  border-radius: 12px;
+  padding: 30px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 3. Hover Effect (The Glow) */
+.edu-card:hover {
+  background: rgba(147, 197, 253, 0.1);
+  border-color: rgba(147, 197, 253, 0.4);
+  transform: translateY(-5px); /* Moves up slightly */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* 4. Header Layout (School Name + Date) */
+.edu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.edu-info h3 {
+  font-size: 1.4rem;
+  color: #fff;
+  margin-bottom: 5px;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+}
+
+.edu-degree {
+  color: #93c5fd; /* Light Blue */
+  font-size: 1rem;
+  font-family: 'Inter', sans-serif;
+}
+
+/* 5. The Date Bubble */
+.edu-date {
+  font-size: 0.9rem;
+  color: #cbd5e1;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* 6. Description Text */
+.edu-desc {
+  color: #94a3b8; /* Grey text */
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* ================= ACADEMIC HERO HEADER ================= */
+.academic-hero {
+  text-align: center;
+  padding: 20px 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Title & Underline */
+.hero-title {
+  font-size: 4.5rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 10px;
+  font-family: 'Rajdhani', sans-serif;
+}
+
+.hero-underline {
+  width: 350px;
+  height: 4px;
+  background-color: #93c5fd; /* Gold Color */
+  margin: 0 auto 20px auto;
+  border-radius: 2px;
+}
+
+.hero-subtitle {
+  color: #94a3b8; /* Light Grey */
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto 50px auto;
+  line-height: 1.6;
+}
+
+/* Stats Grid Layout */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2px;
+}
+
+/* Individual Stat Cards */
+.stat-card {
+  background: rgba(20, 20, 30, 0.6); /* Darker card background */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 30px 20px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  border-color: #93c5fd; /* Glow Blue on hover */
+  background: rgba(147, 197, 253, 0.1);
+}
+
+/* The Numbers */
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #93c5fd; /* Blue Text */
+  margin-bottom: 10px;
+  font-family: 'Rajdhani', sans-serif;
+}
+
+/* The Labels */
+.stat-label {
+  color: #cbd5e1;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+/* ================= FORCE CENTER FIX ================= */
+
+/* 1. Force the container to fill the screen and center items */
+.section-header-center {
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important; /* This centers the items horizontally */
+  justify-content: center !important;
+  text-align: center !important;
+  margin-bottom: 40px !important;
+}
+
+/* 2. Force the text to center */
+.section-header-center .section-title {
+  font-size: 3.5rem !important; /* <--- ADD THIS LINE (Adjust number to resize) */
+  font-weight: 700 !important;   /* Makes it bold */
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  margin-bottom: 20px;
+  display: inline-block !important; /* Prevents it from stretching to full width */
+  background: linear-gradient(90deg, #fff,#93c5fd); /* Re-apply gradient if lost */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* 3. Force the gold line to center */
+.section-header-center .hero-underline {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  background-color: #93c5fd !important; /* Ensure gold color stays */
+}
+
+/* ================= PARTICIPATION LIST (Gradient Style) ================= */
+
+/* 1. The Container */
+.participation-container {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 0 20px;
+}
+
+/* 2. The Card */
+.part-card {
+  background: rgba(20, 20, 30, 0.6);
+  border: 1px solid rgba(147, 197, 253, 0.1);
+  padding: 22px 25px;
+  border-radius: 12px;
+  border-left: 4px solid #3b82f6; /* Blue Sidebar */
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hover Effect: Card Glows */
+.part-card:hover {
+  background: rgba(59, 130, 246, 0.08);
+  transform: translateX(10px);
+  border-color: rgba(96, 165, 250, 0.4);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* 3. The Text */
+.part-text {
+  color: #cbd5e1;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+}
+
+/* 4. THE MAGIC KEYWORD STYLE (Gradient Text) */
+.gradient-text {
+  /* Define the gradient: Strong Blue -> Cyan */
+  background: linear-gradient(90deg, #60a5fa, #22d3ee);
+  
+  /* Clip the background to the text shape */
+  -webkit-background-clip: text;
+  background-clip: text;
+  
+  /* Make the text transparent so the background shows through */
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  
+  font-weight: 700; /* Bold to make it readable */
+  font-family: 'Inter', sans-serif; /* Tech font */
+  letter-spacing: 0.5px;
+}
+
+/* ================= VISIBLE NAVIGATION BAR ================= */
+.navbar {
+  display: flex;
+  justify-content: center; /* Center the links */
+  align-items: center;
+  padding: 20px 0;
+  
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  
+  /* THE FIX: Make the background lighter so it stands out */
+  background: rgba(15, 23, 42, 0.7); /* Dark Blue-Grey (Visible against black) */
+  backdrop-filter: blur(15px);        /* strong blur effect */
+  
+  /* Add a glowing line at the bottom */
+  border-bottom: 1px solid rgba(147, 197, 253, 0.3); 
+  
+  /* Add a shadow to separate it from the stars */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+}
