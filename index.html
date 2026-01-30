@@ -3,17 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Radit Raian | Astrophysics Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <title>Radit Raian | Astrophysics & Cosmology</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Inter:wght@400;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
     
     <style>
-        /* --- 1. ADRIITA-INSPIRED CSS ENGINE (EXPANDED) --- */
+        /* --- 1. CORE THEME ENGINE --- */
         :root {
             --astro-blue: #93c5fd;
             --astro-blue-glow: rgba(147, 197, 253, 0.4);
-            --gold-accent: #c9a961; /* Keeping her gold for specific highlights */
-            --bg-dark: #0a0e14;
-            --glass: rgba(15, 23, 42, 0.6);
+            --glass: rgba(15, 23, 42, 0.65);
             --border-glow: rgba(147, 197, 253, 0.2);
         }
 
@@ -21,36 +19,35 @@
         
         html, body {
             width: 100%; min-height: 100%;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Roboto', 'Inter', sans-serif;
             color: #ffffff;
             background: #010409;
             scroll-behavior: smooth;
             overflow-x: hidden;
         }
 
-        /* --- 2. THE STAR & NEBULA ENGINE --- */
+        /* --- 2. THE STAR & AURORA LAYERS --- */
         #cosmos-engine {
             position: fixed; top: 0; left: 0;
             width: 100vw; height: 100vh;
             z-index: 0;
         }
 
-        /* Aurora Waves from her code mapped to Blue */
         .aurora-wrap {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none; z-index: 1; opacity: 0.5; overflow: hidden;
+            pointer-events: none; z-index: 1; opacity: 0.4; overflow: hidden;
         }
         .aurora-wave {
             position: absolute; width: 200%; height: 200%;
-            background: radial-gradient(circle at 50% 50%, rgba(30, 58, 138, 0.15) 0%, transparent 60%);
-            filter: blur(60px); animation: auroraFlow 40s linear infinite;
+            background: radial-gradient(circle at 50% 50%, rgba(30, 58, 138, 0.2) 0%, transparent 60%);
+            filter: blur(80px); animation: auroraFlow 45s linear infinite;
         }
         @keyframes auroraFlow {
-            0% { transform: translate(-10%, -10%) rotate(0deg); }
-            100% { transform: translate(10%, 10%) rotate(360deg); }
+            0% { transform: translate(-15%, -15%) rotate(0deg); }
+            100% { transform: translate(15%, 15%) rotate(360deg); }
         }
 
-        /* --- 3. TOP PANEL & INDIVIDUAL NAV PILLS --- */
+        /* --- 3. TOP NAVIGATION PANEL --- */
         .top-panel {
             position: fixed; top: 0; width: 100%; height: 85px;
             background: rgba(1, 4, 9, 0.95);
@@ -67,7 +64,6 @@
             background: rgba(147, 197, 253, 0.05);
             border: 1.5px solid var(--border-glow);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative; overflow: hidden;
         }
         .nav-link:hover, .nav-link.active {
             color: var(--astro-blue); border-color: var(--astro-blue);
@@ -76,59 +72,145 @@
             transform: translateY(-2px);
         }
 
-        /* --- 4. HERO SECTION --- */
+        /* --- 4. HERO SECTION (HER LAYOUT ARCHITECTURE) --- */
         main { position: relative; z-index: 10; }
+        
         #hero { 
-            height: 100vh; display: flex; flex-direction: column;
-            justify-content: center; align-items: center; text-align: center;
-            padding: 0 2rem;
-        }
-        h1 { font-size: clamp(3rem, 8vw, 4.5rem); font-weight: 800; letter-spacing: -2px; line-height: 1; }
-        h1 span { color: var(--astro-blue); display: block; text-shadow: 0 0 50px var(--astro-blue-glow); }
-
-        .punchline {
-            font-family: 'JetBrains Mono', monospace; color: #94a3b8;
-            max-width: 850px; border-top: 1px solid rgba(147, 197, 253, 0.2);
-            padding-top: 30px; margin: 30px auto; font-size: 1.1rem;
+            min-height: 100vh;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 120px 2rem 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        /* Data Readout Panel */
-        .stats-readout { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
-        .stat-box {
-            padding: 12px 25px; border-radius: 50px;
-            background: rgba(147, 197, 253, 0.03);
-            border: 1px dashed rgba(147, 197, 253, 0.4);
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.3fr 0.7fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-text-content { text-align: left; }
+
+        /* Name Styling */
+        .name-title {
+            font-size: clamp(2.8rem, 6vw, 4.5rem);
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #ffffff;
+            letter-spacing: -1.5px;
+        }
+
+        /* Subtitle Styling */
+        .subtitle {
+            font-size: 1.4rem;
+            color: var(--astro-blue);
+            font-weight: 500;
+            margin-bottom: 25px;
+            text-shadow: 0 0 30px var(--astro-blue-glow);
+        }
+
+        /* Social Icons - Mimicking her style */
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        .social-btn {
+            width: 42px; height: 42px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: #ffffff; text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .social-btn:hover {
+            border-color: var(--astro-blue);
+            background: rgba(147, 197, 253, 0.15);
+            transform: translateY(-3px);
+            color: var(--astro-blue);
+        }
+
+        /* Bio Text Styling */
+        .bio-text {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #b8c5d0;
+            margin-bottom: 35px;
+            text-align: justify;
+            max-width: 720px;
+        }
+
+        /* Extra Design: Astro Stats Group */
+        .stats-group { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 40px; }
+        .stat-tag {
+            padding: 8px 18px; border-radius: 50px;
+            background: rgba(147, 197, 253, 0.05);
+            border: 1px solid var(--border-glow);
             font-family: 'JetBrains Mono', monospace; font-size: 0.75rem;
+            color: var(--astro-blue);
         }
-        .stat-box b { color: var(--astro-blue); }
 
-        /* --- 5. DETAILED SECTIONS (RESEARCH & EDUCATION) --- */
-        section { padding: 120px 2rem; max-width: 1200px; margin: 0 auto; }
-        .section-header { text-align: center; margin-bottom: 80px; }
+        /* Profile Image Container - Identical Positioning to Ref */
+        .hero-image-content { display: flex; justify-content: center; }
+        .profile-wrapper {
+            position: relative;
+            width: 360px; height: 360px;
+        }
+        .profile-pic {
+            width: 100%; height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid rgba(147, 197, 253, 0.2);
+            box-shadow: 
+                0 0 0 12px rgba(147, 197, 253, 0.05),
+                0 20px 60px rgba(0, 0, 0, 0.7),
+                0 0 40px var(--astro-blue-glow);
+            transition: all 0.5s ease;
+        }
+        .profile-wrapper:hover .profile-pic {
+            transform: scale(1.03);
+            border-color: var(--astro-blue);
+        }
+
+        /* --- 5. GRID SECTIONS --- */
+        section { padding: 100px 2rem; max-width: 1200px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 60px; }
         .pill-header {
-            font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; letter-spacing: 4px;
-            color: var(--astro-blue); padding: 15px 50px; border-radius: 50px;
-            border: 1.5px solid var(--astro-blue); box-shadow: 0 0 30px var(--astro-blue-glow);
+            font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; letter-spacing: 3px;
+            color: var(--astro-blue); padding: 12px 40px; border-radius: 50px;
+            border: 1.5px solid var(--astro-blue); box-shadow: 0 0 25px var(--astro-blue-glow);
             text-transform: uppercase; background: rgba(147, 197, 253, 0.05);
         }
 
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
-        
-        /* Glass Cards */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
         .card {
             background: var(--glass); border: 1px solid rgba(147, 197, 253, 0.1);
-            padding: 40px; border-radius: 25px; backdrop-filter: blur(15px);
-            transition: all 0.5s ease; position: relative; overflow: hidden;
-            text-decoration: none; color: inherit;
+            padding: 45px; border-radius: 25px; backdrop-filter: blur(15px);
+            transition: all 0.4s ease; text-decoration: none; color: inherit; display: block;
+            text-align: center;
         }
         .card:hover {
-            transform: translateY(-15px); border-color: var(--astro-blue);
-            box-shadow: 0 20px 40px rgba(2, 6, 23, 0.9);
+            transform: translateY(-10px); border-color: var(--astro-blue);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
         }
-        .card h3 { color: var(--astro-blue); margin-bottom: 15px; font-family: 'JetBrains Mono'; }
-        .card p { color: #b8c5d0; font-size: 0.95rem; line-height: 1.6; text-align: justify; }
+        .card h3 { color: var(--astro-blue); font-family: 'JetBrains Mono'; font-size: 1.2rem; }
 
-        footer { text-align: center; padding: 100px; border-top: 1px solid rgba(147, 197, 253, 0.1); color: #475569; }
+        footer { text-align: center; padding: 60px; border-top: 1px solid rgba(147, 197, 253, 0.1); color: #475569; }
+
+        /* Responsive Mobile Layout */
+        @media (max-width: 1024px) {
+            .hero-grid { grid-template-columns: 1fr; text-align: center; gap: 40px; }
+            .hero-text-content { text-align: center; display: flex; flex-direction: column; align-items: center; }
+            .bio-text { text-align: center; }
+            .social-links, .stats-group { justify-content: center; }
+            .hero-image-content { order: -1; }
+            .profile-wrapper { width: 280px; height: 280px; }
+            #hero { padding-top: 100px; }
+        }
     </style>
 </head>
 <body>
@@ -137,56 +219,60 @@
 <div class="aurora-wrap"><div class="aurora-wave"></div></div>
 
 <header class="top-panel">
-    <ul class="nav-list">
-        <li><a href="#hero" class="nav-link active">HOME</a></li>
-        <li><a href="#about" class="nav-link">ABOUT</a></li>
-        <li><a href="#research" class="nav-link">RESEARCH</a></li>
-        <li><a href="#projects" class="nav-link">PROJECTS</a></li>
-        <li><a href="#publications" class="nav-link">PUBLICATIONS</a></li>
-        <li><a href="#contact" class="nav-link">CONTACT</a></li>
-    </ul>
+    <nav>
+        <ul class="nav-list">
+            <li><a href="#hero" class="nav-link active">HOME</a></li>
+            <li><a href="#about" class="nav-link">ABOUT</a></li>
+            <li><a href="#research" class="nav-link">RESEARCH</a></li>
+            <li><a href="#projects" class="nav-link">PROJECTS</a></li>
+            <li><a href="#contact" class="nav-link">CONTACT</a></li>
+        </ul>
+    </nav>
 </header>
 
 <main>
     <section id="hero">
-        <h1>BEYOND THE<br><span>EVENT HORIZON</span></h1>
-        <p class="punchline">Decoding the Large-Scale Structure of the Universe through Supernova Spectroscopy and Computational Dynamics.</p>
-        <div class="stats-readout">
-            <div class="stat-box">STATUS: <b>UPLINK_ACTIVE</b></div>
-            <div class="stat-box">OBJECTIVE: <b>PRECISION_COSMOLOGY</b></div>
-            <div class="stat-box">ORIGIN: <b>DHAKA_BD</b></div>
+        <div class="hero-grid">
+            <div class="hero-text-content">
+                <h1 class="name-title">Radit Raian</h1>
+                <p class="subtitle">Physics Student & Computational Astrophysics Aspirant</p>
+                
+                <div class="social-links">
+                    <a href="#" class="social-btn" title="GitHub"><i class="fab fa-github"></i>GH</a>
+                    <a href="#" class="social-btn" title="LinkedIn">IN</a>
+                    <a href="#" class="social-btn" title="ORCID">ID</a>
+                </div>
+
+                <p class="bio-text">
+                    Focused on observational cosmology and computational physics. My work explores the fundamental properties of the universe through Supernova Spectroscopy and the detection of cold fronts in galaxy clusters. Currently developing computational pipelines for cosmological parameter estimation and PSF modeling.
+                </p>
+
+                <div class="stats-group">
+                    <span class="stat-tag">Observational Cosmology</span>
+                    <span class="stat-tag">Supernova Spectroscopy</span>
+                    <span class="stat-tag">Computational Physics</span>
+                </div>
+            </div>
+
+            <div class="hero-image-content">
+                <div class="profile-wrapper">
+                    <img src="YOUR_PROFILE_PICTURE_URL.jpg" alt="Radit Raian" class="profile-pic">
+                </div>
+            </div>
         </div>
     </section>
 
     <section id="research">
-        <div class="section-header"><span class="pill-header">Key Research Initiatives</span></div>
+        <div class="section-header"><span class="pill-header">Research Initiatives</span></div>
         <div class="grid">
-            <a href="supernova.html" class="card">
-                <h3>Supernova Cosmology</h3>
-                <p>Analyzing Type Ia supernova spectral features to break degeneracies in cosmological parameters and measure expansion history.</p>
-            </a>
-            <a href="clusters.html" class="card">
-                <h3>Galaxy Cluster Dynamics</h3>
-                <p>Detecting temperature/pressure cold fronts in merging clusters to understand dark matter and gas interactions.</p>
-            </a>
-            <a href="psf.html" class="card">
-                <h3>Weak Lensing PSF</h3>
-                <p>Developing advanced Point Spread Function models for accurate galaxy morphology measurements in deep surveys.</p>
-            </a>
-        </div>
-    </section>
-
-    <section id="publications">
-        <div class="section-header"><span class="pill-header">Scientific Publications</span></div>
-        <div class="grid">
-            <div class="card">
-                <h3>PSF modeling for Lensing</h3>
-                <p>An investigation into the impact of spatially varying PSF on cosmological constraints.</p>
-                <div style="margin-top: 15px; color: var(--astro-blue); font-size: 0.8rem; font-family: 'JetBrains Mono';">ARXIV: 2026.XXXXX</div>
-            </div>
+            <a href="supernova.html" class="card"><h3>Supernova Cosmology</h3></a>
+            <a href="coldfront.html" class="card"><h3>Cold Front Detection</h3></a>
+            <a href="psf.html" class="card"><h3>PSF Modeling</h3></a>
         </div>
     </section>
 </main>
+
+<footer>© 2026 RADIT RAIAN | ASTROPHYSICS & CODE</footer>
 
 <script>
     const canvas = document.getElementById('cosmos-engine');
@@ -201,14 +287,13 @@
     window.addEventListener('scroll', () => scrollY = window.pageYOffset);
     resize();
 
-    // H-R Diagram Temperature-based colors (Original logic preserved)
     const STAR_COLORS = ['#9bb0ff', '#aabfff', '#ffffff', '#f8f7ff', '#fff4ea', '#ffd2a1', '#ffcc6f'];
 
     class Star {
         constructor(speed) {
             this.x = Math.random() * w;
             this.y = Math.random() * h;
-            this.r = Math.random() * 1.5 + 0.2;
+            this.r = Math.random() * 1.3 + 0.2;
             this.color = STAR_COLORS[Math.floor(Math.random() * STAR_COLORS.length)];
             this.speed = speed;
             this.opacity = Math.random();
@@ -229,16 +314,17 @@
         }
     }
 
-    const stars = Array.from({length: 700}, () => new Star(Math.random() * 0.15));
+    const stars = Array.from({length: 650}, () => new Star(Math.random() * 0.15));
 
     function animate() {
         ctx.globalAlpha = 1;
         ctx.fillStyle = '#010409';
         ctx.fillRect(0, 0, w, h);
 
+        // Core Nebula Gradient (Violet/Midnight Mix)
         const nebula = ctx.createRadialGradient(w * 0.7, h * 0.3, 0, w * 0.7, h * 0.3, w);
-        nebula.addColorStop(0, 'rgba(30, 27, 75, 0.3)'); 
-        nebula.addColorStop(0.5, 'rgba(15, 23, 42, 0.2)');
+        nebula.addColorStop(0, 'rgba(30, 27, 75, 0.25)'); 
+        nebula.addColorStop(0.5, 'rgba(15, 23, 42, 0.15)');
         nebula.addColorStop(1, 'rgba(0, 0, 0, 0)');
         ctx.fillStyle = nebula;
         ctx.fillRect(0, 0, w, h);
@@ -247,24 +333,6 @@
         requestAnimationFrame(animate);
     }
     animate();
-
-    // The Section reveal logic from her site
-    const observerOptions = { threshold: 0.1 };
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = "1";
-                entry.target.style.transform = "translateY(0)";
-            }
-        });
-    }, observerOptions);
-
-    document.querySelectorAll('section').forEach(el => {
-        el.style.opacity = "0";
-        el.style.transform = "translateY(50px)";
-        el.style.transition = "all 0.8s ease-out";
-        observer.observe(el);
-    });
 </script>
 </body>
 </html>
