@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
     
     <style>
+        /* --- FUNDAMENTAL VISIBILITY & RESET --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         html, body {
@@ -26,65 +27,70 @@
             display: block;
         }
 
-        /* --- NAVIGATION: CENTERED PILL --- */
-        nav {
+        /* --- TOP NAVIGATION PANEL (INDIVIDUAL PILLS) --- */
+        header.top-panel {
             position: fixed; top: 0; width: 100%;
-            padding: 30px 0;
-            display: flex; justify-content: center;
-            z-index: 1000;
+            height: 85px; background: rgba(1, 4, 9, 0.9);
+            display: flex; justify-content: center; align-items: center;
+            z-index: 1000; border-bottom: 1px solid rgba(147, 197, 253, 0.1);
+            backdrop-filter: blur(10px);
         }
 
-        .nav-pill-box {
-            display: flex; gap: 5px; padding: 6px 15px;
-            background: rgba(0, 0, 0, 0.6);
-            border-radius: 50px;
-            border: 1px solid rgba(147, 197, 253, 0.2);
-            backdrop-filter: blur(12px);
+        .pill-group { display: flex; gap: 12px; }
+
+        .pill-btn {
+            color: #94a3b8; text-decoration: none;
+            font-size: 0.75rem; font-family: 'JetBrains Mono', monospace;
+            padding: 8px 18px; border-radius: 50px;
+            border: 1.5px solid rgba(147, 197, 253, 0.2);
+            background: rgba(15, 23, 42, 0.5);
+            transition: all 0.3s ease;
         }
 
-        .nav-link {
-            color: #94a3b8;
-            text-decoration: none;
-            font-size: 0.8rem;
-            padding: 8px 18px;
-            border-radius: 50px;
-            transition: 0.3s;
-            font-family: 'JetBrains Mono', monospace;
-        }
-
-        .nav-link:hover {
-            color: #93c5fd;
-            background: rgba(147, 197, 253, 0.1);
+        .pill-btn:hover, .pill-btn.active {
+            color: #93c5fd; border-color: #93c5fd;
+            background: rgba(147, 197, 253, 0.15);
+            box-shadow: 0 0 15px rgba(147, 197, 253, 0.2);
         }
 
         /* --- HERO: CENTRAL SYMMETRY --- */
         #hero { 
-            height: 100vh; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            text-align: center;
+            height: 100vh; display: flex; 
+            flex-direction: column; justify-content: center; 
+            align-items: center; text-align: center;
+            padding-top: 85px;
         }
 
         h1 { 
-            font-size: clamp(2.5rem, 8vw, 4.2rem); 
-            line-height: 1.1; 
-            margin-bottom: 20px;
-            letter-spacing: -1px;
+            font-size: clamp(2.5rem, 8vw, 4.2rem); line-height: 1.1; 
+            margin-bottom: 20px; letter-spacing: -1px;
         }
 
         h1 span { color: #93c5fd; display: block; }
 
         .punchline {
-            color: #94a3b8; 
-            max-width: 750px; 
-            margin: 0 auto; 
-            font-family: 'JetBrains Mono', monospace; 
+            color: #94a3b8; max-width: 800px; 
+            margin: 0 auto; font-family: 'JetBrains Mono', monospace; 
             border-top: 1px solid rgba(147, 197, 253, 0.2); 
-            padding-top: 25px;
-            font-size: 0.95rem;
-            letter-spacing: 0.5px;
+            padding-top: 25px; font-size: 0.95rem; letter-spacing: 0.5px;
         }
+
+        /* --- EXTRA BLUE DESIGN ELEMENT (ASTRO STATS) --- */
+        .astro-stats-panel {
+            display: flex; justify-content: center; gap: 15px;
+            margin-top: 40px; flex-wrap: wrap;
+        }
+
+        .stat-pill {
+            padding: 10px 20px; border-radius: 50px;
+            background: rgba(147, 197, 253, 0.05);
+            border: 1px dashed rgba(147, 197, 253, 0.3);
+            display: flex; gap: 10px;
+            font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
+        }
+
+        .stat-label { color: #64748b; }
+        .stat-value { color: #93c5fd; font-weight: bold; }
 
         /* --- SECTION PILL HEADERS --- */
         .pill-header-container {
@@ -95,8 +101,7 @@
         .pill-header {
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.8rem; letter-spacing: 2.5px;
-            color: #93c5fd;
-            padding: 12px 40px; border-radius: 50px;
+            color: #93c5fd; padding: 12px 45px; border-radius: 50px;
             background: rgba(147, 197, 253, 0.05);
             border: 1.5px solid rgba(147, 197, 253, 0.4);
             box-shadow: 0 0 20px rgba(147, 197, 253, 0.15);
@@ -104,7 +109,7 @@
             backdrop-filter: blur(5px);
         }
 
-        /* --- GRID & INTERACTIVE ITEMS --- */
+        /* --- GRID & CARDS --- */
         section {
             max-width: 1100px; margin: 0 auto;
             padding: 140px 24px; background: transparent !important;
@@ -126,14 +131,9 @@
             transform: translateY(-10px);
             border-color: rgba(147, 197, 253, 0.6) !important;
             box-shadow: 0 10px 30px rgba(2, 6, 23, 0.5), 0 0 20px rgba(147, 197, 253, 0.1);
-            background: rgba(15, 23, 42, 0.6) !important;
         }
 
-        .item h3 {
-            color: #93c5fd;
-            font-size: 1.2rem;
-            font-family: 'JetBrains Mono', monospace;
-        }
+        .item h3 { color: #93c5fd; font-size: 1.2rem; font-family: 'JetBrains Mono', monospace; }
 
         /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 5px; }
@@ -145,65 +145,70 @@
 
 <canvas id="cosmos-engine"></canvas>
 
-<nav>
-    <div class="nav-pill-box">
-        <a href="#hero" class="nav-link">Home</a>
-        <a href="#research" class="nav-link">Research</a>
-        <a href="#projects" class="nav-link">Projects</a>
-        <a href="#contact" class="nav-link">Contact</a>
-    </div>
-</nav>
+<header class="top-panel">
+    <nav class="pill-group">
+        <a href="#hero" class="pill-btn active">Home</a>
+        <a href="#about" class="pill-btn">About</a>
+        <a href="#research" class="pill-btn">Research</a>
+        <a href="#projects" class="pill-btn">Projects</a>
+        <a href="#achievements" class="pill-btn">Achievements</a>
+        <a href="#contact" class="pill-btn">Contact</a>
+    </nav>
+</header>
 
-<section id="hero">
-    <div>
-        <h1>EXPLORING THE UNIVERSE<br><span>THROUGH PHYSICS & CODE</span></h1>
-        <p class="punchline">
-            Decoding Cosmological Parameters through Supernova Spectroscopy and Galaxy Cluster Dynamics.
-        </p>
-    </div>
-</section>
+<main>
+    <section id="hero">
+        <div>
+            <h1>EXPLORING THE UNIVERSE<br><span>THROUGH PHYSICS & CODE</span></h1>
+            <p class="punchline">
+                Decoding Cosmological Parameters through Supernova Spectroscopy and Galaxy Cluster Dynamics.
+            </p>
+            
+            <div class="astro-stats-panel">
+                <div class="stat-pill">
+                    <span class="stat-label">System_Status:</span>
+                    <span class="stat-value">Observatory_Online</span>
+                </div>
+                <div class="stat-pill">
+                    <span class="stat-label">Primary_Target:</span>
+                    <span class="stat-value">Type_Ia_SN</span>
+                </div>
+                <div class="stat-pill">
+                    <span class="stat-label">Location:</span>
+                    <span class="stat-value">Dhaka, BD</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<section id="research">
-    <div class="pill-header-container">
-        <span class="pill-header">Research Initiatives</span>
-    </div>
-    
-    <div class="grid">
-        <a href="supernova.html" class="item-link">
-            <div class="item"><h3>Supernova Cosmology</h3></div>
-        </a>
-        <a href="coldfront.html" class="item-link">
-            <div class="item"><h3>Cold Front Detection</h3></div>
-        </a>
-        <a href="psf.html" class="item-link">
-            <div class="item"><h3>PSF Modeling</h3></div>
-        </a>
-    </div>
-</section>
+    <section id="research">
+        <div class="pill-header-container">
+            <span class="pill-header">Research Initiatives</span>
+        </div>
+        <div class="grid">
+            <a href="supernova.html" class="item-link"><div class="item"><h3>Supernova Cosmology</h3></div></a>
+            <a href="coldfront.html" class="item-link"><div class="item"><h3>Cold Front Detection</h3></div></a>
+            <a href="psf.html" class="item-link"><div class="item"><h3>PSF Modeling</h3></div></a>
+        </div>
+    </section>
 
-<section id="projects">
-    <div class="pill-header-container">
-        <span class="pill-header">Technical Projects</span>
-    </div>
-    
-    <div class="grid">
-        <a href="cosmosim.html" class="item-link">
-            <div class="item"><h3>Cosmo-Sim</h3></div>
-        </a>
-        <a href="clusterfinder.html" class="item-link">
-            <div class="item"><h3>Cluster-Finder</h3></div>
-        </a>
-        <a href="psfgen.html" class="item-link">
-            <div class="item"><h3>PSF-Gen</h3></div>
-        </a>
-    </div>
-</section>
+    <section id="projects">
+        <div class="pill-header-container">
+            <span class="pill-header">Technical Projects</span>
+        </div>
+        <div class="grid">
+            <a href="cosmosim.html" class="item-link"><div class="item"><h3>Cosmo-Sim</h3></div></a>
+            <a href="clusterfinder.html" class="item-link"><div class="item"><h3>Cluster-Finder</h3></div></a>
+            <a href="psfgen.html" class="item-link"><div class="item"><h3>PSF-Gen</h3></div></a>
+        </div>
+    </section>
 
-<section id="contact">
-    <div class="pill-header-container">
-        <span class="pill-header">System Uplink</span>
-    </div>
-</section>
+    <section id="contact">
+        <div class="pill-header-container">
+            <span class="pill-header">System Uplink</span>
+        </div>
+    </section>
+</main>
 
 <script>
     const canvas = document.getElementById('cosmos-engine');
