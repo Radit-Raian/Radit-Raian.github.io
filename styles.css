@@ -1,266 +1,250 @@
-/* --- 1. CORE ENGINE & RESET --- */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* ======================== 1. CORE RESET & GLOBAL ======================== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+/*html {
+  width: 100%; min-height: 100%;
+  background: #000; 
+  font-family: 'Roboto','Inter',sans-serif;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}*/
+html {
+  width: 100%; min-height: 100%;
+  background: #000000;
+  
+  /* NEW FONT: Rajdhani for all standard text (Technical/clean look) */
+  font-family: 'Inter', sans-serif; 
+  font-weight: 500; /* Rajdhani is thin, so 500 makes it readable */
+  letter-spacing: 0.5px; /* Slight spacing for that "terminal" feel */
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+body {
+  width: 100%; min-height: 100%;
+  /* IMPORTANT: Body must be transparent to see the fixed layers (canvas/aurora) behind it */
+  background: transparent; 
+  color: #e5e7eb;
 }
 
-html, body {
-    width: 100%;
-    min-height: 100%;
-    /* Unified typography: Roboto for prose, Inter as backup */
-    font-family: 'Roboto', 'Inter', sans-serif;
-    color: #e5e7eb;
-    background: transparent !important; 
-    scroll-behavior: smooth;
-    overflow-x: hidden;
-}
-
-/* Background persistent layer for the star engine */
+/* ======================== 2. CANVAS & AURORA ======================== */
 #cosmos-engine {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100vw; height: 100vh;
-    z-index: -1;
-    background: linear-gradient(135deg, #020617 0%, #0f172a 35%, #1e1b4b 70%, #020617 100%);
-    display: block;
+  position: fixed; top:0; left:0;
+  width: 100vw; height: 100vh;
+  z-index: -1; /* Stars sit behind body content */
+  display: block;
 }
 
-/* --- 2. TOP NAVIGATION (PILL SYSTEM) --- */
+.aurora-wrap {
+  position: fixed; top:0; left:0;
+  width: 100%; height: 100%;
+  pointer-events: none; overflow: hidden;
+  z-index: -2; /* Aurora sits behind the stars */
+}
+
+.aurora-wave {
+  position: absolute;
+  top: -25%; left: -25%;
+  width: 150%; height: 150%;
+  
+  /* THE FIX: Use a Radial Gradient instead of Linear + Blur */
+  /* This creates a naturally soft "Nebula" glow without needing a heavy blur filter */
+  background: radial-gradient(
+    circle at center,
+    rgba(147, 197, 253, 0.1) 0%,   /* Center Light Blue (Soft) */
+    rgba(99, 102, 241, 0.05) 30%,  /* Middle Purple (Fainter) */
+    transparent 70%                /* Fades to transparent automatically */
+  );
+  
+  /* Remove the problematic filter */
+  filter: none; 
+  
+  /* Smoother Animation: 'Breathing' instead of sliding */
+  animation: auroraPulse 2000s ease-in-out infinite alternate;
+  
+  /* Ensure GPU usage */
+  will-change: transform, opacity;
+  transform: translateZ(0); 
+  pointer-events: none;
+}
+
+/* New Animation: A slow, cosmic "breathing" effect */
+@keyframes auroraPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1.2); /* Gently expands */
+    opacity: 0.8;          /* Gently brightens */
+  }
+}
+
+@keyframes auroraMove {
+  0% { transform: rotate(0deg) translateX(0); }
+  50% { transform: rotate(25deg) translateX(60px); }
+  100% { transform: rotate(0deg) translateX(0); }
+}
+
+/* ======================== 3. HEADER NAVIGATION ======================== */
 header.top-panel {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    height: 85px;
-    background: rgba(1, 4, 9, 0.9);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    border-bottom: 1px solid rgba(147, 197, 253, 0.1);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+  position: fixed; top: 0; left: 0;
+  width: 100%; height: 85px;
+  
+  /* THE CHANGE: Use a low-opacity color instead of "transparent" */
+  background: rgba(1, 4, 9, 0.9); /* Faint blue tint */
+  
+  /* This creates the frosted glass distortion */
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  
+  /* A slightly brighter border makes the "glass edge" pop */
+  border-bottom: 1px solid rgba(147, 197, 253, 0.15);
+  
+  display: flex; justify-content: center; align-items: center;
+  z-index: 1000;
 }
 
-.pill-group {
-    display: flex;
-    gap: 12px;
+.nav-list { display: flex; gap: 24px; }
+
+.nav-link {
+  color: #94a3b8; text-decoration: none; font-weight: 500;
+  padding: 10px 22px; border-radius: 50px;
+  transition: all 0.4s ease;
 }
 
-.pill-btn {
-    position: relative;
-    color: #94a3b8;
-    text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: 500;
-    padding: 10px 22px;
-    border-radius: 50px;
-    border: 1.5px solid rgba(147, 197, 253, 0.2);
-    background: rgba(15, 23, 42, 0.5);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    letter-spacing: 0.3px;
+.nav-link.active, .nav-link:hover {
+  /* Brighter glow for the active state */
+  color: #93c5fd; 
+  background: rgba(147, 197, 253, 0.15);
+  box-shadow: 0 0 20px rgba(147, 197, 253, 0.2);
+  border: 1px solid rgba(147, 197, 253, 0.1);
 }
 
-.pill-btn:hover, .pill-btn.active {
-    color: #93c5fd;
-    border-color: #93c5fd;
-    background: rgba(147, 197, 253, 0.15);
-    box-shadow: 0 0 20px rgba(147, 197, 253, 0.3);
-    transform: translateY(-2px);
+/* ======================== 4. HERO ======================== */
+#hero { min-height:100vh; display:flex; align-items:center; justify-content:center; padding-top:85px; max-width:1300px; margin:0 auto; }
+.hero-grid { display:grid; grid-template-columns:1.2fr 0.8fr; gap:60px; align-items:center; width:100%; padding:0 2rem; }
+.hero-text-content { text-align:left; }
+.name-title { font-size: clamp(2.8rem,6vw,4.5rem); font-weight:700; margin-bottom:8px; color:#f8fafc; letter-spacing:-1.5px; text-shadow:0 0 12px rgba(147,197,253,0.2); }
+.subtitle { font-size:1.4rem; color:#93c5fd; font-weight:500; margin-bottom:25px; text-shadow:0 0 30px rgba(147,197,253,0.25); }
+.title-divider { width:350px;height:3px;margin:0px 0 16px; background:linear-gradient(90deg,transparent,#93c5fd,transparent); opacity:0.7; }
+.bio-text {
+  /* 1. Normal Font */
+  font-family: 'Inter', sans-serif;
+  font-weight: 300; /* Regular/Light weight for normal writing */
+  font-size: 1.05rem;
+  line-height: 1.3;
+  
+  /* 2. Faded Off-White Color */
+  color: rgba(255, 255, 255, 0.7); 
+  
+  /* 3. The "Box" shape alignment */
+  text-align: justify;
+  
+  /* Spacing */
+  margin-top: 10px;
+  margin-bottom: 10px;
+  max-width: 600px; /* Keeps the line length readable */
 }
-
-/* --- 3. HERO SECTION (TWO-COLUMN GRID) --- */
-#hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-top: 85px;
-    max-width: 1300px;
-    margin: 0 auto;
-}
-
-.hero-grid {
-    display: grid;
-    grid-template-columns: 1.2fr 0.8fr; /* Text left, Image right */
-    gap: 60px;
-    align-items: center;
-    width: 100%;
-    padding: 0 2rem;
-}
-
-.hero-text-content {
-    text-align: left;
-}
-
-.name-title {
-    font-size: clamp(2.8rem, 6vw, 4.5rem);
-    font-weight: 700;
-    margin-bottom: 8px;
-    color: #f8fafc;
-    letter-spacing: -1.5px;
-}
-
-.subtitle {
-    font-size: 1.4rem;
-    color: #93c5fd;
-    font-weight: 500;
-    margin-bottom: 25px;
-    text-shadow: 0 0 30px rgba(147, 197, 253, 0.3);
-}
-
-.social-links {
-    display: flex;
-    flex-direction: row;
-    gap: 15px;
-    margin-bottom: 30px;
-}
-
+.social-links { display:flex; gap:15px; margin-bottom:30px; }
 .social-btn {
-    width: 42px; height: 42px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #ffffff;
-    transition: all 0.3s ease;
+  width:42px;height:42px;border-radius:50%;
+  background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.15);
+  display:flex; justify-content:center; align-items:center; transition: all 0.3s ease; color:#fff;
+}
+.social-btn:hover { background:rgba(147,197,253,0.18); border-color:#93c5fd; transform:translateY(-4px); box-shadow:0 10px 25px rgba(0,0,0,0.3); }
+.social-btn svg { width:20px; height:20px; fill:currentColor; }
+
+.hero-image-content { display:flex; justify-content:center; align-items:center; }
+.profile-wrapper { width:360px; height:360px; border-radius:50%; transition: transform 0.5s ease; }
+.profile-pic { width:100%; height:100%; border-radius:50%; object-fit:cover; border:4px solid rgba(147,197,253,0.2); box-shadow:0 0 0 12px rgba(147,197,253,0.05),0 20px 60px rgba(0,0,0,0.7),0 0 50px rgba(147,197,253,0.2); }
+.profile-wrapper:hover { transform:scale(1.03); }
+
+/* ======================== 5. SECTIONS & STATS ======================== */
+
+/* 1. Section Scroll Animation (Kept consistent) */
+section:not(#hero) { 
+  max-width: 1200px; 
+  margin: 0 auto; 
+  padding: 100px 2rem; 
+  opacity: 0; 
+  transform: translateY(40px); 
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); 
 }
 
-.social-btn svg {
-    width: 20px; height: 20px;
-    fill: currentColor;
+section.active { 
+  opacity: 1; 
+  transform: translateY(0); 
 }
 
-.social-btn:hover {
-    background: rgba(147, 197, 253, 0.15);
-    border-color: #93c5fd;
-    transform: translateY(-4px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+/* 2. The Container: Refined to Grid for perfect alignment */
+.stats-group { 
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 Equal Columns */
+  gap: 15px; 
+  margin-bottom: 40px;
+  width: 100%;
 }
 
-.punchline {
-    font-size: 1.05rem;
-    line-height: 1.8;
-    color: #b8c5d0;
-    max-width: 750px;
-    margin-bottom: 35px;
-    text-align: justify;
-}
-
-/* --- 4. PROFILE PICTURE & GLOW RINGS --- */
-.hero-image-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.profile-wrapper {
-    position: relative;
-    width: 360px;
-    height: 360px;
-    transition: transform 0.5s ease;
-}
-
-.profile-pic {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 4px solid rgba(147, 197, 253, 0.2);
-    /* Multi-layered glow to mimic the reference image */
-    box-shadow: 
-        0 0 0 12px rgba(147, 197, 253, 0.05),
-        0 20px 60px rgba(0, 0, 0, 0.7),
-        0 0 40px rgba(147, 197, 253, 0.2);
-}
-
-.profile-wrapper:hover {
-    transform: scale(1.02);
-}
-
-/* --- 5. STATS & SECTION CONTENT --- */
-section {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 100px 2rem;
-    opacity: 0;
-    transform: translateY(40px);
-    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-section.active {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.stats-group {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-    margin-bottom: 40px;
-}
-
+/* 3. The Tags: Professional "Tech" Styling */
 .stat-tag {
-    padding: 10px 22px;
-    border-radius: 50px;
-    background: rgba(147, 197, 253, 0.03);
-    border: 1.5px dashed rgba(147, 197, 253, 0.3);
-    font-size: 0.8rem;
-    font-weight: 500;
-    color: #93c5fd;
-    transition: 0.3s;
+  /* Layout */
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
+  width: 100%;
+  padding: 12px 10px; 
+  border-radius: 50px;
+
+  /* Style */
+  background: rgba(147, 197, 253, 0.05); /* Subtle, glassy fill */
+  border: 1px solid rgba(147, 197, 253, 0.25); /* Solid clean border */
+  
+  /* Typography */
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.95rem; 
+  font-weight: 600; 
+  color: #93c5fd; 
+  
+  /* Animation */
+  transition: all 0.3s ease;
+  cursor: default;
 }
 
-.stat-tag:hover {
-    border-style: solid;
-    background: rgba(147, 197, 253, 0.1);
+/* Hover Effect: Glows and lifts up */
+.stat-tag:hover { 
+  background: rgba(147, 197, 253, 0.15); 
+  border-color: #93c5fd; 
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(147, 197, 253, 0.15);
 }
 
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 30px;
+/* Mobile Rule: Switches to 2 columns on small screens */
+@media (max-width: 768px) {
+  .stats-group {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
-.item {
-    background: rgba(15, 23, 42, 0.4) !important;
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(147, 197, 253, 0.1) !important;
-    padding: 55px 40px;
-    border-radius: 25px;
-    text-align: center;
-    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
 
-.item:hover {
-    transform: translateY(-12px);
-    border-color: #93c5fd !important;
-    box-shadow: 0 20px 50px rgba(2, 6, 23, 0.8);
-}
+/* ======================== 6. GRID ======================== */
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:30px; }
+.item { background:rgba(15,23,42,0.4); backdrop-filter:blur(15px); border-radius:25px; border:1px solid rgba(147,197,253,0.1); padding:55px 40px; text-align:center; transition: all 0.5s cubic-bezier(0.175,0.885,0.32,1.275); }
+.item:hover { transform:translateY(-12px); border-color:#93c5fd; box-shadow:0 20px 50px rgba(2,6,23,0.85); }
 
-/* --- 6. SCROLLBAR & SELECTION --- */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #020617; }
-::-webkit-scrollbar-thumb { background: #1e40af; border-radius: 10px; }
-::selection { background: rgba(147, 197, 253, 0.3); color: #fff; }
+/* ======================== 7. FOOTER ======================== */
+footer { text-align:center; padding:35px 0; font-size:0.85rem; color:#94a3b8; }
 
-/* --- 7. MOBILE RESPONSIVENESS --- */
-@media (max-width: 1024px) {
-    .hero-grid {
-        grid-template-columns: 1fr;
-        text-align: center;
-        gap: 40px;
-    }
-    .hero-text-content {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-    .punchline { text-align: center; }
-    .social-links, .stats-group { justify-content: center; }
-    .hero-image-content { order: -1; } /* Photo moves to top */
-    .profile-wrapper { width: 300px; height: 300px; }
+/* SCROLLBAR */
+::-webkit-scrollbar { width:6px; }
+::-webkit-scrollbar-track { background:#020617; }
+::-webkit-scrollbar-thumb { background:#fff; border-radius:10px; }
+::selection { background:rgba(147,197,253,0.3); color:#fff; }
+
+/* ======================== 8. RESPONSIVE ======================== */
+@media(max-width:1024px){
+  .hero-grid { grid-template-columns:1fr; text-align:center; gap:40px; }
+  .hero-text-content, .punchline { text-align:center; align-items:center; }
+  .social-links, .stats-group { justify-content:center; }
+  .hero-image-content { order:-1; }
+  .profile-wrapper { width:300px;height:300px; }
 }
