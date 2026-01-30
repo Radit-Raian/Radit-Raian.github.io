@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Research | Radit Raian</title>
+  
+  <link rel="icon" type="image/png" href="https://i.postimg.cc/Qx4C6gTV/orion.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <canvas id="cosmos-engine"></canvas>
+  
+  <div class="aurora-wrap">
+    <div class="aurora-wave"></div>
+  </div>
+
+  <nav class="navbar">
+    <ul class="nav-list">
+      <li><a href="index.html" class="nav-link">HOME</a></li>
+      <li><a href="academics.html" class="nav-link">ACADEMICS</a></li>
+      <li><a href="research.html" class="nav-link active">RESEARCH</a></li> 
+      <li><a href="projects.html" class="nav-link">PROJECTS</a></li>
+      <li><a href="contact.html" class="nav-link">CONTACT</a></li>
+    </ul>
+  </nav>
+
+<main style="padding-top: 100px; padding-bottom: 100px;"> 
+    
+    <section class="research-hero active">
+      <div class="section-header-center">
+        <h2 class="section-title">Research Initiatives</h2>
+        <div class="hero-underline" style="background-color: #3b82f6 !important;"></div>
+      </div>
+
+      <div class="research-intro-box">
+        <p>
+          My research focuses on the intersection of observation, computation, and theory. 
+          Current projects leverage data from <span class="blue-highlight">Chandra</span>, 
+          <span class="blue-highlight">DESI Legacy</span>, and Python-based simulation tools to explore the high-energy universe.
+        </p>
+      </div>
+
+      <div class="project-long-card">
+        <div class="project-grid-layout">
+          
+          <div class="project-img-col">
+            <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?q=80&w=600&auto=format&fit=crop" alt="Supernova" class="project-img">
+          </div>
+
+          <div class="project-content-col">
+            <div class="project-title-group">
+              <h3>Type Ia Supernova Spectral Analysis</h3>
+              <span class="project-subtitle">Supervisor: Dr. Syed Ashraf Uddin Shuvo</span>
+            </div>
+            
+            <p class="project-description">
+              A comprehensive study investigating Type Ia supernovae spectral analysis using customized <strong>Spextractor</strong>. This project aims to query the supernova spectral data and determines the velocity, peW and more features by a single code. This project will make the supernova cosmology study more robust and ensure the proper data availability.
+            </p>
+
+            <div class="project-buttons">
+              <a href="https://github.com/Radit-Raian/SpectralAnalysis_SNe" class="btn-research-outline">GitHub Repo <i class="fa-brands fa-github"></i></a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="project-long-card">
+        <div class="project-grid-layout">
+          
+          <div class="project-img-col">
+            <img src="https://i.postimg.cc/KvTMvPZG/ff97e5eb-a3d1-4ba9-b52f-df7d9a6cdf57.jpg" alt="Galaxy Cluster" class="project-img">
+          </div>
+
+          <div class="project-content-col">
+            <div class="project-title-group">
+              <h3>Cold Front Detection in Galaxy Clusters</h3>
+              <span class="project-subtitle">Supervisor: Dr. Khan Muhammad Asad</span>
+            </div>
+            
+            <p class="project-description">
+              An analytical pipeline buildup to identify and characterize cold fronts in galaxy clusters with semi-automation. Leveraging <strong>CIAO</strong> and <strong>DS9</strong>, this research processes high-resolution X-ray imagery to get the map and for exclusive Curvelet transformation's implementation. Additionally, this project focuses on finding the radio minihalos in those galaxy clusters.
+            </p>
+
+            <div class="project-buttons">
+              <a href="https://cassa.site/entry/mimic/" class="btn-research">Learn More <i class="fa-solid fa-file-lines"></i></a>
+              <a href="https://github.com/cassaiub" class="btn-research-outline">GitHub Repo <i class="fa-brands fa-github"></i></a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="project-long-card">
+        <div class="project-grid-layout">
+          
+          <div class="project-img-col">
+            <img src="https://i.postimg.cc/xTzv7rhr/betelgeuse-star-987396640-afd328ff2f774d769c56ed59ca336eb4.webp" alt="Optics" class="project-img">
+          </div>
+
+          <div class="project-content-col">
+            <div class="project-title-group">
+              <h3>PSF Buildup for ICL Detection</h3>
+              <span class="project-subtitle">Supervisor: Dr. Syeda Lammim Ahad</span>
+            </div>
+            
+            <p class="project-description">
+              Developing an accurate and fully automated Point Spread Function (PSF) model to correct optical distortions and detect the potential Intracluster Light candidates. We are using different Python libraries including SExtractor and Photutils to detect the faint object with more efficiency. Our first works are ongoing with DESI Legacy Survey.
+            </p>
+
+            <div class="project-buttons">
+              <a href="https://github.com/Radit-Raian/PSF_dev" class="btn-research-outline">GitHub Repo <i class="fa-brands fa-github"></i></a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

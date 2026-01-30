@@ -526,3 +526,175 @@ section.active .edu-card {
   /* Add a shadow to separate it from the stars */
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
 }
+
+/* ================= RESEARCH PAGE (COMPLETE REFINED THEME) ================= */
+
+/* --- 1. Top Introduction Box --- */
+.research-intro-box {
+  max-width: 900px;
+  margin: 0 auto 50px auto;
+  background: rgba(20, 20, 30, 0.6);
+  border: 1px solid rgba(147, 197, 253, 0.1);
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  color: #cbd5e1;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  backdrop-filter: blur(5px);
+}
+
+.blue-highlight {
+  color: #60a5fa; /* Bright Blue Keyword */
+  font-weight: 700;
+}
+
+/* --- 2. The Main Card Container --- */
+.project-long-card {
+  max-width: 950px; /* Slightly wider to fit image+text nicely */
+  margin: 0 auto 40px auto;
+  background: rgba(20, 20, 30, 0.8);
+  border: 1px solid rgba(59, 130, 246, 0.2); /* Subtle Blue Border */
+  border-radius: 16px;
+  padding: 30px; /* Padding around the inner grid */
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+/* Hover Effect: Lifts up and glows */
+.project-long-card:hover {
+  border-color: rgba(96, 165, 250, 0.6);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* --- 3. The Split Layout (Image Left, Text Right) --- */
+/* This is the Critical Fix for side-by-side layout */
+.project-grid-layout {
+  display: flex !important; /* Forces side-by-side */
+  flex-direction: row;
+  align-items: stretch;     /* Makes image and text same height */
+  gap: 35px;                /* Space between image and text */
+}
+
+/* The Image Box */
+.project-img-col {
+  flex: 0 0 320px; /* Fixed width: 320px */
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  position: relative;
+  min-height: 240px; /* Ensures it has height even if image loads slow */
+}
+
+.project-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures image fills the box perfectly */
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+/* Image zooms slightly when you hover the card */
+.project-long-card:hover .project-img {
+  transform: scale(1.08);
+}
+
+/* The Text Content Box */
+.project-content-col {
+  flex: 1; /* Takes remaining space */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centers text vertically */
+}
+
+/* --- 4. Typography & Details --- */
+.project-title-group h3 {
+  color: #fff;
+  font-size: 1.8rem;
+  margin: 0 0 5px 0;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.project-subtitle {
+  color: #94a3b8; /* Muted Grey */
+  font-size: 0.95rem;
+  font-weight: 500;
+  display: block;
+  margin-bottom: 15px;
+  font-family: 'Inter', sans-serif;
+}
+
+.project-description {
+  color: #cbd5e1; /* Light Grey */
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 25px;
+}
+
+/* --- 5. Buttons --- */
+.project-buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: auto; /* Pushes buttons to bottom if extra space */
+}
+
+.btn-research, .btn-research-outline {
+  padding: 10px 24px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  font-family: 'Inter', sans-serif;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px; /* Space between text and icon */
+}
+
+/* Primary Button */
+.btn-research {
+  border: 1px solid #3b82f6;
+  color: #60a5fa;
+  background: rgba(59, 130, 246, 0.1);
+}
+
+.btn-research:hover {
+  background: #3b82f6;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* Secondary Button */
+.btn-research-outline {
+  border: 1px solid rgba(147, 197, 253, 0.2);
+  color: #94a3b8;
+  background: transparent;
+}
+
+.btn-research-outline:hover {
+  border-color: #60a5fa;
+  color: #60a5fa;
+  transform: translateY(-2px);
+}
+
+/* --- 6. Mobile Responsiveness --- */
+/* Stacks image on top of text for phones/tablets */
+@media (max-width: 850px) {
+  .project-grid-layout {
+    flex-direction: column !important;
+    gap: 20px;
+  }
+  
+  .project-img-col {
+    width: 100%;
+    flex: none;
+    height: 220px; /* Fixed height for mobile banner */
+  }
+  
+  .project-long-card {
+    padding: 25px;
+  }
+}
