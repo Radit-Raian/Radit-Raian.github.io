@@ -169,6 +169,21 @@ header.top-panel {
     border-color: #93c5fd;
 }
 
+.social-links {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.social-btn svg {
+    width: 20px;  /* Adjust size as needed */
+    height: 20px;
+    transition: transform 0.3s ease;
+}
+
+.social-btn:hover svg {
+    transform: scale(1.15); /* Slight pop effect on hover */
+}
 /* --- 3. ASTRO STATS --- */
 .stats-group {
     display: flex;
