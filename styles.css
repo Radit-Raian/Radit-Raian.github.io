@@ -8,9 +8,9 @@
 html, body {
     width: 100%;
     min-height: 100%;
+    /* Unified typography: Roboto for prose, Inter as backup */
     font-family: 'Roboto', 'Inter', sans-serif;
     color: #e5e7eb;
-    /* Transparent body is critical for seeing stars behind glass nav */
     background: transparent !important; 
     scroll-behavior: smooth;
     overflow-x: hidden;
@@ -21,33 +21,25 @@ html, body {
     position: fixed;
     top: 0; left: 0;
     width: 100vw; height: 100vh;
-    /* Move stars slightly forward to ensure visibility behind glassy layers */
-    z-index: 1; 
+    z-index: -1;
     background: linear-gradient(135deg, #020617 0%, #0f172a 35%, #1e1b4b 70%, #020617 100%);
     display: block;
 }
 
-.aurora-wrap {
-    z-index: 2;
-}
-
-/* --- 2. TOP NAVIGATION (FROSTED GLASS) --- */
+/* --- 2. TOP NAVIGATION (PILL SYSTEM) --- */
 header.top-panel {
     position: fixed;
     top: 0;
     width: 100%;
     height: 85px;
-    /* 0.4 opacity allows shooting stars and star colors to pop through */
-    background: rgba(1, 4, 9, 0.4); 
+    background: rgba(1, 4, 9, 0.9);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000; 
-    /* saturate(160%) ensures stars don't look washed out behind the glass */
-    backdrop-filter: blur(12px) saturate(160%);
-    -webkit-backdrop-filter: blur(12px) saturate(160%);
-    border-bottom: 1px solid rgba(147, 197, 253, 0.15);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    border-bottom: 1px solid rgba(147, 197, 253, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
 }
 
 .pill-group {
@@ -77,13 +69,7 @@ header.top-panel {
     transform: translateY(-2px);
 }
 
-/* --- 3. HERO SECTION (GRID ARCHITECTURE) --- */
-main {
-    position: relative;
-    z-index: 10; 
-    background: transparent !important;
-}
-
+/* --- 3. HERO SECTION (TWO-COLUMN GRID) --- */
 #hero {
     min-height: 100vh;
     display: flex;
@@ -96,11 +82,15 @@ main {
 
 .hero-grid {
     display: grid;
-    grid-template-columns: 1.2fr 0.8fr; 
+    grid-template-columns: 1.2fr 0.8fr; /* Text left, Image right */
     gap: 60px;
     align-items: center;
     width: 100%;
     padding: 0 2rem;
+}
+
+.hero-text-content {
+    text-align: left;
 }
 
 .name-title {
@@ -170,6 +160,7 @@ main {
     position: relative;
     width: 360px;
     height: 360px;
+    transition: transform 0.5s ease;
 }
 
 .profile-pic {
@@ -178,15 +169,14 @@ main {
     border-radius: 50%;
     object-fit: cover;
     border: 4px solid rgba(147, 197, 253, 0.2);
-    /* Multi-layered glow from reference image */
+    /* Multi-layered glow to mimic the reference image */
     box-shadow: 
         0 0 0 12px rgba(147, 197, 253, 0.05),
         0 20px 60px rgba(0, 0, 0, 0.7),
         0 0 40px rgba(147, 197, 253, 0.2);
-    transition: transform 0.5s ease;
 }
 
-.profile-wrapper:hover .profile-pic {
+.profile-wrapper:hover {
     transform: scale(1.02);
 }
 
@@ -271,6 +261,6 @@ section.active {
     }
     .punchline { text-align: center; }
     .social-links, .stats-group { justify-content: center; }
-    .hero-image-content { order: -1; }
-    .profile-wrapper { width: 280px; height: 280px; }
+    .hero-image-content { order: -1; } /* Photo moves to top */
+    .profile-wrapper { width: 300px; height: 300px; }
 }
