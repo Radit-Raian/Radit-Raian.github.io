@@ -1,4 +1,4 @@
-/* --- FUNDAMENTAL VISIBILITY & RESET --- */
+/* --- 1. CORE ENGINE & RESET --- */
 * {
     margin: 0;
     padding: 0;
@@ -8,6 +8,7 @@
 html, body {
     width: 100%;
     min-height: 100%;
+    /* Unified typography: Roboto for prose, Inter as backup */
     font-family: 'Roboto', 'Inter', sans-serif;
     color: #e5e7eb;
     background: transparent !important; 
@@ -15,25 +16,23 @@ html, body {
     overflow-x: hidden;
 }
 
-/* --- BACKGROUND ENGINE LAYER --- */
+/* Background persistent layer for the star engine */
 #cosmos-engine {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
     z-index: -1;
     background: linear-gradient(135deg, #020617 0%, #0f172a 35%, #1e1b4b 70%, #020617 100%);
     display: block;
 }
 
-/* --- 1. TOP NAVIGATION PANEL --- */
+/* --- 2. TOP NAVIGATION (PILL SYSTEM) --- */
 header.top-panel {
     position: fixed;
     top: 0;
     width: 100%;
     height: 85px;
-    background: rgba(1, 4, 9, 0.95);
+    background: rgba(1, 4, 9, 0.9);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -50,17 +49,16 @@ header.top-panel {
 
 .pill-btn {
     position: relative;
-    overflow: hidden;
     color: #94a3b8;
     text-decoration: none;
     font-size: 0.85rem;
-    font-family: 'Roboto', sans-serif;
     font-weight: 500;
     padding: 10px 22px;
     border-radius: 50px;
     border: 1.5px solid rgba(147, 197, 253, 0.2);
     background: rgba(15, 23, 42, 0.5);
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    letter-spacing: 0.3px;
 }
 
 .pill-btn:hover, .pill-btn.active {
@@ -68,10 +66,10 @@ header.top-panel {
     border-color: #93c5fd;
     background: rgba(147, 197, 253, 0.15);
     box-shadow: 0 0 20px rgba(147, 197, 253, 0.3);
-    transform: translateY(-3px);
+    transform: translateY(-2px);
 }
 
-/* --- 2. HERO SECTION (FIXED TWO-COLUMN) --- */
+/* --- 3. HERO SECTION (TWO-COLUMN GRID) --- */
 #hero {
     min-height: 100vh;
     display: flex;
@@ -84,7 +82,7 @@ header.top-panel {
 
 .hero-grid {
     display: grid;
-    grid-template-columns: 1.2fr 0.8fr; /* Bio left, Image right */
+    grid-template-columns: 1.2fr 0.8fr; /* Text left, Image right */
     gap: 60px;
     align-items: center;
     width: 100%;
@@ -98,7 +96,7 @@ header.top-panel {
 .name-title {
     font-size: clamp(2.8rem, 6vw, 4.5rem);
     font-weight: 700;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     color: #f8fafc;
     letter-spacing: -1.5px;
 }
@@ -113,14 +111,13 @@ header.top-panel {
 
 .social-links {
     display: flex;
-    flex-direction: row; /* Fixed overlapping icons */
+    flex-direction: row;
     gap: 15px;
     margin-bottom: 30px;
 }
 
 .social-btn {
-    width: 42px;
-    height: 42px;
+    width: 42px; height: 42px;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.15);
@@ -129,23 +126,21 @@ header.top-panel {
     justify-content: center;
     color: #ffffff;
     transition: all 0.3s ease;
-    text-decoration: none;
 }
 
 .social-btn svg {
-    width: 20px;
-    height: 20px;
+    width: 20px; height: 20px;
     fill: currentColor;
 }
 
 .social-btn:hover {
     background: rgba(147, 197, 253, 0.15);
     border-color: #93c5fd;
-    transform: translateY(-3px);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
 }
 
 .punchline {
-    font-family: 'Roboto', sans-serif;
     font-size: 1.05rem;
     line-height: 1.8;
     color: #b8c5d0;
@@ -154,7 +149,7 @@ header.top-panel {
     text-align: justify;
 }
 
-/* --- PROFILE PICTURE (FIXED COLLAPSE) --- */
+/* --- 4. PROFILE PICTURE & GLOW RINGS --- */
 .hero-image-content {
     display: flex;
     justify-content: center;
@@ -163,8 +158,9 @@ header.top-panel {
 
 .profile-wrapper {
     position: relative;
-    width: 360px; /* Fixed width prevents image disappearing */
+    width: 360px;
     height: 360px;
+    transition: transform 0.5s ease;
 }
 
 .profile-pic {
@@ -173,13 +169,18 @@ header.top-panel {
     border-radius: 50%;
     object-fit: cover;
     border: 4px solid rgba(147, 197, 253, 0.2);
+    /* Multi-layered glow to mimic the reference image */
     box-shadow: 
         0 0 0 12px rgba(147, 197, 253, 0.05),
         0 20px 60px rgba(0, 0, 0, 0.7),
         0 0 40px rgba(147, 197, 253, 0.2);
 }
 
-/* --- 3. SECTIONS & GRID --- */
+.profile-wrapper:hover {
+    transform: scale(1.02);
+}
+
+/* --- 5. STATS & SECTION CONTENT --- */
 section {
     max-width: 1200px;
     margin: 0 auto;
@@ -204,43 +205,62 @@ section.active {
 .stat-tag {
     padding: 10px 22px;
     border-radius: 50px;
-    background: rgba(147, 197, 253, 0.05);
-    border: 1px dashed rgba(147, 197, 253, 0.4);
-    font-family: 'Roboto', sans-serif;
+    background: rgba(147, 197, 253, 0.03);
+    border: 1.5px dashed rgba(147, 197, 253, 0.3);
     font-size: 0.8rem;
+    font-weight: 500;
     color: #93c5fd;
+    transition: 0.3s;
+}
+
+.stat-tag:hover {
+    border-style: solid;
+    background: rgba(147, 197, 253, 0.1);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
 }
 
 .item {
-    background: rgba(15, 23, 42, 0.5) !important;
+    background: rgba(15, 23, 42, 0.4) !important;
     backdrop-filter: blur(15px);
-    border: 1.2px solid rgba(147, 197, 253, 0.15) !important;
+    border: 1px solid rgba(147, 197, 253, 0.1) !important;
     padding: 55px 40px;
     border-radius: 25px;
     text-align: center;
     transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-/* --- SCROLLBAR --- */
-::-webkit-scrollbar { width: 5px; }
+.item:hover {
+    transform: translateY(-12px);
+    border-color: #93c5fd !important;
+    box-shadow: 0 20px 50px rgba(2, 6, 23, 0.8);
+}
+
+/* --- 6. SCROLLBAR & SELECTION --- */
+::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: #020617; }
 ::-webkit-scrollbar-thumb { background: #1e40af; border-radius: 10px; }
+::selection { background: rgba(147, 197, 253, 0.3); color: #fff; }
 
-/* --- MOBILE LAYOUT --- */
+/* --- 7. MOBILE RESPONSIVENESS --- */
 @media (max-width: 1024px) {
-    .hero-grid { 
-        grid-template-columns: 1fr; 
-        text-align: center; 
-        gap: 40px; 
+    .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 40px;
     }
-    .hero-text-content { 
-        display: flex; 
-        flex-direction: column; 
-        align-items: center; 
+    .hero-text-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         text-align: center;
     }
     .punchline { text-align: center; }
     .social-links, .stats-group { justify-content: center; }
-    .hero-image-content { order: -1; }
-    .profile-wrapper { width: 280px; height: 280px; }
+    .hero-image-content { order: -1; } /* Photo moves to top */
+    .profile-wrapper { width: 300px; height: 300px; }
 }
