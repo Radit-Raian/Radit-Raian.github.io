@@ -8,9 +8,9 @@
 html, body {
     width: 100%;
     min-height: 100%;
-    /* Unified typography: Roboto for prose, Inter as backup */
     font-family: 'Roboto', 'Inter', sans-serif;
     color: #e5e7eb;
+    /* Removed solid background to let star engine shine through */
     background: transparent !important; 
     scroll-behavior: smooth;
     overflow-x: hidden;
@@ -21,29 +21,30 @@ html, body {
     position: fixed;
     top: 0; left: 0;
     width: 100vw; height: 100vh;
-    z-index: -1;
+    /* Higher z-index than -1 to ensure it isn't hidden by body defaults */
+    z-index: 1; 
     background: linear-gradient(135deg, #020617 0%, #0f172a 35%, #1e1b4b 70%, #020617 100%);
     display: block;
 }
 
-/* --- 2. TOP NAVIGATION (PILL SYSTEM) --- */
-/* --- UPDATED GLASSY NAVIGATION --- */
+/* --- 2. TOP NAVIGATION (FROSTED GLASS SYSTEM) --- */
 header.top-panel {
     position: fixed;
     top: 0;
     width: 100%;
     height: 85px;
-    /* Lower opacity allows stars to show through */
+    /* 0.4 opacity allows shooting stars and star colors to be visible */
     background: rgba(1, 4, 9, 0.4); 
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
-    /* This creates the frosted glass effect */
-    backdrop-filter: blur(12px) saturate(150%);
-    -webkit-backdrop-filter: blur(12px) saturate(150%);
+    /* Must be higher than #cosmos-engine */
+    z-index: 1000; 
+    /* saturate(160%) makes the passing star colors pop through the glass */
+    backdrop-filter: blur(12px) saturate(160%);
+    -webkit-backdrop-filter: blur(12px) saturate(160%);
     border-bottom: 1px solid rgba(147, 197, 253, 0.15);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
 }
 
 .pill-group {
@@ -73,7 +74,14 @@ header.top-panel {
     transform: translateY(-2px);
 }
 
-/* --- 3. HERO SECTION (TWO-COLUMN GRID) --- */
+/* --- 3. HERO SECTION (GRID ARCHITECTURE) --- */
+main {
+    position: relative;
+    /* Must be higher than star engine but lower than nav */
+    z-index: 10; 
+    background: transparent !important;
+}
+
 #hero {
     min-height: 100vh;
     display: flex;
@@ -86,7 +94,7 @@ header.top-panel {
 
 .hero-grid {
     display: grid;
-    grid-template-columns: 1.2fr 0.8fr; /* Text left, Image right */
+    grid-template-columns: 1.2fr 0.8fr; 
     gap: 60px;
     align-items: center;
     width: 100%;
@@ -164,7 +172,6 @@ header.top-panel {
     position: relative;
     width: 360px;
     height: 360px;
-    transition: transform 0.5s ease;
 }
 
 .profile-pic {
@@ -173,14 +180,15 @@ header.top-panel {
     border-radius: 50%;
     object-fit: cover;
     border: 4px solid rgba(147, 197, 253, 0.2);
-    /* Multi-layered glow to mimic the reference image */
+    /* Multi-layered glow from reference image */
     box-shadow: 
         0 0 0 12px rgba(147, 197, 253, 0.05),
         0 20px 60px rgba(0, 0, 0, 0.7),
         0 0 40px rgba(147, 197, 253, 0.2);
+    transition: transform 0.5s ease;
 }
 
-.profile-wrapper:hover {
+.profile-wrapper:hover .profile-pic {
     transform: scale(1.02);
 }
 
@@ -265,6 +273,6 @@ section.active {
     }
     .punchline { text-align: center; }
     .social-links, .stats-group { justify-content: center; }
-    .hero-image-content { order: -1; } /* Photo moves to top */
-    .profile-wrapper { width: 300px; height: 300px; }
+    .hero-image-content { order: -1; }
+    .profile-wrapper { width: 280px; height: 280px; }
 }
