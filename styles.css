@@ -11,6 +11,7 @@
 html {
   width: 100%; min-height: 100%;
   background: #000000;
+  font-size: 80%; /* Reduces 16px to approximately 15px universally */
   
   /* NEW FONT: Rajdhani for all standard text (Technical/clean look) */
   font-family: 'Inter', sans-serif; 
@@ -1738,7 +1739,7 @@ section.active .edu-card {
 }
 
 .btn-view:hover {
-    background: #ffffff; box-shadow: 0 0 25px rgba(103, 232, 249, 0.7);
+    background: #ffffff; box-shadow: 0 0 25px #fef3c7;
 }
 
 /* --- High-Impact Sector Header Fix --- */
@@ -1764,7 +1765,7 @@ section.active .edu-card {
     justify-content: center;
     color: var(--neon-cyan); /* Restored lighter blue */
     font-size: 1.1rem;
-    box-shadow: 0 0 15px rgba(103, 232, 249, 0.25);
+    box-shadow: 0 0 15px #fef3c7;
 }
 
 .category-header h3 {
@@ -1810,13 +1811,13 @@ section.active .edu-card {
     filter: invert(80%) sepia(50%) saturate(5000%) hue-rotate(160deg) brightness(1.1);
     
     /* Adds a soft glowing aurora around the icon itself */
-    drop-shadow: 0 0 8px rgba(103, 232, 249, 0.6);
+    drop-shadow: 0 0 8px #fef3c7;
 }
 
 /* Hover Effect: Turns the icon pure white with a heavy blue glow */
 .resource-card:hover .flaticon-img {
     filter: brightness(0) invert(1);
-    drop-shadow: 0 0 15px rgba(103, 232, 249, 0.9);
+    drop-shadow: 0 0 15px #fef3c7;
     transform: scale(1.15) rotate(5deg);
 }
 
@@ -1826,4 +1827,337 @@ section.active .edu-card {
     align-items: center;
     justify-content: center;
     overflow: visible !important;
+}
+
+/* --- Master Achievement Reset --- */
+.achievements-wrap {
+    width: 95% !important;
+    max-width: 1400px !important;
+    margin: 40px auto !important; /* Reduces top/bottom gaps */
+    padding: 0 !important;
+}
+
+/* --- The Gold Heading Line --- */
+.academic-heading-wrap {
+    border-left: 4px solid #fef3c7 !important;
+    padding-left: 20px !important;
+    margin-bottom: 30px !important;
+    text-align: left !important;
+}
+
+.academic-heading-wrap h2 {
+    font-family: 'Rajdhani', sans-serif !important;
+    font-size: 2.2rem !important;
+    color: #ffffff !important;
+    margin: 0 !important;
+}
+
+/* --- 1400px Aurora Medal Bars --- */
+.medal-bar-card {
+    display: flex !important;
+    align-items: center !important;
+    background: rgba(15, 23, 42, 0.3) !important;
+    backdrop-filter: blur(15px) !important;
+    border-radius: 20px !important;
+    padding: 25px 40px !important; /* Bigger float boxes */
+    margin-bottom: 12px !important; /* Minimal gap between bars */
+    width: 100% !important;
+    max-width: 1400px !important;
+    transition: 0.4s ease !important;
+    overflow: visible !important;
+}
+
+/* --- The Soft Aurora Bloom --- */
+.medal-accent {
+    width: 10px !important;
+    height: 60px !important;
+    border-radius: 50px !important;
+    margin-right: 35px !important;
+    position: relative !important;
+}
+
+.medal-accent::after {
+    content: '' !important;
+    position: absolute !important;
+    top: 50%; left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 180% !important; height: 140% !important;
+    filter: blur(20px) !important; /* Softer glow like aurora */
+    opacity: 0.5 !important;
+    z-index: -1 !important;
+}
+
+/* Medal Colors */
+.medal-gold { border: 1px solid rgba(255, 204, 51, 0.4) !important; }
+.medal-gold .medal-accent, .medal-gold .medal-accent::after { background: #ffcc33 !important; }
+
+.medal-silver { border: 1px solid rgba(226, 232, 240, 0.4) !important; }
+.medal-silver .medal-accent, .medal-silver .medal-accent::after { background: #cbd5e1 !important; }
+
+.medal-bronze { border: 1px solid rgba(205, 127, 50, 0.4) !important; }
+.medal-bronze .medal-accent, .medal-bronze .medal-accent::after { background: #cd7f32 !important; }
+
+.medal-winner { border: 1px solid rgba(229, 227, 225, 0.4) !important; }
+.medal-winner .medal-accent, .medal-winner .medal-accent::after { background: #fff !important; }
+
+/* Text Scaling */
+.medal-info h3 { font-size: 1.6rem !important; color: #fff !important; margin: 0 !important; }
+.medal-info p { font-size: 1.05rem !important; color: #cbd5e1 !important; margin: 5px 0 0 0 !important; }
+
+/* --- High-Density National Cards (No Vertical Bar) --- */
+.achieve-card.national-v {
+    position: relative;
+    background: rgba(15, 23, 42, 0.3);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 25px 35px; /* Ample space to prevent minimized fonts */
+    margin-bottom: 12px !important; /* Zero gap between bars */
+    width: 100%;
+    max-width: 1400px;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+/* Horizontal Aurora Top Gradient */
+.aurora-top {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 4px;
+    filter: drop-shadow(0 0 8px currentColor);
+}
+
+/* Vibrant Gradient Variants */
+.nat-v1 .aurora-top { background: linear-gradient(90deg, #bfdbfe, #a78bfa, #7c3aed); color: #a78bfa; }
+.nat-v2 .aurora-top { background: linear-gradient(90deg, #fef3c7, #fb923c, #ea580c); color: #fb923c; }
+.nat-v3 .aurora-top { background: linear-gradient(90deg, #d1fae5, #34d399, #059669); color: #34d399; }
+.nat-v4 .aurora-top { background: linear-gradient(90deg, #ffe4e6, #fb7185, #e11d48); color: #fb7185; }
+.nat-v5 .aurora-top { background: linear-gradient(90deg, #e0f2fe, #38bdf8, #0284c7); color: #38bdf8; }
+
+/* Normal Font Scaling */
+.achieve-content h3 {
+    font-size: 1.2rem; /* Normal, legible font size */
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 4px;
+}
+
+.achieve-content p {
+    font-size: 0.95rem;
+    color: #cbd5e1;
+    margin-bottom: 4px;
+}
+
+.achieve-subtext {
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* --- Global Font Synchronization --- */
+.achieve-content h3 {
+    font-family: 'Inter', sans-serif !important; /* Matches standard UI */
+    font-size: 1.70rem !important; /* Normal, non-minimized size */
+    font-weight: 700 !important;
+    color: #ffffff !important;
+    text-transform: none !important; /* Prevents all-caps crowding */
+    margin: 0 0 15px 0 !important;
+    letter-spacing: normal !important;
+}
+
+.achieve-content p {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 1.10rem !important;
+    font-weight: 400 !important;
+    color: rgba(203, 213, 225, 0.8) !important;
+    line-height: 1.5 !important;
+    margin: 0 0 8px 0 !important;
+}
+/* --- High-Density Card Fix --- */
+.achieve-card.national-v {
+    padding: 25px 25px !important; /* Balanced padding */
+    min-height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+}
+
+
+
+
+
+/* --- Floating Narrative Cards --- */
+.narrative-card {
+    display: flex;
+    align-items: center;
+    background: rgba(15, 23, 42, 0.3) !important;
+    backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 24px !important;
+    padding: 30px 45px !important;
+    margin: 0 auto 25px !important;
+    width: 100% !important;
+    max-width: 1400px !important;
+    gap: 50px; /* Space between story and image */
+    transition: all 0.4s ease;
+    overflow: hidden;
+}
+
+/* --- Left Image Frame --- */
+.story-image-box {
+    width: 350px; 
+    height: 220px;
+    border-radius: 18px;
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 1px solid #fef3c7;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.story-image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* --- Right Story Content --- */
+.story-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.story-text h3 {
+    font-family: 'Rajdhani', sans-serif !important;
+    font-size: 1.6rem !important;
+    color: #ffffff !important;
+    margin-bottom: 12px !important;
+    text-transform: none !important;
+}
+
+.story-text p {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 1.05rem !important; /* Normal legible size */
+    line-height: 1.6 !important;
+    color: rgba(254, 243, 199, 0.9) !important;
+    margin-bottom: 15px !important;
+}
+
+.story-label {
+    font-size: 0.8rem !important;
+    font-weight: 800 !important;
+    color: var(--neon-cyan) !important;
+    text-transform: uppercase !important;
+    letter-spacing: 2px !important;
+}
+
+/* --- Nostalgic Narrative Cards --- */
+.narrative-card.nostalgia {
+    background: rgba(28, 25, 23, 0.4) !important; /* Warmer, dark-brown glass */
+    border: 1px solid rgba(217, 119, 6, 0.15) !important; /* Faint amber border */
+    box-shadow: inset 0 0 40px rgba(217, 119, 6, 0.05);
+}
+
+/* --- Faded Old Image Filter --- */
+.story-image-box.faded {
+    filter: sepia(0.4) contrast(0.9) brightness(0.8) grayscale(0.2);
+    border-color: rgba(217, 119, 6, 0.2) !important;
+}
+
+/* --- The Amber "Old Light" Glow --- */
+.story-text h3 {
+    color: #fef3c7 !important; /* Soft parchment white */
+    text-shadow: 0 0 10px rgba(217, 119, 6, 0.3);
+}
+
+.story-text p {
+    color: #d1d5db !important; /* Desaturated grey for an old-paper feel */
+    font-style: italic; /* Enhances the storytelling vibe */
+}
+
+/* The Faded Label */
+.story-label {
+    color: #b45309 !important; /* Deep burnt orange */
+    opacity: 0.6;
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 600 !important;
+}
+
+/* --- Hover: Expanding the Memory --- */
+.narrative-card.nostalgia:hover {
+    background: rgba(28, 25, 23, 0.5) !important;
+    box-shadow: 0 0 30px rgba(217, 119, 6, 0.1), inset 0 0 50px rgba(217, 119, 6, 0.08);
+}
+
+/* --- Ultra-Wide Narrative Boxes --- */
+.narrative-card.nostalgia-full {
+    display: flex;
+    align-items: stretch; /* Forces image to match text height */
+    background: rgba(28, 25, 23, 0.45) !important;
+    backdrop-filter: blur(25px) !important;
+    border: 1px solid rgba(217, 119, 6, 0.2) !important;
+    border-radius: 28px !important;
+    margin: 0 auto 35px !important; /* Larger gap for storytelling */
+    width: 100% !important;
+    max-width: 1400px !important;
+    min-height: 350px; /* Makes the boxes appear significantly bigger */
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --- Left Side: Full Image Section --- */
+.story-image-full {
+    width: 450px; /* Wider image presence */
+    position: relative;
+    flex-shrink: 0;
+    overflow: hidden;
+    border-right: 1px solid rgba(217, 119, 6, 0.1);
+}
+
+.story-image-full img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: sepia(0.5) contrast(0.85) brightness(0.7) grayscale(0.1);
+    transition: transform 0.8s ease;
+}
+
+/* --- Right Side: Story Flow --- */
+.story-details {
+    flex: 1;
+    padding: 50px 60px; /* Generous padding for a premium feel */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.story-details h3 {
+    font-family: 'Rajdhani', sans-serif !important;
+    font-size: 1.8rem !important; /* Scaled up for the bigger box */
+    color: #fef3c7 !important;
+    margin-bottom: 15px !important;
+    text-shadow: 0 0 15px rgba(217, 119, 6, 0.2);
+}
+
+.story-details p {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 1.1rem !important; /* Clearly legible */
+    line-height: 1.7 !important;
+    color: rgba(209, 213, 219, 0.9) !important;
+    font-style: italic;
+    margin-bottom: 25px !important;
+}
+
+/* --- Hover Interaction --- */
+.narrative-card.nostalgia-full:hover {
+    transform: scale(1.01);
+    border-color: rgba(217, 119, 6, 0.4) !important;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+}
+
+.narrative-card.nostalgia-full:hover .story-image-full img {
+    transform: scale(1.05); /* Subtle zoom into the memory */
+    filter: sepia(0.3) brightness(0.8);
 }
