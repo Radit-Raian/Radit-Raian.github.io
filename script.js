@@ -133,3 +133,53 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll("section").forEach(sec=>observer.observe(sec));
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('noteSearch');
+    const noteCards = document.querySelectorAll('.resource-card');
+    const noResults = document.getElementById('noResults');
+    const filterButtons = document.querySelectorAll('.filter-btn');
+
+    // --- Unified Filter Logic Function ---
+    const filterNotes = () => {
+        const query = searchInput.value.toLowerCase();
+        const activeFilter = document.querySelector('.filter-btn.active').textContent.toLowerCase();
+        let visibleCount = 0;
+
+        noteCards.forEach(card => {
+            const title = card.querySelector('h4').textContent.toLowerCase();
+            const description = card.querySelector('p').textContent.toLowerCase();
+            const sectionHeader = card.closest('.notes-category-section').querySelector('h3').textContent.toLowerCase();
+
+            const matchesSearch = title.includes(query) || description.includes(query);
+            const matchesCategory = activeFilter === 'all notes' || sectionHeader.includes(activeFilter);
+
+            if (matchesSearch && matchesCategory) {
+                card.style.display = 'flex';
+                visibleCount++;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+
+        // Show/Hide "No Results" message
+        if (visibleCount === 0 && query !== "") {
+            noResults.style.display = 'block';
+        } else {
+            noResults.style.display = 'none';
+        }
+    };
+
+    // --- Search Input Listener ---
+    if (searchInput) {
+        searchInput.addEventListener('input', filterNotes);
+    }
+
+    // --- Category Button Listener ---
+    filterButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterButtons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            filterNotes(); // Re-run filter with new active category
+        });
+    });
+});
