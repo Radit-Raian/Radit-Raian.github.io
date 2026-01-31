@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=2">
 </head>
 <body>
 
@@ -26,12 +26,11 @@
         <li><a href="#hero" class="nav-link active">HOME</a></li>
         <li><a href="academics.html" class="nav-link">ACADEMICS</a></li>
         <li><a href="research.html" class="nav-link">RESEARCH</a></li>
-        <li><a href="#projects" class="nav-link">PROJECTS</a></li>
-        <li><a href="#achievements" class="nav-link">ACHIEVEMENTS</a></li>
-        <li><a href="#outreach" class="nav-link">OUTREACH</a></li>
-        <li><a href="#studynotes" class="nav-link">STUDY NOTES</a></li>
-        <li><a href="#cv" class="nav-link">CV</a></li>
-        <li><a href="#contact" class="nav-link">CONTACT</a></li>
+        <li><a href="projects.html" class="nav-link">PROJECTS</a></li>
+        <li><a href="achievements.html" class="nav-link">ACHIEVEMENTS</a></li>
+        <li><a href="outreach.html" class="nav-link">OUTREACH</a></li>
+        <li><a href="studynotes.html" class="nav-link">STUDY NOTES</a></li>
+        <li><a href="contact.html" class="nav-link">CONTACT</a></li>
       </ul>
     </nav>
   </header>
@@ -84,20 +83,61 @@
     </div>
   </section>
 </main>
-
-    <!-- Research Section -->
-    <section id="research">
-      <div class="section-header">
-        <span class="pill-header">Research Initiatives</span>
-      </div>
-      <div class="grid">
-        <a href="supernova.html" class="item"><h3>Supernova Cosmology</h3></a>
-        <a href="coldfront.html" class="item"><h3>Cold Front Detection</h3></a>
-        <a href="psf.html" class="item"><h3>PSF Modeling</h3></a>
-      </div>
+    <section id="cv-section-wrapper" class="active">
+      <div class="cv-status-card">
+       <div class="cv-action">
+         <a href="https://drive.google.com/file/d/1Zv3ZlL7owXSn-k-NqhuWkSnsCX_RYho1/view?usp=drive_link" 
+           target="_blank" 
+           class="btn-beyond">
+           DOWNLOAD CV <i class="fa-solid fa-file-arrow-down"></i>
+         </a>
+       </div>
+     </div>
     </section>
-  </main>
+      
+   <section id="research" class="active">
+  <div class="section-header-center">
+    <h2 class="section-title">Featured Research</h2>
+    <div class="hero-underline" style="background-color: #3b82f6 !important;"></div>
+  </div>
 
+  <div class="research-initiative-grid">
+    
+        <div class="research-box">
+      <div class="box-image-wrap">
+        <img src="https://i.postimg.cc/3x3Lkdp1/Screenshot-2026-01-31-045104.png" alt="Optics">
+      </div>
+      <div class="box-content">
+        <h3>PSF Modeling</h3>
+        <p>Developing fully automated Point Spread Function models to correct optical distortions for ICL detection.</p>
+        <a href="psf.html" class="btn-beyond-outline">View Project <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+
+        <div class="research-box">
+      <div class="box-image-wrap">
+        <img src="https://i.postimg.cc/bvpjNyNY/Screenshot-2026-01-31-050448.png" alt="Supernova">
+      </div>
+      <div class="box-content">
+        <h3>Supernova Spectra Analysis</h3>
+        <p>Investigating Type Ia supernovae spectral analysis to query velocity and peW features using Spextractor.</p>
+        <a href="supernova.html" class="btn-beyond-outline">View Project <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+    <div class="research-box">
+      <div class="box-image-wrap">
+        <img src="https://i.postimg.cc/J0bqnLhs/Screenshot-2026-01-31-045251.png" alt="Galaxy Cluster">
+      </div>
+      <div class="box-content">
+        <h3>Cold Front Detection</h3>
+        <p>Semi-automated pipeline to identify cold fronts in galaxy clusters leveraging CIAO and DS9 tools.</p>
+        <a href="coldfront.html" class="btn-beyond-outline">View Project <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+  </div>
+</section>
   <!-- Footer -->
   <footer>© 2026 Radit Raian | All rights reserved</footer>
 

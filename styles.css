@@ -698,3 +698,508 @@ section.active .edu-card {
     padding: 25px;
   }
 }
+
+/* ================= PROJECTS PAGE SPECIFIC (REFINED) ================= */
+
+.project-container {
+  max-width: 1050px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.project-feature-card {
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-radius: 20px;
+  padding: 40px;
+  backdrop-filter: blur(12px);
+}
+
+.project-feature-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 40px;
+  margin-bottom: 40px;
+  align-items: start; /* Ensures text stays at top if image is tall */
+}
+
+/* --- Improved Image Box for Scientific Plots --- */
+.project-img-box {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  background: rgba(0, 0, 0, 0.2); /* Subtle background for transparency */
+  height: auto; /* Removed fixed 320px to show full plot data */
+}
+
+.feature-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain; /* Ensures the whole plot is visible */
+  transition: transform 0.4s ease;
+}
+
+.project-img-box:hover .feature-img {
+  transform: scale(1.02); /* Very subtle zoom to keep labels readable */
+}
+
+/* --- Accuracy Badge Refinement --- */
+.accuracy-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: #3b82f6;
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+  z-index: 10;
+}
+
+/* --- Tool Tags --- */
+.tool-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 15px 0;
+}
+
+.tool-tags span {
+  background: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  color: #60a5fa;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+}
+
+/* --- Detail Columns --- */
+.project-details-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 30px;
+}
+
+.detail-item h4 {
+  color: #60a5fa;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.1rem;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.detail-item ul {
+  list-style: none;
+  padding: 0;
+}
+
+.detail-item li {
+  color: #94a3b8;
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+  display: flex;
+  gap: 8px;
+  line-height: 1.4;
+}
+
+.detail-item li::before {
+  content: '▹';
+  color: #3b82f6;
+  font-weight: bold;
+}
+
+.project-footer-note {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px dotted rgba(255, 255, 255, 0.1);
+  font-size: 0.85rem;
+  color: #64748b;
+  text-align: center;
+  font-style: italic;
+}
+
+/* --- Responsive Layout --- */
+@media (max-width: 850px) {
+  .project-feature-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+  
+  .project-details-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .project-img-box {
+    max-height: 300px; /* Limits height on mobile to prevent scrolling too much */
+  }
+
+  .project-feature-card {
+    padding: 25px;
+  }
+}
+
+/* ================= REFINED CONTACT PAGE STYLES ================= */
+
+.contact-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* --- Header & Lead Text --- */
+.contact-lead-text {
+  max-width: 800px;
+  margin: 20px auto 50px auto;
+  color: #94a3b8;
+  font-size: 1rem;
+  line-height: 1.7;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+}
+
+.mission-dispatch {
+  max-width: 700px;
+  margin: 20px auto 60px;
+  color: #60a5fa;
+  font-family: 'Inter', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.9rem;
+  line-height: 1.8;
+  text-align: center;
+}
+
+/* --- Three-Card Grid --- */
+.contact-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  margin-bottom: 60px;
+}
+
+.contact-card {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-radius: 20px;
+  padding: 35px 25px;
+  text-align: left;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.contact-card:hover {
+  border-color: #3b82f6;
+  transform: translateY(-8px);
+  box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2);
+}
+
+/* Perfect Centering for Top Icons */
+.card-icon-wrap {
+  width: 55px;
+  height: 55px;
+  display: flex !important;
+  align-items: center !important;    /* Forces icon down to center */
+  justify-content: center !important;
+  margin-bottom: 20px;
+  background: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  border-radius: 12px;
+}
+
+.card-icon-wrap i {
+  color: #60a5fa;
+  font-size: 1.5rem;
+  line-height: 1 !important;         /* Removes text-ghost height */
+  display: block;
+}
+
+.contact-card h3 {
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.card-description {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 25px;
+  min-height: 80px;
+}
+
+/* --- Dedicated 'Beyond' Buttons --- */
+.btn-beyond-outline {
+  display: inline-flex !important;   /* Centers arrow and text */
+  align-items: center !important;    /* Pulls arrow down to text-level */
+  justify-content: center;
+  gap: 12px;
+  padding: 12px 28px;
+  border-radius: 50px;
+  border: 1px solid rgba(59, 130, 246, 0.4);
+  color: #fff;
+  background: transparent;
+  text-decoration: none;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  line-height: 1 !important;
+}
+
+.btn-beyond-outline i {
+  font-size: 1.1rem;
+  display: flex !important;
+  align-items: center !important;
+  line-height: 0 !important;         /* Mathematical vertical center */
+  margin-top: 1px;                   /* Subtle optical nudge */
+}
+
+.btn-beyond-outline:hover {
+  background: rgba(59, 130, 246, 0.1);
+  border-color: #3b82f6;
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+  transform: translateY(-2px);
+}
+
+/* --- Form Wrapper & Neural Form --- */
+.form-wrapper {
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  border-radius: 24px;
+  padding: 45px;
+  backdrop-filter: blur(10px);
+  margin-top: 50px;
+}
+
+.form-header {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.form-header h3 {
+  font-family: 'Inter', sans-serif;
+  color: #fff;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.neural-form {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.input-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.input-group label {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  color: #60a5fa;
+  font-weight: 700;
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+}
+
+.neural-form input, .neural-form textarea {
+  width: 100%;
+  background: rgba(2, 6, 23, 0.5);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-radius: 8px;
+  padding: 14px;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  transition: 0.3s;
+}
+
+.neural-form input:focus, .neural-form textarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+}
+
+.transmit-btn {
+  background: #3b82f6;
+  color: #fff;
+  border: none;
+  padding: 16px;
+  border-radius: 50px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.4s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.transmit-btn:hover {
+  background: #2563eb;
+  letter-spacing: 2px;
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 950px) {
+  .contact-cards-grid {
+    grid-template-columns: 1fr;
+  }
+  .card-description {
+    min-height: auto;
+  }
+  .input-row {
+    grid-template-columns: 1fr;
+  }
+  .form-wrapper {
+    padding: 30px;
+  }
+}
+
+/* --- 1. KILL THE SECTION GAP --- */
+#cv-section-wrapper {
+  padding-top: 0 !important;   /* Overrides the global 100px padding */
+  margin-top: -60px !important; /* Pulls it up into the Research Interest section's bottom gap */
+}
+
+/* --- 2. THE CARD (Centering & Proximity) --- */
+.cv-status-card {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  max-width: 800px;
+  margin: 0 auto !important;
+  padding: 0 !important;      /* Removes internal space inside the card */
+  background: transparent;    /* Makes it look seamless with the starfield */
+  border: none;               /* Removes border so only the big button shows */
+}
+
+/* --- 3. THE BIG BUTTON (Refined Size & Centering) --- */
+.btn-beyond {
+  display: inline-flex !important;   /* Centers icon and text */
+  align-items: center !important;    /* Pulls icon down to text center */
+  justify-content: center !important;
+  gap: 15px;                         
+  padding: 18px 45px;                /* Larger hit-area */
+  background: #3b82f6;
+  color: #fff !important;
+  border-radius: 50px;
+  text-decoration: none !important;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  font-size: 1.15rem;                /* Bigger font for better visibility */
+  line-height: 1 !important;         /* Deletes ghost spacing */
+  transition: all 0.3s ease;
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+}
+
+.btn-beyond i {
+  font-size: 1.4rem;
+  display: flex !important;
+  align-items: center !important;
+  line-height: 0 !important;         /* Mathematical centering */
+  margin-top: 1px !important;
+}
+
+.btn-beyond:hover {
+  background: #2563eb;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(59, 130, 246, 0.6);
+}
+
+/* --- Research Grid Layout --- */
+.research-initiative-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+/* --- The Research Card --- */
+.research-box {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(147, 197, 253, 0.2);
+  border-radius: 20px;
+  overflow: hidden; /* Clips the image to the border radius */
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+}
+
+.research-box:hover {
+  transform: translateY(-10px);
+  border-color: #3b82f6;
+  box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2);
+}
+
+/* --- Top Image Styling --- */
+.box-image-wrap {
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(147, 197, 253, 0.1);
+}
+
+.box-image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures image fills space without stretching */
+  transition: transform 0.5s ease;
+}
+
+.research-box:hover .box-image-wrap img {
+  transform: scale(1.1); /* Subtle zoom on hover */
+}
+
+/* --- Internal Content --- */
+.box-content {
+  padding: 25px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.box-content h3 {
+  font-family: 'Rajdhani', sans-serif;
+  color: #fff;
+  font-size: 1.4rem;
+  margin-bottom: 12px;
+}
+
+.box-content p {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  height: 60px; /* Keeps button alignment consistent */
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 900px) {
+  .research-initiative-grid {
+    grid-template-columns: 1fr;
+  }
+}
