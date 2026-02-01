@@ -1,147 +1,181 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Radit Raian | Astrophysics & Cosmology</title>
-  <link rel="icon" type="image/png" href="https://i.postimg.cc/cLy2G2Y9/orion.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=2">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Radit Raian | Astrophysics & Cosmology</title>
+<link rel="icon" type="image/png" href="https://i.postimg.cc/cLy2G2Y9/orion.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Playfair+Display:wght@700&family=Cinzel:wght@600&family=EB+Garamond:ital,wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=2">
+<style>
+/* Background and Zoom Stability Fixes */
+html, body { background: #050505 !important; margin: 0; padding: 0; min-height: 100%; width: 100%; }
+body, main, section { background: transparent !important; }
+.name-title { font-size: 3.5rem; margin-top: 10rem; }
+.subtitle { font-size: 1.2rem; }
+.bio-text { font-size: 1.05rem; }
+.stat-tag { font-size: 0.85rem; }
+
+/* Fixed Hero Grid to prevent image from dropping below */
+.hero-grid { 
+    display: grid; 
+    grid-template-columns: 1.2fr 0.8fr; 
+    gap: 2rem; 
+    align-items: center; 
+    width: 100%;
+}
+
+/* Ensure Interest Tags wrap nicely in 3 columns */
+.stats-group { 
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 0.8rem; 
+    margin-top: 1rem; 
+}
+
+@media (max-width: 1024px) {
+    .hero-grid { grid-template-columns: 1fr; text-align: center; }
+    .hero-image-content { order: -1; }
+}
+</style>
 </head>
 <body>
-
-  <!-- Background -->
-  <canvas id="cosmos-engine"></canvas>
-  <div class="aurora-wrap">
-    <div class="aurora-wave"></div>
-  </div>
-
-  <!-- Navigation -->
-  <header class="top-panel">
-    <nav>
-      <ul class="nav-list">
-        <li><a href="#hero" class="nav-link active">HOME</a></li>
-        <li><a href="academics.html" class="nav-link">ACADEMICS</a></li>
-        <li><a href="research.html" class="nav-link">RESEARCH</a></li>
-        <li><a href="projects.html" class="nav-link">PROJECTS</a></li>
-        <li><a href="achievements.html" class="nav-link">ACHIEVEMENTS</a></li>
-        <li><a href="outreach.html" class="nav-link">OUTREACH</a></li>
-        <li><a href="studynotes.html" class="nav-link">STUDY NOTES</a></li>
-        <li><a href="contact.html" class="nav-link">CONTACT</a></li>
-      </ul>
-    </nav>
-  </header>
-
+<canvas id="cosmos-engine"></canvas>
+<div class="aurora-wrap"><div class="aurora-wave"></div></div>
+<header class="top-panel">
+<nav>
+<ul class="nav-list">
+<li><a href="#hero" class="nav-link active">HOME</a></li>
+<li><a href="academics.html" class="nav-link">ACADEMICS</a></li>
+<li><a href="research.html" class="nav-link">RESEARCH</a></li>
+<li><a href="projects.html" class="nav-link">PROJECTS</a></li>
+<li><a href="achievements.html" class="nav-link">ACHIEVEMENTS</a></li>
+<li><a href="outreach.html" class="nav-link">OUTREACH</a></li>
+<li><a href="studynotes.html" class="nav-link">STUDY NOTES</a></li>
+<li><a href="contact.html" class="nav-link">CONTACT</a></li>
+</ul>
+</nav>
+</header>
 <main>
-  <section id="hero">
-    <div class="hero-grid">
-      
-      <div class="hero-text-content">
-        <h1 class="name-title">Radit Raian</h1>
-        <div class="title-divider"></div>
-        <p class="subtitle">Aspiring Researcher in Astrophysics & Data Science</p>
-
-        <div class="social-links">
-          <a href="https://github.com/Radit-Raian" class="social-btn" title="GitHub" target="_blank" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-          </a>
-          <a href="https://linkedin.com/in/raditraian" class="social-btn" title="LinkedIn" target="_blank" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.763z"/></svg>
-          </a>
+<section id="hero" style="margin-bottom:0 !important; padding: 100px 2rem 2rem !important; min-height:auto !important;">
+<div class="hero-grid">
+<div class="hero-text-content">
+<h1 class="name-title">Radit Raian</h1>
+<div class="title-divider"></div>
+<p class="subtitle">Aspiring Researcher in Astrophysics & Data Science</p>
+<div class="social-links">
+<a href="https://github.com/Radit-Raian" class="social-btn" target="_blank"><svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
+<a href="https://linkedin.com/in/raditraian" class="social-btn" target="_blank"><svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.763z"/></svg></a>
           <a href="mailto:raditraian1107@gmail.com" class="social-btn" title="Email">
             <svg viewBox="0 0 24 24"><path d="M12 13.065l-11.999-7.065v14h24v-14l-12 7.065zm0-2.13l12-7.065h-24l12 7.065z"/></svg>
           </a>
-        </div>
+          <a href="https://x.com/iam_radit_raian" class="social-btn" title="Twitter" target="_blank" rel="noopener noreferrer">
+  <svg viewBox="0 0 24 24">
+    <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932 6.064-6.932zm-1.292 19.49h2.039L6.486 3.24H4.298L17.61 20.643z"/>
+  </svg>
+</a>
+</div>
+<p class="bio-text">Hi, I am Radit Raian! Currently, I am in the final year of my high school at Adamjee Cantonment College, Dhaka. Additionally, I am working as a research intern at the Center for Astronomy, Space Science, and Astrophysics (CASSA) at IUB, Dhaka. I had long stories of my Olympiad journey, which has almost ended. Finally, I chose to chase infinity. However, outside STEM, I love to travel to new places and occasionally burn the kitchen, too!</p>
+<div style="display:flex;justify-content:flex-start;margin-bottom:2rem;">
+<a href="https://drive.google.com/file/d/1Zv3ZlL7owXSn-k-NqhuWkSnsCX_RYho1/view?usp=drive_link" target="_blank" class="btn-beyond" style="text-decoration:none;">DOWNLOAD CV <i class="fa-solid fa-file-arrow-down"></i></a>
+</div>
 
-        <p class="bio-text">
-          Hi, I am Radit Raian! Currently, I am in the final year of my high school at Adamjee Cantonment College, Dhaka. Additionally, I am working as a research intern at the Center for Astronomy, Space Science, and Astrophysics (CASSA) at IUB, Dhaka. I had long stories of my Olympiad journey, which has almost ended. Finally, I chose to chase infinity. However, outside STEM, I love to travel to new places and occasionally burn the kitchen, too!
-        </p>
-        
-        <br>
+<br> 
 
-        <h4 class="interests-label">Research Interests</h4>
+<h4 class="interests-label" style="font-size:0.9rem;letter-spacing:0.2rem;margin-bottom:1rem;">RESEARCH INTERESTS</h4>
+<div class="stats-group">
+<span class="stat-tag">Galaxy Evolution</span><span class="stat-tag">Star Formation</span><span class="stat-tag">Time Domain Astronomy</span>
+<span class="stat-tag">Observational Cosmology</span><span class="stat-tag">High Energy Astrophysics</span><span class="stat-tag">Machine Learning</span>
+</div>
+</div>
+<div class="hero-image-content"><div class="profile-wrapper"><img src="https://i.postimg.cc/g2KWSm5x/OWAO-pic.jpg" alt="Radit Raian" class="profile-pic" style="border-radius:50%; width: 360px; height: 360px; object-fit: cover;"></div></div>
+</div>
+</section>
 
-        <br>
-
-        <div class="stats-group">
-          <span class="stat-tag">Galaxy Evolution</span>
-          <span class="stat-tag">Star Formation</span>
-          <span class="stat-tag">Time Domain Astronomy</span>
-          <span class="stat-tag">Observational Cosmology</span>
-          <span class="stat-tag">High Energy Astrophysics</span>
-          <span class="stat-tag">Machine Learning</span>
-        </div>
-      </div> 
-      <div class="hero-image-content">
-        <div class="profile-wrapper">
-          <img src="https://i.postimg.cc/g2KWSm5x/OWAO-pic.jpg" alt="Radit Raian" class="profile-pic">
-      </div>
-
-    </div>
-  </section>
-</main>
-    <section id="cv-section-wrapper" class="active">
-      <div class="cv-status-card">
-       <div class="cv-action">
-         <a href="https://drive.google.com/file/d/1Zv3ZlL7owXSn-k-NqhuWkSnsCX_RYho1/view?usp=drive_link" 
-           target="_blank" 
-           class="btn-beyond">
-           DOWNLOAD CV <i class="fa-solid fa-file-arrow-down"></i>
-         </a>
-       </div>
-     </div>
-    </section>
-      
-   <section id="research" class="active">
-  <div class="section-header-center">
-    <h2 class="section-title">Featured Research</h2>
-    <div class="hero-underline"></div>
+<section id="achievements" class="active" style="background: transparent !important; padding-top: 2rem !important;">
+  <div class="section-header-center" style="text-align:center; margin-bottom:5rem;">
+    <h2 class="section-title" style="font-family:'Segoe UI',serif; font-size:2rem; color:#fff;">Featured Research</h2>
+    <div class="hero-underline" style="width:50rem; height:0.1rem; background:#b59b6d; margin-top:4rem auto;"></div>
   </div>
 
-  <div class="research-initiative-grid">
+<div class="research-initiative-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;margin-bottom:5rem;">
+<div class="research-box">
+<div class="box-image-wrap"><img src="https://i.postimg.cc/3x3Lkdp1/Screenshot-2026-01-31-045104.png" alt="Optics"></div>
+<div class="box-content"><h3>PSF Modeling</h3><p>Developing fully automated Point Spread Function models to correct optical distortions for Intracluster Light (ICL) detection.</p><a href="https://github.com/Radit-Raian/PSF_dev" class="btn-beyond-outline">View Project</a></div>
+</div>
+<div class="research-box">
+<div class="box-image-wrap"><img src="https://i.postimg.cc/bvpjNyNY/Screenshot-2026-01-31-050448.png" alt="Supernova"></div>
+<div class="box-content"><h3>Supernova Spectra</h3><p>Working with the type Ia supernovae spectral analysis to query velocity and pseudo-equivalent width features using Spextractor.</p><a href="https://github.com/Radit-Raian/SpectralAnalysis_SNe" class="btn-beyond-outline">View Project</a></div>
+</div>
+<div class="research-box">
+<div class="box-image-wrap"><img src="https://i.postimg.cc/J0bqnLhs/Screenshot-2026-01-31-045251.png" alt="Galaxy Cluster"></div>
+<div class="box-content"><h3>Cold Front Detection</h3><p>Working on building a semi-automated pipeline to identify cold fronts in galaxy clusters leveraging CIAO and DS9 tools.</p><a href="https://cassa.site/entry/mimic/" class="btn-beyond-outline">View Project</a></div>
+</div>
+
+</div>
+</section>
+
+<section id="achievements" class="active" style="background: transparent !important; padding-top: 2rem !important;">
+  <div class="section-header-center" style="text-align:center; margin-bottom:5rem;">
+    <h2 class="section-title" style="font-family:'Segoe UI',serif; font-size:2rem; color:#fff;">Special Moments</h2>
+    <div class="hero-underline" style="width:50rem; height:0.1rem; background:#b59b6d; margin-top:4rem auto;"></div>
+  </div>
+
+<div class="narrative-card" style="
+    display: flex; 
+    flex-wrap: wrap; 
+    border-radius: 1rem; 
+    overflow: hidden; 
+    margin: 0 auto 4rem auto; 
+    max-width: 40rem; 
+    height: auto !important;
+    border: 0.125rem solid rgba(181, 155, 109, 0.6) !important;
+    box-shadow: 0 0 1.56rem rgba(181, 155, 109, 0.2);
+    background: radial-gradient(circle at center, rgba(154, 124, 73, 0.12) 0%, rgba(15, 23, 42, 0.85) 100%) !important;
+    backdrop-filter: blur(0.9rem);
+    -webkit-backdrop-filter: blur(0.9rem);
+    position: relative;"> <div class="story-image-wrap" style="flex: 1 1 18rem; max-width: 25rem; line-height: 0;">
+    <img src="https://i.postimg.cc/9QkD2M72/owao-2.jpg" alt="OWAO 2025" style="width: 100%; height: 100%; object-fit: cover;">
+  </div>
+  
+  <div class="story-details" style="flex: 1 1 18rem; padding: 2.5rem; display: flex; flex-direction: column; justify-content: center; background: transparent !important; position: relative;">
+    <span class="story-date" style="font-size: 0.75rem; color: #b45309; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15rem; margin-bottom: 0.5rem;">
+      September 20-27, 2025
+    </span>
+    <h3 style="font-family: 'Cinzel', serif; font-size: 1.3rem; color: #fef3c7; margin-bottom: 1rem;">
+      Days with Sirius at 43.6° North
+    </h3>
+    <p style="font-family: 'EB Garamond', serif; font-size: 1.1rem; color: #cbd5e1; line-height: 1.6; font-style: italic; margin-bottom: 3rem;">
+      For the first time, I carried Bangladesh beyond its borders—not in a flag raised high, but in responsibility carried quietly. Home was 5,500 kilometers away, yet every calculation, every answer felt tethered to it. At 43.6° north, the nights were unfamiliar and astonishingly clear. Stars spoke differently there. Sirius burned brighter, not just as a point of light, but as a companion to long hours of thought. Truly, "The sky was not the limit there."
+    </p>
     
-        <div class="research-box">
-      <div class="box-image-wrap">
-        <img src="https://i.postimg.cc/3x3Lkdp1/Screenshot-2026-01-31-045104.png" alt="Optics">
-      </div>
-      <div class="box-content">
-        <h3>PSF Modeling</h3>
-        <p>Developing fully automated Point Spread Function models to correct optical distortions for ICL detection.</p>
-        <a href="https://github.com/Radit-Raian/PSF_dev" class="btn-beyond-outline">View Project <i class="fa-solid fa-arrow-right"></i></a>
-      </div>
-    </div>
+    <div style="position: absolute; bottom: 2.5rem; left: 2.5rem; height: 0.125rem; width: 1.875rem; background: #b59b6d; opacity: 0.6;"></div>
 
-
-        <div class="research-box">
-      <div class="box-image-wrap">
-        <img src="https://i.postimg.cc/bvpjNyNY/Screenshot-2026-01-31-050448.png" alt="Supernova">
-      </div>
-      <div class="box-content">
-        <h3>Supernova Spectra Analysis</h3>
-        <p>Investigating Type Ia supernovae spectral analysis to query velocity and peW features using Spextractor.</p>
-        <a href="https://github.com/Radit-Raian/SpectralAnalysis_SNe" class="btn-beyond-outline">View Project <i class="fa-solid fa-arrow-right"></i></a>
-      </div>
+    <div style="position: absolute; bottom: 2rem; right: 2.5rem;">
+      <a href="achievements.html" style="
+        font-family: 'Orbitron', sans-serif;
+        font-size: 0.75rem;
+        font-weight: 500;
+        color: #fef3c7;
+        text-decoration: none;
+        letter-spacing: 0.1rem;
+        border: 1px solid #b59b6d;
+        padding: 0.5rem 1.2rem;
+        border-radius: 2rem;
+        transition: all 0.3s ease;
+        background: rgba(181, 155, 109, 0.1);
+        display: inline-block;">
+        READ MORE <i class="fa-solid fa-chevron-right" style="font-size: 0.6rem; margin-left: 0.4rem;"></i>
+      </a>
     </div>
-    <div class="research-box">
-      <div class="box-image-wrap">
-        <img src="https://i.postimg.cc/J0bqnLhs/Screenshot-2026-01-31-045251.png" alt="Galaxy Cluster">
-      </div>
-      <div class="box-content">
-        <h3>Cold Front Detection</h3>
-        <p>Semi-automated pipeline to identify cold fronts in galaxy clusters leveraging CIAO and DS9 tools.</p>
-        <a href="https://cassa.site/entry/mimic/" class="btn-beyond-outline">View Project <i class="fa-solid fa-arrow-right"></i></a>
-      </div>
-    </div>
-
+  </div>
+</div>
   </div>
 </section>
-  <!-- Footer -->
-  <footer>© 2026 Radit Raian | All rights reserved</footer>
-
-  <!-- Script -->
-  <script src="script.js" defer></script>
+</main>
+<footer>© 2026 Radit Raian | All rights reserved</footer>
+<script src="script.js" defer></script>
 </body>
 </html>
