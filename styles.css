@@ -1,275 +1,523 @@
-/* ======================== 1. CORE RESET & GLOBAL ======================== */
-* { margin: 0; padding: 0; box-sizing: border-box; }
+/* ==========================================================================
+   1. CORE RESET & GLOBAL (REFINED ANTIQUE GOLD)
+   ========================================================================== */
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
 
-/*html {
-  width: 100%; min-height: 100%;
-  background: #000; 
-  font-family: 'Roboto','Inter',sans-serif;
-  scroll-behavior: smooth;
-  overflow-x: hidden;
-}*/
 html {
-  width: 100%; min-height: 100%;
-  background: #000000;
-  font-size: 80%; /* Reduces 16px to approximately 15px universally */
-  
-  /* NEW FONT: Rajdhani for all standard text (Technical/clean look) */
-  font-family: 'Inter', sans-serif; 
-  font-weight: 500; /* Rajdhani is thin, so 500 makes it readable */
-  letter-spacing: 0.5px; /* Slight spacing for that "terminal" feel */
-  scroll-behavior: smooth;
-  overflow-x: hidden;
-}
-body {
-  width: 100%; min-height: 100%;
-  /* IMPORTANT: Body must be transparent to see the fixed layers (canvas/aurora) behind it */
-  background: transparent; 
-  color: #e5e7eb;
+    width: 100%; 
+    min-height: 100%;
+    background: #050505; /* Deep rich black for contrast */
+    font-size: 80%; 
+    font-family: 'Inter', sans-serif; 
+    font-weight: 500; 
+    letter-spacing: 0.5px; 
+    scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
-/* ======================== 2. CANVAS & AURORA ======================== */
+body {
+    width: 100%; 
+    min-height: 100%;
+    background: transparent; 
+    color: #fef3c7; /* Soft parchment text */
+}
+
+
+/* ==========================================================================
+   2. CANVAS & AURORA (DUSK AMBER BLOOM)
+   ========================================================================== */
 #cosmos-engine {
-  position: fixed; top:0; left:0;
-  width: 100vw; height: 100vh;
-  z-index: -1; /* Stars sit behind body content */
-  display: block;
+    position: fixed; 
+    top: 0; 
+    left: 0;
+    width: 100vw; 
+    height: 100vh;
+    z-index: -1; 
+    display: block;
 }
 
 .aurora-wrap {
-  position: fixed; top:0; left:0;
-  width: 100%; height: 100%;
-  pointer-events: none; overflow: hidden;
-  z-index: -2; /* Aurora sits behind the stars */
+    position: fixed; 
+    top: 0; 
+    left: 0;
+    width: 100%; 
+    height: 100%;
+    pointer-events: none; 
+    overflow: hidden;
+    z-index: -2; 
 }
 
 .aurora-wave {
-  position: absolute;
-  top: -25%; left: -25%;
-  width: 150%; height: 150%;
-  
-  /* THE FIX: Use a Radial Gradient instead of Linear + Blur */
-  /* This creates a naturally soft "Nebula" glow without needing a heavy blur filter */
-  background: radial-gradient(
-    circle at center,
-    rgba(147, 197, 253, 0.1) 0%,   /* Center Light Blue (Soft) */
-    rgba(99, 102, 241, 0.05) 30%,  /* Middle Purple (Fainter) */
-    transparent 70%                /* Fades to transparent automatically */
-  );
-  
-  /* Remove the problematic filter */
-  filter: none; 
-  
-  /* Smoother Animation: 'Breathing' instead of sliding */
-  animation: auroraPulse 2000s ease-in-out infinite alternate;
-  
-  /* Ensure GPU usage */
-  will-change: transform, opacity;
-  transform: translateZ(0); 
-  pointer-events: none;
+    position: absolute;
+    top: -25%; 
+    left: -25%;
+    width: 150%; 
+    height: 150%;
+    /* Muted Amber Nebula */
+    background: radial-gradient(
+        circle at center,
+        rgba(154, 124, 73, 0.06) 0%,   /* Soft Antique Gold */
+        rgba(101, 87, 53, 0.03) 40%,   /* Faded Sepia */
+        transparent 75%
+    );
+    filter: none; 
+    animation: auroraPulse 2000s ease-in-out infinite alternate;
+    will-change: transform, opacity;
+    transform: translateZ(0); 
+    pointer-events: none;
 }
 
-/* New Animation: A slow, cosmic "breathing" effect */
 @keyframes auroraPulse {
-  0% {
-    transform: scale(1);
-    opacity: 0.5;
-  }
-  100% {
-    transform: scale(1.2); /* Gently expands */
-    opacity: 0.8;          /* Gently brightens */
-  }
+    0% { transform: scale(1); opacity: 0.3; }
+    100% { transform: scale(1.15); opacity: 0.5; }
 }
 
 @keyframes auroraMove {
-  0% { transform: rotate(0deg) translateX(0); }
-  50% { transform: rotate(25deg) translateX(60px); }
-  100% { transform: rotate(0deg) translateX(0); }
+    0% { transform: rotate(0deg) translateX(0); }
+    50% { transform: rotate(25deg) translateX(60px); }
+    100% { transform: rotate(0deg) translateX(0); }
 }
 
-/* ======================== 3. HEADER NAVIGATION ======================== */
+
+/* ==========================================================================
+   3. HEADER NAVIGATION (ANTIQUE GLASS)
+   ========================================================================== */
 header.top-panel {
-  position: fixed; top: 0; left: 0;
-  width: 100%; height: 85px;
-  
-  /* THE CHANGE: Use a low-opacity color instead of "transparent" */
-  background: rgba(1, 4, 9, 0.9); /* Faint blue tint */
-  
-  /* This creates the frosted glass distortion */
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  
-  /* A slightly brighter border makes the "glass edge" pop */
-  border-bottom: 1px solid rgba(147, 197, 253, 0.15);
-  
-  display: flex; justify-content: center; align-items: center;
-  z-index: 1000;
+    position: fixed; 
+    top: 0; 
+    left: 0;
+    width: 100%; 
+    height: 85px;
+    background: rgba(15, 13, 10, 0.94); /* Warm dark panel */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(154, 124, 73, 0.15); /* Faded metallic edge */
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    z-index: 1000;
 }
 
-.nav-list { display: flex; gap: 24px; }
+.nav-list { 
+    display: flex; 
+    gap: 24px; 
+}
 
 .nav-link {
-  color: #94a3b8; text-decoration: none; font-weight: 500;
-  padding: 10px 22px; border-radius: 50px;
-  transition: all 0.4s ease;
+    color: #94a3b8; 
+    text-decoration: none; 
+    font-weight: 500;
+    padding: 10px 22px; 
+    border-radius: 50px;
+    transition: all 0.4s ease;
 }
 
 .nav-link.active, .nav-link:hover {
-  /* Brighter glow for the active state */
-  color: #93c5fd; 
-  background: rgba(147, 197, 253, 0.15);
-  box-shadow: 0 0 20px rgba(147, 197, 253, 0.2);
-  border: 1px solid rgba(147, 197, 253, 0.1);
+    color: #b59b6d; /* Muted Gold Text */
+    background: rgba(154, 124, 73, 0.1);
+    box-shadow: 0 0 20px rgba(154, 124, 73, 0.15);
+    border: 1px solid rgba(154, 124, 73, 0.1);
+    text-shadow: 0 0 10px rgba(154, 124, 73, 0.2);
 }
 
-/* ======================== 4. HERO ======================== */
-#hero { min-height:100vh; display:flex; align-items:center; justify-content:center; padding-top:85px; max-width:1300px; margin:0 auto; }
-.hero-grid { display:grid; grid-template-columns:1.2fr 0.8fr; gap:60px; align-items:center; width:100%; padding:0 2rem; }
-.hero-text-content { text-align:left; }
-.name-title { font-size: clamp(2.8rem,6vw,4.5rem); font-weight:700; margin-bottom:8px; color:#f8fafc; letter-spacing:-1.5px; text-shadow:0 0 12px rgba(147,197,253,0.2); }
-.subtitle { font-size:1.4rem; color:#93c5fd; font-weight:500; margin-bottom:25px; text-shadow:0 0 30px rgba(147,197,253,0.25); }
-.title-divider { width:350px;height:3px;margin:0px 0 16px; background:linear-gradient(90deg,transparent,#93c5fd,transparent); opacity:0.7; }
+
+/* ==========================================================================
+   4. HERO SECTION (FADED GLOW)
+   ========================================================================== */
+#hero { 
+    min-height: 100vh; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    padding-top: 85px; 
+    max-width: 1400px; 
+    margin: 0 auto; 
+}
+
+.hero-grid { 
+    display: grid; 
+    grid-template-columns: 1.2fr 0.8fr; 
+    gap: 60px; 
+    align-items: center; 
+    width: 100%; 
+    padding: 0 2rem; 
+}
+
+.hero-text-content { 
+    text-align: left; 
+}
+
+.name-title { 
+    font-size: clamp(2.8rem, 6vw, 4.5rem); 
+    font-weight: 700; 
+    margin-bottom: 8px; 
+    color: #ffffff; 
+    letter-spacing: -1.5px; 
+    text-shadow: 0 0 25px rgba(154, 124, 73, 0.3); /* */
+}
+
+.subtitle { 
+    font-size: 1.4rem; 
+    color: #b59b6d; /* Muted Antique Gold */
+    font-weight: 500; 
+    margin-bottom: 25px; 
+    text-shadow: 0 0 15px rgba(154, 124, 73, 0.2); 
+}
+
+.title-divider { 
+    width: 350px; 
+    height: 3px; 
+    margin: 0px 0 16px; 
+    background: linear-gradient(90deg, transparent, #b59b6d, transparent); 
+    opacity: 0.5;
+}
+
 .bio-text {
-  /* 1. Normal Font */
-  font-family: 'Inter', sans-serif;
-  font-weight: 300; /* Regular/Light weight for normal writing */
-  font-size: 1.05rem;
-  line-height: 1.3;
-  
-  /* 2. Faded Off-White Color */
-  color: rgba(255, 255, 255, 0.7); 
-  
-  /* 3. The "Box" shape alignment */
-  text-align: justify;
-  
-  /* Spacing */
-  margin-top: 10px;
-  margin-bottom: 10px;
-  max-width: 600px; /* Keeps the line length readable */
+    font-family: 'Segoe UI', sans-serif; 
+    font-weight: 300; 
+    font-size: 1.05rem; 
+    line-height: 1.5;
+    color: rgba(254, 243, 199, 0.8); 
+    text-align: justify;
+    margin-top: 10px; 
+    margin-bottom: 30px; 
+    max-width: 600px;
 }
-.social-links { display:flex; gap:15px; margin-bottom:30px; }
+
+.social-links { 
+    display: flex; 
+    gap: 15px; 
+    margin-bottom: 30px; 
+}
+
 .social-btn {
-  width:42px;height:42px;border-radius:50%;
-  background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.15);
-  display:flex; justify-content:center; align-items:center; transition: all 0.3s ease; color:#fff;
+    width: 42px; 
+    height: 42px; 
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05); 
+    border: 1px solid rgba(154, 124, 73, 0.2);
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    transition: all 0.3s ease; 
+    color: #fff;
 }
-.social-btn:hover { background:rgba(147,197,253,0.18); border-color:#93c5fd; transform:translateY(-4px); box-shadow:0 10px 25px rgba(0,0,0,0.3); }
-.social-btn svg { width:20px; height:20px; fill:currentColor; }
 
-.hero-image-content { display:flex; justify-content:center; align-items:center; }
-.profile-wrapper { width:360px; height:360px; border-radius:50%; transition: transform 0.5s ease; }
-.profile-pic { width:100%; height:100%; border-radius:50%; object-fit:cover; border:4px solid rgba(147,197,253,0.2); box-shadow:0 0 0 12px rgba(147,197,253,0.05),0 20px 60px rgba(0,0,0,0.7),0 0 50px rgba(147,197,253,0.2); }
-.profile-wrapper:hover { transform:scale(1.03); }
+.social-btn:hover { 
+    background: rgba(45, 40, 30, 0.5); 
+    border-color: #b59b6d; 
+    transform: translateY(-4px); 
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3); 
+}
 
-/* ======================== 5. SECTIONS & STATS ======================== */
+.social-btn svg { 
+    width: 20px; 
+    height: 20px; 
+    fill: currentColor; 
+}
 
-/* 1. Section Scroll Animation (Kept consistent) */
+.hero-image-content { 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+}
+
+.profile-wrapper { 
+    width: 360px; 
+    height: 360px; 
+    border-radius: 50%; 
+    transition: transform 0.5s ease; 
+}
+
+.profile-pic { 
+    width: 100%; 
+    height: 100%; 
+    border-radius: 50%; 
+    object-fit: cover; 
+    border: 4px solid rgba(154, 124, 73, 0.25); 
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7), 0 0 50px rgba(154, 124, 73, 0.15); 
+}
+
+.profile-wrapper:hover { 
+    transform: scale(1.03); 
+}
+
+
+/* ==========================================================================
+   5. SECTIONS & STATS 
+   ========================================================================== */
 section:not(#hero) { 
-  max-width: 1200px; 
-  margin: 0 auto; 
-  padding: 100px 2rem; 
-  opacity: 0; 
-  transform: translateY(40px); 
-  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); 
+    max-width: 1400px; 
+    margin: 0 auto; 
+    padding: 100px 2rem; 
+    opacity: 0; 
+    transform: translateY(40px); 
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); 
 }
 
 section.active { 
-  opacity: 1; 
-  transform: translateY(0); 
+    opacity: 1; 
+    transform: translateY(0); 
 }
 
-/* 2. The Container: Refined to Grid for perfect alignment */
 .stats-group { 
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 Equal Columns */
-  gap: 15px; 
-  margin-bottom: 40px;
-  width: 100%;
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 15px; 
+    margin-bottom: 40px; 
+    width: 100%;
 }
 
-/* 3. The Tags: Professional "Tech" Styling */
 .stat-tag {
-  /* Layout */
-  display: flex; 
-  justify-content: center; 
-  align-items: center;
-  width: 100%;
-  padding: 12px 10px; 
-  border-radius: 50px;
-
-  /* Style */
-  background: rgba(147, 197, 253, 0.05); /* Subtle, glassy fill */
-  border: 1px solid rgba(147, 197, 253, 0.25); /* Solid clean border */
-  
-  /* Typography */
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 0.95rem; 
-  font-weight: 600; 
-  color: #93c5fd; 
-  
-  /* Animation */
-  transition: all 0.3s ease;
-  cursor: default;
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    width: 100%;
+    padding: 12px 10px; 
+    border-radius: 50px;
+    background: rgba(45, 40, 30, 0.5); /* */
+    border: 1px solid rgba(154, 124, 73, 0.25); 
+    font-family: 'Segoe UI', sans-serif; 
+    font-size: 0.95rem; 
+    font-weight: 600; 
+    color: #b59b6d; /* */
+    transition: all 0.3s ease;
+    cursor: default;
 }
 
-/* Hover Effect: Glows and lifts up */
 .stat-tag:hover { 
-  background: rgba(147, 197, 253, 0.15); 
-  border-color: #93c5fd; 
-  transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(147, 197, 253, 0.15);
+    background: rgba(154, 124, 73, 0.12); 
+    border-color: #b59b6d; 
+    transform: translateY(-3px); 
+    box-shadow: 0 8px 20px rgba(154, 124, 73, 0.1);
 }
 
-/* Mobile Rule: Switches to 2 columns on small screens */
 @media (max-width: 768px) {
-  .stats-group {
-    grid-template-columns: repeat(2, 1fr);
-  }
+    .stats-group {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 
-/* ======================== 6. GRID ======================== */
-.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:30px; }
-.item { background:rgba(15,23,42,0.4); backdrop-filter:blur(15px); border-radius:25px; border:1px solid rgba(147,197,253,0.1); padding:55px 40px; text-align:center; transition: all 0.5s cubic-bezier(0.175,0.885,0.32,1.275); }
-.item:hover { transform:translateY(-12px); border-color:#93c5fd; box-shadow:0 20px 50px rgba(2,6,23,0.85); }
-
-/* ======================== 7. FOOTER ======================== */
-footer { text-align:center; padding:35px 0; font-size:0.85rem; color:#94a3b8; }
-
-/* SCROLLBAR */
-::-webkit-scrollbar { width:6px; }
-::-webkit-scrollbar-track { background:#020617; }
-::-webkit-scrollbar-thumb { background:#fff; border-radius:10px; }
-::selection { background:rgba(147,197,253,0.3); color:#fff; }
-
-/* ======================== 8. RESPONSIVE ======================== */
-@media(max-width:1024px){
-  .hero-grid { grid-template-columns:1fr; text-align:center; gap:40px; }
-  .hero-text-content, .punchline { text-align:center; align-items:center; }
-  .social-links, .stats-group { justify-content:center; }
-  .hero-image-content { order:-1; }
-  .profile-wrapper { width:300px;height:300px; }
+/* ==========================================================================
+   6. GRID & ANTIQUE GLASS CARDS
+   ========================================================================== */
+.grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+    gap: 30px; 
 }
 
-/* ================= FORCE VISIBILITY FOR ACADEMICS ================= */
-/* This ensures the text appears immediately without scrolling */
+.item, .narrative-card, .edu-card { 
+    background: rgba(25, 22, 18, 0.6) !important; /* Muted Espresso */
+    backdrop-filter: blur(25px); 
+    border-radius: 25px; 
+    border: 1px solid rgba(154, 124, 73, 0.12) !important; 
+    padding: 55px 40px; 
+    text-align: center; 
+    transition: all 0.5s ease; 
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+}
+
+.item:hover, .edu-card:hover { 
+    transform: translateY(-12px); 
+    border-color: rgba(154, 124, 73, 0.35) !important; 
+    background: rgba(25, 22, 18, 0.7) !important;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), 0 0 30px rgba(154, 124, 73, 0.08); 
+}
+
+
+/* ==========================================================================
+   7. FOOTER & SCROLLBAR
+   ========================================================================== */
+footer { 
+    text-align: center; 
+    padding: 35px 0; 
+    font-size: 0.85rem; 
+    color: #7d6a4a; 
+}
+
+::-webkit-scrollbar { 
+    width: 6px; 
+}
+
+::-webkit-scrollbar-track { 
+    background: #050505; 
+}
+
+::-webkit-scrollbar-thumb { 
+    background: linear-gradient(180deg, #b59b6d, #7d6a4a); 
+    border-radius: 10px; 
+}
+
+::selection { 
+    background: rgba(154, 124, 73, 0.2); 
+    color: #fff; 
+}
+
+
+/* ==========================================================================
+   8. RESPONSIVE & ACADEMICS
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .hero-grid { grid-template-columns: 1fr; text-align: center; gap: 40px; }
+    .hero-text-content { text-align: center; align-items: center; }
+    .social-links, .stats-group { justify-content: center; }
+    .hero-image-content { order: -1; }
+    .profile-wrapper { width: 300px; height: 300px; }
+}
+
 section.active {
-  opacity: 1 !important;
-  transform: translateY(0) !important;
-  visibility: visible !important;
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    visibility: visible !important;
 }
 
-/* Optional: Make the cards fade in nicely */
-section.active .edu-card {
-  opacity: 1 !important;
-  transform: translateX(0) !important;
-  animation: fadeIn 0.8s ease-out forwards;
+.edu-info h3 { font-size: 1.4rem; color: #ffffff; margin-bottom: 5px; font-family: 'Segoe UI', sans-serif; font-weight: 700; }
+.edu-degree { color: #b59b6d; font-size: 1rem; font-family: 'Segoe UI', sans-serif;text-align: left !important; }
+.edu-date { font-size: 0.9rem; color: #fef3c7; background: rgba(154, 124, 73, 0.1); padding: 6px 14px; border-radius: 20px; border: 1px solid rgba(154, 124, 73, 0.2); }
+.edu-desc { color: rgba(209, 213, 219, 0.85); font-size: 1rem; line-height: 1.7; }
+
+/* ==========================================================================
+   CV SECTION & RESEARCH GRID (REFINED ANTIQUE GOLD)
+   ========================================================================== */
+
+/* --- 1. KILL THE SECTION GAP --- */
+#cv-section-wrapper {
+    padding-top: 0 !important;   /* Overrides the global 100px padding */
+    margin-top: -60px !important; /* Pulls it up into the Research Interest section's bottom gap */
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }}
+/* --- 2. THE CARD (Centering & Proximity) --- */
+.cv-status-card {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    max-width: 800px;
+    margin: 0 auto !important;
+    padding: 0 !important;      /* Removes internal space inside the card */
+    background: transparent;    /* Makes it look seamless with the starfield */
+    border: none;               /* Removes border so only the big button shows */
+}
 
-/* ================= EDUCATION SECTION (Add this to styles.css) ================= */
+/* --- 3. THE BIG BUTTON (Antique Gold Re-skin) --- */
+.btn-beyond {
+    display: inline-flex !important;   /* Centers icon and text */
+    align-items: center !important;    /* Pulls icon down to text center */
+    justify-content: center !important;
+    gap: 15px;                         
+    padding: 18px 45px;                /* Larger hit-area */
+    background: #b59b6d;               /* Muted Antique Gold */
+    color: #050505 !important;         /* Dark contrast for premium look */
+    border-radius: 50px;
+    text-decoration: none !important;
+    font-family: 'Segoe UI', sans-serif;
+    font-weight: 700;
+    font-size: 1.15rem;                /* Bigger font for better visibility */
+    line-height: 1 !important;         /* Deletes ghost spacing */
+    transition: all 0.3s ease;
+    box-shadow: 0 0 20px rgba(181, 155, 109, 0.3);
+}
+
+.btn-beyond i {
+    font-size: 1.4rem;
+    display: flex !important;
+    align-items: center !important;
+    line-height: 0 !important;         /* Mathematical centering */
+    margin-top: 1px !important;
+}
+
+.btn-beyond:hover {
+    background: #c9b084;               /* Lighter gold hover state */
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(181, 155, 109, 0.5);
+}
+
+/* --- Research Grid Layout --- */
+.research-initiative-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* --- The Research Card (Espresso Glass) --- */
+.research-box {
+    background: rgba(25, 22, 18, 0.6); /* Muted Espresso Glass */
+    border: 1px solid rgba(154, 124, 73, 0.15); /* Faded Gold Border */
+    border-radius: 20px;
+    overflow: hidden; /* Clips the image to the border radius */
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+}
+
+.research-box:hover {
+    transform: translateY(-10px);
+    border-color: #b59b6d; /* Muted Gold glow on hover */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), inset 0 0 15px rgba(154, 124, 73, 0.05);
+}
+
+/* --- Top Image Styling --- */
+.box-image-wrap {
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(154, 124, 73, 0.15);
+}
+
+.box-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures image fills space without stretching */
+    filter: none !important; /* Ensuring no image filters are applied as per order */
+    transition: transform 0.5s ease;
+}
+
+.research-box:hover .box-image-wrap img {
+    transform: scale(1.1); /* Subtle zoom on hover */
+}
+
+/* --- Internal Content --- */
+.box-content {
+    padding: 25px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.box-content h3 {
+    font-family: 'Segoe UI', sans-serif;
+    color: #ffffff;
+    font-size: 1.4rem;
+    margin-bottom: 12px;
+}
+
+.box-content p {
+    color: #d1d5db; /* Desaturated grey for old-paper feel */
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    height: 60px; /* Keeps button alignment consistent */
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 900px) {
+    .research-initiative-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ======================== EDUCATION SECTION (REFINED ANTIQUE GOLD) ======================== */
 
 /* 1. The Container */
 .education-container {
@@ -277,13 +525,13 @@ section.active .edu-card {
   flex-direction: column;
   gap: 20px;
   max-width: 800px;
-  margin: 0 auto; /* Centers the cards */
+  margin: 0 auto;
 }
 
 /* 2. The Card Design */
 .edu-card {
-  background: rgba(147, 197, 253, 0.05); /* Glass effect */
-  border: 1px solid rgba(147, 197, 253, 0.1); /* Subtle border */
+  background: rgba(25, 22, 18, 0.6); /* Muted Espresso Glass */
+  border: 1px solid rgba(154, 124, 73, 0.15); /* Faded metallic edge */
   border-radius: 12px;
   padding: 30px;
   transition: all 0.3s ease;
@@ -291,15 +539,16 @@ section.active .edu-card {
   overflow: hidden;
 }
 
-/* 3. Hover Effect (The Glow) */
+/* 3. Hover Effect (The Amber Glow) */
 .edu-card:hover {
-  background: rgba(147, 197, 253, 0.1);
-  border-color: rgba(147, 197, 253, 0.4);
-  transform: translateY(-5px); /* Moves up slightly */
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  background: rgba(154, 124, 73, 0.1);
+  border-color: rgba(181, 155, 109, 0.4);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(154, 124, 73, 0.05);
+  align-items: flex-start; /* Ensures content pins to the left */
 }
 
-/* 4. Header Layout (School Name + Date) */
+/* 4. Header Layout */
 .edu-header {
   display: flex;
   justify-content: space-between;
@@ -311,64 +560,66 @@ section.active .edu-card {
 
 .edu-info h3 {
   font-size: 1.4rem;
-  color: #fff;
+  color: #ffffff;
   margin-bottom: 5px;
-  font-family: 'Rajdhani', sans-serif;
+  font-family: 'Segoe UI', sans-serif;
   font-weight: 700;
 }
 
 .edu-degree {
-  color: #93c5fd; /* Light Blue */
+  color: #b59b6d; /* Muted Antique Gold */
   font-size: 1rem;
   font-family: 'Inter', sans-serif;
+  text-align: left !important; /* Forces left alignment for all children */
 }
 
 /* 5. The Date Bubble */
 .edu-date {
   font-size: 0.9rem;
-  color: #cbd5e1;
-  background: rgba(255, 255, 255, 0.1);
+  color: #fef3c7;
+  background: rgba(154, 124, 73, 0.1);
   padding: 6px 14px;
   border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(154, 124, 73, 0.2);
 }
 
 /* 6. Description Text */
 .edu-desc {
-  color: #94a3b8; /* Grey text */
+  color: rgba(209, 213, 219, 0.85);
   font-size: 1rem;
   line-height: 1.6;
+  text-align: left !important; /* Forces left alignment for all children */
 }
 
-/* ================= ACADEMIC HERO HEADER ================= */
+/* ======================== ACADEMIC HERO HEADER ======================== */
+
 .academic-hero {
   text-align: center;
   padding: 20px 20px;
   max-width: 1000px;
-  margin-top: -40px !important;
-  margin: 0 auto;
+  margin: -40px auto 0 auto;
 }
 
-/* Title & Underline */
 .hero-title {
   font-size: 4.5rem;
   font-weight: 700;
-  color: #fff;
+  color: #ffffff;
   margin-bottom: 10px;
-  margin-top: -40px !important;
-  font-family: 'Rajdhani', sans-serif;
+  font-family: 'Segoe UI', sans-serif;
+  text-shadow: 0 0 25px rgba(154, 124, 73, 0.3);
 }
 
 .hero-underline {
   width: 350px;
   height: 4px;
-  background-color: #93c5fd; /* Gold Color */
+  background-color: #b59b6d; /* Muted Gold Color */
   margin: 0 auto 20px auto;
   border-radius: 2px;
+  box-shadow: 0 0 10px rgba(154, 124, 73, 0.2);
 }
 
 .hero-subtitle {
-  color: #94a3b8; /* Light Grey */
+  color: rgba(254, 243, 199, 0.7);
   font-size: 1.1rem;
   max-width: 600px;
   margin: 0 auto 50px auto;
@@ -379,13 +630,13 @@ section.active .edu-card {
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2px;
+  gap: 20px;
 }
 
 /* Individual Stat Cards */
 .stat-card {
-  background: rgba(20, 20, 30, 0.6); /* Darker card background */
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(25, 22, 18, 0.6);
+  border: 1px solid rgba(154, 124, 73, 0.15);
   padding: 30px 20px;
   border-radius: 12px;
   transition: all 0.3s ease;
@@ -393,64 +644,57 @@ section.active .edu-card {
 
 .stat-card:hover {
   transform: translateY(-5px);
-  border-color: #93c5fd; /* Glow Blue on hover */
-  background: rgba(147, 197, 253, 0.1);
+  border-color: #b59b6d;
+  background: rgba(154, 124, 73, 0.1);
 }
 
 /* The Numbers */
 .stat-number {
   font-size: 2.5rem;
   font-weight: 700;
-  color: #93c5fd; /* Blue Text */
+  color: #b59b6d; /* Muted Gold */
   margin-bottom: 10px;
-  font-family: 'Rajdhani', sans-serif;
+  font-family: 'Segoe UI', sans-serif;
 }
 
 /* The Labels */
 .stat-label {
-  color: #cbd5e1;
+  color: #fef3c7;
   font-size: 0.95rem;
   font-weight: 500;
 }
 
-/* ================= FORCE CENTER FIX ================= */
+/* ======================== FORCE CENTER FIX ======================== */
 
-/* 1. Force the container to fill the screen and center items */
 .section-header-center {
   width: 100% !important;
   display: flex !important;
   flex-direction: column !important;
-  align-items: center !important; /* This centers the items horizontally */
+  align-items: center !important;
   justify-content: center !important;
   text-align: center !important;
-  margin-bottom: 0px !important;
   margin-top: -20px !important;
 }
 
-/* 2. Force the text to center */
 .section-header-center .section-title {
-  font-size: 3.5rem !important; /* <--- ADD THIS LINE (Adjust number to resize) */
-  font-weight: 700 !important;   /* Makes it bold */
+  font-size: 3.5rem !important;
+  font-weight: 700 !important;
   text-align: center !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-  margin-bottom: 20px;
-  display: inline-block !important; /* Prevents it from stretching to full width */
-  background: linear-gradient(90deg, #fff,#93c5fd); /* Re-apply gradient if lost */
+  margin: 0 auto 20px auto;
+  display: inline-block !important;
+  background: linear-gradient(90deg, #ffffff, #b59b6d); /* White-to-Gold Gradient */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* 3. Force the gold line to center */
 .section-header-center .hero-underline {
   margin-left: auto !important;
   margin-right: auto !important;
-  background-color: #93c5fd !important; /* Ensure gold color stays */
+  background-color: #b59b6d !important;
 }
 
-/* ================= PARTICIPATION LIST (Gradient Style) ================= */
+/* ======================== PARTICIPATION LIST (ANTIQUE STYLE) ======================== */
 
-/* 1. The Container */
 .participation-container {
   max-width: 900px;
   margin: 0 auto;
@@ -460,27 +704,24 @@ section.active .edu-card {
   padding: 0 20px;
 }
 
-/* 2. The Card */
 .part-card {
-  background: rgba(20, 20, 30, 0.6);
-  border: 1px solid rgba(147, 197, 253, 0.1);
+  background: rgba(25, 22, 18, 0.6);
+  border: 1px solid rgba(154, 124, 73, 0.15);
   padding: 22px 25px;
   border-radius: 12px;
-  border-left: 4px solid #3b82f6; /* Blue Sidebar */
+  border-left: 4px solid #b59b6d; /* Antique Gold Sidebar */
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
 }
 
-/* Hover Effect: Card Glows */
 .part-card:hover {
-  background: rgba(59, 130, 246, 0.08);
+  background: rgba(154, 124, 73, 0.1);
   transform: translateX(10px);
-  border-color: rgba(96, 165, 250, 0.4);
+  border-color: rgba(181, 155, 109, 0.4);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
-/* 3. The Text */
 .part-text {
   color: #cbd5e1;
   font-size: 1.05rem;
@@ -489,766 +730,430 @@ section.active .edu-card {
   font-family: 'Inter', sans-serif;
 }
 
-/* 4. THE MAGIC KEYWORD STYLE (Gradient Text) */
 .gradient-text {
-  /* Define the gradient: Strong Blue -> Cyan */
-  background: linear-gradient(90deg, #60a5fa, #22d3ee);
-  
-  /* Clip the background to the text shape */
+  background: linear-gradient(90deg, #b59b6d, #fef3c7); /* Gold-to-Parchment Gradient */
   -webkit-background-clip: text;
   background-clip: text;
-  
-  /* Make the text transparent so the background shows through */
   -webkit-text-fill-color: transparent;
   color: transparent;
-  
-  font-weight: 700; /* Bold to make it readable */
-  font-family: 'Inter', sans-serif; /* Tech font */
+  font-weight: 700;
+  font-family: 'Inter', sans-serif;
   letter-spacing: 0.5px;
 }
 
-/* ================= VISIBLE NAVIGATION BAR ================= */
+/* ======================== VISIBLE NAVIGATION BAR ======================== */
 .navbar {
   display: flex;
-  justify-content: center; /* Center the links */
+  justify-content: center;
   align-items: center;
   padding: 20px 0;
-  
   position: fixed;
   width: 100%;
   top: 0;
   left: 0;
   z-index: 1000;
-  
-  /* THE FIX: Make the background lighter so it stands out */
-  background: rgba(15, 23, 42, 0.7); /* Dark Blue-Grey (Visible against black) */
-  backdrop-filter: blur(15px);        /* strong blur effect */
-  
-  /* Add a glowing line at the bottom */
-  border-bottom: 1px solid rgba(147, 197, 253, 0.3); 
-  
-  /* Add a shadow to separate it from the stars */
+  background: rgba(15, 13, 10, 0.94); /* Warm Dark Panel */
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid rgba(154, 124, 73, 0.2); 
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
 }
 
-/* ================= RESEARCH PAGE (COMPLETE REFINED THEME) ================= */
+/* ==========================================================================
+   RESEARCH PAGE (FULL EXPANDED ANTIQUE GOLD THEME - NO IMAGE FILTERS)
+   ========================================================================== */
 
 /* --- 1. Top Introduction Box --- */
 .research-intro-box {
-  max-width: 900px;
-  margin: 0 auto 50px auto;
-  background: rgba(20, 20, 30, 0.6);
-  border: 1px solid rgba(147, 197, 253, 0.1);
-  padding: 30px;
-  border-radius: 12px;
-  text-align: center;
-  color: #cbd5e1;
-  font-size: 1.1rem;
-  line-height: 1.6;
-  backdrop-filter: blur(5px);
+    max-width: 900px;
+    margin: 0 auto 50px auto;
+    /* Muted Espresso Glass logic */
+    background: rgba(25, 22, 18, 0.6); 
+    border: 1px solid rgba(154, 124, 73, 0.15);
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    color: #d1d5db; /* Desaturated grey for old-paper feel */
+    font-size: 1.1rem;
+    line-height: 1.6;
+    backdrop-filter: blur(5px);
+    transition: all 0.4s ease;
 }
 
 .blue-highlight {
-  color: #60a5fa; /* Bright Blue Keyword */
-  font-weight: 700;
+    /* Updated from blue to Antique Gold */
+    color: #b59b6d; 
+    font-weight: 700;
 }
 
 /* --- 2. The Main Card Container --- */
 .project-long-card {
-  max-width: 950px; /* Slightly wider to fit image+text nicely */
-  margin: 0 auto 40px auto;
-  background: rgba(20, 20, 30, 0.8);
-  border: 1px solid rgba(59, 130, 246, 0.2); /* Subtle Blue Border */
-  border-radius: 16px;
-  padding: 30px; /* Padding around the inner grid */
-  transition: all 0.3s ease;
-  overflow: hidden;
+    max-width: 950px; 
+    margin: 0 auto 40px auto;
+    background: rgba(25, 22, 18, 0.75);
+    /* Faded Gold Border logic */
+    border: 1px solid rgba(154, 124, 73, 0.15); 
+    border-radius: 16px;
+    padding: 30px; 
+    transition: all 0.3s ease;
+    overflow: hidden;
+    position: relative;
 }
 
-/* Hover Effect: Lifts up and glows */
+/* Hover Effect: Lifts up and soft amber glow */
 .project-long-card:hover {
-  border-color: rgba(96, 165, 250, 0.6);
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border-color: rgba(181, 155, 109, 0.4);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(154, 124, 73, 0.05);
 }
 
 /* --- 3. The Split Layout (Image Left, Text Right) --- */
-/* This is the Critical Fix for side-by-side layout */
 .project-grid-layout {
-  display: flex !important; /* Forces side-by-side */
-  flex-direction: row;
-  align-items: stretch;     /* Makes image and text same height */
-  gap: 35px;                /* Space between image and text */
+    display: flex !important; 
+    flex-direction: row;
+    align-items: stretch;     
+    gap: 35px;                
 }
 
-/* The Image Box */
+/* The Image Box column */
 .project-img-col {
-  flex: 0 0 320px; /* Fixed width: 320px */
-  border-radius: 12px;
-  overflow: hidden;
-  border: 1px solid rgba(59, 130, 246, 0.3);
-  position: relative;
-  min-height: 240px; /* Ensures it has height even if image loads slow */
+    flex: 0 0 320px; 
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(154, 124, 73, 0.2);
+    position: relative;
+    min-height: 240px; 
 }
 
 .project-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Ensures image fills the box perfectly */
-  display: block;
-  transition: transform 0.5s ease;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    /* EFFECT REMOVED: No sepia or brightness filters applied here */
+    filter: none !important; 
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 /* Image zooms slightly when you hover the card */
 .project-long-card:hover .project-img {
-  transform: scale(1.08);
+    transform: scale(1.1);
 }
 
-/* The Text Content Box */
+/* The Text Content column */
 .project-content-col {
-  flex: 1; /* Takes remaining space */
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* Centers text vertically */
+    flex: 1; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
 }
 
 /* --- 4. Typography & Details --- */
 .project-title-group h3 {
-  color: #fff;
-  font-size: 1.8rem;
-  margin: 0 0 5px 0;
-  font-family: 'Rajdhani', sans-serif;
-  font-weight: 700;
-  letter-spacing: 0.5px;
+    color: #ffffff;
+    font-size: 1.8rem;
+    margin: 0 0 5px 0;
+    font-family: 'Segoe UI', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 15px rgba(154, 124, 73, 0.2);
 }
 
 .project-subtitle {
-  color: #94a3b8; /* Muted Grey */
-  font-size: 0.95rem;
-  font-weight: 500;
-  display: block;
-  margin-bottom: 15px;
-  font-family: 'Rajdhani', sans-serif;
+    /* Antique Gold Subtitle */
+    color: #b59b6d; 
+    font-size: 0.95rem;
+    font-weight: 500;
+    display: block;
+    margin-bottom: 15px;
+    font-family: 'Segoe UI', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
 }
 
 .project-description {
-  color: #cbd5e1; /* Light Grey */
-  font-size: 1rem;
-  line-height: 1.7;
-  margin-bottom: 25px;
+    color: #d1d5db; 
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 25px;
 }
 
-/* --- 5. Buttons --- */
+/* --- 5. Buttons (Synced with Antique Gold logic) --- */
 .project-buttons {
-  display: flex;
-  gap: 15px;
-  margin-top: auto; /* Pushes buttons to bottom if extra space */
+    display: flex;
+    gap: 15px;
+    margin-top: auto; 
 }
 
 .btn-research, .btn-research-outline {
-  padding: 10px 24px;
-  border-radius: 30px;
-  text-decoration: none;
-  font-size: 0.9rem;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  font-family: 'Rajdhani', sans-serif;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px; /* Space between text and icon */
+    padding: 10px 24px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    font-family: 'Segoe UI', sans-serif;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px; 
+    letter-spacing: 0.5px;
 }
 
-/* Primary Button */
+/* Primary Muted Gold Button */
 .btn-research {
-  border: 1px solid #3b82f6;
-  color: #60a5fa;
-  background: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(154, 124, 73, 0.4);
+    color: #b59b6d;
+    background: rgba(154, 124, 73, 0.08);
 }
 
 .btn-research:hover {
-  background: #3b82f6;
-  color: #fff;
-  transform: translateY(-2px);
+    background: #b59b6d;
+    color: #050505; 
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(181, 155, 109, 0.3);
 }
 
-/* Secondary Button */
+/* Secondary Outline Button */
 .btn-research-outline {
-  border: 1px solid rgba(147, 197, 253, 0.2);
-  color: #94a3b8;
-  background: transparent;
+    border: 1px solid rgba(154, 124, 73, 0.15);
+    color: #94a3b8;
+    background: transparent;
 }
 
 .btn-research-outline:hover {
-  border-color: #60a5fa;
-  color: #60a5fa;
-  transform: translateY(-2px);
+    border-color: #b59b6d;
+    color: #fef3c7;
+    transform: translateY(-2px);
 }
 
 /* --- 6. Mobile Responsiveness --- */
-/* Stacks image on top of text for phones/tablets */
 @media (max-width: 850px) {
-  .project-grid-layout {
-    flex-direction: column !important;
-    gap: 20px;
-  }
-  
-  .project-img-col {
-    width: 100%;
-    flex: none;
-    height: 220px; /* Fixed height for mobile banner */
-  }
-  
-  .project-long-card {
-    padding: 25px;
-  }
+    .project-grid-layout {
+        flex-direction: column !important;
+        gap: 20px;
+    }
+    
+    .project-img-col {
+        width: 100%;
+        flex: none;
+        height: 220px; 
+    }
+    
+    .project-long-card {
+        padding: 25px;
+    }
 }
 
-/* ================= PROJECTS PAGE SPECIFIC (REFINED) ================= */
+/* ================= PROJECTS PAGE SPECIFIC (REFINED ANTIQUE GOLD) ================= */
 
 .project-container {
-  max-width: 1050px;
-  margin: 0 auto;
-  padding: 0 20px;
+    max-width: 1050px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 .project-feature-card {
-  background: rgba(15, 23, 42, 0.7);
-  border: 1px solid rgba(59, 130, 246, 0.2);
-  border-radius: 20px;
-  padding: 40px;
-  backdrop-filter: blur(12px);
+    /* Muted Espresso Glass logic */
+    background: rgba(25, 22, 18, 0.65);
+    border: 1px solid rgba(154, 124, 73, 0.15);
+    border-radius: 20px;
+    padding: 40px;
+    backdrop-filter: blur(12px);
+    transition: all 0.4s ease;
+}
+
+/* Hover Effect: Soft Golden Lift */
+.project-feature-card:hover {
+    border-color: rgba(181, 155, 109, 0.4);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), inset 0 0 25px rgba(154, 124, 73, 0.05);
 }
 
 .project-feature-grid {
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 40px;
-  margin-bottom: 40px;
-  align-items: start; /* Ensures text stays at top if image is tall */
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 40px;
+    margin-bottom: 40px;
+    align-items: start; 
 }
 
 /* --- Improved Image Box for Scientific Plots --- */
 .project-img-box {
-  position: relative;
-  border-radius: 12px;
-  overflow: hidden;
-  border: 1px solid rgba(59, 130, 246, 0.3);
-  background: rgba(0, 0, 0, 0.2); /* Subtle background for transparency */
-  height: auto; /* Removed fixed 320px to show full plot data */
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(154, 124, 73, 0.25);
+    background: rgba(0, 0, 0, 0.3); 
+    height: auto; 
 }
 
 .feature-img {
-  width: 100%;
-  height: auto;
-  display: block;
-  object-fit: contain; /* Ensures the whole plot is visible */
-  transition: transform 0.4s ease;
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain; 
+    /* IMAGE FILTER REMOVED: Keeping plot data original and clear */
+    filter: none !important; 
+    transition: transform 0.4s ease;
 }
 
 .project-img-box:hover .feature-img {
-  transform: scale(1.02); /* Very subtle zoom to keep labels readable */
+    transform: scale(1.02); 
 }
 
 /* --- Accuracy Badge Refinement --- */
 .accuracy-badge {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  background: #3b82f6;
-  color: #fff;
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-family: 'Rajdhani', sans-serif;
-  font-weight: 700;
-  font-size: 0.85rem;
-  box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
-  z-index: 10;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    /* Updated to Muted Antique Gold */
+    background: #b59b6d; 
+    color: #050505; /* Contrast color for readability */
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-family: 'Segoe UI', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    box-shadow: 0 0 15px rgba(181, 155, 109, 0.3);
+    z-index: 10;
 }
 
 /* --- Tool Tags --- */
 .tool-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin: 15px 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 15px 0;
 }
 
 .tool-tags span {
-  background: rgba(59, 130, 246, 0.1);
-  border: 1px solid rgba(59, 130, 246, 0.2);
-  color: #60a5fa;
-  padding: 4px 12px;
-  border-radius: 6px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  font-family: 'Inter', sans-serif;
+    background: rgba(154, 124, 73, 0.1);
+    border: 1px solid rgba(154, 124, 73, 0.2);
+    /* Faded Gold Text */
+    color: #fef3c7; 
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.5px;
 }
 
 /* --- Detail Columns --- */
 .project-details-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 25px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    border-top: 1px solid rgba(154, 124, 73, 0.15);
+    padding-top: 30px;
 }
 
 .detail-item h4 {
-  color: #60a5fa;
-  font-family: 'Inter', sans-serif;
-  font-size: 1.1rem;
-  margin-bottom: 12px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+    /* Muted Antique Gold */
+    color: #b59b6d; 
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 1.15rem;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    letter-spacing: 0.5px;
 }
 
 .detail-item ul {
-  list-style: none;
-  padding: 0;
+    list-style: none;
+    padding: 0;
 }
 
 .detail-item li {
-  color: #94a3b8;
-  font-size: 0.85rem;
-  margin-bottom: 8px;
-  display: flex;
-  gap: 8px;
-  line-height: 1.4;
+    color: #d1d5db; /* Desaturated grey for old-paper feel */
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+    display: flex;
+    gap: 8px;
+    line-height: 1.4;
 }
 
 .detail-item li::before {
-  content: '▹';
-  color: #3b82f6;
-  font-weight: bold;
+    content: '▹';
+    color: #b59b6d; /* Golden bullet point */
+    font-weight: bold;
 }
 
 .project-footer-note {
-  margin-top: 30px;
-  padding-top: 20px;
-  border-top: 1px dotted rgba(255, 255, 255, 0.1);
-  font-size: 0.85rem;
-  color: #64748b;
-  text-align: center;
-  font-style: italic;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px dotted rgba(154, 124, 73, 0.15);
+    font-size: 0.85rem;
+    color: #7d6a4a; /* Muted brown-gold */
+    text-align: center;
 }
 
 /* --- Responsive Layout --- */
 @media (max-width: 850px) {
-  .project-feature-grid {
-    grid-template-columns: 1fr;
-    gap: 25px;
-  }
-  
-  .project-details-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-  
-  .project-img-box {
-    max-height: 300px; /* Limits height on mobile to prevent scrolling too much */
-  }
+    .project-feature-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+    
+    .project-details-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .project-img-box {
+        max-height: 300px; 
+    }
 
-  .project-feature-card {
-    padding: 25px;
-  }
+    .project-feature-card {
+        padding: 25px;
+    }
 }
+/* ==========================================================================
+   OUTREACH & EXPERIENCE (MUTED ANTIQUE GOLD THEME)
+   ========================================================================== */
 
-/* ================= REFINED CONTACT PAGE STYLES ================= */
-
-.contact-container {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-/* --- Header & Lead Text --- */
-.contact-lead-text {
-  max-width: 800px;
-  margin: 20px auto 50px auto;
-  color: #94a3b8;
-  font-size: 1rem;
-  line-height: 1.7;
-  text-align: center;
-  font-family: 'Inter', sans-serif;
-}
-
-.mission-dispatch {
-  max-width: 700px;
-  margin: 20px auto 60px;
-  color: #60a5fa;
-  font-family: 'Inter', sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-size: 0.9rem;
-  line-height: 1.8;
-  text-align: center;
-}
-
-/* --- Three-Card Grid --- */
-.contact-cards-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 25px;
-  margin-bottom: 60px;
-}
-
-.contact-card {
-  background: rgba(15, 23, 42, 0.6);
-  border: 1px solid rgba(59, 130, 246, 0.2);
-  border-radius: 20px;
-  padding: 35px 25px;
-  text-align: left;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
-}
-
-.contact-card:hover {
-  border-color: #3b82f6;
-  transform: translateY(-8px);
-  box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2);
-}
-
-/* Perfect Centering for Top Icons */
-.card-icon-wrap {
-  width: 55px;
-  height: 55px;
-  display: flex !important;
-  align-items: center !important;    /* Forces icon down to center */
-  justify-content: center !important;
-  margin-bottom: 20px;
-  background: rgba(59, 130, 246, 0.1);
-  border: 1px solid rgba(59, 130, 246, 0.3);
-  border-radius: 12px;
-}
-
-.card-icon-wrap i {
-  color: #60a5fa;
-  font-size: 1.5rem;
-  line-height: 1 !important;         /* Removes text-ghost height */
-  display: block;
-}
-
-.contact-card h3 {
-  color: #fff;
-  font-family: 'Inter', sans-serif;
-  font-size: 1.5rem;
-  margin-bottom: 15px;
-  font-weight: 700;
-}
-
-.card-description {
-  color: #94a3b8;
-  font-size: 0.9rem;
-  line-height: 1.6;
-  margin-bottom: 25px;
-  min-height: 80px;
-}
-
-/* --- Dedicated 'Beyond' Buttons --- */
-.btn-beyond-outline {
-  display: inline-flex !important;   /* Centers arrow and text */
-  align-items: center !important;    /* Pulls arrow down to text-level */
-  justify-content: center;
-  gap: 12px;
-  padding: 12px 28px;
-  border-radius: 50px;
-  border: 1px solid rgba(59, 130, 246, 0.4);
-  color: #fff;
-  background: transparent;
-  text-decoration: none;
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  font-size: 0.95rem;
-  transition: all 0.3s ease;
-  line-height: 1 !important;
-}
-
-.btn-beyond-outline i {
-  font-size: 1.1rem;
-  display: flex !important;
-  align-items: center !important;
-  line-height: 0 !important;         /* Mathematical vertical center */
-  margin-top: 1px;                   /* Subtle optical nudge */
-}
-
-.btn-beyond-outline:hover {
-  background: rgba(59, 130, 246, 0.1);
-  border-color: #3b82f6;
-  box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
-  transform: translateY(-2px);
-}
-
-/* --- Form Wrapper & Neural Form --- */
-.form-wrapper {
-  background: rgba(15, 23, 42, 0.8);
-  border: 1px solid rgba(59, 130, 246, 0.3);
-  border-radius: 24px;
-  padding: 45px;
-  backdrop-filter: blur(10px);
-  margin-top: 50px;
-}
-
-.form-header {
-  text-align: center;
-  margin-bottom: 35px;
-}
-
-.form-header h3 {
-  font-family: 'Inter', sans-serif;
-  color: #fff;
-  font-size: 1.8rem;
-  font-weight: 700;
-}
-
-.neural-form {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-}
-
-.input-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-}
-
-.input-group label {
-  display: block;
-  font-family: 'Inter', sans-serif;
-  color: #60a5fa;
-  font-weight: 700;
-  margin-bottom: 8px;
-  letter-spacing: 1px;
-}
-
-.neural-form input, .neural-form textarea {
-  width: 100%;
-  background: rgba(2, 6, 23, 0.5);
-  border: 1px solid rgba(59, 130, 246, 0.2);
-  border-radius: 8px;
-  padding: 14px;
-  color: #fff;
-  font-family: 'Inter', sans-serif;
-  transition: 0.3s;
-}
-
-.neural-form input:focus, .neural-form textarea:focus {
-  outline: none;
-  border-color: #3b82f6;
-  box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
-}
-
-.transmit-btn {
-  background: #3b82f6;
-  color: #fff;
-  border: none;
-  padding: 16px;
-  border-radius: 50px;
-  font-family: 'Inter', sans-serif;
-  font-weight: 700;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: 0.4s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-}
-
-.transmit-btn:hover {
-  background: #2563eb;
-  letter-spacing: 2px;
-  box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
-}
-
-/* --- Mobile Responsiveness --- */
-@media (max-width: 950px) {
-  .contact-cards-grid {
-    grid-template-columns: 1fr;
-  }
-  .card-description {
-    min-height: auto;
-  }
-  .input-row {
-    grid-template-columns: 1fr;
-  }
-  .form-wrapper {
-    padding: 30px;
-  }
-}
-
-/* --- 1. KILL THE SECTION GAP --- */
-#cv-section-wrapper {
-  padding-top: 0 !important;   /* Overrides the global 100px padding */
-  margin-top: -60px !important; /* Pulls it up into the Research Interest section's bottom gap */
-}
-
-/* --- 2. THE CARD (Centering & Proximity) --- */
-.cv-status-card {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
-  max-width: 800px;
-  margin: 0 auto !important;
-  padding: 0 !important;      /* Removes internal space inside the card */
-  background: transparent;    /* Makes it look seamless with the starfield */
-  border: none;               /* Removes border so only the big button shows */
-}
-
-/* --- 3. THE BIG BUTTON (Refined Size & Centering) --- */
-.btn-beyond {
-  display: inline-flex !important;   /* Centers icon and text */
-  align-items: center !important;    /* Pulls icon down to text center */
-  justify-content: center !important;
-  gap: 15px;                         
-  padding: 18px 45px;                /* Larger hit-area */
-  background: #3b82f6;
-  color: #fff !important;
-  border-radius: 50px;
-  text-decoration: none !important;
-  font-family: 'Rajdhani', sans-serif;
-  font-weight: 700;
-  font-size: 1.15rem;                /* Bigger font for better visibility */
-  line-height: 1 !important;         /* Deletes ghost spacing */
-  transition: all 0.3s ease;
-  box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
-}
-
-.btn-beyond i {
-  font-size: 1.4rem;
-  display: flex !important;
-  align-items: center !important;
-  line-height: 0 !important;         /* Mathematical centering */
-  margin-top: 1px !important;
-}
-
-.btn-beyond:hover {
-  background: #2563eb;
-  transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(59, 130, 246, 0.6);
-}
-
-/* --- Research Grid Layout --- */
-.research-initiative-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
-  max-width: 1200px;
-  margin: 40px auto;
-  padding: 0 20px;
-}
-
-/* --- The Research Card --- */
-.research-box {
-  background: rgba(15, 23, 42, 0.6);
-  border: 1px solid rgba(147, 197, 253, 0.2);
-  border-radius: 20px;
-  overflow: hidden; /* Clips the image to the border radius */
-  transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
-  display: flex;
-  flex-direction: column;
-}
-
-.research-box:hover {
-  transform: translateY(-10px);
-  border-color: #3b82f6;
-  box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2);
-}
-
-/* --- Top Image Styling --- */
-.box-image-wrap {
-  width: 100%;
-  height: 180px;
-  overflow: hidden;
-  border-bottom: 1px solid rgba(147, 197, 253, 0.1);
-}
-
-.box-image-wrap img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Ensures image fills space without stretching */
-  transition: transform 0.5s ease;
-}
-
-.research-box:hover .box-image-wrap img {
-  transform: scale(1.1); /* Subtle zoom on hover */
-}
-
-/* --- Internal Content --- */
-.box-content {
-  padding: 25px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.box-content h3 {
-  font-family: 'Rajdhani', sans-serif;
-  color: #fff;
-  font-size: 1.4rem;
-  margin-bottom: 12px;
-}
-
-.box-content p {
-  color: #94a3b8;
-  font-size: 0.9rem;
-  line-height: 1.5;
-  margin-bottom: 20px;
-  height: 60px; /* Keeps button alignment consistent */
-}
-
-/* --- Mobile Responsiveness --- */
-@media (max-width: 900px) {
-  .research-initiative-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* --- Greyish Cosmic Slate Theme --- */
+/* --- Greyish Cosmic Slate Theme (Refined to Deep Espresso) --- */
 .outreach-page {
-    background-color: #1a1f2e !important; /* Muted cosmic grey */
+    background-color: #050505 !important; /* Deep black for gold contrast */
 }
 
 .outreach-main {
-    padding-top: 120px;
+    padding-top: 100px;
     padding-bottom: 80px;
 }
 
-/* --- The Glowing Headline --- */
+/* --- The Glowing Headline (Amber "Old Light" Glow) --- */
 .talk-headline {
     font-family: 'Inter', sans-serif;
-    font-size: 2.2rem !important; /* Prominent size */
+    font-size: 2.2rem !important; 
     font-weight: 800 !important;
     line-height: 1.1;
     color: #ffffff;
     margin-bottom: 20px;
-    /* Deep blue neon glow */
-    text-shadow: 0 0 15px rgba(59, 130, 246, 0.7), 
-                 0 0 30px rgba(59, 130, 246, 0.3);
+    /* Soft Sepia Halo */
+    text-shadow: 0 0 15px rgba(181, 155, 109, 0.4), 
+                 0 0 30px rgba(181, 155, 109, 0.2);
 }
 
 .outreach-tag {
-    color: #3b82f6;
-    font-family: 'Rajdhani', sans-serif;
+    color: #b59b6d; /* Muted Antique Gold */
+    font-family: 'Segoe UI', sans-serif;
     font-weight: 700;
     font-size: 1.1rem;
     text-transform: uppercase;
     letter-spacing: 3px;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
     display: block;
 }
 
-/* --- Card Refinements --- */
+/* --- Card Refinements (Espresso Glass) --- */
 .featured-talk-card {
     display: flex;
     max-width: 1100px;
     margin: 0 auto 60px;
-    background: rgba(30, 41, 59, 0.5); /* Greyish slate tint */
-    border: 1px solid rgba(147, 197, 253, 0.25);
+    /* Espresso Glass Tint */
+    background: rgba(25, 22, 18, 0.6); 
+    border: 1px solid rgba(154, 124, 73, 0.15);
     border-radius: 24px;
     overflow: hidden;
     backdrop-filter: blur(20px);
@@ -1263,20 +1168,21 @@ section.active .edu-card {
 .talk-image-box img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Prevents stretching */
+    object-fit: cover;
+    filter: none !important; /* Keeping images original as per order */
 }
 
 .talk-details {
     flex: 1.4;
-    padding: 60px;
+    padding: 50px;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-/* --- Pulsing Timeline --- */
+/* --- Pulsing Timeline (Gold) --- */
 .exp-timeline {
-    border-left: 2px solid rgba(147, 197, 253, 0.15);
+    border-left: 2px solid rgba(154, 124, 73, 0.15);
     padding-left: 30px;
     margin-left: 20px;
     max-width: 900px;
@@ -1289,33 +1195,40 @@ section.active .edu-card {
     top: 8px;
     width: 12px;
     height: 12px;
-    background: #3b82f6;
+    background: #b59b6d; /* Golden marker pulse */
     border-radius: 50%;
     animation: markerPulse 2s infinite ease-in-out;
 }
 
 @keyframes markerPulse {
-    0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7); }
-    70% { box-shadow: 0 0 0 12px rgba(59, 130, 246, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+    0% { box-shadow: 0 0 0 0 rgba(181, 155, 109, 0.7); }
+    70% { box-shadow: 0 0 0 12px rgba(181, 155, 109, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(181, 155, 109, 0); }
 }
 
 .role-title {
-    color: #93c5fd;
-    font-family: 'Rajdhani', sans-serif;
+    color: #fef3c7; /* Soft parchment white */
+    font-family: 'Segoe UI', sans-serif;
     font-weight: 700;
     margin-bottom: 10px;
     display: block;
 }
 
+.talk-description, .card-description, .note-description {
+    line-height: 1.8 !important;   /* Increases space between text lines */
+    margin-bottom: 20px !important; /* Space before the next element */
+    font-size: 1.1rem !important; 
+    color: #cbd5e1;                /* Slightly softer white to reduce visual noise */
+}
+
 /* --- Large Experience Header --- */
 .experience-header-large {
     font-family: 'Inter', sans-serif;
-    font-size: 2.8rem !important; /* Bold, high-impact size */
+    font-size: 2.8rem !important; 
     text-align: center;
     color: #fff;
     margin: 80px 0 50px;
-    text-shadow: 0 0 20px rgba(59, 130, 246, 0.6); /* Blue star-glow effect */
+    text-shadow: 0 0 20px rgba(181, 155, 109, 0.4); /* Amber star-glow */
 }
 
 /* --- Grid Container --- */
@@ -1328,11 +1241,11 @@ section.active .edu-card {
     padding: 0 20px;
 }
 
-/* --- The Floating Glass Card --- */
+/* --- The Floating Glass Card (Espresso & Amber) --- */
 .glass-exp-card {
     display: flex;
-    background: rgba(30, 41, 59, 0.5); /* Greyish-slate tint */
-    border: 1px solid rgba(147, 197, 253, 0.25);
+    background: rgba(25, 22, 18, 0.6); 
+    border: 1px solid rgba(154, 124, 73, 0.15);
     border-radius: 25px;
     padding: 45px;
     backdrop-filter: blur(20px);
@@ -1342,37 +1255,38 @@ section.active .edu-card {
 
 .glass-exp-card:hover {
     transform: translateY(-10px) scale(1.01);
-    border-color: #3b82f6;
-    box-shadow: 0 20px 50px rgba(59, 130, 246, 0.3);
-    background: rgba(30, 41, 59, 0.7);
+    border-color: #b59b6d; /* Antique Gold border glow */
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(154, 124, 73, 0.05);
+    background: rgba(28, 25, 23, 0.75);
 }
 
-/* --- Left Side: Image/Institutional Logo --- */
+/* --- Left Side: Institutional Logo --- */
 .exp-card-left {
     flex-shrink: 0;
     margin-right: 45px;
     display: flex;
-    align-items: flex-start; /* Aligns image with the top of the text */
+    align-items: flex-start;
 }
 
 .exp-image-wrap {
-    width: 300px; /* Fixed width for institutional photos */
-    height: 250px; /* Fixed height to maintain consistency */
+    width: 300px; 
+    height: 250px; 
     border-radius: 15px;
     overflow: hidden;
-    border: 1px solid rgba(147, 197, 253, 0.2);
+    border: 1px solid rgba(154, 124, 73, 0.2);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
 .exp-image-wrap img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Corrects image distortion */
+    object-fit: cover;
+    filter: none !important; /* No image filters as requested */
     transition: transform 0.6s ease;
 }
 
 .glass-exp-card:hover .exp-image-wrap img {
-    transform: scale(1.1); /* Subtle zoom on hover */
+    transform: scale(1.1);
 }
 
 /* --- Right Side: Content Area --- */
@@ -1396,8 +1310,8 @@ section.active .edu-card {
 }
 
 .exp-timeframe {
-    font-family: 'Rajdhani', sans-serif;
-    color: #3b82f6;
+    font-family: 'Segoe UI', sans-serif;
+    color: #b59b6d; /* Antique Gold timeframe */
     font-weight: 700;
     font-size: 1.15rem;
     letter-spacing: 1px;
@@ -1405,8 +1319,8 @@ section.active .edu-card {
 
 .exp-role-title {
     display: block;
-    color: #93c5fd;
-    font-family: 'Rajdhani', sans-serif;
+    color: #fef3c7; /* Soft parchment white */
+    font-family: 'Segoe UI', sans-serif;
     font-weight: 700;
     font-size: 1.2rem;
     margin-bottom: 20px;
@@ -1414,7 +1328,7 @@ section.active .edu-card {
     letter-spacing: 1px;
 }
 
-/* --- Bulleted List --- */
+/* --- Bulleted List (Golden Sidebar) --- */
 .exp-bullets {
     list-style: none;
     padding: 0;
@@ -1424,7 +1338,7 @@ section.active .edu-card {
 .exp-bullets li {
     position: relative;
     padding-left: 28px;
-    color: #94a3b8;
+    color: #d1d5db; /* Desaturated grey for old-paper vibe */
     line-height: 1.7;
     margin-bottom: 12px;
     font-size: 1.05rem;
@@ -1432,10 +1346,10 @@ section.active .edu-card {
 }
 
 .exp-bullets li::before {
-    content: "▹"; /* Professional geometric bullet */
+    content: "▹"; 
     position: absolute;
     left: 0;
-    color: #3b82f6;
+    color: #b59b6d; /* Golden geometric bullet */
     font-weight: bold;
 }
 
@@ -1447,386 +1361,6 @@ section.active .edu-card {
     .exp-header-row { flex-direction: column; gap: 10px; }
     .exp-bullets li { padding-left: 0; }
     .exp-bullets li::before { display: none; }
-}
-
-
-/* --- Study Notes Grid --- */
-.notes-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-/* --- The Note Card --- */
-.note-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 40px 30px !important;
-}
-
-.note-icon-wrap {
-    width: 70px;
-    height: 70px;
-    background: rgba(59, 130, 246, 0.1);
-    border: 1px solid rgba(59, 130, 246, 0.3);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.8rem;
-    color: #3b82f6;
-    margin-bottom: 25px;
-    box-shadow: 0 0 15px rgba(59, 130, 246, 0.2);
-}
-
-.note-content h3 {
-    font-family: 'Rajdhani', sans-serif;
-    color: #fff;
-    font-size: 1.4rem;
-    margin-bottom: 15px;
-    font-weight: 700;
-}
-
-.note-content p {
-    color: #94a3b8;
-    font-size: 0.95rem;
-    line-height: 1.6;
-    margin-bottom: 25px;
-    height: 60px; /* Keeps buttons aligned horizontally */
-}
-
-/* --- Mobile Responsiveness --- */
-@media (max-width: 1000px) {
-    .notes-grid {
-        grid-template-columns: 1fr 1fr;
-    }
-}
-
-@media (max-width: 700px) {
-    .notes-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* --- Notes Hero & Subtitle --- */
-.notes-hero { text-align: center; margin-bottom: 60px; }
-.notes-subtitle {
-  color: #93c5fd;
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 1.2rem;
-  margin-top: -50px;
-  opacity: 0.8;
-}
-
-/* --- Search & Filter Bar --- */
-.search-container {
-  max-width: 800px;
-  margin: 40px auto;
-  padding: 30px !important;
-  flex-direction: column !important;
-  gap: 20px;
-}
-
-.search-wrapper {
-  width: 100%;
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-.search-wrapper i {
-  position: absolute;
-  left: 20px;
-  color: #3b82f6;
-}
-
-.search-wrapper input {
-  width: 100%;
-  padding: 15px 15px 15px 50px;
-  background: rgba(15, 23, 42, 0.6);
-  border: 1px solid rgba(59, 130, 246, 0.3);
-  border-radius: 50px;
-  color: #fff;
-  font-family: 'Inter', sans-serif;
-}
-
-.filter-tags { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
-.filter-btn {
-  padding: 8px 20px;
-  border-radius: 50px;
-  border: 1px solid rgba(59, 130, 246, 0.2);
-  background: rgba(30, 41, 59, 0.4);
-  color: #94a3b8;
-  font-family: 'Rajdhani', sans-serif;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.filter-btn.active, .filter-btn:hover {
-  background: rgba(59, 130, 246, 0.2);
-  border-color: #3b82f6;
-  color: #fff;
-}
-
-/* --- Master Variables: Lighter Neon Cyan Theme --- */
-:root {
-    --neon-cyan: #67e8f9; /* Vivid cyan-blue */
-    --aurora-soft: rgba(103, 232, 249, 0.15);
-    --glass-bg: rgba(15, 23, 42, 0.15); /* High transparency */
-    --card-border: rgba(103, 232, 249, 0.15);
-}
-
-/* --- High-Impact Inter Title --- */
-.study-hero-title {
-    font-family: 'Inter', sans-serif !important;
-    font-weight: 900 !important; /* Maximum weight */
-    font-size: 4.8rem !important; 
-    letter-spacing: 14px !important; /* Premium tracking */
-    text-transform: uppercase;
-    color: #ffffff;
-    text-align: center;
-    /* Soft atmospheric nebula glow */
-    text-shadow: 
-        0 0 15px rgba(103, 232, 249, 0.6), 
-        0 0 35px rgba(59, 130, 246, 0.3),
-        0 0 60px rgba(59, 130, 246, 0.1);
-    margin: 80px 0 40px !important;
-}
-
-/* --- Motivation Section --- */
-.motivation-container {
-    max-width: 1200px;
-    margin: 0 auto 60px;
-    padding: 0 25px;
-}
-
-.motivation-text {
-    font-family: 'Inter', sans-serif !important;
-    font-weight: 400;
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: #cbd5e1;
-    text-align: center;
-    font-style: italic;
-    background: linear-gradient(90deg, transparent, rgba(103, 232, 249, 0.08), transparent);
-    padding: 30px;
-    border-radius: 20px;
-}
-
-/* --- Category Sections Header --- */
-.notes-category-section { max-width: 1200px; margin: 0 auto 40px; margin-top: -200px !important;}
-
-.category-header {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    margin-bottom: 40px;
-    border-bottom: 1px solid rgba(103, 232, 249, 0.1);
-    padding-bottom: 20px;
-}
-
-.category-icon-glow {
-    width: 55px; height: 55px;
-    background: rgba(59, 130, 246, 0.2);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    color: var(--neon-cyan); font-size: 1.6rem;
-    box-shadow: 0 0 20px rgba(103, 232, 249, 0.3);
-}
-
-/* --- Premium 3-Column Grid --- */
-.notes-resource-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Always 3 sections */
-    gap: 30px;
-    margin-top: 40px;
-}
-
-/* --- The Glossy Aurora Card --- */
-.resource-card {
-    position: relative;
-    background: var(--glass-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 28px; /* Creative rounded corners */
-    padding: 40px !important; /* Spacious padding */
-    backdrop-filter: blur(12px);
-    display: flex;
-    flex-direction: column;
-    min-height: 420px; /* Info density */
-    transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-    overflow: hidden;
-}
-
-/* --- Glossy "Aurora Streak" Reflection --- */
-.resource-card::after {
-    content: '';
-    position: absolute; top: -150%; left: -150%; width: 300%; height: 300%;
-    background: linear-gradient(45deg, transparent 45%, rgba(103, 232, 249, 0.12) 50%, transparent 55%);
-    transform: rotate(35deg); transition: all 0.8s ease; pointer-events: none;
-}
-
-.resource-card:hover {
-    background: rgba(15, 23, 42, 0.22);
-    border-color: rgba(103, 232, 249, 0.4);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3), 0 0 25px var(--aurora-soft);
-    transform: translateY(-12px);
-}
-
-.resource-card:hover::after { left: -50%; }
-
-/* --- Internal Content Spacing --- */
-.card-header-row {
-    display: flex; justify-content: space-between; align-items: flex-start;
-    margin-bottom: 25px; z-index: 1;
-}
-
-.resource-info-top h4 {
-    font-family: 'Inter', sans-serif !important;
-    font-weight: 800; font-size: 1.4rem; color: #ffffff;
-    margin: 5px 0 2px 0;
-}
-
-.card-status {
-    font-size: 0.65rem; font-weight: 900;
-    padding: 6px 14px; border-radius: 8px;
-    background: rgba(103, 232, 249, 0.12);
-    color: var(--neon-cyan); letter-spacing: 1.5px;
-    text-transform: uppercase;
-}
-
-.card-description {
-    font-size: 0.95rem; line-height: 1.7; color: #cbd5e1;
-    margin: 20px 0; z-index: 1;
-}
-
-.tech-tags {
-    display: flex; flex-wrap: wrap; gap: 10px;
-    margin-bottom: 35px; z-index: 1;
-}
-
-.tech-tags span {
-    background: rgba(103, 232, 249, 0.08); border: 1px solid rgba(103, 232, 249, 0.2);
-    color: #94a3b8; padding: 4px 14px; border-radius: 50px; font-size: 0.75rem;
-}
-
-/* --- Action Buttons (Neural Blue) --- */
-.card-actions {
-    display: flex; gap: 15px;
-    margin-top: auto; /* Forces buttons to bottom */
-    z-index: 1;
-}
-
-.btn-view, .btn-download {
-    flex: 1; padding: 14px; border-radius: 14px;
-    font-family: 'Inter', sans-serif !important;
-    font-weight: 800; font-size: 0.85rem; text-align: center;
-    transition: all 0.3s ease; cursor: pointer;
-}
-
-.btn-view {
-    background: var(--neon-cyan); color: #0f172a; border: none;
-    box-shadow: 0 4px 15px rgba(103, 232, 249, 0.3);
-}
-
-.btn-download {
-    background: transparent; color: var(--neon-cyan);
-    border: 1px solid var(--neon-cyan);
-}
-
-.btn-view:hover {
-    background: #ffffff; box-shadow: 0 0 25px #fef3c7;
-}
-
-/* --- High-Impact Sector Header Fix --- */
-.category-header {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin: 70px 0 30px; /* Restored breathing room */
-    padding-bottom: 12px;
-    border-bottom: 1px solid rgba(103, 232, 249, 0.12); /* Subtle anchor line */
-    max-width: 1150px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.category-icon-glow {
-    width: 42px;
-    height: 42px;
-    background: rgba(59, 130, 246, 0.2);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--neon-cyan); /* Restored lighter blue */
-    font-size: 1.1rem;
-    box-shadow: 0 0 15px #fef3c7;
-}
-
-.category-header h3 {
-    font-family: 'Inter', sans-serif !important;
-    font-weight: 800 !important; /* Premium Inter weight */
-    font-size: 1.85rem;
-    color: #ffffff;
-    margin: 0;
-    letter-spacing: 0.5px;
-}
-/* --- Icon Container Fix --- */
-.card-icon-circle {
-    width: 48px;
-    height: 48px;
-    background: rgba(59, 130, 246, 0.2);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--neon-cyan);
-    font-size: 1.3rem;
-    box-shadow: 0 0 15px rgba(103, 232, 249, 0.3);
-    margin-bottom: 10px; /* Space between icon and text */
-}
-
-/* Ensure Font Awesome icons inherit the color correctly */
-.card-icon-circle i {
-    color: var(--neon-cyan);
-}
-
-/* --- Master Icon Filter: Neon Cyan --- */
-.flaticon-img {
-    width: 24px;
-    height: 24px;
-    object-fit: contain;
-    transition: all 0.4s ease;
-    
-    /* THE MAGIC: 
-       1. invert(1) makes black/dark icons white. 
-       2. sepia(100%) prepares the color surface.
-       3. hue-rotate(155deg) shifts the color to Cyan.
-       4. saturate(20) makes it vivid. */
-    filter: invert(80%) sepia(50%) saturate(5000%) hue-rotate(160deg) brightness(1.1);
-    
-    /* Adds a soft glowing aurora around the icon itself */
-    drop-shadow: 0 0 8px #fef3c7;
-}
-
-/* Hover Effect: Turns the icon pure white with a heavy blue glow */
-.resource-card:hover .flaticon-img {
-    filter: brightness(0) invert(1);
-    drop-shadow: 0 0 15px #fef3c7;
-    transform: scale(1.15) rotate(5deg);
-}
-
-/* Ensure the circle container doesn't clip the glow */
-.card-icon-circle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: visible !important;
 }
 
 /* --- Master Achievement Reset --- */
@@ -1846,7 +1380,7 @@ section.active .edu-card {
 }
 
 .academic-heading-wrap h2 {
-    font-family: 'Rajdhani', sans-serif !important;
+    font-family: 'Segoe UI', sans-serif !important;
     font-size: 2.2rem !important;
     color: #ffffff !important;
     margin: 0 !important;
@@ -1927,12 +1461,37 @@ section.active .edu-card {
     filter: drop-shadow(0 0 8px currentColor);
 }
 
-/* Vibrant Gradient Variants */
-.nat-v1 .aurora-top { background: linear-gradient(90deg, #bfdbfe, #a78bfa, #7c3aed); color: #a78bfa; }
-.nat-v2 .aurora-top { background: linear-gradient(90deg, #fef3c7, #fb923c, #ea580c); color: #fb923c; }
-.nat-v3 .aurora-top { background: linear-gradient(90deg, #d1fae5, #34d399, #059669); color: #34d399; }
-.nat-v4 .aurora-top { background: linear-gradient(90deg, #ffe4e6, #fb7185, #e11d48); color: #fb7185; }
-.nat-v5 .aurora-top { background: linear-gradient(90deg, #e0f2fe, #38bdf8, #0284c7); color: #38bdf8; }
+/* --- Refined Antique Gold Gradient Variants --- */
+
+/* V1: Faded Parchment to Gold (Light & Airy) */
+.nat-v1 .aurora-top { 
+    background: linear-gradient(90deg, #fef3c7, #d4af37, #b59b6d); 
+    color: #b59b6d; 
+}
+
+/* V2: Deep Amber to Burnt Orange (Sunset Glow) */
+.nat-v2 .aurora-top { 
+    background: linear-gradient(90deg, #b59b6d, #b45309, #78350f); 
+    color: #b45309; 
+}
+
+/* V3: Antique Bronze to Olive Gold (Earth Tone) */
+.nat-v3 .aurora-top { 
+    background: linear-gradient(90deg, #854d0e, #a16207, #ca8a04); 
+    color: #a16207; 
+}
+
+/* V4: Soft Rose Gold to Copper (Warm Metallic) */
+.nat-v4 .aurora-top { 
+    background: linear-gradient(90deg, #fecaca, #b59b6d, #92400e); 
+    color: #b59b6d; 
+}
+
+/* V5: Deep Espresso to Champagne (High Contrast) */
+.nat-v5 .aurora-top { 
+    background: linear-gradient(90deg, #1c1917, #b59b6d, #fef3c7); 
+    color: #fef3c7; 
+}
 
 /* Normal Font Scaling */
 .achieve-content h3 {
@@ -2030,7 +1589,7 @@ section.active .edu-card {
 }
 
 .story-text h3 {
-    font-family: 'Rajdhani', sans-serif !important;
+    font-family: 'Segoe UI', sans-serif !important;
     font-size: 1.6rem !important;
     color: #ffffff !important;
     margin-bottom: 12px !important;
@@ -2072,10 +1631,6 @@ section.active .edu-card {
     text-shadow: 0 0 10px rgba(217, 119, 6, 0.3);
 }
 
-.story-text p {
-    color: #d1d5db !important; /* Desaturated grey for an old-paper feel */
-    font-style: italic; /* Enhances the storytelling vibe */
-}
 
 /* The Faded Label */
 .story-label {
@@ -2134,7 +1689,7 @@ section.active .edu-card {
 }
 
 .story-details h3 {
-    font-family: 'Rajdhani', sans-serif !important;
+    font-family: 'Segoe UI', sans-serif !important;
     font-size: 1.8rem !important; /* Scaled up for the bigger box */
     color: #fef3c7 !important;
     margin-bottom: 15px !important;
@@ -2146,7 +1701,6 @@ section.active .edu-card {
     font-size: 1.1rem !important; /* Clearly legible */
     line-height: 1.7 !important;
     color: rgba(209, 213, 219, 0.9) !important;
-    font-style: italic;
     margin-bottom: 25px !important;
 }
 
@@ -2160,4 +1714,828 @@ section.active .edu-card {
 .narrative-card.nostalgia-full:hover .story-image-full img {
     transform: scale(1.05); /* Subtle zoom into the memory */
     filter: sepia(0.3) brightness(0.8);
+}
+
+/* ================= REFINED CONTACT PAGE STYLES (ANTIQUE GOLD) ================= */
+
+.contact-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- Header & Lead Text --- */
+.contact-lead-text {
+    max-width: 800px;
+    margin: 20px auto 50px auto;
+    color: #94a3b8; /* Faded grey for old-paper feel */
+    font-size: 1rem;
+    line-height: 1.7;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+}
+
+.mission-dispatch {
+    max-width: 700px;
+    margin: 20px auto 60px;
+    /* Updated to Muted Antique Gold */
+    color: #b59b6d; 
+    font-family: 'Inter', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    line-height: 1.8;
+    text-align: center;
+}
+
+/* --- Three-Card Grid --- */
+.contact-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    margin-bottom: 60px;
+}
+
+.contact-card {
+    /* Muted Espresso Glass logic */
+    background: rgba(25, 22, 18, 0.6); 
+    border: 1px solid rgba(154, 124, 73, 0.15);
+    border-radius: 20px;
+    padding: 35px 25px;
+    text-align: left;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.contact-card:hover {
+    /* Soft Amber Glow */
+    border-color: #b59b6d;
+    transform: translateY(-8px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(154, 124, 73, 0.05);
+}
+
+/* Perfect Centering for Top Icons */
+.card-icon-wrap {
+    width: 55px;
+    height: 55px;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-bottom: 20px;
+    /* Soft Antique Gold tint */
+    background: rgba(154, 124, 73, 0.1);
+    border: 1px solid rgba(154, 124, 73, 0.3);
+    border-radius: 12px;
+}
+
+.card-icon-wrap i {
+    color: #b59b6d;
+    font-size: 1.5rem;
+    line-height: 1 !important;
+    display: block;
+}
+
+.contact-card h3 {
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.card-description {
+    color: #94a3b8;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    min-height: 80px;
+}
+
+/* --- Dedicated 'Beyond' Buttons --- */
+.btn-beyond-outline {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center;
+    gap: 12px;
+    padding: 12px 28px;
+    border-radius: 50px;
+    /* Syncing border with Faded Gold */
+    border: 1px solid rgba(154, 124, 73, 0.4);
+    color: #fff;
+    background: transparent;
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    line-height: 1 !important;
+}
+
+.btn-beyond-outline i {
+    font-size: 1.1rem;
+    display: flex !important;
+    align-items: center !important;
+    line-height: 0 !important;
+}
+
+.btn-beyond-outline:hover {
+    background: rgba(154, 124, 73, 0.1);
+    border-color: #b59b6d;
+    box-shadow: 0 0 15px rgba(181, 155, 109, 0.3);
+    transform: translateY(-2px);
+}
+
+/* --- Form Wrapper & Neural Form --- */
+.form-wrapper {
+    /* Espresso Glass for form container */
+    background: rgba(25, 22, 18, 0.8);
+    border: 1px solid rgba(154, 124, 73, 0.3);
+    border-radius: 24px;
+    padding: 45px;
+    backdrop-filter: blur(10px);
+    margin-top: 50px;
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.form-header h3 {
+    font-family: 'Inter', sans-serif;
+    color: #fff;
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.neural-form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.input-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.input-group label {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    color: #b59b6d; /* Muted Gold labels */
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+}
+
+.neural-form input, .neural-form textarea {
+    width: 100%;
+    background: rgba(15, 13, 10, 0.5);
+    border: 1px solid rgba(154, 124, 73, 0.2);
+    border-radius: 8px;
+    padding: 14px;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    transition: 0.3s;
+}
+
+.neural-form input:focus, .neural-form textarea:focus {
+    outline: none;
+    border-color: #b59b6d;
+    box-shadow: 0 0 15px rgba(181, 155, 109, 0.3);
+}
+
+.transmit-btn {
+    /* Primary Transmission Button in Antique Gold */
+    background: #b59b6d;
+    color: #050505; /* Black contrast for high-end look */
+    border: none;
+    padding: 16px;
+    border-radius: 50px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.4s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.transmit-btn:hover {
+    background: #c9b084; /* Slightly lighter gold for hover */
+    letter-spacing: 2px;
+    box-shadow: 0 0 20px rgba(181, 155, 109, 0.5);
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 950px) {
+    .contact-cards-grid {
+        grid-template-columns: 1fr;
+    }
+    .card-description {
+        min-height: auto;
+    }
+    .input-row {
+        grid-template-columns: 1fr;
+    }
+    .form-wrapper {
+        padding: 30px;
+    }
+}
+
+/* --- Study Notes Grid --- */
+.notes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- The Note Card --- */
+.note-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 40px 30px !important;
+    background: rgba(25, 22, 18, 0.6); /* Espresso Glass */
+    border: 1px solid rgba(154, 124, 73, 0.2); /* Antique Gold Border */
+    border-radius: 24px;
+    backdrop-filter: blur(12px);
+    transition: all 0.4s ease;
+}
+
+.note-icon-wrap {
+    width: 70px;
+    height: 70px;
+    background: rgba(181, 155, 109, 0.1); /* Muted Gold Tint */
+    border: 1px solid rgba(181, 155, 109, 0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    color: #b59b6d; /* Antique Gold */
+    margin-bottom: 25px;
+    box-shadow: 0 0 15px rgba(181, 155, 109, 0.2);
+}
+
+.note-content h3 {
+    font-family: 'Segoe UI', sans-serif;
+    color: #fff;
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.note-content p {
+    color: #cbd5e1; /* Softer text color */
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    height: 60px; /* Keeps buttons aligned horizontally */
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 1000px) {
+    .notes-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 700px) {
+    .notes-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* --- Notes Hero & Subtitle --- */
+.notes-hero { text-align: center; margin-bottom: 60px; }
+.notes-subtitle {
+  color: #b59b6d; /* Updated to Gold */
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 1.2rem;
+  margin-top: -50px;
+  opacity: 0.8;
+}
+
+/* --- Search & Filter Bar --- */
+.search-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 30px !important;
+  flex-direction: column !important;
+  gap: 20px;
+}
+
+.search-wrapper {
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-wrapper i {
+  position: absolute;
+  left: 20px;
+  color: #b59b6d; /* Gold Icon */
+}
+
+.search-wrapper input {
+  width: 100%;
+  padding: 15px 15px 15px 50px;
+  background: rgba(15, 13, 10, 0.6); /* Deep Espresso */
+  border: 1px solid rgba(154, 124, 73, 0.3);
+  border-radius: 50px;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+}
+
+.filter-tags { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+.filter-btn {
+  padding: 8px 20px;
+  border-radius: 50px;
+  border: 1px solid rgba(154, 124, 73, 0.2);
+  background: rgba(28, 25, 23, 0.4);
+  color: #94a3b8;
+  font-family: 'Segoe UI', sans-serif;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.filter-btn.active, .filter-btn:hover {
+  background: rgba(181, 155, 109, 0.2);
+  border-color: #b59b6d;
+  color: #fff;
+}
+
+/* --- Master Variables: Muted Antique Gold Theme --- */
+:root {
+    --antique-gold: #b59b6d; /* Muted Antique Gold */
+    --aurora-soft: rgba(181, 155, 109, 0.12);
+    --glass-bg: rgba(25, 22, 18, 0.65); /* Espresso Glass */
+    --card-border: rgba(154, 124, 73, 0.15);
+}
+
+/* --- High-Impact Inter Title --- */
+.study-hero-title {
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 900 !important;
+    font-size: 4.8rem !important; 
+    letter-spacing: 14px !important; 
+    text-transform: uppercase;
+    color: #ffffff;
+    text-align: center;
+    text-shadow: 
+        0 0 15px rgba(181, 155, 109, 0.4), 
+        0 0 35px rgba(125, 106, 74, 0.2),
+        0 0 60px rgba(101, 87, 53, 0.1);
+    margin: 80px 0 40px !important;
+}
+
+/* --- Motivation Section --- */
+.motivation-container {
+    max-width: 1200px;
+    margin: 0 auto 60px;
+    padding: 0 25px;
+}
+
+.motivation-text {
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 400;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #cbd5e1;
+    text-align: center;
+    background: linear-gradient(90deg, transparent, rgba(154, 124, 73, 0.08), transparent);
+    padding: 30px;
+    border-radius: 20px;
+}
+
+/* --- Category Sections Header --- */
+.notes-category-section { max-width: 1200px; margin: 0 auto 40px; margin-top: -200px !important;}
+
+.category-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid rgba(154, 124, 73, 0.15);
+    padding-bottom: 20px;
+}
+
+.category-icon-glow {
+    width: 55px; height: 55px;
+    background: rgba(154, 124, 73, 0.15);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: #b59b6d; font-size: 1.6rem;
+    box-shadow: 0 0 20px rgba(181, 155, 109, 0.3);
+}
+
+/* --- Premium 3-Column Grid --- */
+.notes-resource-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 40px;
+}
+
+/* --- The Glossy Aurora Card --- */
+.resource-card {
+    position: relative;
+    background: var(--glass-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 28px;
+    padding: 40px !important;
+    backdrop-filter: blur(12px);
+    display: flex;
+    flex-direction: column;
+    min-height: 420px;
+    transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    overflow: hidden;
+}
+
+/* --- Glossy "Aurora Streak" Reflection --- */
+.resource-card::after {
+    content: '';
+    position: absolute; top: -150%; left: -150%; width: 300%; height: 300%;
+    background: linear-gradient(45deg, transparent 45%, rgba(181, 155, 109, 0.08) 50%, transparent 55%);
+    transform: rotate(35deg); transition: all 0.8s ease; pointer-events: none;
+}
+
+.resource-card:hover {
+    background: rgba(35, 30, 25, 0.6);
+    border-color: rgba(181, 155, 109, 0.35);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 0 0 25px var(--aurora-soft);
+    transform: translateY(-12px);
+}
+
+.resource-card:hover::after { left: -50%; }
+
+/* --- Internal Content Spacing --- */
+.card-header-row {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    margin-bottom: 25px; z-index: 1;
+}
+
+.resource-info-top h4 {
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 800; font-size: 1.4rem; color: #ffffff;
+    margin: 5px 0 2px 0;
+}
+
+.card-status {
+    font-size: 0.65rem; font-weight: 900;
+    padding: 6px 14px; border-radius: 8px;
+    background: rgba(154, 124, 73, 0.1);
+    color: #b59b6d; letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.card-description {
+    font-size: 0.95rem; line-height: 1.7; color: #cbd5e1;
+    margin: 20px 0; z-index: 1;
+}
+
+.tech-tags {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-bottom: 35px; z-index: 1;
+}
+
+.tech-tags span {
+    background: rgba(154, 124, 73, 0.08); border: 1px solid rgba(154, 124, 73, 0.2);
+    color: #94a3b8; padding: 4px 14px; border-radius: 50px; font-size: 0.75rem;
+}
+
+/* --- Action Buttons (Antique Gold Contrast) --- */
+.card-actions {
+    display: flex; gap: 15px;
+    margin-top: auto; 
+    z-index: 1;
+}
+
+.btn-view, .btn-download {
+    flex: 1; padding: 14px; border-radius: 14px;
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 800; font-size: 0.85rem; text-align: center;
+    transition: all 0.3s ease; cursor: pointer;
+}
+
+.btn-view {
+    background: #b59b6d; color: #050505; border: none;
+    box-shadow: 0 4px 15px rgba(181, 155, 109, 0.3);
+}
+
+.btn-download {
+    background: transparent; color: #b59b6d;
+    border: 1px solid #b59b6d;
+}
+
+.btn-view:hover {
+    background: #ffffff; box-shadow: 0 0 25px #fef3c7;
+}
+
+/* --- High-Impact Sector Header Fix --- */
+.category-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 70px 0 30px; 
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(154, 124, 73, 0.15); 
+    max-width: 1300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.category-icon-glow {
+    width: 42px;
+    height: 42px;
+    background: rgba(154, 124, 73, 0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #b59b6d; 
+    font-size: 1.1rem;
+    box-shadow: 0 0 15px #fef3c7;
+}
+
+.category-header h3 {
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 800 !important; 
+    font-size: 1.85rem;
+    color: #ffffff;
+    margin: 0;
+    letter-spacing: 0.5px;
+}
+
+/* --- Icon Container Fix --- */
+.card-icon-circle {
+    width: 48px;
+    height: 48px;
+    background: rgba(154, 124, 73, 0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #b59b6d;
+    font-size: 1.3rem;
+    box-shadow: 0 0 15px rgba(181, 155, 109, 0.2);
+    margin-bottom: 10px; 
+}
+
+.card-icon-circle i {
+    color: #b59b6d;
+}
+
+/* --- Master Icon Filter: Antique Gold --- */
+.flaticon-img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    transition: all 0.4s ease;
+    filter: sepia(100%) saturate(300%) brightness(80%) hue-rotate(5deg);
+    drop-shadow: 0 0 8px #fef3c7;
+}
+
+.resource-card:hover .flaticon-img {
+    filter: brightness(0) invert(1);
+    drop-shadow: 0 0 15px #fef3c7;
+    transform: scale(1.15) rotate(5deg);
+}
+
+.card-icon-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible !important;
+}
+
+/* ==========================================================================
+   GLOBAL THEME & ATMOSPHERIC VARIABLES
+   ========================================================================== */
+:root {
+    /* Existing Palette */
+    --antique-gold: #b59b6d;      
+    --espresso-glass: rgba(25, 22, 18, 0.75); 
+    --gold-border: rgba(154, 124, 73, 0.2);
+    --deep-black: #050505;
+
+    /* NEW: Aurora Global Logic */
+    --aurora-glow: rgba(181, 155, 109, 0.08); /* Primary Gold Bloom */
+    --aurora-secondary: rgba(125, 106, 74, 0.04);
+    --glow-blur: 100px;
+    --alignment-baseline: 1200px; /* Strict margin control */
+}
+
+/* ==========================================================================
+   STRICT MARGIN ANCHOR
+   ========================================================================== */
+.container, .notes-category-section, .motivation-container {
+    max-width: var(--alignment-baseline) !important;
+    margin: 0 auto !important;
+    padding: 0 40px !important;
+    width: 100% !important;
+    position: relative;
+    z-index: 5; /* Keeps content above background glow */
+}
+
+/* ==========================================================================
+   GLOBAL AURORA BACKGROUND ENGINE
+   ========================================================================== */
+.aurora-engine {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    background: var(--deep-black);
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.aurora-engine::before,
+.aurora-engine::after {
+    content: '';
+    position: absolute;
+    width: 140%;
+    height: 140%;
+    top: -20%;
+    left: -20%;
+    /* Utilizing Global Glow Variables */
+    background: radial-gradient(
+        circle at center,
+        var(--aurora-glow) 0%,
+        var(--aurora-secondary) 40%,
+        transparent 70%
+    );
+    filter: blur(var(--glow-blur));
+    animation: globalBreathing 20s ease-in-out infinite alternate;
+}
+
+.aurora-engine::after {
+    /* Secondary layer for depth */
+    background: radial-gradient(
+        circle at 30% 70%,
+        rgba(154, 124, 73, 0.05) 0%,
+        transparent 50%
+    );
+    animation-duration: 30s;
+    animation-direction: alternate-reverse;
+}
+
+/* Atmospheric Breathing */
+@keyframes globalBreathing {
+    0% { transform: scale(1) translate(0, 0); opacity: 0.5; }
+    50% { transform: scale(1.05) translate(1%, 2%); opacity: 0.8; }
+    100% { transform: scale(1) translate(-1%, -1%); opacity: 0.5; }
+}
+
+/* ==========================================================================
+   CARD & COMPONENT INTEGRATION
+   ========================================================================== */
+.resource-card {
+    background: var(--espresso-glass) !important;
+    border: 1px solid var(--gold-border);
+    backdrop-filter: blur(15px);
+    /* Interacting with global glow */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    transition: transform 0.4s ease, border-color 0.4s ease;
+}
+
+.resource-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--antique-gold);
+    box-shadow: 0 0 25px var(--aurora-glow), 0 20px 40px rgba(0,0,0,0.6);
+}
+
+
+/* ==========================================================================
+   1. GLOBAL SYSTEM VARIABLES (THE CORE ENGINE)
+   ========================================================================== */
+:root {
+    /* Color Palette */
+    --antique-gold: #b59b6d;      
+    --espresso-glass: rgba(25, 22, 18, 0.75); 
+    --deep-black: #050505;
+    --gold-border: rgba(154, 124, 73, 0.2);
+
+    /* Aurora Glow Parameters */
+    --aurora-high: rgba(181, 155, 109, 0.18);  /* Main Gold Bloom */
+    --aurora-mid: rgba(161, 98, 7, 0.10);    /* Amber Transition */
+    --aurora-low: rgba(254, 243, 199, 0.04);  /* Soft Parchment Edge */
+    
+    /* Global Layout Baseline */
+    --master-container: 1200px;
+}
+
+/* ==========================================================================
+   2. GLOBAL AURORA BACKGROUND (EFFECTS EVERY PAGE)
+   ========================================================================== */
+/* This fixed layer sits behind Home, Edu, Research, Contact, etc. */
+.global-aurora-engine {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -10; /* Ensures it is the deepest layer */
+    background: var(--deep-black);
+    overflow: hidden;
+    pointer-events: none;
+}
+
+/* Layer A: Primary Breathing Light */
+.global-aurora-engine::before {
+    content: '';
+    position: absolute;
+    width: 180%;
+    height: 180%;
+    top: -40%;
+    left: -40%;
+    background: radial-gradient(
+        circle at 50% 50%,
+        var(--aurora-high) 0%,
+        var(--aurora-mid) 30%,
+        transparent 65%
+    );
+    filter: blur(120px);
+    animation: masterAuroraPlay 25s ease-in-out infinite alternate;
+}
+
+/* Layer B: Secondary Drift Glow */
+.global-aurora-engine::after {
+    content: '';
+    position: absolute;
+    width: 150%;
+    height: 150%;
+    bottom: -20%;
+    right: -20%;
+    background: radial-gradient(
+        circle at center,
+        var(--aurora-mid) 0%,
+        var(--aurora-low) 25%,
+        transparent 50%
+    );
+    filter: blur(100px);
+    animation: masterAuroraDrift 40s linear infinite;
+    opacity: 0.7;
+}
+
+/* ==========================================================================
+   3. GLOBAL ANIMATION LOGIC (RANDOM SOFT PLAY)
+   ========================================================================== */
+@keyframes masterAuroraPlay {
+    0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 0.4; }
+    33% { transform: translate(4%, -3%) scale(1.1) rotate(3deg); opacity: 0.7; }
+    66% { transform: translate(-5%, 5%) scale(0.95) rotate(-2deg); opacity: 0.5; }
+    100% { transform: translate(2%, 2%) scale(1.05) rotate(1deg); opacity: 0.4; }
+}
+
+@keyframes masterAuroraDrift {
+    from { transform: rotate(0deg) translate(5%, 5%) rotate(0deg); }
+    to { transform: rotate(360deg) translate(5%, 5%) rotate(-360deg); }
+}
+
+/* ==========================================================================
+   4. STRICT MARGIN ANCHOR (HOME, EDU, RESEARCH, CONTACT)
+   ========================================================================== */
+/* Apply this class to your main containers on every page */
+.container, 
+.section-wrapper, 
+.main-content-area,
+.nav-container {
+    max-width: var(--master-container) !important;
+    margin: 0 auto !important;
+    padding: 0 40px !important;
+    position: relative;
+    z-index: 5; /* Keeps all text/cards above the aurora engine */
+    width: 100% !important;
+}
+
+/* ==========================================================================
+   5. GLOBAL COMPONENT SYNC (GLASS & GOLD)
+   ========================================================================== */
+/* Applies Espresso Glass logic to all cards globally */
+.card, .edu-box, .research-item, .contact-card {
+    background: var(--espresso-glass) !important;
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--gold-border);
+    border-radius: 24px;
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.4);
+    transition: all 0.4s ease;
+}
+
+.card:hover, .edu-box:hover, .research-item:hover, .contact-card:hover {
+    border-color: var(--antique-gold);
+    box-shadow: 0 0 30px var(--aurora-mid), 0 20px 60px rgba(0, 0, 0, 0.6);
+    transform: translateY(-8px);
 }
