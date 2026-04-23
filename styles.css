@@ -2720,3 +2720,146 @@ section.active {
     box-shadow: 0 0 30px var(--aurora-mid), 0 20px 60px rgba(0, 0, 0, 0.6);
     transform: translateY(-8px);
 }
+
+/* ==========================================================================
+   FINAL MOBILE CENTERING SYSTEM (CLEAN OVERRIDE FIX)
+   ========================================================================== */
+
+@media (max-width: 768px) {
+
+  /* ================= GLOBAL CENTERING ================= */
+  body {
+    text-align: center !important;
+  }
+
+  section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* force all text blocks centered */
+  p, h1, h2, h3, h4 {
+    text-align: center !important;
+  }
+
+  /* ================= HERO FIX ================= */
+  .hero-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    gap: 20px;
+  }
+
+  .hero-text-content {
+    width: 100% !important;
+    max-width: 100% !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+
+  .bio-text {
+    text-align: center !important;
+    max-width: 95%;
+    margin: 0 auto;
+  }
+
+  .title-divider {
+    margin: 10px auto !important;
+  }
+
+  .social-links {
+    justify-content: center !important;
+  }
+
+  /* ================= IMAGE CENTER ================= */
+  .hero-image-content {
+    width: 100%;
+    display: flex;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  .profile-wrapper {
+    margin: 0 auto;
+  }
+
+  /* ================= STATS CENTER ================= */
+  .stats-group {
+    justify-items: center;
+    align-items: center;
+  }
+
+  .stat-tag {
+    text-align: center !important;
+  }
+
+  /* ================= EDUCATION CENTER ================= */
+  .edu-card {
+    text-align: center !important;
+    align-items: center !important;
+  }
+
+  .edu-header {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  .edu-info h3,
+  .edu-desc,
+  .edu-degree {
+    text-align: center !important;
+  }
+
+  /* ================= PARTICIPATION ================= */
+  .participation-container,
+  .part-card {
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  /* ================= RESEARCH GRID ================= */
+  .research-initiative-grid {
+    grid-template-columns: 1fr !important;
+    justify-items: center !important;
+  }
+
+  .research-box {
+    text-align: center !important;
+    align-items: center !important;
+  }
+
+  /* ================= PROJECT CARDS ================= */
+  .project-grid-layout {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  .project-content-col {
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  /* ================= NAVBAR ================= */
+  .nav-list {
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  /* ================= HERO TITLE ================= */
+  .hero-title,
+  .section-title {
+    text-align: center !important;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+}
