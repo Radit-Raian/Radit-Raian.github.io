@@ -15,6 +15,108 @@
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Playfair+Display:wght@700&family=Cinzel:wght@600&family=EB+Garamond:ital,wght@400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css?v=2">
 <style>
+
+  /* =========================
+   MOBILE RESPONSIVE FIXES
+   ========================= */
+
+@media (max-width: 768px) {
+
+  html, body {
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero-grid {
+    grid-template-columns: 1fr !important;
+    text-align: center;
+    gap: 1.5rem;
+  }
+
+  .hero-text-content {
+    padding: 0 1rem;
+  }
+
+  .name-title {
+    font-size: 2.2rem !important;
+    margin-top: 6rem !important;
+  }
+
+  .subtitle {
+    font-size: 1rem !important;
+  }
+
+  .bio-text {
+    font-size: 0.95rem !important;
+    line-height: 1.6;
+  }
+
+  /* PROFILE IMAGE */
+  .profile-pic {
+    width: 220px !important;
+    height: 220px !important;
+  }
+
+  .hero-image-content {
+    display: flex;
+    justify-content: center;
+    order: -1;
+  }
+
+  /* NAVBAR */
+  .nav-list {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+  }
+
+  .nav-link {
+    font-size: 0.75rem;
+  }
+
+  /* INTEREST TAGS */
+  .stats-group {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.5rem;
+  }
+
+  .stat-tag {
+    font-size: 0.75rem !important;
+    padding: 0.4rem;
+  }
+
+  /* SECTION HEADERS */
+  .hero-underline {
+    width: 80% !important;
+  }
+
+  /* RESEARCH CARDS */
+  .research-initiative-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* NARRATIVE CARDS */
+  .narrative-card {
+    flex-direction: column !important;
+    max-width: 95% !important;
+  }
+
+  .story-image-wrap {
+    max-width: 100% !important;
+  }
+
+  .story-details {
+    padding: 1.5rem !important;
+  }
+
+  /* BUTTONS */
+  .btn-beyond,
+  .btn-beyond-outline {
+    font-size: 0.85rem;
+    padding: 0.6rem 1rem;
+  }
+}
 /* Background and Zoom Stability Fixes */
 html, body { background: #050505 !important; margin: 0; padding: 0; min-height: 100%; width: 100%; }
 body, main, section { background: transparent !important; }
