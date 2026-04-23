@@ -16,32 +16,39 @@
 <link rel="stylesheet" href="styles.css?v=2">
 <style>
 
-  /* =========================
-   MOBILE RESPONSIVE FIXES (REFINED)
+
+
+/* =========================
+   MOBILE RESPONSIVE FIXES (FINAL REFINED)
    ========================= */
 
 @media (max-width: 768px) {
 
-  /* GLOBAL */
+  /* ================= GLOBAL ================= */
   html, body {
     overflow-x: hidden;
     text-align: center;
   }
 
-  /* ================= HERO ================= */
+  /* ================= HERO LAYOUT FIX ================= */
   .hero-grid {
-    grid-template-columns: 1fr !important;
-    text-align: center;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
     gap: 1.5rem;
-    justify-items: center;
-    align-items: center;
   }
 
   .hero-text-content {
+    width: 100% !important;
+    max-width: 100% !important;
     padding: 0 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    text-align: center !important;
   }
 
   .name-title {
@@ -61,17 +68,24 @@
     text-align: center;
   }
 
+  .title-divider {
+    margin: 0 auto !important;
+  }
+
   .social-links {
     display: flex;
-    justify-content: center;
+    justify-content: center !important;
     flex-wrap: wrap;
   }
 
   /* ================= PROFILE IMAGE ================= */
   .hero-image-content {
+    width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: center !important;
+    align-items: center;
     order: -1;
+    margin-bottom: 1rem;
   }
 
   .profile-wrapper {
