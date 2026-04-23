@@ -17,56 +17,78 @@
 <style>
 
   /* =========================
-   MOBILE RESPONSIVE FIXES
+   MOBILE RESPONSIVE FIXES (REFINED)
    ========================= */
 
 @media (max-width: 768px) {
 
+  /* GLOBAL */
   html, body {
     overflow-x: hidden;
+    text-align: center;
   }
 
-  /* HERO */
+  /* ================= HERO ================= */
   .hero-grid {
     grid-template-columns: 1fr !important;
     text-align: center;
     gap: 1.5rem;
+    justify-items: center;
+    align-items: center;
   }
 
   .hero-text-content {
     padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .name-title {
     font-size: 2.2rem !important;
     margin-top: 6rem !important;
+    text-align: center;
   }
 
   .subtitle {
     font-size: 1rem !important;
+    text-align: center;
   }
 
   .bio-text {
     font-size: 0.95rem !important;
     line-height: 1.6;
+    text-align: center;
   }
 
-  /* PROFILE IMAGE */
-  .profile-pic {
-    width: 220px !important;
-    height: 220px !important;
+  .social-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
   }
 
+  /* ================= PROFILE IMAGE ================= */
   .hero-image-content {
     display: flex;
     justify-content: center;
     order: -1;
   }
 
-  /* NAVBAR */
+  .profile-wrapper {
+    display: flex;
+    justify-content: center;
+  }
+
+  .profile-pic {
+    width: 220px !important;
+    height: 220px !important;
+  }
+
+  /* ================= NAVBAR ================= */
   .nav-list {
     flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
     gap: 0.5rem;
     padding: 0.5rem;
   }
@@ -75,31 +97,42 @@
     font-size: 0.75rem;
   }
 
-  /* INTEREST TAGS */
+  /* ================= INTEREST TAGS ================= */
   .stats-group {
     grid-template-columns: repeat(2, 1fr) !important;
+    justify-items: center;
     gap: 0.5rem;
   }
 
   .stat-tag {
     font-size: 0.75rem !important;
     padding: 0.4rem;
+    text-align: center;
   }
 
-  /* SECTION HEADERS */
+  /* ================= SECTION HEADERS ================= */
   .hero-underline {
     width: 80% !important;
+    margin: 0 auto;
   }
 
-  /* RESEARCH CARDS */
+  /* ================= RESEARCH ================= */
   .research-initiative-grid {
     grid-template-columns: 1fr !important;
   }
 
-  /* NARRATIVE CARDS */
+  .research-box,
+  .research-box * {
+    text-align: center !important;
+  }
+
+  /* ================= NARRATIVE CARDS ================= */
   .narrative-card {
     flex-direction: column !important;
     max-width: 95% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: center;
   }
 
   .story-image-wrap {
@@ -108,13 +141,17 @@
 
   .story-details {
     padding: 1.5rem !important;
+    text-align: center;
+    align-items: center;
   }
 
-  /* BUTTONS */
+  /* ================= BUTTONS ================= */
   .btn-beyond,
   .btn-beyond-outline {
     font-size: 0.85rem;
     padding: 0.6rem 1rem;
+    margin: 0 auto;
+    display: inline-block;
   }
 }
 /* Background and Zoom Stability Fixes */
