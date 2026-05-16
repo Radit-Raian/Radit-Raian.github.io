@@ -304,7 +304,187 @@ body, main, section { background: transparent !important; }
 
 </section>
 
-<br><br><br><br><br><br><br><br><br>
+
+<!-- ===== LUMIN DIARIES CAROUSEL ===== -->
+<section style="padding: 2rem 0 5rem; text-align:center;">
+
+  <div class="section-header-center" style="text-align:center; margin-bottom:3rem;">
+    <h2 class="section-title" style="font-family:'Cinzel',serif; font-size:2rem; color:#fff;">Lumin Diaries</h2>
+    <p style="font-family:'EB Garamond',serif; font-style:italic; color:#8C9BBF; font-size:1.05rem; letter-spacing:0.15em; margin-top:0.5rem;">Deep Sky Astrophotography</p>
+    <div class="hero-underline" style="width:50rem; height:0.1rem; background:#b59b6d; margin:1.5rem auto 0;"></div>
+  </div>
+
+  <style>
+  #ld-outer{position:relative;width:380px;margin:0 auto;}
+  #ld-box{width:380px;height:380px;position:relative;overflow:hidden;}
+  .ld-slide{position:absolute;inset:0;opacity:0;transition:opacity .9s ease;pointer-events:none;}
+  .ld-slide.active{opacity:1;pointer-events:all;}
+  .ld-slide img{width:100%;height:100%;object-fit:cover;display:block;}
+  .ld-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(4,8,28,.96) 0%,rgba(4,8,28,.42) 40%,transparent 100%);}
+  .ld-top{position:absolute;inset:0;z-index:2;padding:18px 20px 22px;display:flex;flex-direction:column;justify-content:space-between;}
+  .ld-hd{display:flex;justify-content:space-between;align-items:center;}
+  .ld-num{font-family:'Rajdhani',sans-serif;font-size:9px;letter-spacing:.35em;color:#8C9BBF;opacity:.65;}
+  .ld-brand{font-family:'Cinzel',serif;font-size:8px;letter-spacing:.4em;color:#b59b6d;opacity:.85;text-transform:uppercase;}
+  .ld-tag{font-family:'Rajdhani',sans-serif;font-size:8px;letter-spacing:.28em;color:#2DD4BF;text-transform:uppercase;margin-bottom:5px;}
+  .ld-name{font-family:'Cinzel',serif;font-size:26px;font-weight:600;color:#fef3c7;line-height:1.12;margin-bottom:8px;}
+  .ld-poem{font-family:'EB Garamond',serif;font-style:italic;font-size:12px;color:#C4CEEA;line-height:1.7;margin-bottom:10px;opacity:.9;}
+  .ld-fact{font-family:'Rajdhani',sans-serif;font-size:7.5px;letter-spacing:.18em;background:#2DD4BF;color:#04081C;padding:3px 9px;text-transform:uppercase;display:inline-block;}
+  .ld-frame{position:absolute;inset:8px;border:1px solid rgba(181,155,109,.2);pointer-events:none;z-index:3;}
+  .ld-c{position:absolute;width:14px;height:14px;z-index:4;pointer-events:none;}
+  .ld-c.tl{top:4px;left:4px;border-top:1px solid #b59b6d;border-left:1px solid #b59b6d;}
+  .ld-c.tr{top:4px;right:4px;border-top:1px solid #b59b6d;border-right:1px solid #b59b6d;}
+  .ld-c.bl{bottom:4px;left:4px;border-bottom:1px solid #b59b6d;border-left:1px solid #b59b6d;}
+  .ld-c.br{bottom:4px;right:4px;border-bottom:1px solid #b59b6d;border-right:1px solid #b59b6d;}
+  .ld-nav{position:absolute;top:50%;transform:translateY(-50%);z-index:10;background:rgba(4,8,28,.65);border:1px solid rgba(181,155,109,.4);color:#b59b6d;width:28px;height:28px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:13px;transition:all .2s;line-height:1;}
+  .ld-nav:hover{color:#fef3c7;border-color:#b59b6d;background:rgba(4,8,28,.9);}
+  .ld-nav.prev{left:-14px;}
+  .ld-nav.next{right:-14px;}
+  #ld-pb{height:1px;background:#1E2A52;margin-top:10px;}
+  #ld-pf{height:100%;background:linear-gradient(to right,#2DD4BF,#b59b6d);width:20%;transition:width .9s ease;}
+  #ld-dots{display:flex;gap:6px;justify-content:center;margin-top:12px;}
+  .ldd{height:3px;background:#1E2A52;border-radius:2px;transition:all .4s;cursor:pointer;}
+  .ldd.on{background:#b59b6d;}
+  #ld-note{font-family:'Rajdhani',sans-serif;font-size:9px;letter-spacing:.25em;color:#8C9BBF;opacity:.35;margin-top:10px;text-transform:uppercase;}
+  @media(max-width:480px){
+    #ld-outer,#ld-box{width:300px !important;height:300px !important;}
+    .ld-name{font-size:20px;}
+    .ld-poem{font-size:11px;}
+  }
+  </style>
+
+  <div id="ld-outer">
+    <button class="ld-nav prev" id="ld-prev">&#8592;</button>
+    <button class="ld-nav next" id="ld-next">&#8594;</button>
+    <div id="ld-box">
+
+      <div class="ld-slide active">
+        <img src="photographs/SH101.jpg" alt="Tulip Nebula">
+        <div class="ld-ov"></div>
+        <div class="ld-top">
+          <div class="ld-hd"><span class="ld-num">01 / 05</span><span class="ld-brand">Lumin Diaries</span></div>
+          <div>
+            <div class="ld-tag">Sh2-101 &middot; Cygnus &middot; 6,000 ly</div>
+            <div class="ld-name">The Tulip Nebula</div>
+            <div class="ld-poem">Hydrogen and oxygen drew a flower in the dark, long before the first tulip ever bloomed on Earth.</div>
+            <span class="ld-fact">Emission Nebula &middot; Stellar Winds</span>
+          </div>
+        </div>
+        <div class="ld-frame"></div>
+        <div class="ld-c tl"></div><div class="ld-c tr"></div><div class="ld-c bl"></div><div class="ld-c br"></div>
+      </div>
+
+      <div class="ld-slide">
+        <img src="photographs/IC1396.jpg" alt="Elephant Trunk Nebula">
+        <div class="ld-ov"></div>
+        <div class="ld-top">
+          <div class="ld-hd"><span class="ld-num">02 / 05</span><span class="ld-brand">Lumin Diaries</span></div>
+          <div>
+            <div class="ld-tag">IC 1396 &middot; Cepheus &middot; 2,400 ly</div>
+            <div class="ld-name">Elephant Trunk</div>
+            <div class="ld-poem">Carved by stellar winds over millions of years &mdash; a nursery still mid-breath inside the dark.</div>
+            <span class="ld-fact">Star Forming &middot; 20 ly long</span>
+          </div>
+        </div>
+        <div class="ld-frame"></div>
+        <div class="ld-c tl"></div><div class="ld-c tr"></div><div class="ld-c bl"></div><div class="ld-c br"></div>
+      </div>
+
+      <div class="ld-slide">
+        <img src="photographs/C49.jpg" alt="Rosette Nebula">
+        <div class="ld-ov"></div>
+        <div class="ld-top">
+          <div class="ld-hd"><span class="ld-num">03 / 05</span><span class="ld-brand">Lumin Diaries</span></div>
+          <div>
+            <div class="ld-tag">NGC 2237 &middot; Monoceros &middot; 5,200 ly</div>
+            <div class="ld-name">The Rosette Nebula</div>
+            <div class="ld-poem">Wide enough to swallow 130 full moons &mdash; a rose no garden could ever grow.</div>
+            <span class="ld-fact">130 ly across &middot; 10,000 solar masses</span>
+          </div>
+        </div>
+        <div class="ld-frame"></div>
+        <div class="ld-c tl"></div><div class="ld-c tr"></div><div class="ld-c bl"></div><div class="ld-c br"></div>
+      </div>
+
+      <div class="ld-slide">
+        <img src="photographs/M42.jpg" alt="Orion Nebula">
+        <div class="ld-ov"></div>
+        <div class="ld-top">
+          <div class="ld-hd"><span class="ld-num">04 / 05</span><span class="ld-brand">Lumin Diaries</span></div>
+          <div>
+            <div class="ld-tag">M42 &middot; Orion &middot; 1,344 ly</div>
+            <div class="ld-name">The Orion Nebula</div>
+            <div class="ld-poem">A stellar nursery older than every civilization on Earth &mdash; 700 stars being born as you watch.</div>
+            <span class="ld-fact">700+ New Stars &middot; Naked Eye Object</span>
+          </div>
+        </div>
+        <div class="ld-frame"></div>
+        <div class="ld-c tl"></div><div class="ld-c tr"></div><div class="ld-c bl"></div><div class="ld-c br"></div>
+      </div>
+
+      <div class="ld-slide">
+        <img src="photographs/B33.jpeg" alt="Horsehead Nebula">
+        <div class="ld-ov"></div>
+        <div class="ld-top">
+          <div class="ld-hd"><span class="ld-num">05 / 05</span><span class="ld-brand">Lumin Diaries</span></div>
+          <div>
+            <div class="ld-tag">Barnard 33 &middot; Orion &middot; 1,375 ly</div>
+            <div class="ld-name">The Horsehead Nebula</div>
+            <div class="ld-poem">A silhouette carved by light itself &mdash; it will dissolve into the cosmos in five million years.</div>
+            <span class="ld-fact">Dark Nebula &middot; ~5M yrs remaining</span>
+          </div>
+        </div>
+        <div class="ld-frame"></div>
+        <div class="ld-c tl"></div><div class="ld-c tr"></div><div class="ld-c bl"></div><div class="ld-c br"></div>
+      </div>
+
+    </div>
+    <div id="ld-pb"><div id="ld-pf"></div></div>
+  </div>
+  <div id="ld-dots">
+    <div class="ldd on" style="width:22px;" onclick="ldGo(0)"></div>
+    <div class="ldd" style="width:4px;" onclick="ldGo(1)"></div>
+    <div class="ldd" style="width:4px;" onclick="ldGo(2)"></div>
+    <div class="ldd" style="width:4px;" onclick="ldGo(3)"></div>
+    <div class="ldd" style="width:4px;" onclick="ldGo(4)"></div>
+  </div>
+  <p id="ld-note">Auto-plays every 4s &nbsp;&middot;&nbsp; Arrow keys &nbsp;&middot;&nbsp; Swipe on mobile</p>
+
+  <script>
+  (function(){
+    var cur=0;
+    var slides=document.querySelectorAll('.ld-slide');
+    var dots=document.querySelectorAll('.ldd');
+    var pf=document.getElementById('ld-pf');
+    function ldGo(n){
+      slides[cur].classList.remove('active');
+      dots[cur].classList.remove('on');
+      dots[cur].style.width='4px';
+      cur=(n+slides.length)%slides.length;
+      slides[cur].classList.add('active');
+      dots[cur].classList.add('on');
+      dots[cur].style.width='22px';
+      pf.style.width=((cur+1)/slides.length*100)+'%';
+    }
+    window.ldGo=ldGo;
+    document.getElementById('ld-prev').onclick=function(){ldGo(cur-1);};
+    document.getElementById('ld-next').onclick=function(){ldGo(cur+1);};
+    document.addEventListener('keydown',function(e){
+      if(e.key==='ArrowRight')ldGo(cur+1);
+      if(e.key==='ArrowLeft')ldGo(cur-1);
+    });
+    var sx=0;
+    document.getElementById('ld-box').addEventListener('touchstart',function(e){sx=e.touches[0].clientX;});
+    document.getElementById('ld-box').addEventListener('touchend',function(e){
+      var d=sx-e.changedTouches[0].clientX;
+      if(Math.abs(d)>40)ldGo(cur+(d>0?1:-1));
+    });
+    setInterval(function(){ldGo(cur+1);},4000);
+  })();
+  </script>
+
+</section>
+<!-- ===== END LUMIN DIARIES CAROUSEL ===== -->
+
 
 <section id="achievements" class="active" style="background: transparent !important; padding-top: 2rem !important;">
   <div class="section-header-center" style="text-align:center; margin-bottom:5rem;">
