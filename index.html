@@ -278,15 +278,19 @@
 }
 
 /* ============================================================
-   MOBILE RESPONSIVE
+   MOBILE RESPONSIVE  (≤ 768px)
+   Desktop is 100% untouched — all changes are mobile-only
    ============================================================ */
 @media (max-width: 768px) {
 
-  html, body {
-    overflow-x: hidden;
-    text-align: center;
-  }
+  /* --- Global --- */
+  html, body { overflow-x: hidden; }
 
+  /* --- Navbar --- */
+  .nav-list { flex-wrap: wrap; justify-content: center; align-items: center; gap: 0.4rem; padding: 0.5rem 0.25rem; }
+  .nav-link  { font-size: 0.7rem; }
+
+  /* --- Hero --- */
   .hero-grid {
     display: flex !important;
     flex-direction: column !important;
@@ -307,15 +311,16 @@
     text-align: center !important;
   }
 
-  .name-title {
-    font-size: 2.2rem !important;
-    margin-top: 6rem !important;
-    text-align: center;
+  .name-title    { font-size: 2.2rem !important; margin-top: 6rem !important; text-align: center; }
+  .subtitle      { font-size: 1rem !important; text-align: center; }
+  .bio-text      { font-size: 0.95rem !important; line-height: 1.6; text-align: center; }
+  .title-divider { margin: 0 auto !important; }
+
+  /* CV button — centre it on mobile */
+  .hero-text-content > div[style*="justify-content:flex-start"] {
+    justify-content: center !important;
   }
 
-  .subtitle { font-size: 1rem !important; text-align: center; }
-  .bio-text { font-size: 0.95rem !important; line-height: 1.6; text-align: center; }
-  .title-divider { margin: 0 auto !important; }
   .social-links { display: flex; justify-content: center !important; flex-wrap: wrap; }
 
   .hero-image-content {
@@ -326,20 +331,52 @@
     order: -1;
     margin-bottom: 1rem;
   }
-
   .profile-wrapper { display: flex; justify-content: center; }
-  .profile-pic { width: 220px !important; height: 220px !important; }
+  .profile-pic     { width: 200px !important; height: 200px !important; }
 
-  .nav-list { flex-wrap: wrap; justify-content: center; align-items: center; gap: 0.5rem; padding: 0.5rem; }
-  .nav-link { font-size: 0.75rem; }
-
+  /* --- Research Interests tags --- */
   .stats-group { grid-template-columns: repeat(2, 1fr) !important; justify-items: center; gap: 0.5rem; }
-  .stat-tag { font-size: 0.75rem !important; padding: 0.4rem; text-align: center; }
-  .hero-underline { width: 80% !important; margin: 0 auto; }
-  .research-initiative-grid { grid-template-columns: 1fr !important; }
+  .stat-tag    { font-size: 0.75rem !important; padding: 0.4rem; text-align: center; }
+
+  /* --- Section headers / underlines --- */
+  /* Fixed-width hero-underlines overflow on mobile — make them fluid */
+  .hero-underline,
+  div[style*="width:50rem"] { width: 80% !important; margin-left: auto !important; margin-right: auto !important; }
+
+  /* --- Featured Research grid ---
+     minmax(300px,1fr) forces a horizontal scroll on screens < 300px wide padding.
+     Override to a single column. */
+  .research-initiative-grid,
+  div[style*="grid-template-columns:repeat(auto-fit,minmax(300px"] {
+    grid-template-columns: 1fr !important;
+    padding: 0 1rem;
+  }
   .research-box, .research-box * { text-align: center !important; }
 
-  /* Lumin Diaries — stack on mobile */
+  /* --- Research Affiliations ---
+     These classes come from styles.css; add safe mobile defaults. */
+  .aesthetic-portfolio-box { padding: 0 1rem !important; }
+  .appointment-card {
+    flex-direction: column !important;
+    width: 100% !important;
+    max-width: 95% !important;
+    margin: 0 auto !important;
+  }
+  .appointment-visual { width: 100% !important; }
+  .appointment-visual img { width: 100% !important; height: auto !important; }
+  .appointment-details { padding: 1.25rem !important; text-align: center !important; }
+  .header-row { flex-direction: column !important; gap: 0.25rem !important; text-align: center !important; }
+
+  /* Lumin gap div — shrink on mobile */
+  div[style*="height:8rem"] { height: 3rem !important; min-height: 3rem !important; }
+
+  /* Lumin section header needs side padding on mobile */
+  #lumin-section .section-header-center,
+  section[id="featured-research"] .section-header-center {
+    padding: 0 1rem;
+  }
+
+  /* Stack description + carousel vertically */
   .lumin-layout {
     grid-template-columns: 1fr !important;
     gap: 2rem;
@@ -350,20 +387,55 @@
   .lumin-eyebrow, .lumin-tagline, .lumin-body { text-align: center; }
   .lumin-rule { margin: 0.5rem auto 0; }
 
-  #ld-outer { max-width: 100%; }
-  .ld-nav.prev { left: 4px; }
-  .ld-nav.next { right: 4px; }
+  /* Carousel — keep arrows INSIDE the box so they don't clip off screen */
+  #ld-outer    { max-width: 100%; padding: 0; }
+  .ld-nav.prev { left: 6px !important; }
+  .ld-nav.next { right: 6px !important; }
 
+  /* Scale down carousel text so it doesn't overflow on small screens */
+  .ld-name { font-size: 1.3rem !important; }
+  .ld-poem { font-size: 0.85rem !important; }
+  .ld-tag  { font-size: 0.55rem !important; letter-spacing: 0.18em; }
+
+  /* --- Special Moments cards ---
+     Stack image above text; make image full-width.
+     Fix: absolute-positioned READ MORE button overlaps paragraph text on mobile
+     — switch to static flow by giving story-details enough bottom padding. */
   .narrative-card {
     flex-direction: column !important;
     max-width: 95% !important;
     margin-left: auto !important;
     margin-right: auto !important;
-    text-align: center;
   }
-  .story-image-wrap { max-width: 100% !important; }
-  .story-details { padding: 1.5rem !important; text-align: center; align-items: center; }
+  .story-image-wrap {
+    max-width: 100% !important;
+    width: 100% !important;
+    min-height: 200px;
+  }
+  .story-image-wrap img { min-height: 200px; object-fit: cover; }
 
+  /* Give enough room at the bottom of story-details so the absolute-positioned
+     READ MORE button and gold rule do not overlap the paragraph text. */
+  .story-details {
+    padding: 1.5rem 1.5rem 5rem !important; /* extra bottom padding = space for abs button */
+    text-align: center !important;
+    align-items: center !important;
+  }
+
+  /* Paragraph inside story-details — remove the hardcoded 3rem bottom margin
+     that was designed for desktop (button is abs-positioned there).
+     The 5rem padding on the container handles the gap instead. */
+  .story-details p[style*="margin-bottom:3rem"] {
+    margin-bottom: 0 !important;
+  }
+
+  /* Gold rule — keep it centred */
+  .story-details > div[style*="position:absolute;bottom:2.5rem"] {
+    left: 50% !important;
+    transform: translateX(-50%);
+  }
+
+  /* --- Buttons --- */
   .btn-beyond, .btn-beyond-outline {
     font-size: 0.85rem;
     padding: 0.6rem 1rem;
@@ -491,7 +563,6 @@ body, main, section { background: transparent !important; }
   <div class="appointment-card">
     <div class="appointment-visual">
       <img src="https://i.postimg.cc/d0KBD8zG/images-(1).png" alt="Research at CASSA" class="ratio-16-9">
-      <div class="status-indicator">Active</div>
     </div>
     <div class="appointment-details">
       <div class="header-row">
@@ -499,15 +570,18 @@ body, main, section { background: transparent !important; }
         <span class="time-stamp">Oct 2025 — Present</span>
       </div>
       <h4 class="institution-name">Center for Astronomy, Space Science and Astrophysics (CASSA), IUB, Dhaka</h4>
-      <p class="appointment-description">
+      <p class="appointment-description" style="margin-bottom: 0.4rem;">
         PROJECT 01: Mining Minihalos in the Clusters of Galaxies (MiMiC)<br>
         PROJECT 02: Spectral Analysis of Type Ia Supernovae
+      </p>
+      <p class="appointment-description" style="margin-top: 0.5rem; font-style: italic; opacity: 0.8;">
+        Supervisor: <strong>Dr. Shantanu Desai</strong>, Associate Professor, IIT Hyderabad &amp; <strong>Dr. Irham Andika</strong>, Researcher, MPIA Heidelberg
       </p>
     </div>
   </div>
 </section>
 
-<br><br><br><br><br><br>
+<div style="display:block; height:8rem; min-height:8rem;"></div>
 <!-- ===== LUMIN DIARIES ===== -->
 <section id="featured-research" class="active" style="background:transparent !important; padding-top:2rem !important;">
   <div class="section-header-center" style="text-align:center; margin-bottom:5rem;">
@@ -541,7 +615,7 @@ body, main, section { background: transparent !important; }
 
           <!-- Slide 1 -->
           <div class="ld-slide active">
-            <img src="photographs/SH101.jpg" alt="Tulip Nebula">
+            <img src="photographs/SH101.webp" alt="Tulip Nebula" fetchpriority="high" decoding="async">
             <div class="ld-ov"></div>
             <div class="ld-top">
               <div class="ld-hd">
@@ -561,7 +635,7 @@ body, main, section { background: transparent !important; }
 
           <!-- Slide 2 -->
           <div class="ld-slide">
-            <img src="photographs/IC1396.jpg" alt="Elephant Trunk Nebula">
+            <img src="photographs/IC1396.webp" alt="Elephant Trunk Nebula" loading="lazy" decoding="async">
             <div class="ld-ov"></div>
             <div class="ld-top">
               <div class="ld-hd">
@@ -581,7 +655,7 @@ body, main, section { background: transparent !important; }
 
           <!-- Slide 3 -->
           <div class="ld-slide">
-            <img src="photographs/C49.jpg" alt="Rosette Nebula">
+            <img src="photographs/C49.webp" alt="Rosette Nebula" loading="lazy" decoding="async">
             <div class="ld-ov"></div>
             <div class="ld-top">
               <div class="ld-hd">
@@ -601,7 +675,7 @@ body, main, section { background: transparent !important; }
 
           <!-- Slide 4 -->
           <div class="ld-slide">
-            <img src="photographs/M42.jpg" alt="Orion Nebula">
+            <img src="photographs/M42.webp" alt="Orion Nebula" loading="lazy" decoding="async">
             <div class="ld-ov"></div>
             <div class="ld-top">
               <div class="ld-hd">
@@ -621,7 +695,7 @@ body, main, section { background: transparent !important; }
 
           <!-- Slide 5 -->
           <div class="ld-slide">
-            <img src="photographs/B33.jpeg" alt="Horsehead Nebula">
+            <img src="photographs/B33.webp" alt="Horsehead Nebula" loading="lazy" decoding="async">
             <div class="ld-ov"></div>
             <div class="ld-top">
               <div class="ld-hd">
