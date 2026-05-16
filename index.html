@@ -3,12 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Google Search Console verification (INVISIBLE) -->
 <meta name="google-site-verification" content="16r1nbFEazDPU5fpLK6zHhI7KfHlNIl9AG7TOJ3MNuc" />
-    <title>Radit Raian | Astrophysics & Cosmology</title>
+<title>Radit Raian | Astrophysics &amp; Cosmology</title>
 <meta name="description" content="Radit Raian is a high school researcher in astrophysics and cosmology, working on galaxy analysis, PSF modeling, and supernova spectroscopy.">
 <meta name="keywords" content="Radit Raian, astrophysics, cosmology, astronomy, research portfolio">
-<title>Radit Raian | Astrophysics & Cosmology</title>
 <link rel="icon" type="image/png" href="https://i.postimg.cc/cLy2G2Y9/orion.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,21 +14,279 @@
 <link rel="stylesheet" href="styles.css?v=2">
 <style>
 
+/* ============================================================
+   LUMIN DIARIES — all CSS variables replaced with hard values
+   ============================================================ */
 
+#lumin-section {
+  padding: 5rem 0;
+}
 
-/* =========================
-   MOBILE RESPONSIVE FIXES (FINAL REFINED)
-   ========================= */
+.lumin-layout {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 3rem;
+  align-items: center;
+}
 
+/* LEFT — Cinematic Description */
+.lumin-desc {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.lumin-eyebrow {
+  font-family: 'Orbitron', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.25em;
+  color: #4ecdc4;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.lumin-headline {
+  font-family: 'Cinzel', serif;
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: #fef3c7;
+  line-height: 1.22;
+  letter-spacing: 0.04em;
+  margin: 0;
+}
+
+.lumin-tagline {
+  font-family: 'EB Garamond', serif;
+  font-style: italic;
+  font-size: 1.15rem;
+  color: #b59b6d;
+  line-height: 1.55;
+  opacity: 0.95;
+  margin: 0;
+}
+
+.lumin-body {
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+  color: #94a3b8;
+  line-height: 1.8;
+  margin: 0;
+}
+
+.lumin-rule {
+  width: 2.5rem;
+  height: 1px;
+  background: #b59b6d;
+  opacity: 0.5;
+  margin-top: 0.5rem;
+}
+
+/* RIGHT — Carousel */
+#ld-outer {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+#ld-box {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(181,155,109,0.4);
+}
+
+.ld-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.9s ease;
+  pointer-events: none;
+}
+.ld-slide.active {
+  opacity: 1;
+  pointer-events: all;
+}
+.ld-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Dark gradient overlay — bottom heavy */
+.ld-ov {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(4,8,28,0.97) 0%, rgba(4,8,28,0.45) 38%, transparent 100%);
+}
+
+/* Text overlay container */
+.ld-top {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  padding: 1.25rem 1.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.ld-hd {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ld-num {
+  font-family: 'Orbitron', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.35em;
+  color: #94a3b8;
+  opacity: 0.8;
+}
+
+.ld-brand {
+  font-family: 'Cinzel', serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.4em;
+  color: #b59b6d;
+  opacity: 0.9;
+  text-transform: uppercase;
+}
+
+.ld-tag {
+  font-family: 'Orbitron', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.28em;
+  color: #4ecdc4;
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+}
+
+.ld-name {
+  font-family: 'Cinzel', serif;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #fef3c7;
+  line-height: 1.1;
+  margin-bottom: 0.6rem;
+}
+
+.ld-poem {
+  font-family: 'EB Garamond', serif;
+  font-style: italic;
+  font-size: 0.98rem;
+  color: #c4ceea;
+  line-height: 1.7;
+  margin-bottom: 0.75rem;
+  opacity: 0.92;
+}
+
+.ld-fact {
+  font-family: 'Orbitron', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  background: #4ecdc4;
+  color: #04081c;
+  padding: 3px 10px;
+  text-transform: uppercase;
+  display: inline-block;
+}
+
+/* Corner frame brackets */
+.ld-frame {
+  position: absolute;
+  inset: 8px;
+  border: 1px solid rgba(181,155,109,0.18);
+  pointer-events: none;
+  z-index: 3;
+}
+
+.ld-c {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  z-index: 4;
+  pointer-events: none;
+}
+.ld-c.tl { top: 4px;    left: 4px;  border-top:    1px solid #b59b6d; border-left:  1px solid #b59b6d; }
+.ld-c.tr { top: 4px;    right: 4px; border-top:    1px solid #b59b6d; border-right: 1px solid #b59b6d; }
+.ld-c.bl { bottom: 4px; left: 4px;  border-bottom: 1px solid #b59b6d; border-left:  1px solid #b59b6d; }
+.ld-c.br { bottom: 4px; right: 4px; border-bottom: 1px solid #b59b6d; border-right: 1px solid #b59b6d; }
+
+/* Nav arrows */
+.ld-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: rgba(4,8,28,0.75);
+  border: 1px solid rgba(181,155,109,0.45);
+  color: #b59b6d;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.2s;
+  border-radius: 0;
+}
+.ld-nav:hover {
+  color: #fef3c7;
+  border-color: #b59b6d;
+  background: rgba(4,8,28,0.95);
+}
+.ld-nav.prev { left: -18px; }
+.ld-nav.next { right: -18px; }
+
+/* Progress bar */
+#ld-pb {
+  height: 1px;
+  background: #1e2a52;
+  margin-top: 12px;
+}
+#ld-pf {
+  height: 100%;
+  background: linear-gradient(to right, #4ecdc4, #b59b6d);
+  width: 20%;
+  transition: width 0.9s ease;
+}
+
+/* Dot indicators */
+#ld-dots {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  margin-top: 14px;
+}
+.ldd {
+  height: 3px;
+  background: #1e2a52;
+  border-radius: 2px;
+  transition: all 0.4s;
+  cursor: pointer;
+}
+.ldd.on {
+  background: #b59b6d;
+}
+
+/* ============================================================
+   MOBILE RESPONSIVE
+   ============================================================ */
 @media (max-width: 768px) {
 
-  /* ================= GLOBAL ================= */
   html, body {
     overflow-x: hidden;
     text-align: center;
   }
 
-  /* ================= HERO LAYOUT FIX ================= */
   .hero-grid {
     display: flex !important;
     flex-direction: column !important;
@@ -57,28 +313,11 @@
     text-align: center;
   }
 
-  .subtitle {
-    font-size: 1rem !important;
-    text-align: center;
-  }
+  .subtitle { font-size: 1rem !important; text-align: center; }
+  .bio-text { font-size: 0.95rem !important; line-height: 1.6; text-align: center; }
+  .title-divider { margin: 0 auto !important; }
+  .social-links { display: flex; justify-content: center !important; flex-wrap: wrap; }
 
-  .bio-text {
-    font-size: 0.95rem !important;
-    line-height: 1.6;
-    text-align: center;
-  }
-
-  .title-divider {
-    margin: 0 auto !important;
-  }
-
-  .social-links {
-    display: flex;
-    justify-content: center !important;
-    flex-wrap: wrap;
-  }
-
-  /* ================= PROFILE IMAGE ================= */
   .hero-image-content {
     width: 100%;
     display: flex;
@@ -88,59 +327,33 @@
     margin-bottom: 1rem;
   }
 
-  .profile-wrapper {
-    display: flex;
-    justify-content: center;
-  }
+  .profile-wrapper { display: flex; justify-content: center; }
+  .profile-pic { width: 220px !important; height: 220px !important; }
 
-  .profile-pic {
-    width: 220px !important;
-    height: 220px !important;
-  }
+  .nav-list { flex-wrap: wrap; justify-content: center; align-items: center; gap: 0.5rem; padding: 0.5rem; }
+  .nav-link { font-size: 0.75rem; }
 
-  /* ================= NAVBAR ================= */
-  .nav-list {
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem;
-  }
+  .stats-group { grid-template-columns: repeat(2, 1fr) !important; justify-items: center; gap: 0.5rem; }
+  .stat-tag { font-size: 0.75rem !important; padding: 0.4rem; text-align: center; }
+  .hero-underline { width: 80% !important; margin: 0 auto; }
+  .research-initiative-grid { grid-template-columns: 1fr !important; }
+  .research-box, .research-box * { text-align: center !important; }
 
-  .nav-link {
-    font-size: 0.75rem;
-  }
-
-  /* ================= INTEREST TAGS ================= */
-  .stats-group {
-    grid-template-columns: repeat(2, 1fr) !important;
-    justify-items: center;
-    gap: 0.5rem;
-  }
-
-  .stat-tag {
-    font-size: 0.75rem !important;
-    padding: 0.4rem;
-    text-align: center;
-  }
-
-  /* ================= SECTION HEADERS ================= */
-  .hero-underline {
-    width: 80% !important;
-    margin: 0 auto;
-  }
-
-  /* ================= RESEARCH ================= */
-  .research-initiative-grid {
+  /* Lumin Diaries — stack on mobile */
+  .lumin-layout {
     grid-template-columns: 1fr !important;
+    gap: 2rem;
+    padding: 0 1rem;
   }
 
-  .research-box,
-  .research-box * {
-    text-align: center !important;
-  }
+  .lumin-headline { font-size: 1.7rem !important; text-align: center; }
+  .lumin-eyebrow, .lumin-tagline, .lumin-body { text-align: center; }
+  .lumin-rule { margin: 0.5rem auto 0; }
 
-  /* ================= NARRATIVE CARDS ================= */
+  #ld-outer { max-width: 100%; }
+  .ld-nav.prev { left: 4px; }
+  .ld-nav.next { right: 4px; }
+
   .narrative-card {
     flex-direction: column !important;
     max-width: 95% !important;
@@ -148,27 +361,20 @@
     margin-right: auto !important;
     text-align: center;
   }
+  .story-image-wrap { max-width: 100% !important; }
+  .story-details { padding: 1.5rem !important; text-align: center; align-items: center; }
 
-  .story-image-wrap {
-    max-width: 100% !important;
-  }
-
-  .story-details {
-    padding: 1.5rem !important;
-    text-align: center;
-    align-items: center;
-  }
-
-  /* ================= BUTTONS ================= */
-  .btn-beyond,
-  .btn-beyond-outline {
+  .btn-beyond, .btn-beyond-outline {
     font-size: 0.85rem;
     padding: 0.6rem 1rem;
     margin: 0 auto;
     display: inline-block;
   }
 }
-/* Background and Zoom Stability Fixes */
+
+/* ============================================================
+   GLOBAL OVERRIDES
+   ============================================================ */
 html, body { background: #050505 !important; margin: 0; padding: 0; min-height: 100%; width: 100%; }
 body, main, section { background: transparent !important; }
 .name-title { font-size: 3.5rem; margin-top: 10rem; }
@@ -176,27 +382,26 @@ body, main, section { background: transparent !important; }
 .bio-text { font-size: 1.05rem; }
 .stat-tag { font-size: 0.85rem; }
 
-/* Fixed Hero Grid to prevent image from dropping below */
-.hero-grid { 
-    display: grid; 
-    grid-template-columns: 1.2fr 0.8fr; 
-    gap: 2rem; 
-    align-items: center; 
-    width: 100%;
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 2rem;
+  align-items: center;
+  width: 100%;
 }
 
-/* Ensure Interest Tags wrap nicely in 3 columns */
-.stats-group { 
-    display: grid; 
-    grid-template-columns: repeat(3, 1fr); 
-    gap: 0.8rem; 
-    margin-top: 1rem; 
+.stats-group {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.8rem;
+  margin-top: 1rem;
 }
 
 @media (max-width: 1024px) {
-    .hero-grid { grid-template-columns: 1fr; text-align: center; }
-    .hero-image-content { order: -1; }
+  .hero-grid { grid-template-columns: 1fr; text-align: center; }
+  .hero-image-content { order: -1; }
 }
+
 </style>
 </head>
 <body>
@@ -216,79 +421,78 @@ body, main, section { background: transparent !important; }
 </ul>
 </nav>
 </header>
+
 <main>
+
+<!-- ===== HERO ===== -->
 <section id="hero" style="margin-bottom:0 !important; padding: 100px 2rem 2rem !important; min-height:auto !important;">
 <div class="hero-grid">
-<div class="hero-text-content">
-<h1 class="name-title">Radit Raian</h1>
-<div class="title-divider"></div>
-<p class="subtitle">Aspiring Researcher in Astrophysics & Data Science</p>
-<div class="social-links">
-<a href="https://github.com/Radit-Raian" class="social-btn" target="_blank"><svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
-<a href="https://linkedin.com/in/raditraian" class="social-btn" target="_blank"><svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.763z"/></svg></a>
-          <a href="mailto:raditraian1107@gmail.com" class="social-btn" title="Email">
-            <svg viewBox="0 0 24 24"><path d="M12 13.065l-11.999-7.065v14h24v-14l-12 7.065zm0-2.13l12-7.065h-24l12 7.065z"/></svg>
-          </a>
-          <a href="https://x.com/iam_radit_raian" class="social-btn" title="Twitter" target="_blank" rel="noopener noreferrer">
-  <svg viewBox="0 0 24 24">
-    <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932 6.064-6.932zm-1.292 19.49h2.039L6.486 3.24H4.298L17.61 20.643z"/>
-  </svg>
-</a>
-</div>
-<p class="bio-text">Hi, I am Radit Raian! Currently, I am in the final year of my high school at Adamjee Cantonment College, Dhaka. Additionally, I am working as a research intern at the Center for Astronomy, Space Science, and Astrophysics (CASSA) at IUB, Dhaka. I had long stories of my Olympiad journey, which has almost ended. Finally, I chose to chase infinity. However, outside STEM, I love to travel to new places and occasionally burn the kitchen, too!</p>
-<div style="display:flex;justify-content:flex-start;margin-bottom:2rem;">
-<a href="https://drive.google.com/file/d/1AY8QU52nTQpH06al6Gz4gHxdeEW4Mx64/view?usp=sharing" target="_blank" class="btn-beyond" style="text-decoration:none;">DOWNLOAD CV <i class="fa-solid fa-file-arrow-down"></i></a>
-</div>
-
-<br> 
-
-<h4 class="interests-label" style="font-size:0.9rem;letter-spacing:0.2rem;margin-bottom:1rem;">RESEARCH INTERESTS</h4>
-<div class="stats-group">
-<span class="stat-tag">Galaxy Evolution</span><span class="stat-tag">Star Formation</span><span class="stat-tag">Time Domain Astronomy</span>
-<span class="stat-tag">Observational Cosmology</span><span class="stat-tag">High Energy Astrophysics</span><span class="stat-tag">Machine Learning</span>
-</div>
-</div>
-<div class="hero-image-content"><div class="profile-wrapper"><img src="https://i.postimg.cc/g2KWSm5x/OWAO-pic.jpg" alt="Radit Raian" class="profile-pic" style="border-radius:50%; width: 360px; height: 360px; object-fit: cover;"></div></div>
+  <div class="hero-text-content">
+    <h1 class="name-title">Radit Raian</h1>
+    <div class="title-divider"></div>
+    <p class="subtitle">Aspiring Researcher in Astrophysics &amp; Data Science</p>
+    <div class="social-links">
+      <a href="https://github.com/Radit-Raian" class="social-btn" target="_blank"><svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
+      <a href="https://linkedin.com/in/raditraian" class="social-btn" target="_blank"><svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.763z"/></svg></a>
+      <a href="mailto:raditraian1107@gmail.com" class="social-btn" title="Email"><svg viewBox="0 0 24 24"><path d="M12 13.065l-11.999-7.065v14h24v-14l-12 7.065zm0-2.13l12-7.065h-24l12 7.065z"/></svg></a>
+      <a href="https://x.com/iam_radit_raian" class="social-btn" title="Twitter" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932 6.064-6.932zm-1.292 19.49h2.039L6.486 3.24H4.298L17.61 20.643z"/></svg></a>
+    </div>
+    <p class="bio-text">Hi, I am Radit Raian! Currently, I am in the final year of my high school at Adamjee Cantonment College, Dhaka. Additionally, I am working as a research intern at the Center for Astronomy, Space Science, and Astrophysics (CASSA) at IUB, Dhaka. I had long stories of my Olympiad journey, which has almost ended. Finally, I chose to chase infinity. However, outside STEM, I love to travel to new places and occasionally burn the kitchen, too!</p>
+    <div style="display:flex;justify-content:flex-start;margin-bottom:2rem;">
+      <a href="https://drive.google.com/file/d/1AY8QU52nTQpH06al6Gz4gHxdeEW4Mx64/view?usp=sharing" target="_blank" class="btn-beyond" style="text-decoration:none;">DOWNLOAD CV <i class="fa-solid fa-file-arrow-down"></i></a>
+    </div>
+    <br>
+    <h4 class="interests-label" style="font-size:0.9rem;letter-spacing:0.2rem;margin-bottom:1rem;">RESEARCH INTERESTS</h4>
+    <div class="stats-group">
+      <span class="stat-tag">Galaxy Evolution</span>
+      <span class="stat-tag">Star Formation</span>
+      <span class="stat-tag">Time Domain Astronomy</span>
+      <span class="stat-tag">Observational Cosmology</span>
+      <span class="stat-tag">High Energy Astrophysics</span>
+      <span class="stat-tag">Machine Learning</span>
+    </div>
+  </div>
+  <div class="hero-image-content">
+    <div class="profile-wrapper">
+      <img src="https://i.postimg.cc/g2KWSm5x/OWAO-pic.jpg" alt="Radit Raian" class="profile-pic" style="border-radius:50%; width:360px; height:360px; object-fit:cover;">
+    </div>
+  </div>
 </div>
 </section>
 
-<section id="achievements" class="active" style="background: transparent !important; padding-top: 2rem !important;">
+<!-- ===== FEATURED RESEARCH ===== -->
+<section id="featured-research" class="active" style="background:transparent !important; padding-top:2rem !important;">
   <div class="section-header-center" style="text-align:center; margin-bottom:5rem;">
     <h2 class="section-title" style="font-family:'Segoe UI',serif; font-size:2rem; color:#fff;">Featured Research</h2>
     <div class="hero-underline" style="width:50rem; height:0.1rem; background:#b59b6d; margin-top:4rem auto;"></div>
   </div>
-
-<div class="research-initiative-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;margin-bottom:5rem;">
-<div class="research-box">
-<div class="box-image-wrap"><img src="https://i.postimg.cc/3x3Lkdp1/Screenshot-2026-01-31-045104.png" alt="Optics"></div>
-<div class="box-content"><h3>PSF Modeling</h3><p>Developing fully automated Point Spread Function models to correct optical distortions for Intracluster Light (ICL) detection.</p><a href="https://github.com/Radit-Raian/PSF_dev" class="btn-beyond-outline">View Project</a></div>
-</div>
-<div class="research-box">
-<div class="box-image-wrap"><img src="https://i.postimg.cc/bvpjNyNY/Screenshot-2026-01-31-050448.png" alt="Supernova"></div>
-<div class="box-content"><h3>Supernova Spectra</h3><p>Working with the type Ia supernovae spectral analysis to query velocity and pseudo-equivalent width features using Spextractor.</p><a href="https://github.com/Radit-Raian/SpectralAnalysis_SNe" class="btn-beyond-outline">View Project</a></div>
-</div>
-<div class="research-box">
-<div class="box-image-wrap"><img src="https://i.postimg.cc/J0bqnLhs/Screenshot-2026-01-31-045251.png" alt="Galaxy Cluster"></div>
-<div class="box-content"><h3>Cold Front Detection</h3><p>Working on building a semi-automated pipeline to identify cold fronts in galaxy clusters leveraging CIAO and DS9 tools.</p><a href="https://cassa.site/entry/mimic/" class="btn-beyond-outline">View Project</a></div>
-</div>
-
-</div>
+  <div class="research-initiative-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;margin-bottom:5rem;">
+    <div class="research-box">
+      <div class="box-image-wrap"><img src="https://i.postimg.cc/3x3Lkdp1/Screenshot-2026-01-31-045104.png" alt="Optics"></div>
+      <div class="box-content"><h3>PSF Modeling</h3><p>Developing fully automated Point Spread Function models to correct optical distortions for Intracluster Light (ICL) detection.</p><a href="https://github.com/Radit-Raian/PSF_dev" class="btn-beyond-outline">View Project</a></div>
+    </div>
+    <div class="research-box">
+      <div class="box-image-wrap"><img src="https://i.postimg.cc/bvpjNyNY/Screenshot-2026-01-31-050448.png" alt="Supernova"></div>
+      <div class="box-content"><h3>Supernova Spectra</h3><p>Working with the type Ia supernovae spectral analysis to query velocity and pseudo-equivalent width features using Spextractor.</p><a href="https://github.com/Radit-Raian/SpectralAnalysis_SNe" class="btn-beyond-outline">View Project</a></div>
+    </div>
+    <div class="research-box">
+      <div class="box-image-wrap"><img src="https://i.postimg.cc/J0bqnLhs/Screenshot-2026-01-31-045251.png" alt="Galaxy Cluster"></div>
+      <div class="box-content"><h3>Cold Front Detection</h3><p>Working on building a semi-automated pipeline to identify cold fronts in galaxy clusters leveraging CIAO and DS9 tools.</p><a href="https://cassa.site/entry/mimic/" class="btn-beyond-outline">View Project</a></div>
+    </div>
+  </div>
 </section>
 
-  <div class="section-header-center" style="text-align:center; margin-bottom:5rem;">
-    <h2 class="section-title" style="font-family:'Segoe UI',serif; font-size:2rem; color:#fff;">Research Affiliations</h2>
-    <div class="hero-underline" style="width:50rem; height:0.1rem; background:#b59b6d; margin-top:4rem auto;"></div>
-  </div>
-
+<!-- ===== RESEARCH AFFILIATIONS ===== -->
+<div class="section-header-center" style="text-align:center; margin-bottom:5rem;">
+  <h2 class="section-title" style="font-family:'Segoe UI',serif; font-size:2rem; color:#fff;">Research Affiliations</h2>
+  <div class="hero-underline" style="width:50rem; height:0.1rem; background:#b59b6d; margin-top:4rem auto;"></div>
+</div>
 <section class="aesthetic-portfolio-box">
-
-  
   <div class="appointment-card">
     <div class="appointment-visual">
       <img src="https://i.postimg.cc/d0KBD8zG/images-(1).png" alt="Research at CASSA" class="ratio-16-9">
       <div class="status-indicator">Active</div>
     </div>
-    
     <div class="appointment-details">
       <div class="header-row">
         <h3 class="position-name">Research Intern</h3>
@@ -296,230 +500,298 @@ body, main, section { background: transparent !important; }
       </div>
       <h4 class="institution-name">Center for Astronomy, Space Science and Astrophysics (CASSA), IUB, Dhaka</h4>
       <p class="appointment-description">
-        PROJECT 01: Mining Minihalos in the Clusters of Galaxies (MiMiC) <br>
+        PROJECT 01: Mining Minihalos in the Clusters of Galaxies (MiMiC)<br>
         PROJECT 02: Spectral Analysis of Type Ia Supernovae
       </p>
     </div>
-  </div> 
-
+  </div>
 </section>
 
-<br><br><br><br><br><br><br><br><br>
 
-<section id="achievements" class="active" style="background: transparent !important; padding-top: 2rem !important;">
+<!-- ===== LUMIN DIARIES ===== -->
+<section id="featured-research" class="active" style="background:transparent !important; padding-top:2rem !important;">
+  <div class="section-header-center" style="text-align:center; margin-bottom:5rem;">
+    <h2 class="section-title" style="font-family:'Segoe UI',serif; font-size:2rem; color:#fff;">Lumin Diaries</h2>
+    <div class="hero-underline" style="width:50rem; height:0.1rem; background:#b59b6d; margin-top:4rem auto;"></div>
+  </div>
+
+  <div class="lumin-layout">
+
+    <!-- LEFT — Cinematic Description -->
+    <div class="lumin-desc">
+      <span class="lumin-eyebrow">Through the Eyepiece</span>
+      <h3 class="lumin-headline">Frames from the&nbsp;Edge of&nbsp;Infinity</h3>
+      <p class="lumin-tagline">"Every photon here has traveled longer than memory."</p>
+      <p class="lumin-body">
+        These are not photographs — they are time machines. Light captured from stellar nurseries, dark towers of dust, and blooms of ionized hydrogen that predate every civilization on Earth. Each frame in Lumin Diaries is a quiet reminder that the universe has been writing poetry long before we learned to read it.
+      </p>
+      <p class="lumin-body">
+        Some of these nebulae will dissolve in five million years. Others are still mid-breath, collapsing into stars. All of them were there before us — and all of them will outlast us.
+      </p>
+      <div class="lumin-rule"></div>
+    </div>
+
+    <!-- RIGHT — Carousel -->
+    <div>
+      <div id="ld-outer">
+        <button class="ld-nav prev" id="ld-prev">&#8592;</button>
+        <button class="ld-nav next" id="ld-next">&#8594;</button>
+
+        <div id="ld-box">
+
+          <!-- Slide 1 -->
+          <div class="ld-slide active">
+            <img src="photographs/SH101.jpg" alt="Tulip Nebula">
+            <div class="ld-ov"></div>
+            <div class="ld-top">
+              <div class="ld-hd">
+                <span class="ld-num">01 / 05</span>
+                <span class="ld-brand">Lumin Diaries</span>
+              </div>
+              <div>
+                <div class="ld-tag">Sh2-101 &middot; Cygnus &middot; 6,000 ly</div>
+                <div class="ld-name">The Tulip Nebula</div>
+                <div class="ld-poem">Hydrogen and oxygen drew a flower in the dark, long before the first tulip ever bloomed on Earth.</div>
+                <span class="ld-fact">Emission Nebula &middot; Stellar Winds</span>
+              </div>
+            </div>
+            <div class="ld-frame"></div>
+            <div class="ld-c tl"></div><div class="ld-c tr"></div><div class="ld-c bl"></div><div class="ld-c br"></div>
+          </div>
+
+          <!-- Slide 2 -->
+          <div class="ld-slide">
+            <img src="photographs/IC1396.jpg" alt="Elephant Trunk Nebula">
+            <div class="ld-ov"></div>
+            <div class="ld-top">
+              <div class="ld-hd">
+                <span class="ld-num">02 / 05</span>
+                <span class="ld-brand">Lumin Diaries</span>
+              </div>
+              <div>
+                <div class="ld-tag">IC 1396 &middot; Cepheus &middot; 2,400 ly</div>
+                <div class="ld-name">Elephant Trunk</div>
+                <div class="ld-poem">Carved by stellar winds over millions of years — a nursery still mid-breath inside the dark.</div>
+                <span class="ld-fact">Star Forming &middot; 20 ly long</span>
+              </div>
+            </div>
+            <div class="ld-frame"></div>
+            <div class="ld-c tl"></div><div class="ld-c tr"></div><div class="ld-c bl"></div><div class="ld-c br"></div>
+          </div>
+
+          <!-- Slide 3 -->
+          <div class="ld-slide">
+            <img src="photographs/C49.jpg" alt="Rosette Nebula">
+            <div class="ld-ov"></div>
+            <div class="ld-top">
+              <div class="ld-hd">
+                <span class="ld-num">03 / 05</span>
+                <span class="ld-brand">Lumin Diaries</span>
+              </div>
+              <div>
+                <div class="ld-tag">NGC 2237 &middot; Monoceros &middot; 5,200 ly</div>
+                <div class="ld-name">The Rosette Nebula</div>
+                <div class="ld-poem">Wide enough to swallow 130 full moons — a rose no garden could ever grow.</div>
+                <span class="ld-fact">130 ly across &middot; 10,000 solar masses</span>
+              </div>
+            </div>
+            <div class="ld-frame"></div>
+            <div class="ld-c tl"></div><div class="ld-c tr"></div><div class="ld-c bl"></div><div class="ld-c br"></div>
+          </div>
+
+          <!-- Slide 4 -->
+          <div class="ld-slide">
+            <img src="photographs/M42.jpg" alt="Orion Nebula">
+            <div class="ld-ov"></div>
+            <div class="ld-top">
+              <div class="ld-hd">
+                <span class="ld-num">04 / 05</span>
+                <span class="ld-brand">Lumin Diaries</span>
+              </div>
+              <div>
+                <div class="ld-tag">M42 &middot; Orion &middot; 1,344 ly</div>
+                <div class="ld-name">The Orion Nebula</div>
+                <div class="ld-poem">A stellar nursery older than every civilization on Earth — 700 stars being born as you watch.</div>
+                <span class="ld-fact">700+ New Stars &middot; Naked Eye Object</span>
+              </div>
+            </div>
+            <div class="ld-frame"></div>
+            <div class="ld-c tl"></div><div class="ld-c tr"></div><div class="ld-c bl"></div><div class="ld-c br"></div>
+          </div>
+
+          <!-- Slide 5 -->
+          <div class="ld-slide">
+            <img src="photographs/B33.jpeg" alt="Horsehead Nebula">
+            <div class="ld-ov"></div>
+            <div class="ld-top">
+              <div class="ld-hd">
+                <span class="ld-num">05 / 05</span>
+                <span class="ld-brand">Lumin Diaries</span>
+              </div>
+              <div>
+                <div class="ld-tag">Barnard 33 &middot; Orion &middot; 1,375 ly</div>
+                <div class="ld-name">The Horsehead Nebula</div>
+                <div class="ld-poem">A silhouette carved by light itself — it will dissolve into the cosmos in five million years.</div>
+                <span class="ld-fact">Dark Nebula &middot; ~5M yrs remaining</span>
+              </div>
+            </div>
+            <div class="ld-frame"></div>
+            <div class="ld-c tl"></div><div class="ld-c tr"></div><div class="ld-c bl"></div><div class="ld-c br"></div>
+          </div>
+
+        </div><!-- #ld-box -->
+
+        <div id="ld-pb"><div id="ld-pf"></div></div>
+      </div><!-- #ld-outer -->
+
+      <div id="ld-dots">
+        <div class="ldd on"  style="width:22px;" onclick="ldGo(0)"></div>
+        <div class="ldd"     style="width:4px;"  onclick="ldGo(1)"></div>
+        <div class="ldd"     style="width:4px;"  onclick="ldGo(2)"></div>
+        <div class="ldd"     style="width:4px;"  onclick="ldGo(3)"></div>
+        <div class="ldd"     style="width:4px;"  onclick="ldGo(4)"></div>
+      </div>
+    </div><!-- right column -->
+
+  </div><!-- .lumin-layout -->
+</section>
+<!-- ===== END LUMIN DIARIES ===== -->
+
+<!-- ===== SPECIAL MOMENTS ===== -->
+<section id="achievements" class="active" style="background:transparent !important; padding-top:2rem !important;">
   <div class="section-header-center" style="text-align:center; margin-bottom:5rem;">
     <h2 class="section-title" style="font-family:'Segoe UI',serif; font-size:2rem; color:#fff;">Special Moments</h2>
     <div class="hero-underline" style="width:50rem; height:0.1rem; background:#b59b6d; margin-top:4rem auto;"></div>
   </div>
 
-<div class="narrative-card" style="
-    display: flex; 
-    flex-wrap: wrap; 
-    border-radius: 1rem; 
-    overflow: hidden; 
-    margin: 0 auto 4rem auto; 
-    max-width: 40rem; 
-    height: auto !important;
-    border: 0.125rem solid rgba(181, 155, 109, 0.6) !important;
-    box-shadow: 0 0 1.56rem rgba(181, 155, 109, 0.2);
-    background: radial-gradient(circle at center, rgba(154, 124, 73, 0.12) 0%, rgba(15, 23, 42, 0.85) 100%) !important;
-    backdrop-filter: blur(0.9rem);
-    -webkit-backdrop-filter: blur(0.9rem);
-    position: relative;"> <div class="story-image-wrap" style="flex: 1 1 18rem; max-width: 25rem; line-height: 0;">
-    <img src="https://i.postimg.cc/9QkD2M72/owao-2.jpg" alt="OWAO 2025" style="width: 100%; height: 100%; object-fit: cover;">
-  </div>
-  
-  <div class="story-details" style="flex: 1 1 18rem; padding: 2.5rem; display: flex; flex-direction: column; justify-content: center; background: transparent !important; position: relative;">
-    <span class="story-date" style="font-size: 0.75rem; color: #b45309; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15rem; margin-bottom: 0.5rem;">
-      September 20-27, 2025
-    </span>
-    <h3 style="font-family: 'Cinzel', serif; font-size: 1.3rem; color: #fef3c7; margin-bottom: 1rem;">
-      Days with Sirius at 43.6° North
-    </h3>
-    <p style="font-family: 'EB Garamond', serif; font-size: 1.1rem; color: #cbd5e1; line-height: 1.6; font-style: italic; margin-bottom: 3rem;">
-      For the first time, I carried Bangladesh beyond its borders in a quiet responsibility that weighed and inspired all at once at the Open World Astronomy Olympiad 2025. Home was 5500 kilometers away, yet every calculation, every carefully written answer felt tethered to it, as if distance could never sever that connection. At 43.6° north, the nights were astonishingly clear and unfamiliar, each star speaking in a language I had only just begun to understand. Sirius burned brighter than ever, not merely a point of light, but a companion through endless hours of thought, doubt, and discovery. Truly, "The sky was not the limit there."
-    </p>
-    
-    <div style="position: absolute; bottom: 2.5rem; left: 2.5rem; height: 0.125rem; width: 1.875rem; background: #b59b6d; opacity: 0.6;"></div>
-
-    <div style="position: absolute; bottom: 2rem; right: 2.5rem;">
-      <a href="achievements.html" style="
-        font-family: 'Orbitron', sans-serif;
-        font-size: 0.75rem;
-        font-weight: 500;
-        color: #fef3c7;
-        text-decoration: none;
-        letter-spacing: 0.1rem;
-        border: 1px solid #b59b6d;
-        padding: 0.5rem 1.2rem;
-        border-radius: 2rem;
-        transition: all 0.3s ease;
-        background: rgba(181, 155, 109, 0.1);
-        display: inline-block;">
-        READ MORE <i class="fa-solid fa-chevron-right" style="font-size: 0.6rem; margin-left: 0.4rem;"></i>
-      </a>
+  <!-- Card 1 -->
+  <div class="narrative-card" style="display:flex;flex-wrap:wrap;border-radius:1rem;overflow:hidden;margin:0 auto 4rem auto;max-width:40rem;height:auto !important;border:0.125rem solid rgba(181,155,109,0.6) !important;box-shadow:0 0 1.56rem rgba(181,155,109,0.2);background:radial-gradient(circle at center,rgba(154,124,73,0.12) 0%,rgba(15,23,42,0.85) 100%) !important;backdrop-filter:blur(0.9rem);-webkit-backdrop-filter:blur(0.9rem);position:relative;">
+    <div class="story-image-wrap" style="flex:1 1 18rem;max-width:25rem;line-height:0;">
+      <img src="https://i.postimg.cc/9QkD2M72/owao-2.jpg" alt="OWAO 2025" style="width:100%;height:100%;object-fit:cover;">
+    </div>
+    <div class="story-details" style="flex:1 1 18rem;padding:2.5rem;display:flex;flex-direction:column;justify-content:center;background:transparent !important;position:relative;">
+      <span class="story-date" style="font-size:0.75rem;color:#b45309;font-weight:700;text-transform:uppercase;letter-spacing:0.15rem;margin-bottom:0.5rem;">September 20–27, 2025</span>
+      <h3 style="font-family:'Cinzel',serif;font-size:1.3rem;color:#fef3c7;margin-bottom:1rem;">Days with Sirius at 43.6° North</h3>
+      <p style="font-family:'EB Garamond',serif;font-size:1.1rem;color:#cbd5e1;line-height:1.6;font-style:italic;margin-bottom:3rem;">
+        For the first time, I carried Bangladesh beyond its borders in a quiet responsibility that weighed and inspired all at once at the Open World Astronomy Olympiad 2025. Home was 5500 kilometers away, yet every calculation, every carefully written answer felt tethered to it, as if distance could never sever that connection. At 43.6° north, the nights were astonishingly clear and unfamiliar, each star speaking in a language I had only just begun to understand. Sirius burned brighter than ever, not merely a point of light, but a companion through endless hours of thought, doubt, and discovery. Truly, "The sky was not the limit there."
+      </p>
+      <div style="position:absolute;bottom:2.5rem;left:2.5rem;height:0.125rem;width:1.875rem;background:#b59b6d;opacity:0.6;"></div>
+      <div style="position:absolute;bottom:2rem;right:2.5rem;">
+        <a href="achievements.html" style="font-family:'Orbitron',sans-serif;font-size:0.75rem;font-weight:500;color:#fef3c7;text-decoration:none;letter-spacing:0.1rem;border:1px solid #b59b6d;padding:0.5rem 1.2rem;border-radius:2rem;transition:all 0.3s ease;background:rgba(181,155,109,0.1);display:inline-block;">READ MORE ›</a>
+      </div>
     </div>
   </div>
-</div>
-  </div>
 
-<div class="narrative-card" style="
-    display: flex; 
-    flex-wrap: wrap; 
-    border-radius: 1rem; 
-    overflow: hidden; 
-    margin: 0 auto 4rem auto; 
-    max-width: 40rem; 
-    height: auto !important;
-    border: 0.125rem solid rgba(181, 155, 109, 0.6) !important;
-    box-shadow: 0 0 1.56rem rgba(181, 155, 109, 0.2);
-    background: radial-gradient(circle at center, rgba(154, 124, 73, 0.12) 0%, rgba(15, 23, 42, 0.85) 100%) !important;
-    backdrop-filter: blur(0.9rem);
-    -webkit-backdrop-filter: blur(0.9rem);
-    position: relative;"> <div class="story-image-wrap" style="flex: 1 1 18rem; max-width: 25rem; line-height: 0;">
-    <img src="https://i.postimg.cc/7hdZjQny/471806078-1596412354345994-6105450299167835705-n.jpg" alt="OWAO 2025" style="width: 100%; height: 100%; object-fit: cover;">
-  </div>
-  
-  <div class="story-details" style="flex: 1 1 18rem; padding: 2.5rem; display: flex; flex-direction: column; justify-content: center; background: transparent !important; position: relative;">
-    <span class="story-date" style="font-size: 0.75rem; color: #b45309; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15rem; margin-bottom: 0.5rem;">
-      2017-2024
-    </span>
-    <h3 style="font-family: 'Cinzel', serif; font-size: 1.3rem; color: #fef3c7; margin-bottom: 1rem;">
-      A Journey to the &infin; Through the Fun of Numbers </h3>
-
-    <p style="font-family: 'EB Garamond', serif; font-size: 1.1rem; color: #cbd5e1; line-height: 1.6; font-style: italic; margin-bottom: 3rem;">
-      It began softly, just me, paper, and an endless curiosity that felt bigger than the world. I didn’t know then that mathematics would become a second home, a place where ideas and dreams could take shape. With my first camp call, the journey grew seasons measured not by calendars, but by the heartbeat of camps and shared moments. Those heavenly days were alive with proofs by day and laughter by night. Along with these, grand night movie screenings, endless Mafia and Werewolf rounds, Mini Militia battles, quiet chess games, and smiles that spoke louder than words. What stays with me most are days that still glow in memory like distant stars.
-    </p>
-    
-    <div style="position: absolute; bottom: 2.5rem; left: 2.5rem; height: 0.125rem; width: 1.875rem; background: #b59b6d; opacity: 0.6;"></div>
-
-    <div style="position: absolute; bottom: 2rem; right: 2.5rem;">
-      <a href="achievements.html" style="
-        font-family: 'Orbitron', sans-serif;
-        font-size: 0.75rem;
-        font-weight: 500;
-        color: #fef3c7;
-        text-decoration: none;
-        letter-spacing: 0.1rem;
-        border: 1px solid #b59b6d;
-        padding: 0.5rem 1.2rem;
-        border-radius: 2rem;
-        transition: all 0.3s ease;
-        background: rgba(181, 155, 109, 0.1);
-        display: inline-block;">
-        READ MORE <i class="fa-solid fa-chevron-right" style="font-size: 0.6rem; margin-left: 0.4rem;"></i>
-      </a>
+  <!-- Card 2 -->
+  <div class="narrative-card" style="display:flex;flex-wrap:wrap;border-radius:1rem;overflow:hidden;margin:0 auto 4rem auto;max-width:40rem;height:auto !important;border:0.125rem solid rgba(181,155,109,0.6) !important;box-shadow:0 0 1.56rem rgba(181,155,109,0.2);background:radial-gradient(circle at center,rgba(154,124,73,0.12) 0%,rgba(15,23,42,0.85) 100%) !important;backdrop-filter:blur(0.9rem);-webkit-backdrop-filter:blur(0.9rem);position:relative;">
+    <div class="story-image-wrap" style="flex:1 1 18rem;max-width:25rem;line-height:0;">
+      <img src="https://i.postimg.cc/7hdZjQny/471806078-1596412354345994-6105450299167835705-n.jpg" alt="Math Olympiad" style="width:100%;height:100%;object-fit:cover;">
+    </div>
+    <div class="story-details" style="flex:1 1 18rem;padding:2.5rem;display:flex;flex-direction:column;justify-content:center;background:transparent !important;position:relative;">
+      <span class="story-date" style="font-size:0.75rem;color:#b45309;font-weight:700;text-transform:uppercase;letter-spacing:0.15rem;margin-bottom:0.5rem;">2017–2024</span>
+      <h3 style="font-family:'Cinzel',serif;font-size:1.3rem;color:#fef3c7;margin-bottom:1rem;">A Journey to the ∞ Through the Fun of Numbers</h3>
+      <p style="font-family:'EB Garamond',serif;font-size:1.1rem;color:#cbd5e1;line-height:1.6;font-style:italic;margin-bottom:3rem;">
+        It began softly, just me, paper, and an endless curiosity that felt bigger than the world. I didn't know then that mathematics would become a second home, a place where ideas and dreams could take shape. With my first camp call, the journey grew — seasons measured not by calendars, but by the heartbeat of camps and shared moments. Those heavenly days were alive with proofs by day and laughter by night. Along with these, grand night movie screenings, endless Mafia and Werewolf rounds, Mini Militia battles, quiet chess games, and smiles that spoke louder than words. What stays with me most are days that still glow in memory like distant stars.
+      </p>
+      <div style="position:absolute;bottom:2.5rem;left:2.5rem;height:0.125rem;width:1.875rem;background:#b59b6d;opacity:0.6;"></div>
+      <div style="position:absolute;bottom:2rem;right:2.5rem;">
+        <a href="achievements.html" style="font-family:'Orbitron',sans-serif;font-size:0.75rem;font-weight:500;color:#fef3c7;text-decoration:none;letter-spacing:0.1rem;border:1px solid #b59b6d;padding:0.5rem 1.2rem;border-radius:2rem;transition:all 0.3s ease;background:rgba(181,155,109,0.1);display:inline-block;">READ MORE ›</a>
+      </div>
     </div>
   </div>
-</div>
-  </div>
 
-
-  <div class="narrative-card" style="
-    display: flex; 
-    flex-wrap: wrap; 
-    border-radius: 1rem; 
-    overflow: hidden; 
-    margin: 0 auto 4rem auto; 
-    max-width: 40rem; 
-    height: auto !important;
-    border: 0.125rem solid rgba(181, 155, 109, 0.6) !important;
-    box-shadow: 0 0 1.56rem rgba(181, 155, 109, 0.2);
-    background: radial-gradient(circle at center, rgba(154, 124, 73, 0.12) 0%, rgba(15, 23, 42, 0.85) 100%) !important;
-    backdrop-filter: blur(0.9rem);
-    -webkit-backdrop-filter: blur(0.9rem);
-    position: relative;"> <div class="story-image-wrap" style="flex: 1 1 18rem; max-width: 25rem; line-height: 0;">
-    <img src="https://i.postimg.cc/DZYGy6c0/470484528-1588928355094394-6541647214098684680-n.jpg" alt="OWAO 2025" style="width: 100%; height: 100%; object-fit: cover;">
-  </div>
-  
-  <div class="story-details" style="flex: 1 1 18rem; padding: 2.5rem; display: flex; flex-direction: column; justify-content: center; background: transparent !important; position: relative;">
-    <span class="story-date" style="font-size: 0.75rem; color: #b45309; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15rem; margin-bottom: 0.5rem;">
-      2019-2024
-    </span>
-    <h3 style="font-family: 'Cinzel', serif; font-size: 1.3rem; color: #fef3c7; margin-bottom: 1rem;">
-      The Legacy Never Dies
-    </h3>
-    <p style="font-family: 'EB Garamond', serif; font-size: 1.1rem; color: #cbd5e1; line-height: 1.6; font-style: italic; margin-bottom: 3rem;">
-      Debating was a way to raise voices and shape ideas. Our school carried a long, proud legacy in debating, but for seven years the national trophy eluded us. Finally, we erased that drought. I still remember being the most junior participant, just in class six, standing on the national stage in front of over hundreds of lights and a bunch of cameras in BTV. The moment I delivered my speech was unforgettable, a mix of fear, pride, and exhilaration. Years later, as president, I nurtured a new group of debaters, grooming them to carry the legacy forward and ensuring the voice would never fade away from the next generations.
-    
-    <div style="position: absolute; bottom: 2.5rem; left: 2.5rem; height: 0.125rem; width: 1.875rem; background: #b59b6d; opacity: 0.6;"></div>
-
-    <div style="position: absolute; bottom: 2rem; right: 2.5rem;">
-      <a href="achievements.html" style="
-        font-family: 'Orbitron', sans-serif;
-        font-size: 0.75rem;
-        font-weight: 500;
-        color: #fef3c7;
-        text-decoration: none;
-        letter-spacing: 0.1rem;
-        border: 1px solid #b59b6d;
-        padding: 0.5rem 1.2rem;
-        border-radius: 2rem;
-        transition: all 0.3s ease;
-        background: rgba(181, 155, 109, 0.1);
-        display: inline-block;">
-        READ MORE <i class="fa-solid fa-chevron-right" style="font-size: 0.6rem; margin-left: 0.4rem;"></i>
-      </a>
+  <!-- Card 3 -->
+  <div class="narrative-card" style="display:flex;flex-wrap:wrap;border-radius:1rem;overflow:hidden;margin:0 auto 4rem auto;max-width:40rem;height:auto !important;border:0.125rem solid rgba(181,155,109,0.6) !important;box-shadow:0 0 1.56rem rgba(181,155,109,0.2);background:radial-gradient(circle at center,rgba(154,124,73,0.12) 0%,rgba(15,23,42,0.85) 100%) !important;backdrop-filter:blur(0.9rem);-webkit-backdrop-filter:blur(0.9rem);position:relative;">
+    <div class="story-image-wrap" style="flex:1 1 18rem;max-width:25rem;line-height:0;">
+      <img src="https://i.postimg.cc/DZYGy6c0/470484528-1588928355094394-6541647214098684680-n.jpg" alt="Debate" style="width:100%;height:100%;object-fit:cover;">
+    </div>
+    <div class="story-details" style="flex:1 1 18rem;padding:2.5rem;display:flex;flex-direction:column;justify-content:center;background:transparent !important;position:relative;">
+      <span class="story-date" style="font-size:0.75rem;color:#b45309;font-weight:700;text-transform:uppercase;letter-spacing:0.15rem;margin-bottom:0.5rem;">2019–2024</span>
+      <h3 style="font-family:'Cinzel',serif;font-size:1.3rem;color:#fef3c7;margin-bottom:1rem;">The Legacy Never Dies</h3>
+      <p style="font-family:'EB Garamond',serif;font-size:1.1rem;color:#cbd5e1;line-height:1.6;font-style:italic;margin-bottom:3rem;">
+        Debating was a way to raise voices and shape ideas. Our school carried a long, proud legacy in debating, but for seven years the national trophy eluded us. Finally, we erased that drought. I still remember being the most junior participant, just in class six, standing on the national stage in front of hundreds of lights and cameras in BTV. The moment I delivered my speech was unforgettable — a mix of fear, pride, and exhilaration. Years later, as president, I nurtured a new group of debaters, grooming them to carry the legacy forward and ensuring the voice would never fade away from the next generations.
+      </p>
+      <div style="position:absolute;bottom:2.5rem;left:2.5rem;height:0.125rem;width:1.875rem;background:#b59b6d;opacity:0.6;"></div>
+      <div style="position:absolute;bottom:2rem;right:2.5rem;">
+        <a href="achievements.html" style="font-family:'Orbitron',sans-serif;font-size:0.75rem;font-weight:500;color:#fef3c7;text-decoration:none;letter-spacing:0.1rem;border:1px solid #b59b6d;padding:0.5rem 1.2rem;border-radius:2rem;transition:all 0.3s ease;background:rgba(181,155,109,0.1);display:inline-block;">READ MORE ›</a>
+      </div>
     </div>
   </div>
-</div>
-  </div>
 
-    <div class="narrative-card" style="
-    display: flex; 
-    flex-wrap: wrap; 
-    border-radius: 1rem; 
-    overflow: hidden; 
-    margin: 0 auto 4rem auto; 
-    max-width: 40rem; 
-    height: auto !important;
-    border: 0.125rem solid rgba(181, 155, 109, 0.6) !important;
-    box-shadow: 0 0 1.56rem rgba(181, 155, 109, 0.2);
-    background: radial-gradient(circle at center, rgba(154, 124, 73, 0.12) 0%, rgba(15, 23, 42, 0.85) 100%) !important;
-    backdrop-filter: blur(0.9rem);
-    -webkit-backdrop-filter: blur(0.9rem);
-    position: relative;"> <div class="story-image-wrap" style="flex: 1 1 18rem; max-width: 25rem; line-height: 0;">
-    <img src="https://i.postimg.cc/BvfGLPg8/cassa-495x400.webp" alt="OWAO 2025" style="width: 100%; height: 100%; object-fit: cover;">
-
-  </div>
-  
-  <div class="story-details" style="flex: 1 1 18rem; padding: 2.5rem; display: flex; flex-direction: column; justify-content: center; background: transparent !important; position: relative;">
-    <span class="story-date" style="font-size: 0.75rem; color: #b45309; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15rem; margin-bottom: 0.5rem;">
-      October 2025- Current
-    </span>
-    <h3 style="font-family: 'Cinzel', serif; font-size: 1.3rem; color: #fef3c7; margin-bottom: 1rem;">
-      Touching the Stars from Home 
-    </h3>
-    <p style="font-family: 'EB Garamond', serif; font-size: 1.1rem; color: #cbd5e1; line-height: 1.6; font-style: italic; margin-bottom: 3rem;">
-      Every Olympiad student dreams of seeing their ideas breathe in the real world, but in astronomy, the path in Bangladesh is often uphill. Resources are scarce, and opportunities rarer still. CASSA, the only astronomy and astrophysics research center in the country, seemed almost untouchable as most of its projects welcome undergraduates or graduate students, not high schoolers. Yet, somehow, I was in. Auditing AST 403: Galaxies and the Intergalactic Medium, working alongside brilliant seniors, learning to shape raw curiosity into real research became one of the proudest moments of my life. For the first time, the universe I had read about in books felt tangible, waiting for my hands to touch it.
-    
-    <div style="position: absolute; bottom: 2.5rem; left: 2.5rem; height: 0.125rem; width: 1.875rem; background: #b59b6d; opacity: 0.6;"></div>
-
-    <div style="position: absolute; bottom: 2rem; right: 2.5rem;">
-      <a href="achievements.html" style="
-        font-family: 'Orbitron', sans-serif;
-        font-size: 0.75rem;
-        font-weight: 500;
-        color: #fef3c7;
-        text-decoration: none;
-        letter-spacing: 0.1rem;
-        border: 1px solid #b59b6d;
-        padding: 0.5rem 1.2rem;
-        border-radius: 2rem;
-        transition: all 0.3s ease;
-        background: rgba(181, 155, 109, 0.1);
-        display: inline-block;">
-        READ MORE <i class="fa-solid fa-chevron-right" style="font-size: 0.6rem; margin-left: 0.4rem;"></i>
-      </a>
+  <!-- Card 4 -->
+  <div class="narrative-card" style="display:flex;flex-wrap:wrap;border-radius:1rem;overflow:hidden;margin:0 auto 4rem auto;max-width:40rem;height:auto !important;border:0.125rem solid rgba(181,155,109,0.6) !important;box-shadow:0 0 1.56rem rgba(181,155,109,0.2);background:radial-gradient(circle at center,rgba(154,124,73,0.12) 0%,rgba(15,23,42,0.85) 100%) !important;backdrop-filter:blur(0.9rem);-webkit-backdrop-filter:blur(0.9rem);position:relative;">
+    <div class="story-image-wrap" style="flex:1 1 18rem;max-width:25rem;line-height:0;">
+      <img src="https://i.postimg.cc/BvfGLPg8/cassa-495x400.webp" alt="CASSA" style="width:100%;height:100%;object-fit:cover;">
+    </div>
+    <div class="story-details" style="flex:1 1 18rem;padding:2.5rem;display:flex;flex-direction:column;justify-content:center;background:transparent !important;position:relative;">
+      <span class="story-date" style="font-size:0.75rem;color:#b45309;font-weight:700;text-transform:uppercase;letter-spacing:0.15rem;margin-bottom:0.5rem;">October 2025 – Current</span>
+      <h3 style="font-family:'Cinzel',serif;font-size:1.3rem;color:#fef3c7;margin-bottom:1rem;">Touching the Stars from Home</h3>
+      <p style="font-family:'EB Garamond',serif;font-size:1.1rem;color:#cbd5e1;line-height:1.6;font-style:italic;margin-bottom:3rem;">
+        Every Olympiad student dreams of seeing their ideas breathe in the real world, but in astronomy, the path in Bangladesh is often uphill. Resources are scarce, and opportunities rarer still. CASSA, the only astronomy and astrophysics research center in the country, seemed almost untouchable — most of its projects welcome undergraduates or graduate students, not high schoolers. Yet, somehow, I was in. Auditing AST 403: Galaxies and the Intergalactic Medium, working alongside brilliant seniors, learning to shape raw curiosity into real research became one of the proudest moments of my life. For the first time, the universe I had read about in books felt tangible, waiting for my hands to touch it.
+      </p>
+      <div style="position:absolute;bottom:2.5rem;left:2.5rem;height:0.125rem;width:1.875rem;background:#b59b6d;opacity:0.6;"></div>
+      <div style="position:absolute;bottom:2rem;right:2.5rem;">
+        <a href="achievements.html" style="font-family:'Orbitron',sans-serif;font-size:0.75rem;font-weight:500;color:#fef3c7;text-decoration:none;letter-spacing:0.1rem;border:1px solid #b59b6d;padding:0.5rem 1.2rem;border-radius:2rem;transition:all 0.3s ease;background:rgba(181,155,109,0.1);display:inline-block;">READ MORE ›</a>
+      </div>
     </div>
   </div>
-</div>
-  </div>
-
 
 </section>
 </main>
+
 <footer>© 2026 Radit Raian | All rights reserved</footer>
+
 <script src="script.js" defer></script>
+
+<!-- ===== LUMIN DIARIES CAROUSEL — self-contained, no dependency on script.js ===== -->
+<script>
+(function () {
+  const TOTAL = 5;
+  let cur = 0;
+  let timer;
+
+  const slides = document.querySelectorAll('.ld-slide');
+  const dots   = document.querySelectorAll('.ldd');
+  const pf     = document.getElementById('ld-pf');
+
+  function ldGo(n) {
+    slides[cur].classList.remove('active');
+    dots[cur].classList.remove('on');
+    dots[cur].style.width = '4px';
+
+    cur = (n + TOTAL) % TOTAL;
+
+    slides[cur].classList.add('active');
+    dots[cur].classList.add('on');
+    dots[cur].style.width = '22px';
+
+    if (pf) pf.style.width = ((cur + 1) / TOTAL * 100) + '%';
+  }
+
+  // Expose globally so onclick="ldGo(n)" in HTML still works
+  window.ldGo = ldGo;
+
+  document.getElementById('ld-prev').addEventListener('click', function () {
+    ldGo(cur - 1);
+    resetTimer();
+  });
+  document.getElementById('ld-next').addEventListener('click', function () {
+    ldGo(cur + 1);
+    resetTimer();
+  });
+
+  // Dot clicks already call window.ldGo() via onclick attribute
+
+  function autoPlay() { ldGo(cur + 1); }
+  function resetTimer() { clearInterval(timer); timer = setInterval(autoPlay, 5000); }
+
+  // Init progress bar
+  if (pf) pf.style.width = (1 / TOTAL * 100) + '%';
+
+  // Start autoplay
+  timer = setInterval(autoPlay, 5000);
+})();
+</script>
+
 </body>
 </html>
