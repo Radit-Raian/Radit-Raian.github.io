@@ -186,3 +186,42 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+/* ==========================================================================
+   HAMBURGER MENU — works on every page, no body scroll lock
+   ========================================================================== */
+document.addEventListener('DOMContentLoaded', function () {
+  var toggle  = document.getElementById('nav-toggle');
+  var navList = document.getElementById('nav-list');
+  var overlay = document.getElementById('nav-overlay');
+  if (!toggle || !navList || !overlay) return;
+
+  function openMenu() {
+    navList.classList.add('open');
+    overlay.classList.add('open');
+    toggle.classList.add('open');
+    /* NO body overflow lock — it cancels link taps on iOS/Android */
+  }
+
+  function closeMenu() {
+    navList.classList.remove('open');
+    overlay.classList.remove('open');
+    toggle.classList.remove('open');
+  }
+
+  toggle.addEventListener('click', function (e) {
+    e.stopPropagation();
+    navList.classList.contains('open') ? closeMenu() : openMenu();
+  });
+
+  overlay.addEventListener('click', closeMenu);
+  overlay.addEventListener('touchend', function(e) {
+    e.preventDefault();
+    closeMenu();
+  });
+
+  /* ZERO event listeners on nav-links.
+     Any DOM mutation during a tap (closeMenu, overflow change)
+     cancels the navigation on iOS Safari and Android Chrome.
+     The <a href="page.html"> tags navigate completely on their own. */
+});

@@ -2875,3 +2875,133 @@ section.active {
   }
 
 }
+
+/* ==========================================================================
+   HAMBURGER NAV — single source of truth in styles.css
+   ========================================================================== */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.6rem;
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 10000;
+}
+.nav-hamburger span {
+  display: block;
+  width: 26px;
+  height: 2px;
+  background: #b59b6d;
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease, background 0.3s ease;
+}
+.nav-hamburger:hover span { background: #e8c97e; }
+.nav-hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+/* Overlay — dims background but pointer-events ONLY on the dim area, not the nav panel */
+.nav-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 9998;
+  /* Do NOT set pointer-events:none — we need it to close on tap */
+}
+.nav-overlay.open { display: block; }
+
+@media (max-width: 768px) {
+  .nav-hamburger { display: flex !important; }
+
+  header.top-panel {
+    height: 0 !important;
+    min-height: 0 !important;
+    background: transparent !important;
+    border-bottom: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: none !important;
+    overflow: visible !important;
+  }
+
+  #nav-list {
+    /* Hidden by default — position:fixed so it escapes header height:0 */
+    display: none !important;
+    position: fixed !important;
+    top: 0 !important;
+    right: 0 !important;
+    left: auto !important;
+    width: 72vw !important;
+    max-width: 280px !important;
+    height: 100vh !important;
+    background: rgba(6,5,3,0.97) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border-left: 1px solid rgba(181,155,109,0.3) !important;
+    padding: 5rem 0 2rem !important;
+    flex-direction: column !important;
+    gap: 0 !important;
+    z-index: 9999 !important;
+    box-shadow: -8px 0 40px rgba(0,0,0,0.8) !important;
+    overflow-y: auto !important;
+    margin: 0 !important;
+    list-style: none !important;
+  }
+
+  #nav-list.open {
+    display: flex !important;
+  }
+
+  #nav-list li {
+    width: 100% !important;
+    border-bottom: 1px solid rgba(181,155,109,0.12) !important;
+    list-style: none !important;
+  }
+  #nav-list li:first-child {
+    border-top: 1px solid rgba(181,155,109,0.12) !important;
+  }
+
+  /* The links — large tap targets, no JS interference */
+  #nav-list .nav-link {
+    display: block !important;
+    padding: 1.2rem 1.8rem !important;
+    font-family: 'Orbitron', monospace !important;
+    font-size: 0.75rem !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.22em !important;
+    color: #8899aa !important;
+    text-decoration: none !important;
+    text-align: left !important;
+    background: transparent !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+    border-left: 3px solid transparent !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    transition: color 0.15s ease, background 0.15s ease, border-left-color 0.15s ease !important;
+    /* CRITICAL: ensure full-area tap target on mobile */
+    -webkit-tap-highlight-color: rgba(181,155,109,0.2) !important;
+  }
+
+  #nav-list .nav-link:hover,
+  #nav-list .nav-link:focus,
+  #nav-list .nav-link:active {
+    color: #e8c97e !important;
+    background: rgba(181,155,109,0.12) !important;
+    border-left-color: #b59b6d !important;
+  }
+
+  #nav-list .nav-link.active {
+    color: #b59b6d !important;
+    background: rgba(181,155,109,0.08) !important;
+    border-left-color: #b59b6d !important;
+  }
+}

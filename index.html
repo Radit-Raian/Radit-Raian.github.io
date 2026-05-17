@@ -982,7 +982,7 @@ body, main, section { background: transparent !important; }
 
 <footer>© 2026 Radit Raian | All rights reserved</footer>
 
-<script src="script.js" defer></script>
+<script src="script.js"></script>
 
 <!-- ===== LUMIN DIARIES CAROUSEL — self-contained, no dependency on script.js ===== -->
 <script>
@@ -1035,52 +1035,7 @@ body, main, section { background: transparent !important; }
 </script>
 
 
-<script>
-/* ===== Hamburger Menu ===== */
-(function(){
-  var toggle  = document.getElementById('nav-toggle');
-  var navList = document.getElementById('nav-list');
-  var overlay = document.getElementById('nav-overlay');
-  if(!toggle) return;
 
-  function openMenu(){
-    navList.classList.add('open');
-    overlay.classList.add('open');
-    toggle.classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeMenu(){
-    navList.classList.remove('open');
-    overlay.classList.remove('open');
-    toggle.classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
-  toggle.addEventListener('click', function(e){
-    e.stopPropagation();
-    navList.classList.contains('open') ? closeMenu() : openMenu();
-  });
-
-  overlay.addEventListener('click', closeMenu);
-
-  /* On link tap: close menu first, then let the browser navigate normally */
-  navList.querySelectorAll('.nav-link').forEach(function(link){
-    link.addEventListener('click', function(e){
-      var href = this.getAttribute('href');
-      closeMenu();
-      /* For internal anchors (#hero etc), smooth scroll after close */
-      if(href && href.startsWith('#')){
-        e.preventDefault();
-        setTimeout(function(){
-          var target = document.querySelector(href);
-          if(target) target.scrollIntoView({ behavior: 'smooth' });
-        }, 150);
-      }
-      /* For external pages (academics.html etc), browser navigates normally */
-    });
-  });
-})();
-</script>
 
 </body>
 </html>
