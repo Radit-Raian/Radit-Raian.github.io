@@ -139,6 +139,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const noResults = document.getElementById('noResults');
     const filterButtons = document.querySelectorAll('.filter-btn');
 
+    // Only run on studynotes page — exit silently on all other pages
+    if (!searchInput) return;
+
     // --- Unified Filter Logic Function ---
     const filterNotes = () => {
         const query = searchInput.value.toLowerCase();

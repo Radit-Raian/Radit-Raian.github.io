@@ -340,8 +340,12 @@
   .nav-hamburger { display: flex; }
 
   /* --- Nav list: hidden by default, slides in from right --- */
-  .nav-list {
+  #nav-list {
     display: none !important;
+  }
+
+  #nav-list.open {
+    display: flex !important;
     flex-direction: column !important;
     position: fixed !important;
     top: 0 !important;
@@ -362,22 +366,19 @@
     margin: 0 !important;
   }
 
-  .nav-list.open { display: flex !important; }
-
-  .nav-list li {
+  #nav-list li {
     width: 100% !important;
     list-style: none !important;
     border-bottom: 1px solid rgba(181,155,109,0.18) !important;
   }
 
-  .nav-list li:first-child {
+  #nav-list li:first-child {
     border-top: 1px solid rgba(181,155,109,0.18) !important;
   }
 
-  /* Remove bullet dots */
-  .nav-list li::marker { display: none; content: ''; }
+  #nav-list li::marker { display: none; content: ''; }
 
-  .nav-link {
+  #nav-list .nav-link {
     font-size: 0.78rem !important;
     display: block !important;
     padding: 1rem 1.5rem !important;
@@ -392,7 +393,8 @@
     text-decoration: none !important;
   }
 
-  .nav-link:hover, .nav-link.active {
+  #nav-list .nav-link:hover,
+  #nav-list .nav-link.active {
     color: #b59b6d !important;
     background: rgba(181,155,109,0.06) !important;
   }
@@ -501,9 +503,8 @@
 
   .appointment-visual img {
     width: 100% !important;
-    height: 200px !important;
-    object-fit: cover !important;
-    object-position: center top !important;
+    height: auto !important;
+    object-fit: contain !important;
     display: block !important;
   }
 
@@ -547,8 +548,7 @@
   /* --- Special Moments --- */
   .narrative-card {
     flex-direction: column !important;
-    max-width: 98% !important;
-    width: 98% !important;
+    max-width: 95% !important;
     margin-left: auto !important;
     margin-right: auto !important;
   }
@@ -556,30 +556,31 @@
   .story-image-wrap {
     max-width: 100% !important;
     width: 100% !important;
-    height: 200px !important;
+    height: 190px !important;
     overflow: hidden;
   }
 
   .story-image-wrap img {
     width: 100% !important;
-    height: 200px !important;
+    height: 190px !important;
     object-fit: cover !important;
   }
 
   .story-details {
-    padding: 1.2rem 1.4rem 4.5rem !important;
-    text-align: left !important;
-    align-items: flex-start !important;
+    padding: 1.1rem 1.2rem 4.5rem !important;
+    text-align: center !important;
+    align-items: center !important;
   }
 
-  /* Show full description — no clamping */
+  /* Clamp to 3 lines */
   .story-details p {
-    display: block !important;
-    -webkit-line-clamp: unset !important;
-    overflow: visible !important;
-    margin-bottom: 1rem !important;
-    font-size: 0.92rem !important;
-    line-height: 1.6 !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 3 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+    margin-bottom: 0 !important;
+    font-size: 0.88rem !important;
+    line-height: 1.5 !important;
   }
 
   .story-details > div[style*="position:absolute;bottom:2.5rem"] {
@@ -747,7 +748,7 @@ body, main, section { background: transparent !important; }
   </div>
 </section>
 
-<div style="display:block; height:3rem; min-height:3rem;"></div>
+<div style="display:block; height:8rem; min-height:8rem;"></div>
 <!-- ===== LUMIN DIARIES ===== -->
 <section id="featured-research" class="active" style="background:transparent !important; padding-top:2rem !important;">
   <div class="section-header-center" style="text-align:center; margin-bottom:5rem;">

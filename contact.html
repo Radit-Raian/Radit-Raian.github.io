@@ -16,7 +16,7 @@
   
   <link rel="stylesheet" href="styles.css">
 <style>
-/* ===== MOBILE HAMBURGER NAV ===== */
+/* ===== HAMBURGER BUTTON ===== */
 .nav-hamburger {
   display: none;
   flex-direction: column;
@@ -53,8 +53,10 @@
 .nav-overlay.open { display: block; }
 
 @media (max-width: 768px) {
-  .nav-hamburger { display: flex; }
+  /* Show hamburger */
+  .nav-hamburger { display: flex !important; }
 
+  /* Collapse header bar */
   header.top-panel {
     height: 0 !important;
     min-height: 0 !important;
@@ -66,8 +68,14 @@
     overflow: visible !important;
   }
 
-  .nav-list {
+  /* CRITICAL: force nav hidden by default — overrides styles.css display:flex */
+  #nav-list {
     display: none !important;
+  }
+
+  /* Slide-in panel when open */
+  #nav-list.open {
+    display: flex !important;
     flex-direction: column !important;
     position: fixed !important;
     top: 0 !important;
@@ -88,19 +96,17 @@
     margin: 0 !important;
   }
 
-  .nav-list.open { display: flex !important; }
-
-  .nav-list li {
+  #nav-list li {
     width: 100% !important;
     list-style: none !important;
     border-bottom: 1px solid rgba(181,155,109,0.18) !important;
   }
-  .nav-list li:first-child {
+  #nav-list li:first-child {
     border-top: 1px solid rgba(181,155,109,0.18) !important;
   }
-  .nav-list li::marker { display: none; content: ''; }
+  #nav-list li::marker { display: none; content: ''; }
 
-  .nav-link {
+  #nav-list .nav-link {
     font-size: 0.78rem !important;
     display: block !important;
     padding: 1rem 1.5rem !important;
@@ -114,7 +120,8 @@
     width: 100% !important;
     text-decoration: none !important;
   }
-  .nav-link:hover, .nav-link.active {
+  #nav-list .nav-link:hover,
+  #nav-list .nav-link.active {
     color: #b59b6d !important;
     background: rgba(181,155,109,0.06) !important;
   }
@@ -244,7 +251,7 @@
   var toggle  = document.getElementById('nav-toggle');
   var navList = document.getElementById('nav-list');
   var overlay = document.getElementById('nav-overlay');
-  if(!toggle) return;
+  if(!toggle || !navList) return;
 
   function openMenu(){
     navList.classList.add('open');
@@ -266,17 +273,19 @@
 
   overlay.addEventListener('click', closeMenu);
 
+  /* Let external links navigate normally — only intercept anchors */
   navList.querySelectorAll('.nav-link').forEach(function(link){
     link.addEventListener('click', function(e){
       var href = this.getAttribute('href');
-      closeMenu();
       if(href && href.startsWith('#')){
         e.preventDefault();
+        closeMenu();
         setTimeout(function(){
           var target = document.querySelector(href);
           if(target) target.scrollIntoView({ behavior: 'smooth' });
         }, 150);
       }
+      /* For .html pages: do NOT preventDefault — let browser navigate */
     });
   });
 })();
