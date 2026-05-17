@@ -501,8 +501,9 @@
 
   .appointment-visual img {
     width: 100% !important;
-    height: auto !important;
-    object-fit: contain !important;
+    height: 200px !important;
+    object-fit: cover !important;
+    object-position: center top !important;
     display: block !important;
   }
 
@@ -546,7 +547,8 @@
   /* --- Special Moments --- */
   .narrative-card {
     flex-direction: column !important;
-    max-width: 95% !important;
+    max-width: 98% !important;
+    width: 98% !important;
     margin-left: auto !important;
     margin-right: auto !important;
   }
@@ -554,31 +556,30 @@
   .story-image-wrap {
     max-width: 100% !important;
     width: 100% !important;
-    height: 190px !important;
+    height: 200px !important;
     overflow: hidden;
   }
 
   .story-image-wrap img {
     width: 100% !important;
-    height: 190px !important;
+    height: 200px !important;
     object-fit: cover !important;
   }
 
   .story-details {
-    padding: 1.1rem 1.2rem 4.5rem !important;
-    text-align: center !important;
-    align-items: center !important;
+    padding: 1.2rem 1.4rem 4.5rem !important;
+    text-align: left !important;
+    align-items: flex-start !important;
   }
 
-  /* Clamp to 3 lines */
+  /* Show full description — no clamping */
   .story-details p {
-    display: -webkit-box !important;
-    -webkit-line-clamp: 3 !important;
-    -webkit-box-orient: vertical !important;
-    overflow: hidden !important;
-    margin-bottom: 0 !important;
-    font-size: 0.88rem !important;
-    line-height: 1.5 !important;
+    display: block !important;
+    -webkit-line-clamp: unset !important;
+    overflow: visible !important;
+    margin-bottom: 1rem !important;
+    font-size: 0.92rem !important;
+    line-height: 1.6 !important;
   }
 
   .story-details > div[style*="position:absolute;bottom:2.5rem"] {
@@ -746,7 +747,7 @@ body, main, section { background: transparent !important; }
   </div>
 </section>
 
-<div style="display:block; height:8rem; min-height:8rem;"></div>
+<div style="display:block; height:3rem; min-height:3rem;"></div>
 <!-- ===== LUMIN DIARIES ===== -->
 <section id="featured-research" class="active" style="background:transparent !important; padding-top:2rem !important;">
   <div class="section-header-center" style="text-align:center; margin-bottom:5rem;">
