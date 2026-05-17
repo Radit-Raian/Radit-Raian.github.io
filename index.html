@@ -290,8 +290,8 @@
   cursor: pointer;
   padding: 0.5rem;
   position: fixed;
-  top: 1.4rem;
-  right: 1.2rem;
+  top: 1.1rem;
+  right: 1.1rem;
   z-index: 10000;
 }
 .nav-hamburger span {
@@ -310,9 +310,8 @@
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.45);
+  background: rgba(0,0,0,0.35);
   z-index: 9997;
-  /* No brightness change — just a transparent overlay */
 }
 .nav-overlay.open { display: block; }
 
@@ -325,9 +324,22 @@
   /* --- Global --- */
   html, body { overflow-x: hidden; }
 
-  /* --- Hamburger: show button, hide full nav list --- */
+  /* --- Header: collapse to zero height, only hamburger floats --- */
+  header.top-panel {
+    height: 0 !important;
+    min-height: 0 !important;
+    background: transparent !important;
+    border-bottom: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: none !important;
+    overflow: visible !important;
+  }
+
+  /* --- Hamburger: show, floating top-right above everything --- */
   .nav-hamburger { display: flex; }
 
+  /* --- Nav list: hidden by default, slides in from right --- */
   .nav-list {
     display: none !important;
     flex-direction: column !important;
@@ -335,18 +347,19 @@
     top: 0 !important;
     right: 0 !important;
     left: auto !important;
-    width: 72vw !important;
-    max-width: 280px !important;
+    width: 68vw !important;
+    max-width: 260px !important;
     height: 100vh !important;
-    background: rgba(8, 7, 5, 0.98) !important;
-    backdrop-filter: blur(20px) !important;
-    -webkit-backdrop-filter: blur(20px) !important;
-    border-left: 1px solid rgba(181,155,109,0.2) !important;
-    padding: 5rem 1.5rem 2rem !important;
+    background: rgba(6, 5, 3, 0.97) !important;
+    backdrop-filter: blur(24px) !important;
+    -webkit-backdrop-filter: blur(24px) !important;
+    border-left: 1px solid rgba(181,155,109,0.25) !important;
+    padding: 4rem 0 2rem !important;
     gap: 0 !important;
     z-index: 9999 !important;
-    box-shadow: -4px 0 30px rgba(0,0,0,0.6) !important;
+    box-shadow: -6px 0 40px rgba(0,0,0,0.7) !important;
     overflow-y: auto !important;
+    margin: 0 !important;
   }
 
   .nav-list.open { display: flex !important; }
@@ -354,45 +367,58 @@
   .nav-list li {
     width: 100% !important;
     list-style: none !important;
+    border-bottom: 1px solid rgba(181,155,109,0.18) !important;
   }
 
-  /* Remove bullet dots from li in mobile menu */
+  .nav-list li:first-child {
+    border-top: 1px solid rgba(181,155,109,0.18) !important;
+  }
+
+  /* Remove bullet dots */
   .nav-list li::marker { display: none; content: ''; }
 
   .nav-link {
-    font-size: 0.82rem !important;
+    font-size: 0.78rem !important;
     display: block !important;
-    padding: 0.9rem 0.5rem !important;
-    border-bottom: 1px solid rgba(181,155,109,0.1) !important;
-    letter-spacing: 0.15em !important;
+    padding: 1rem 1.5rem !important;
+    letter-spacing: 0.2em !important;
     text-align: left !important;
     border-radius: 0 !important;
     background: transparent !important;
     box-shadow: none !important;
+    border: none !important;
+    color: #94a3b8 !important;
+    width: 100% !important;
+    text-decoration: none !important;
   }
 
-  /* --- Hero grid: tighten gap between image and text --- */
+  .nav-link:hover, .nav-link.active {
+    color: #b59b6d !important;
+    background: rgba(181,155,109,0.06) !important;
+  }
+
+  /* --- Hero: collapse gap between image and text --- */
   .hero-grid {
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
-    justify-content: center !important;
+    justify-content: flex-start !important;
     text-align: center !important;
-    gap: 0.6rem !important;
+    gap: 0 !important;
+    padding-top: 1rem !important;
   }
 
   .hero-text-content {
     width: 100% !important;
     max-width: 100% !important;
-    padding: 0 1rem;
+    padding: 0 1.2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     text-align: center !important;
+    margin-top: 0.8rem !important;
   }
 
-  /* Image comes first, tight gap beneath it */
   .hero-image-content {
     width: 100%;
     display: flex;
@@ -400,40 +426,46 @@
     align-items: center;
     order: -1;
     margin-bottom: 0 !important;
+    padding-top: 0.5rem;
   }
-  .profile-wrapper { display: flex; justify-content: center; }
-  .profile-pic     { width: 180px !important; height: 180px !important; }
 
-  /* Name title — reduce top margin on mobile so it sits close to image */
+  .profile-wrapper { display: flex; justify-content: center; }
+  .profile-pic { width: 160px !important; height: 160px !important; }
+
   .name-title {
-    font-size: 2.2rem !important;
-    margin-top: 0.5rem !important;
+    font-size: 2.1rem !important;
+    margin-top: 0.4rem !important;
+    margin-bottom: 0.2rem !important;
     text-align: center;
   }
 
-  /* Title divider — fix alignment, center it */
   .title-divider {
-    width: 60% !important;
-    margin: 0.4rem auto 0.6rem auto !important;
+    width: 55% !important;
+    margin: 0.3rem auto 0.5rem auto !important;
   }
 
-  .subtitle  { font-size: 1rem !important; text-align: center; }
-  .bio-text  { font-size: 0.95rem !important; line-height: 1.6; text-align: center; }
+  .subtitle { font-size: 0.95rem !important; text-align: center; margin-bottom: 0.8rem !important; }
+  .bio-text { font-size: 0.9rem !important; line-height: 1.55; text-align: center; }
 
-  /* CV button — more gap above it on mobile */
+  .social-links {
+    display: flex;
+    justify-content: center !important;
+    flex-wrap: wrap;
+    margin-bottom: 1rem !important;
+  }
+
+  /* CV button — clear gap above */
   .hero-text-content > div[style*="justify-content:flex-start"] {
     justify-content: center !important;
-    margin-top: 1.5rem !important;
-    margin-bottom: 1.5rem !important;
+    margin-top: 1.2rem !important;
+    margin-bottom: 1.2rem !important;
   }
-
-  .social-links { display: flex; justify-content: center !important; flex-wrap: wrap; }
 
   /* --- Research Interests tags --- */
   .stats-group { grid-template-columns: repeat(2, 1fr) !important; justify-items: center; gap: 0.5rem; }
-  .stat-tag    { font-size: 0.75rem !important; padding: 0.4rem; text-align: center; }
+  .stat-tag { font-size: 0.72rem !important; padding: 0.4rem; text-align: center; }
 
-  /* --- Section headers / underlines --- */
+  /* --- Section headers --- */
   .hero-underline,
   div[style*="width:50rem"] { width: 80% !important; margin-left: auto !important; margin-right: auto !important; }
 
@@ -445,81 +477,108 @@
   }
   .research-box, .research-box * { text-align: center !important; }
 
-  /* --- Research Affiliations: right-align text content --- */
+  /* --- Research Affiliations ---
+     Left-aligned, image natural height (not square), no excess gap */
   .aesthetic-portfolio-box { padding: 0 1rem !important; }
+
   .appointment-card {
     flex-direction: column !important;
     width: 100% !important;
     max-width: 95% !important;
     margin: 0 auto !important;
-  }
-  .appointment-visual { width: 100% !important; }
-  .appointment-visual img { width: 100% !important; height: auto !important; }
-  .appointment-details {
-    padding: 1.25rem !important;
-    text-align: right !important;
-    align-items: flex-end !important;
-  }
-  .appointment-details * { text-align: right !important; }
-  .header-row {
-    flex-direction: column !important;
-    gap: 0.25rem !important;
-    text-align: right !important;
-    align-items: flex-end !important;
+    border-radius: 1rem !important;
+    overflow: hidden !important;
+    border: 0.125rem solid rgba(181,155,109,0.5) !important;
+    box-shadow: 0 0 1.5rem rgba(181,155,109,0.15) !important;
+    background: radial-gradient(circle at center, rgba(154,124,73,0.1) 0%, rgba(15,23,42,0.85) 100%) !important;
   }
 
-  /* Lumin section */
+  .appointment-visual {
+    width: 100% !important;
+    height: auto !important;
+    line-height: 0 !important;
+  }
+
+  .appointment-visual img {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: contain !important;
+    display: block !important;
+  }
+
+  /* Remove status indicator overlap gap */
+  .status-indicator { top: 0.5rem !important; right: 0.5rem !important; }
+
+  .appointment-details {
+    padding: 1.2rem 1.2rem 1.4rem !important;
+    text-align: left !important;
+    align-items: flex-start !important;
+  }
+
+  .appointment-details * { text-align: left !important; }
+
+  .header-row {
+    flex-direction: column !important;
+    gap: 0.2rem !important;
+    text-align: left !important;
+    align-items: flex-start !important;
+  }
+
+  /* --- Lumin section --- */
   #lumin-section .section-header-center { padding: 0 1rem; }
   .lumin-layout {
     grid-template-columns: 1fr !important;
     gap: 2rem;
     padding: 0 1rem;
   }
-  .lumin-headline { font-size: 1.7rem !important; text-align: center; }
+  .lumin-headline { font-size: 1.6rem !important; text-align: center; }
   .lumin-eyebrow, .lumin-tagline, .lumin-body { text-align: center; }
   .lumin-rule { margin: 0.5rem auto 0; }
 
-  /* Carousel arrows inside box */
-  #ld-outer    { max-width: 100%; padding: 0; }
+  /* Carousel */
+  #ld-outer { max-width: 100%; padding: 0; }
   .ld-nav.prev { left: 6px !important; }
   .ld-nav.next { right: 6px !important; }
   .ld-name { font-size: 1.3rem !important; }
   .ld-poem { font-size: 0.85rem !important; }
   .ld-tag  { font-size: 0.55rem !important; letter-spacing: 0.18em; }
 
-  /* --- Special Moments: truncate paragraphs on mobile --- */
+  /* --- Special Moments --- */
   .narrative-card {
     flex-direction: column !important;
     max-width: 95% !important;
     margin-left: auto !important;
     margin-right: auto !important;
   }
+
   .story-image-wrap {
     max-width: 100% !important;
     width: 100% !important;
-    height: 180px !important;
+    height: 190px !important;
     overflow: hidden;
   }
+
   .story-image-wrap img {
     width: 100% !important;
-    height: 180px !important;
+    height: 190px !important;
     object-fit: cover !important;
   }
+
   .story-details {
-    padding: 1.2rem 1.2rem 4.5rem !important;
+    padding: 1.1rem 1.2rem 4.5rem !important;
     text-align: center !important;
     align-items: center !important;
   }
 
-  /* Clamp paragraph to 4 lines on mobile */
+  /* Clamp to 3 lines */
   .story-details p {
     display: -webkit-box !important;
-    -webkit-line-clamp: 4 !important;
+    -webkit-line-clamp: 3 !important;
     -webkit-box-orient: vertical !important;
     overflow: hidden !important;
     margin-bottom: 0 !important;
-    font-size: 0.92rem !important;
-    line-height: 1.55 !important;
+    font-size: 0.88rem !important;
+    line-height: 1.5 !important;
   }
 
   .story-details > div[style*="position:absolute;bottom:2.5rem"] {
@@ -529,8 +588,8 @@
 
   /* --- Buttons --- */
   .btn-beyond, .btn-beyond-outline {
-    font-size: 0.85rem;
-    padding: 0.6rem 1rem;
+    font-size: 0.82rem;
+    padding: 0.55rem 1rem;
     margin: 0 auto;
     display: inline-block;
   }
@@ -1002,10 +1061,20 @@ body, main, section { background: transparent !important; }
 
   overlay.addEventListener('click', closeMenu);
 
-  /* Close when a link is tapped — navigation then works normally */
+  /* On link tap: close menu first, then let the browser navigate normally */
   navList.querySelectorAll('.nav-link').forEach(function(link){
-    link.addEventListener('click', function(){
+    link.addEventListener('click', function(e){
+      var href = this.getAttribute('href');
       closeMenu();
+      /* For internal anchors (#hero etc), smooth scroll after close */
+      if(href && href.startsWith('#')){
+        e.preventDefault();
+        setTimeout(function(){
+          var target = document.querySelector(href);
+          if(target) target.scrollIntoView({ behavior: 'smooth' });
+        }, 150);
+      }
+      /* For external pages (academics.html etc), browser navigates normally */
     });
   });
 })();
