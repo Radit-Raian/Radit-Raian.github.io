@@ -111,11 +111,14 @@ header.top-panel {
     font-weight: 500;
     padding: 10px 22px; 
     border-radius: 50px;
-    transition: all 0.4s ease;
+    transition: color 0.4s ease, background 0.4s ease, box-shadow 0.4s ease, text-shadow 0.4s ease;
+    /* Transparent border prevents layout shift on hover */
+    border: 1px solid transparent;
+    display: inline-block;
 }
 
 .nav-link.active, .nav-link:hover {
-    color: #b59b6d; /* Muted Gold Text */
+    color: #b59b6d;
     background: rgba(154, 124, 73, 0.1);
     box-shadow: 0 0 20px rgba(154, 124, 73, 0.15);
     border: 1px solid rgba(154, 124, 73, 0.1);
@@ -2692,14 +2695,23 @@ section.active {
 /* Apply this class to your main containers on every page */
 .container, 
 .section-wrapper, 
-.main-content-area,
-.nav-container {
+.main-content-area {
     max-width: var(--master-container) !important;
     margin: 0 auto !important;
     padding: 0 40px !important;
     position: relative;
-    z-index: 5; /* Keeps all text/cards above the aurora engine */
+    z-index: 5;
     width: 100% !important;
+}
+
+/* nav-container spans full header width — must NOT be constrained */
+.nav-container {
+    position: relative;
+    z-index: 5;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* ==========================================================================
@@ -2849,9 +2861,9 @@ section.active {
   }
 
   /* ================= NAVBAR ================= */
+  /* Hamburger menu handles mobile nav — no overrides needed here */
   .nav-list {
-    justify-content: center !important;
-    align-items: center !important;
+    /* controlled by hamburger JS in index.html */
   }
 
   /* ================= HERO TITLE ================= */
