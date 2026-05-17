@@ -277,45 +277,44 @@
   background: #b59b6d;
 }
 
-
 /* ============================================================
-   HAMBURGER BUTTON — hidden on desktop, shown on mobile
+   HAMBURGER NAV — desktop hidden, mobile only
    ============================================================ */
-.nav-container  { position: relative; }
-
-/* Only prevent STUDY NOTES from wrapping */
-.nav-link[href="studynotes.html"] {
-  white-space: nowrap;
-}
-
 .nav-hamburger {
-  display: none;               /* hidden on desktop */
+  display: none;
   flex-direction: column;
   justify-content: center;
   gap: 5px;
   background: transparent;
   border: none;
   cursor: pointer;
-  padding: 0.6rem;
+  padding: 0.5rem;
   position: fixed;
-  top: 1rem;
-  left: 1rem;
+  top: 1.4rem;
+  right: 1.2rem;
   z-index: 10000;
 }
-
 .nav-hamburger span {
   display: block;
-  width: 24px;
+  width: 22px;
   height: 2px;
   background: #b59b6d;
   border-radius: 2px;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
-
-/* Animate to X when open */
 .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
 .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.nav-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 9997;
+  /* No brightness change — just a transparent overlay */
+}
+.nav-overlay.open { display: block; }
 
 /* ============================================================
    MOBILE RESPONSIVE  (≤ 768px)
@@ -326,52 +325,60 @@
   /* --- Global --- */
   html, body { overflow-x: hidden; }
 
-  /* --- Navbar: hamburger replaces full list --- */
+  /* --- Hamburger: show button, hide full nav list --- */
   .nav-hamburger { display: flex; }
-  .nav-list {
-    display: none;
-    flex-direction: column;
-    position: fixed;
-    top: 0; left: 0;
-    width: 75vw;
-    max-width: 300px;
-    height: 100vh;
-    background: rgba(4, 8, 28, 0.97);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-right: 1px solid rgba(181,155,109,0.2);
-    padding: 5rem 2rem 2rem;
-    gap: 0.2rem;
-    z-index: 9999;
-    box-shadow: 4px 0 30px rgba(0,0,0,0.5);
-  }
-  .nav-list.open { display: flex; }
-  .nav-list li   { width: 100%; }
-  .nav-link {
-    font-size: 0.85rem;
-    display: block;
-    padding: 0.75rem 0;
-    border-bottom: 1px solid rgba(181,155,109,0.1);
-    letter-spacing: 0.15em;
-  }
-  /* Overlay when menu is open */
-  .nav-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.5);
-    z-index: 9998;
-  }
-  .nav-overlay.open { display: block; }
 
-  /* --- Hero --- */
+  .nav-list {
+    display: none !important;
+    flex-direction: column !important;
+    position: fixed !important;
+    top: 0 !important;
+    right: 0 !important;
+    left: auto !important;
+    width: 72vw !important;
+    max-width: 280px !important;
+    height: 100vh !important;
+    background: rgba(8, 7, 5, 0.98) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border-left: 1px solid rgba(181,155,109,0.2) !important;
+    padding: 5rem 1.5rem 2rem !important;
+    gap: 0 !important;
+    z-index: 9999 !important;
+    box-shadow: -4px 0 30px rgba(0,0,0,0.6) !important;
+    overflow-y: auto !important;
+  }
+
+  .nav-list.open { display: flex !important; }
+
+  .nav-list li {
+    width: 100% !important;
+    list-style: none !important;
+  }
+
+  /* Remove bullet dots from li in mobile menu */
+  .nav-list li::marker { display: none; content: ''; }
+
+  .nav-link {
+    font-size: 0.82rem !important;
+    display: block !important;
+    padding: 0.9rem 0.5rem !important;
+    border-bottom: 1px solid rgba(181,155,109,0.1) !important;
+    letter-spacing: 0.15em !important;
+    text-align: left !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  /* --- Hero grid: tighten gap between image and text --- */
   .hero-grid {
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
     justify-content: center !important;
     text-align: center !important;
-    gap: 1.5rem;
+    gap: 0.6rem !important;
   }
 
   .hero-text-content {
@@ -385,41 +392,52 @@
     text-align: center !important;
   }
 
-  .name-title    { font-size: 2.2rem !important; margin-top: 6rem !important; text-align: center; }
-  .subtitle      { font-size: 1rem !important; text-align: center; }
-  .bio-text      { font-size: 0.95rem !important; line-height: 1.6; text-align: center; }
-  .title-divider { margin: 0 auto !important; }
-
-  /* CV button — centre it on mobile */
-  .hero-text-content > div[style*="justify-content:flex-start"] {
-    justify-content: center !important;
-  }
-
-  .social-links { display: flex; justify-content: center !important; flex-wrap: wrap; }
-
+  /* Image comes first, tight gap beneath it */
   .hero-image-content {
     width: 100%;
     display: flex;
     justify-content: center !important;
     align-items: center;
     order: -1;
-    margin-bottom: 1rem;
+    margin-bottom: 0 !important;
   }
   .profile-wrapper { display: flex; justify-content: center; }
-  .profile-pic     { width: 200px !important; height: 200px !important; }
+  .profile-pic     { width: 180px !important; height: 180px !important; }
+
+  /* Name title — reduce top margin on mobile so it sits close to image */
+  .name-title {
+    font-size: 2.2rem !important;
+    margin-top: 0.5rem !important;
+    text-align: center;
+  }
+
+  /* Title divider — fix alignment, center it */
+  .title-divider {
+    width: 60% !important;
+    margin: 0.4rem auto 0.6rem auto !important;
+  }
+
+  .subtitle  { font-size: 1rem !important; text-align: center; }
+  .bio-text  { font-size: 0.95rem !important; line-height: 1.6; text-align: center; }
+
+  /* CV button — more gap above it on mobile */
+  .hero-text-content > div[style*="justify-content:flex-start"] {
+    justify-content: center !important;
+    margin-top: 1.5rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  .social-links { display: flex; justify-content: center !important; flex-wrap: wrap; }
 
   /* --- Research Interests tags --- */
   .stats-group { grid-template-columns: repeat(2, 1fr) !important; justify-items: center; gap: 0.5rem; }
   .stat-tag    { font-size: 0.75rem !important; padding: 0.4rem; text-align: center; }
 
   /* --- Section headers / underlines --- */
-  /* Fixed-width hero-underlines overflow on mobile — make them fluid */
   .hero-underline,
   div[style*="width:50rem"] { width: 80% !important; margin-left: auto !important; margin-right: auto !important; }
 
-  /* --- Featured Research grid ---
-     minmax(300px,1fr) forces a horizontal scroll on screens < 300px wide padding.
-     Override to a single column. */
+  /* --- Featured Research grid --- */
   .research-initiative-grid,
   div[style*="grid-template-columns:repeat(auto-fit,minmax(300px"] {
     grid-template-columns: 1fr !important;
@@ -427,8 +445,7 @@
   }
   .research-box, .research-box * { text-align: center !important; }
 
-  /* --- Research Affiliations ---
-     These classes come from styles.css; add safe mobile defaults. */
+  /* --- Research Affiliations: right-align text content --- */
   .aesthetic-portfolio-box { padding: 0 1rem !important; }
   .appointment-card {
     flex-direction: column !important;
@@ -438,43 +455,39 @@
   }
   .appointment-visual { width: 100% !important; }
   .appointment-visual img { width: 100% !important; height: auto !important; }
-  .appointment-details { padding: 1.25rem !important; text-align: center !important; }
-  .header-row { flex-direction: column !important; gap: 0.25rem !important; text-align: center !important; }
-
-  /* Lumin gap div — shrink on mobile */
-  div[style*="height:8rem"] { height: 3rem !important; min-height: 3rem !important; }
-
-  /* Lumin section header needs side padding on mobile */
-  #lumin-section .section-header-center,
-  section[id="featured-research"] .section-header-center {
-    padding: 0 1rem;
+  .appointment-details {
+    padding: 1.25rem !important;
+    text-align: right !important;
+    align-items: flex-end !important;
+  }
+  .appointment-details * { text-align: right !important; }
+  .header-row {
+    flex-direction: column !important;
+    gap: 0.25rem !important;
+    text-align: right !important;
+    align-items: flex-end !important;
   }
 
-  /* Stack description + carousel vertically */
+  /* Lumin section */
+  #lumin-section .section-header-center { padding: 0 1rem; }
   .lumin-layout {
     grid-template-columns: 1fr !important;
     gap: 2rem;
     padding: 0 1rem;
   }
-
   .lumin-headline { font-size: 1.7rem !important; text-align: center; }
   .lumin-eyebrow, .lumin-tagline, .lumin-body { text-align: center; }
   .lumin-rule { margin: 0.5rem auto 0; }
 
-  /* Carousel — keep arrows INSIDE the box so they don't clip off screen */
+  /* Carousel arrows inside box */
   #ld-outer    { max-width: 100%; padding: 0; }
   .ld-nav.prev { left: 6px !important; }
   .ld-nav.next { right: 6px !important; }
-
-  /* Scale down carousel text so it doesn't overflow on small screens */
   .ld-name { font-size: 1.3rem !important; }
   .ld-poem { font-size: 0.85rem !important; }
   .ld-tag  { font-size: 0.55rem !important; letter-spacing: 0.18em; }
 
-  /* --- Special Moments cards ---
-     Stack image above text; make image full-width.
-     Fix: absolute-positioned READ MORE button overlaps paragraph text on mobile
-     — switch to static flow by giving story-details enough bottom padding. */
+  /* --- Special Moments: truncate paragraphs on mobile --- */
   .narrative-card {
     flex-direction: column !important;
     max-width: 95% !important;
@@ -484,26 +497,31 @@
   .story-image-wrap {
     max-width: 100% !important;
     width: 100% !important;
-    min-height: 200px;
+    height: 180px !important;
+    overflow: hidden;
   }
-  .story-image-wrap img { min-height: 200px; object-fit: cover; }
-
-  /* Give enough room at the bottom of story-details so the absolute-positioned
-     READ MORE button and gold rule do not overlap the paragraph text. */
+  .story-image-wrap img {
+    width: 100% !important;
+    height: 180px !important;
+    object-fit: cover !important;
+  }
   .story-details {
-    padding: 1.5rem 1.5rem 5rem !important; /* extra bottom padding = space for abs button */
+    padding: 1.2rem 1.2rem 4.5rem !important;
     text-align: center !important;
     align-items: center !important;
   }
 
-  /* Paragraph inside story-details — remove the hardcoded 3rem bottom margin
-     that was designed for desktop (button is abs-positioned there).
-     The 5rem padding on the container handles the gap instead. */
-  .story-details p[style*="margin-bottom:3rem"] {
+  /* Clamp paragraph to 4 lines on mobile */
+  .story-details p {
+    display: -webkit-box !important;
+    -webkit-line-clamp: 4 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
     margin-bottom: 0 !important;
+    font-size: 0.92rem !important;
+    line-height: 1.55 !important;
   }
 
-  /* Gold rule — keep it centred */
   .story-details > div[style*="position:absolute;bottom:2.5rem"] {
     left: 50% !important;
     transform: translateX(-50%);
@@ -554,25 +572,25 @@ body, main, section { background: transparent !important; }
 <canvas id="cosmos-engine"></canvas>
 <div class="aurora-wrap"><div class="aurora-wave"></div></div>
 <header class="top-panel">
-<nav class="nav-container">
-  <!-- Hamburger button — mobile only -->
-  <button class="nav-hamburger" id="nav-toggle" aria-label="Toggle menu">
-    <span></span>
-    <span></span>
-    <span></span>
-  </button>
+<nav class="nav-inner">
   <ul class="nav-list" id="nav-list">
-    <li><a href="#hero"           class="nav-link active">HOME</a></li>
-    <li><a href="academics.html"  class="nav-link">ACADEMICS</a></li>
-    <li><a href="research.html"   class="nav-link">RESEARCH</a></li>
-    <li><a href="projects.html"   class="nav-link">PROJECTS</a></li>
+    <li><a href="#hero"             class="nav-link active">HOME</a></li>
+    <li><a href="academics.html"    class="nav-link">ACADEMICS</a></li>
+    <li><a href="research.html"     class="nav-link">RESEARCH</a></li>
+    <li><a href="projects.html"     class="nav-link">PROJECTS</a></li>
     <li><a href="achievements.html" class="nav-link">ACHIEVEMENTS</a></li>
-    <li><a href="outreach.html"   class="nav-link">OUTREACH</a></li>
-    <li><a href="studynotes.html" class="nav-link">STUDY NOTES</a></li>
-    <li><a href="contact.html"    class="nav-link">CONTACT</a></li>
+    <li><a href="outreach.html"     class="nav-link">OUTREACH</a></li>
+    <li><a href="studynotes.html"   class="nav-link">STUDY&nbsp;NOTES</a></li>
+    <li><a href="contact.html"      class="nav-link">CONTACT</a></li>
   </ul>
+  <!-- Hamburger — mobile only, top-right -->
+  <button class="nav-hamburger" id="nav-toggle" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 </header>
+<!-- Overlay for closing menu -->
+<div class="nav-overlay" id="nav-overlay"></div>
 
 <main>
 
@@ -956,14 +974,13 @@ body, main, section { background: transparent !important; }
 </script>
 
 
-<!-- Mobile nav overlay -->
-<div class="nav-overlay" id="nav-overlay"></div>
-
 <script>
+/* ===== Hamburger Menu ===== */
 (function(){
-  var toggle   = document.getElementById('nav-toggle');
-  var navList  = document.getElementById('nav-list');
-  var overlay  = document.getElementById('nav-overlay');
+  var toggle  = document.getElementById('nav-toggle');
+  var navList = document.getElementById('nav-list');
+  var overlay = document.getElementById('nav-overlay');
+  if(!toggle) return;
 
   function openMenu(){
     navList.classList.add('open');
@@ -978,15 +995,18 @@ body, main, section { background: transparent !important; }
     document.body.style.overflow = '';
   }
 
-  toggle.addEventListener('click', function(){
+  toggle.addEventListener('click', function(e){
+    e.stopPropagation();
     navList.classList.contains('open') ? closeMenu() : openMenu();
   });
 
   overlay.addEventListener('click', closeMenu);
 
-  // Close menu when a nav link is tapped
+  /* Close when a link is tapped — navigation then works normally */
   navList.querySelectorAll('.nav-link').forEach(function(link){
-    link.addEventListener('click', closeMenu);
+    link.addEventListener('click', function(){
+      closeMenu();
+    });
   });
 })();
 </script>
