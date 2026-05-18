@@ -576,7 +576,7 @@ section.active {
 .time-stamp {
     color: #b59b6d;
     font-size: 0.75rem;
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Cinzel', sans-serif;
     opacity: 0.8;
 }
 
@@ -2979,7 +2979,7 @@ section.active {
 }
 
 .lumin-eyebrow {
-  font-family: 'Orbitron', monospace;
+  font-family: 'Cinzel', monospace;
   font-size: 0.72rem;
   letter-spacing: 0.25em;
   color: #4ecdc4;
@@ -3008,7 +3008,7 @@ section.active {
 }
 
 .lumin-body {
-  font-family: 'Cinzel', serif;
+  font-family: serif;
   font-size: 1rem;
   color: #94a3b8;
   line-height: 1.8;
@@ -3079,7 +3079,7 @@ section.active {
 }
 
 .ld-num {
-  font-family: 'Orbitron', monospace;
+  font-family: 'Cinzel', monospace;
   font-size: 0.68rem;
   letter-spacing: 0.35em;
   color: #94a3b8;
@@ -3096,7 +3096,7 @@ section.active {
 }
 
 .ld-tag {
-  font-family: 'Orbitron', monospace;
+  font-family: 'Cinzel', monospace;
   font-size: 0.62rem;
   letter-spacing: 0.28em;
   color: #4ecdc4;
@@ -3124,7 +3124,7 @@ section.active {
 }
 
 .ld-fact {
-  font-family: 'Orbitron', monospace;
+  font-family: 'Cinzel', monospace;
   font-size: 0.6rem;
   letter-spacing: 0.18em;
   background: #4ecdc4;
@@ -3233,7 +3233,7 @@ section.active {
   color: #cbd5e1;
   line-height: 1.6;
   font-style: italic;
-  margin-bottom: 3rem;
+  margin-bottom: 3 rem;
 }
 
 .story-rule {
@@ -3253,7 +3253,7 @@ section.active {
 }
 
 .story-read-more {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 0.75rem;
   font-weight: 500;
   color: #fef3c7;
