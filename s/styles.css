@@ -540,7 +540,7 @@ section.active {
 }
 
 .appointment-visual {
-    flex: 0 0 260px;
+    flex: 0 0 180px;
     aspect-ratio: 16 / 9;
     border-radius: 10px;
     overflow: hidden;
@@ -3238,7 +3238,7 @@ section.active {
 
 .story-rule {
   position: absolute;
-  bottom: 1rem;
+  bottom: 2.5rem;
   left: 2.5rem;
   height: 0.125rem;
   width: 1.875rem;
@@ -3248,7 +3248,7 @@ section.active {
 
 .story-read-more-wrap {
   position: absolute;
-  bottom: 0.4rem;
+  bottom: 0rem;
   right: 2.5rem;
 }
 
@@ -3379,28 +3379,14 @@ section.active {
   }
 
   .story-card-details {
-    padding: 1.1rem 1.2rem 1.5rem !important;
+    padding: 1.1rem 1.2rem 4.5rem !important;
     text-align: center !important;
     align-items: center !important;
-    justify-content: flex-start !important;
-    gap: 0.6rem !important;
-  }
-
-  .story-read-more-wrap {
-    position: static !important;
-    margin-top: 0.5rem !important;
-    text-align: center !important;
-  }
-
-  .story-rule {
-    position: static !important;
-    transform: none !important;
-    margin: 0.5rem auto 0 !important;
   }
 
   .story-card-body {
     display: -webkit-box !important;
-    -webkit-line-clamp: 6 !important;
+    -webkit-line-clamp: 3 !important;
     -webkit-box-orient: vertical !important;
     overflow: hidden !important;
     margin-bottom: 0 !important;
@@ -3408,7 +3394,10 @@ section.active {
     line-height: 1.5 !important;
   }
 
-  
+  .story-rule {
+    left: 50% !important;
+    transform: translateX(-50%);
+  }
 }
 
 /* ==========================================================================
