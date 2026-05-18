@@ -537,7 +537,6 @@ section.active {
     gap: 30px;
     align-items: center;
     transition: all 0.4s ease;
-    padding: 20px;
 }
 
 .appointment-visual {
