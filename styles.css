@@ -541,7 +541,7 @@ section.active {
 }
 
 .appointment-visual {
-    flex: 1 1 280px; /* Maintains the size */
+    flex: 0 0 280px; /* Maintains the size */
     aspect-ratio: 16 / 9;
     border-radius: 12px;
     overflow: hidden;
