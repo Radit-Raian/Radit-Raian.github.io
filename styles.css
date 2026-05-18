@@ -540,7 +540,7 @@ section.active {
 }
 
 .appointment-visual {
-    flex: 0 0 180px; /* Reduced from 280px */
+    flex: 0 0 180px;
     aspect-ratio: 16 / 9;
     border-radius: 10px;
     overflow: hidden;
@@ -2920,7 +2920,7 @@ section.active {
   #nav-list .nav-link {
     display: block !important;
     padding: 1.2rem 1.8rem !important;
-    font-family: 'Orbitron', monospace !important;
+    font-family: 'Inter', sans-serif !important;
     font-size: 0.75rem !important;
     font-weight: 500 !important;
     letter-spacing: 0.22em !important;
