@@ -19,6 +19,283 @@
 </head>
 <body>
 
+  <style>
+    .outreach-main * { box-sizing: border-box; }
+
+    .outreach-main {
+      padding-top: 110px;
+      padding-bottom: 120px;
+      max-width: 1160px;
+      margin: 0 auto;
+      padding-left: 40px;
+      padding-right: 40px;
+    }
+
+    /* PAGE HEADER */
+    .o-page-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(181,155,109,0.2);
+      padding-bottom: 28px;
+      margin-bottom: 72px;
+      gap: 24px;
+    }
+    .o-eyebrow {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: #b59b6d;
+      margin-bottom: 14px;
+    }
+    .o-page-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.6rem, 5vw, 4rem);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.0;
+      margin: 0;
+    }
+    .o-page-title em {
+      font-style: italic;
+      color: #b59b6d;
+    }
+    .o-page-desc {
+      max-width: 320px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.88rem;
+      line-height: 1.8;
+      color: #4a5568;
+      text-align: right;
+    }
+
+    /* STAT ROW */
+    .o-stat-row {
+      display: flex;
+      margin-bottom: 88px;
+      border: 1px solid rgba(181,155,109,0.1);
+      overflow: hidden;
+    }
+    .o-stat {
+      flex: 1;
+      padding: 24px 28px;
+      border-right: 1px solid rgba(181,155,109,0.1);
+      transition: background 0.25s ease;
+    }
+    .o-stat:last-child { border-right: none; }
+    .o-stat:hover { background: rgba(181,155,109,0.03); }
+    .o-stat-n {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1;
+      margin-bottom: 5px;
+    }
+    .o-stat-l {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #3d4a5c;
+    }
+
+    /* SECTION MARKER */
+    .o-section-marker {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 32px;
+    }
+    .o-section-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.75rem;
+      font-style: italic;
+      color: #b59b6d;
+    }
+    .o-section-line {
+      flex: 1;
+      height: 1px;
+      background: rgba(181,155,109,0.12);
+    }
+    .o-section-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: #3d4a5c;
+    }
+
+    /* TALK CARD */
+    .o-talk-wrap { margin-bottom: 96px; }
+    .o-talk-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border: 1px solid rgba(181,155,109,0.1);
+      overflow: hidden;
+      background: rgba(10,9,7,0.75);
+      backdrop-filter: blur(20px);
+    }
+
+    .o-talk-img {
+      position: relative;
+      overflow: hidden;
+      min-height: 480px;
+    }
+    .o-talk-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 1s cubic-bezier(0.25,0.46,0.45,0.94);
+      filter: brightness(0.82) contrast(1.05);
+    }
+    .o-talk-card:hover .o-talk-img img { transform: scale(1.05); }
+    .o-talk-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(0,0,0,0.3) 0%, transparent 55%);
+    }
+    .o-talk-img-tag {
+      position: absolute;
+      top: 24px;
+      left: 24px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #b59b6d;
+      border: 1px solid rgba(181,155,109,0.38);
+      padding: 6px 13px;
+      backdrop-filter: blur(10px);
+      background: rgba(0,0,0,0.45);
+      z-index: 2;
+    }
+    .o-talk-year {
+      position: absolute;
+      bottom: 20px;
+      left: 22px;
+      font-family: 'Playfair Display', serif;
+      font-size: 5.5rem;
+      font-weight: 900;
+      color: rgba(255,255,255,0.055);
+      line-height: 1;
+      pointer-events: none;
+      letter-spacing: -4px;
+      z-index: 2;
+    }
+
+    .o-talk-body {
+      padding: 52px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0;
+    }
+    .o-talk-org {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #b59b6d;
+      margin-bottom: 14px;
+    }
+    .o-talk-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.5rem, 2.2vw, 2.1rem);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.15;
+      margin-bottom: 24px;
+    }
+    .o-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-bottom: 24px;
+    }
+    .o-chip {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.68rem;
+      color: #4a5568;
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(255,255,255,0.065);
+      padding: 5px 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .o-chip i { color: #b59b6d; font-size: 0.6rem; }
+    .o-talk-desc {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      line-height: 1.85;
+      color: #4a5568;
+      margin-bottom: 24px;
+    }
+    .o-talk-quote {
+      border-left: 2px solid #b59b6d;
+      padding: 12px 18px;
+      margin-bottom: 32px;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 0.93rem;
+      color: #5a6a7a;
+      line-height: 1.65;
+    }
+    .o-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .o-btn {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 11px 22px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+    .o-btn-fill {
+      background: #b59b6d;
+      color: #080705;
+    }
+    .o-btn-fill:hover { background: #cdb482; transform: translateY(-1px); }
+    .o-btn-ghost {
+      background: transparent;
+      color: #b59b6d;
+      border: 1px solid rgba(181,155,109,0.3);
+    }
+    .o-btn-ghost:hover {
+      background: rgba(181,155,109,0.06);
+      transform: translateY(-1px);
+    }
+    /* MOBILE */
+    @media (max-width: 768px) {
+      .outreach-main { padding: 85px 18px 80px; }
+      .o-page-header { flex-direction: column; align-items: flex-start; gap: 14px; margin-bottom: 48px; }
+      .o-page-desc { text-align: left; max-width: 100%; }
+      .o-stat-row { flex-wrap: wrap; margin-bottom: 56px; }
+      .o-stat { flex: 1 1 45%; border-bottom: 1px solid rgba(181,155,109,0.1); }
+      .o-talk-card { grid-template-columns: 1fr; }
+      .o-talk-img { min-height: 240px; }
+      .o-talk-body { padding: 32px 24px; }
+      .o-exp-inner { grid-template-columns: 1fr; }
+      .o-exp-left { flex-direction: row; flex-wrap: wrap; border-right: none; border-bottom: 1px solid rgba(181,155,109,0.08); padding: 24px; gap: 16px; }
+      .o-exp-right { padding: 24px; }
+      .o-exp-bullets { grid-template-columns: 1fr; }
+      .o-exp-org { font-size: 1.4rem; }
+    }
+  </style>
+
   <canvas id="cosmos-engine"></canvas>
   
   <div class="aurora-wrap">
@@ -51,23 +328,37 @@
         <div class="hero-underline"></div>
       </div>
 
-      <div class="featured-talk-card">
-        <div class="talk-image-box">
-          <img src="https://i.postimg.cc/MTB85dDC/Large-scale-structure-of-light-distribution-in-the-universe.jpg" alt="CASSA Presentation">
+
+      <div class="o-talk-card">
+        <div class="o-talk-img">
+          <img src="https://i.postimg.cc/MTB85dDC/Large-scale-structure-of-light-distribution-in-the-universe.jpg" alt="CASSA Journal Talk">
+          <span class="o-talk-img-tag">Journal Talk · 2025</span>
+          <span class="o-talk-year">2025</span>
         </div>
-        <div class="talk-details">
-          <span class="outreach-tag">Journal Talk</span>
-          <h3 class="talk-headline">CASSA Journal Talk 10</h3>
-          <p class="project-description">
-            Presented a paper at the CASSA (Center for Astronomy, Space Science, and Astrophysics) to discuss about the mysterious 15kpc rotating galaxy filaments at redshift= 0.032. The key discussion topic was to know more about the galactic filaments and analysing observational data.
+        <div class="o-talk-body">
+          <p class="o-talk-org">CASSA · IUB, Dhaka</p>
+          <h2 class="o-talk-title">CASSA Journal Talk 10</h2>
+
+          <p class="o-talk-desc">
+            Presented a paper on the mysterious 15 kpc rotating galaxy filaments at redshift z = 0.032 at the Center for Astronomy, Space Science, and Astrophysics. The talk focused on the formation and dynamics of galactic filaments, analysing multi-wavelength observational data to understand their structure and origin.
           </p>
+          <blockquote class="o-talk-quote">
+            "What drives rotation in structures 15,000 parsecs long — dark matter coupling, or something we haven't modelled yet?"
+          </blockquote>
+          <div class="project-buttons">
+            <a href="https://cassa.site/people/interns/" class="btn-research">
+              Visit CASSA <i class="fa-solid fa-external-link"></i>
+            </a>
 
-          <br>
-
-          <a href="https://cassa.site/event/jtalk-10/" target="_blank" class="btn-beyond-outline">View Details <i class="fa-solid fa-arrow-up-right-from-square"></i></a> <br>
-          <a href="https://docs.google.com/presentation/d/1hngbD-IXiZiw5TRdWGdH4blxKh9ABghS5hDsGbL_DXs/edit?usp=sharing" target="_blank" class="btn-beyond-outline">View Slides <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            <a href="https://docs.google.com/presentation/d/1hngbD-IXiZiw5TRdWGdH4blxKh9ABghS5hDsGbL_DXs/edit?usp=sharing"
+               target="_blank"
+               class="btn-research">
+              Slides <i class="fa-solid fa-person-chalkboard"></i>
+            </a>
+          </div>
         </div>
       </div>
+    </div>
 
       
 
