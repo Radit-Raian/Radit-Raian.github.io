@@ -534,14 +534,14 @@ section.active {
 /* --- The Cards --- */
 .appointment-card {
     display: flex;
-    gap: 15px;
+    gap: 30px;
     align-items: center;
     transition: all 0.4s ease;
     padding: 20px;
 }
 
 .appointment-visual {
-    flex: 1 1 200px; /* Maintains the size */
+    flex: 1 1 280px; /* Maintains the size */
     aspect-ratio: 16 / 9;
     border-radius: 12px;
     overflow: hidden;
