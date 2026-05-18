@@ -510,12 +510,12 @@ section.active {
 /* --- The Main Floating Container --- */
 .aesthetic-portfolio-box {
     max-width: 850px;
-    margin: 50px auto;
+    margin: 30px auto;
     background: rgba(15, 15, 15, 0.7);
     backdrop-filter: blur(12px);
     border: 1px solid rgba(181, 155, 109, 0.2);
-    border-radius: 20px;
-    padding: 40px;
+    border-radius: 16px;
+    padding: 24px 28px;
     box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
 }
 
@@ -534,15 +534,15 @@ section.active {
 /* --- The Cards --- */
 .appointment-card {
     display: flex;
-    gap: 30px;
+    gap: 20px;
     align-items: center;
     transition: all 0.4s ease;
 }
 
 .appointment-visual {
-    flex: 0 0 280px; /* Maintains the size */
+    flex: 0 0 180px; /* Reduced from 280px */
     aspect-ratio: 16 / 9;
-    border-radius: 12px;
+    border-radius: 10px;
     overflow: hidden;
     position: relative;
     border: 1px solid rgba(255, 255, 255, 0.05);
@@ -568,7 +568,7 @@ section.active {
 
 .position-name {
     color: #ffffff;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Rajdhani', sans-serif;
     font-size: 1.3rem;
     font-weight: 700;
 }
@@ -576,7 +576,7 @@ section.active {
 .time-stamp {
     color: #b59b6d;
     font-size: 0.75rem;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Orbitron', sans-serif;
     opacity: 0.8;
 }
 
@@ -2920,7 +2920,7 @@ section.active {
   #nav-list .nav-link {
     display: block !important;
     padding: 1.2rem 1.8rem !important;
-    font-family: 'Inter', monospace !important;
+    font-family: 'Orbitron', monospace !important;
     font-size: 0.75rem !important;
     font-weight: 500 !important;
     letter-spacing: 0.22em !important;
@@ -2950,19 +2950,7 @@ section.active {
   #nav-list .nav-link.active {
     color: #b59b6d !important;
     background: rgba(181,155,109,0.08) !important;
-    /* Left accent bar only — no desktop glow effects */
-    border: none !important;
-    border-left: 3px solid #b59b6d !important;
-    box-shadow: none !important;
-    text-shadow: none !important;
-    /* Identical to inactive links */
-    font-family: 'Inter', monospace !important;
-    font-size: 0.75rem !important;
-    font-weight: 500 !important;
-    letter-spacing: 0.22em !important;
-    text-transform: uppercase !important;
-    padding: 1.2rem 1.8rem !important;
-    border-radius: 0 !important;
+    border-left-color: #b59b6d !important;
   }
 }
 
@@ -3302,7 +3290,7 @@ section.active {
 }
 
 .story-image-wrap {
-  flex: 1 1 15rem;
+  flex: 1 1 18rem;
   max-width: 25rem;
   line-height: 0;
 }
@@ -3314,8 +3302,8 @@ section.active {
 }
 
 .story-card-details {
-  flex: 1 1 1rem;
-  padding: 0;
+  flex: 1 1 18rem;
+  padding: 2.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
