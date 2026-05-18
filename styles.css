@@ -2921,9 +2921,9 @@ section.active {
     display: block !important;
     padding: 1.2rem 1.8rem !important;
     font-family: 'Inter', sans-serif !important;
-    font-size: 0.75rem !important;
+    font-size: 0.9rem !important;
     font-weight: 500 !important;
-    letter-spacing: 0.22em !important;
+    letter-spacing: 0.05em !important;
     color: #8899aa !important;
     text-decoration: none !important;
     text-align: left !important;
