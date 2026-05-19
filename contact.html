@@ -3,140 +3,793 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact | Radit Raian</title>
-  
+  <title>Achievements | Radit Raian</title>
+
   <link rel="icon" type="image/png" href="https://i.postimg.cc/Qx4C6gTV/orion.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
   <link rel="stylesheet" href="styles.css">
 
+  <style>
+    /* ── Logo images: full brightness, no golden tint ── */
+    .nat-node img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      border-radius: 50% !important;
+      opacity: 1 !important;
+      filter: none !important;
+    }
+
+    /* Antique gold subtitle — both International & National headings, desktop + mobile */
+    .academic-heading-wrap .ec-label-sub {
+      font-family: 'Rajdhani', sans-serif !important;
+      font-size: 0.78rem !important;
+      font-weight: 500 !important;
+      color: rgba(181,155,109,0.65) !important;
+      letter-spacing: 0.18em !important;
+      text-transform: uppercase !important;
+      line-height: 1.7 !important;
+      margin-top: 10px !important;
+      margin-bottom: 0 !important;
+      display: block !important;
+    }
+
+    /* Medal card text — antique gold, not bright yellow */
+    .medal-info h3 {
+      color: rgba(254,243,199,0.88) !important;
+      text-shadow: 0 1px 6px rgba(0,0,0,0.5) !important;
+    }
+    .medal-info p {
+      color: rgba(181,155,109,0.65) !important;
+    }
+
+    /* ── International Recognition Cards — tall background image style ── */
+    .intl-card {
+      position: relative;
+      width: 100%;
+      min-height: 210px;
+      border-radius: 18px;
+      overflow: hidden;
+      margin-bottom: 18px;
+      cursor: default;
+      transition: transform 0.38s cubic-bezier(0.34,1.56,0.64,1),
+                  box-shadow 0.38s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .intl-card:hover {
+      transform: translateY(-3px);
+    }
+
+    /* Background image layer */
+    .intl-bg-img {
+      position: absolute;
+      inset: 0;
+      background-image: var(--intl-bg);
+      background-size: cover;
+      background-position: center;
+      filter: brightness(0.28) saturate(0.45);
+      transition: filter 0.5s ease, transform 0.6s ease;
+      transform: scale(1.03);
+    }
+    .intl-card:hover .intl-bg-img {
+      filter: brightness(0.38) saturate(0.6);
+      transform: scale(1.06);
+    }
+
+    /* Dark gradient overlay — center-safe */
+    .intl-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(5,4,2,0.45) 0%,
+        rgba(5,4,2,0.25) 50%,
+        rgba(5,4,2,0.55) 100%
+      );
+    }
+
+    /* Text content — fully centered */
+    .intl-content {
+      position: relative;
+      z-index: 2;
+      padding: 44px 60px;
+      text-align: center;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .intl-content h3 {
+      font-family: 'Rajdhani', sans-serif !important;
+      font-size: 1.75rem !important;
+      font-weight: 700 !important;
+      color: #ffffff;
+      margin: 0 !important;
+      letter-spacing: 0.02em !important;
+      line-height: 1.2 !important;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.8) !important;
+    }
+
+    /* Thin divider line between title and subtitle */
+    .intl-content::after {
+      content: '';
+      display: block;
+      width: 48px;
+      height: 1px;
+      background: currentColor;
+      opacity: 0.3;
+      margin: 2px auto 0;
+      order: 2;
+    }
+
+    .intl-content p {
+      font-family: 'Rajdhani', sans-serif !important;
+      font-size: 1.05rem !important;
+      font-weight: 500 !important;
+      margin: 0 !important;
+      letter-spacing: 0.12em !important;
+      text-transform: uppercase !important;
+      order: 3;
+    }
+
+    /* Medal color borders & accent glow */
+    .intl-gold  { border: 1px solid rgba(255,210,60,0.4); box-shadow: 0 4px 32px rgba(255,200,30,0.1); }
+    .intl-gold:hover  { box-shadow: 0 8px 48px rgba(255,200,30,0.2); border-color: rgba(255,210,60,0.65); }
+    .intl-gold  .intl-content p { color: rgba(245,197,24,0.82) !important; }
+
+    .intl-silver { border: 1px solid rgba(200,215,230,0.32); box-shadow: 0 4px 28px rgba(180,200,220,0.07); }
+    .intl-silver:hover { box-shadow: 0 8px 42px rgba(180,200,220,0.16); border-color: rgba(200,215,230,0.55); }
+    .intl-silver .intl-content p { color: rgba(184,200,216,0.82) !important; }
+
+    .intl-bronze { border: 1px solid rgba(210,130,60,0.38); box-shadow: 0 4px 28px rgba(200,120,40,0.09); }
+    .intl-bronze:hover { box-shadow: 0 8px 44px rgba(200,120,40,0.18); border-color: rgba(210,130,60,0.6); }
+    .intl-bronze .intl-content p { color: rgba(205,127,50,0.85) !important; }
+
+    .intl-winner { border: 1px solid rgba(154,124,73,0.3); box-shadow: 0 4px 24px rgba(154,124,73,0.07); }
+    .intl-winner:hover { box-shadow: 0 8px 40px rgba(154,124,73,0.16); border-color: rgba(154,124,73,0.5); }
+    .intl-winner .intl-content p { color: #ffffff !important; }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .intl-card { min-height: 140px; border-radius: 12px; margin-bottom: 10px; }
+      .intl-content { padding: 28px 20px; gap: 7px; }
+      .intl-content h3 { font-size: 1.05rem !important; }
+      .intl-content p  { font-size: 0.78rem !important; letter-spacing: 0.08em !important; }
+    }
+
+    /* Inline year span — hidden on desktop, shown on mobile */
+    .nat-year-inline {
+      display: none;
+      font-family: 'Rajdhani', sans-serif;
+      color: rgba(154,124,73,0.55);
+      font-size: inherit;
+      font-weight: 500;
+    }
+
+    /* ── Mobile fixes for National Recognitions timeline ── */
+    @media (max-width: 768px) {
+
+      .nat-section {
+        width: 100% !important;
+        padding: 0 0.6rem !important;
+      }
+
+      .nat-section .academic-heading-wrap h2 {
+        font-size: 1.4rem !important;
+        font-family: 'Rajdhani', sans-serif !important;
+        font-weight: 700 !important;
+      }
+      .nat-section .academic-heading-wrap .ec-label-sub {
+        font-size: 0.62rem !important;
+        margin-top: 8px !important;
+        font-family: 'Rajdhani', sans-serif !important;
+      }
+
+      /* Remove indent — node goes INSIDE the flex row */
+      .nat-timeline {
+        padding-left: 0 !important;
+        position: relative !important;
+      }
+
+      /* Hide the pseudo-element vertical line */
+      .nat-timeline::before {
+        display: none !important;
+      }
+
+      /* Each row: proper flex with left border as timeline line */
+      .nat-row {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        gap: 10px !important;
+        margin-bottom: 10px !important;
+        position: relative !important;
+        padding-left: 0 !important;
+        border-left: none !important;
+      }
+
+      /* Pull node OUT of absolute, back into normal flex flow */
+      .nat-node {
+        position: relative !important;
+        left: auto !important;
+        top: auto !important;
+        width: 40px !important;
+        height: 40px !important;
+        min-width: 40px !important;
+        flex-shrink: 0 !important;
+        border-radius: 50% !important;
+        border: 1px solid rgba(154,124,73,0.35) !important;
+        background: rgba(25,22,18,0.95) !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        overflow: hidden !important;
+        box-shadow: 0 0 0 3px rgba(5,5,5,0.9), 0 0 10px rgba(154,124,73,0.12) !important;
+        z-index: 2 !important;
+      }
+
+      /* Card — explicit bg/border/shadow matching desktop */
+      .nat-card {
+        flex: 1 !important;
+        padding: 10px 12px !important;
+        gap: 8px !important;
+        border-radius: 12px !important;
+        min-width: 0 !important;
+        min-height: unset !important;
+        height: auto !important;
+        align-items: center !important;
+        background: rgba(25,22,18,0.65) !important;
+        backdrop-filter: blur(20px) !important;
+        -webkit-backdrop-filter: blur(20px) !important;
+        border: 1px solid rgba(154,124,73,0.18) !important;
+        box-shadow: 0 4px 28px rgba(0,0,0,0.45) !important;
+      }
+
+      .nat-accent {
+        width: 2px !important;
+        height: 28px !important;
+        flex-shrink: 0 !important;
+        align-self: center !important;
+      }
+
+      .nat-text {
+        flex: 1 !important;
+        min-width: 0 !important;
+      }
+
+      /* Title — Rajdhani bold, white */
+      .nat-text h3 {
+        font-family: 'Rajdhani', sans-serif !important;
+        font-size: 0.92rem !important;
+        font-weight: 700 !important;
+        color: #ffffff !important;
+        line-height: 1.3 !important;
+        margin-bottom: 4px !important;
+        word-break: break-word !important;
+        letter-spacing: 0.01em !important;
+      }
+
+      /* Award inline paragraph — Rajdhani, faded gold */
+      .nat-text p,
+      .nat-award-inline {
+        font-family: 'Rajdhani', sans-serif !important;
+        font-size: 0.78rem !important;
+        font-weight: 500 !important;
+        color: rgba(181,155,109,0.75) !important;
+        margin: 0 !important;
+        letter-spacing: 0.03em !important;
+        line-height: 1.4 !important;
+      }
+
+      /* Show inline year on mobile */
+      .nat-year-inline {
+        display: inline !important;
+        font-family: 'Rajdhani', sans-serif !important;
+        font-size: 0.78rem !important;
+        color: rgba(154,124,73,0.55) !important;
+        font-weight: 500 !important;
+      }
+
+      /* Hide the separate desktop year column on mobile */
+      .nat-year-desktop {
+        display: none !important;
+      }
+    }
+  </style>
 </head>
 <body>
 
   <canvas id="cosmos-engine"></canvas>
-  
+
   <div class="aurora-wrap">
     <div class="aurora-wave"></div>
   </div>
 
   <header class="top-panel">
-<nav class="nav-inner">
-  <ul class="nav-list" id="nav-list">
-    <li><a href="index.html" class="nav-link">HOME</a></li>
-    <li><a href="academics.html" class="nav-link">ACADEMICS</a></li>
-    <li><a href="research.html" class="nav-link">RESEARCH</a></li>
-    <li><a href="projects.html" class="nav-link">PROJECTS</a></li>
-    <li><a href="achievements.html" class="nav-link">ACHIEVEMENTS</a></li>
-    <li><a href="outreach.html" class="nav-link">OUTREACH</a></li>
-    <li><a href="studynotes.html" class="nav-link">STUDY&nbsp;NOTES</a></li>
-    <li><a href="contact.html" class="nav-link active">CONTACT</a></li>
-  </ul>
-  <button class="nav-hamburger" id="nav-toggle" aria-label="Toggle menu">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-</header>
-<div class="nav-overlay" id="nav-overlay"></div>
+    <nav class="nav-inner">
+      <ul class="nav-list" id="nav-list">
+        <li><a href="index.html"        class="nav-link">HOME</a></li>
+        <li><a href="academics.html"    class="nav-link">ACADEMICS</a></li>
+        <li><a href="research.html"     class="nav-link">RESEARCH</a></li>
+        <li><a href="projects.html"     class="nav-link">PROJECTS</a></li>
+        <li><a href="achievements.html" class="nav-link active">ACHIEVEMENTS</a></li>
+        <li><a href="outreach.html"     class="nav-link">OUTREACH</a></li>
+        <li><a href="studynotes.html"   class="nav-link">STUDY&nbsp;NOTES</a></li>
+        <li><a href="contact.html"      class="nav-link">CONTACT</a></li>
+      </ul>
+      <button class="nav-hamburger" id="nav-toggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+  <div class="nav-overlay" id="nav-overlay"></div>
 
-<main style="padding-top: 100px; padding-bottom: 100px;"> 
-  <section id="contact-hub" class="active">
-    
-    <div class="section-header-center">
-      <h2 class="section-title">Let's Explore Beyond the Blue!</h2>
-      <div class="hero-underline"></div>
-      <p class="contact-lead-text">
-        Every journey into space begins at a launchpad. Similarly, progress happens when people come together to share thoughts, ask questions, and explore the unknowns. Whether it’s collaborating, exchanging ideas, or casually nerding out over astrophysics—my inbox is always open. Let’s see where curiosity takes us.
-    </div>
+  <main style="padding-top: 100px;">
 
-     <div class="contact-container">
-  <div class="contact-cards-grid">
-    
-    <div class="contact-card">
-      <div class="card-icon-wrap"><i class="fa-solid fa-envelope"></i></div>
-      <h3>Email</h3>
-      <p class="card-description">
-        Have a question or an idea? Reach out—I'm always open to talking science, research, and new possibilities.
-      </p>
-      <br>
-      <a href="mailto:raditraian1107@gmail.com" class="btn-beyond-outline">
-        Send Email <i class="fa-solid fa-arrow-right"></i>
-      </a>
-    </div>
+    <section class="academic-hero active">
+      <div class="section-header-center">
+        <h2 class="section-title">Awards and Honors</h2>
+        <div class="hero-underline"></div>
+      </div>
+      <div class="research-intro-box">
+      <p>
+        I am originally a STEM guy from my childhood. I have started my STEM Career from Olympiads back in 2017 when I was in class 4. Here I have included some of my major achievements in the field of STEM.
+      </p></div>
 
-<div class="contact-card">
-  <div class="card-icon-wrap">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#b59b6d">
-      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.25 2.25h6.634l4.704 6.22 5.656-6.22zM17.083 19.77h1.833L7.084 4.126H5.117L17.083 19.77z"/>
-    </svg>
-  </div>
-  <h3>Twitter / X</h3>
-  <p class="card-description">
-    Consider following me on X for the latest updates on my research, publications, and musings on astrophysics and space exploration.
-  </p> 
-
-  <a href="https://x.com/iam_radit_raian" target="_blank" class="btn-beyond-outline">
-    Follow on X <i class="fa-solid fa-arrow-right"></i>
-  </a>
-</div>
-
-
-    <div class="contact-card">
-      <div class="card-icon-wrap"><i class="fa-brands fa-linkedin-in"></i></div>
-      <h3>LinkedIn</h3>
-      <p class="card-description">
-        You’re welcome to get in touch for academic discussions, research interests, or collaborative opportunities.
-      </p>
-      <br>
-      <a href="https://www.linkedin.com/in/raditraian/" target="_blank" class="btn-beyond-outline">
-        Connect on LinkedIn <i class="fa-solid fa-arrow-right"></i>
-      </a>
-    </div>
-
-  </div>
-</div>
-
-      <div class="form-wrapper">
-        <div class="form-header">
-          <h3>GET IN TOUCH!</h3>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">5</div>
+          <div class="stat-label">International Medals</div>
         </div>
+        <div class="stat-card">
+          <div class="stat-number">8</div>
+          <div class="stat-label">National Awards</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">50+</div>
+          <div class="stat-label">Volunteer Hours</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">2026</div>
+          <div class="stat-label">Latest Recognition</div>
+        </div>
+      </div>
+    </section>
 
-        <form action="https://formspree.io/f/mgoyqlnw" method="POST" class="neural-form">
-          <div class="input-row">
-            <div class="input-group">
-              <label>Your Name</label>
-              <input type="text" name="name" placeholder="Enter your name" required>
-            </div>
-            <div class="input-group">
-              <label>Your E-mail Address</label>
-              <input type="email" name="email" placeholder="Enter your email" required>
-            </div>
-          </div>
-
-          <div class="input-group">
-            <label>Write your words</label>
-            <textarea name="message" rows="5" placeholder="Your message..." required></textarea>
-          </div>
-
-          <button type="submit" class="transmit-btn">
-            Send Message <i class="fa-solid fa-paper-plane"></i>
-          </button>
-        </form>
+    <!-- INTERNATIONAL RECOGNITIONS -->
+    <section class="achievements-wrap">
+      <div class="academic-heading-wrap">
+        <h2>International Recognitions</h2>
+        <p class="ec-label-sub">05 Awards &nbsp;·&nbsp; International Stage</p>
       </div>
 
+      <br><br>
+
+      <div class="intl-card intl-gold" style="--intl-bg: url('https://i.postimg.cc/CxCnK69h/owao-logo.jpg')">
+        <div class="intl-bg-img"></div>
+        <div class="intl-overlay"></div>
+        <div class="intl-content">
+          <h3>International Astronomy and Astrophysics Competition (IAAC)</h3>
+          <p>Gold Award &nbsp;·&nbsp; Online &nbsp;·&nbsp; 2025</p>
+        </div>
+      </div>
+
+      <div class="intl-card intl-silver" style="--intl-bg: url('https://i.postimg.cc/CxCnK69h/owao-logo.jpg')">
+        <div class="intl-bg-img"></div>
+        <div class="intl-overlay"></div>
+        <div class="intl-content">
+          <h3>Open World Astronomy Olympiad (OWAO)</h3>
+          <p>Silver Award &nbsp;·&nbsp; Sochi, Russia &nbsp;·&nbsp; 2025</p>
+        </div>
+      </div>
+
+      <div class="intl-card intl-bronze" style="--intl-bg: url('https://www.competitionsciences.org/wp-content/uploads/2017/07/medv_115fa9.gif')">
+        <div class="intl-bg-img"></div>
+        <div class="intl-overlay"></div>
+        <div class="intl-content">
+          <h3>International Astronomy Olympiad (IAO)</h3>
+          <p>Bronze Award &nbsp;·&nbsp; Dhaka, Bangladesh &nbsp;·&nbsp; 2025</p>
+        </div>
+      </div>
+
+      <div class="intl-card intl-winner" style="--intl-bg: url('https://i.postimg.cc/CxCnK69h/owao-logo.jpg')">
+        <div class="intl-bg-img"></div>
+        <div class="intl-overlay"></div>
+        <div class="intl-content">
+          <h3>Iranian Geometry Olympiad (IGO)</h3>
+          <p>Honorable Mention &nbsp;·&nbsp; 2023</p>
+        </div>
+      </div>
+
+      <div class="intl-card intl-winner" style="--intl-bg: url('https://i.postimg.cc/CxCnK69h/owao-logo.jpg')">
+        <div class="intl-bg-img"></div>
+        <div class="intl-overlay"></div>
+        <div class="intl-content">
+          <h3>STAR Programme by Global Talent Fund</h3>
+          <p>STAR Scholar &nbsp;·&nbsp; 2025</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- NATIONAL RECOGNITIONS -->
+    <section class="achievements-wrap nat-section">
+      <div class="academic-heading-wrap">
+        <h2>National Recognitions</h2>
+        <p class="ec-label-sub">08 Awards &nbsp;·&nbsp; National Stage</p>
+      </div>
+
+      <br><br>
+
+      <div class="nat-timeline">
+
+        <div class="nat-row">
+          <div class="nat-node">
+            <img src="https://i.postimg.cc/prWzbfQT/images.png" alt="USAAAO Logo">
+          </div>
+          <div class="nat-card">
+            <div class="nat-accent"></div>
+            <div class="nat-text">
+              <h3>USA Astronomy &amp; Astrophysics Olympiad (USAAAO)</h3>
+              <p class="nat-award-inline">Gold Award <span class="nat-year-inline">| 2026</span></p>
+            </div>
+            <div class="nat-year nat-year-desktop">2026</div>
+          </div>
+        </div>
+
+        <div class="nat-row">
+          <div class="nat-node">
+            <img src="https://i.postimg.cc/pVSLtQJz/images-(1).png" alt="BDOAA Logo">
+          </div>
+          <div class="nat-card">
+            <div class="nat-accent"></div>
+            <div class="nat-text">
+              <h3>Bangladesh Olympiad on Astronomy &amp; Astrophysics (BDOAA)</h3>
+              <p class="nat-award-inline">National Winner <span class="nat-year-inline">| 2025, 2026</span></p>
+            </div>
+            <div class="nat-year nat-year-desktop">2025<br>2026</div>
+          </div>
+        </div>
+
+        <div class="nat-row">
+          <div class="nat-node">
+            <img src="https://i.postimg.cc/Y9phhpvR/images.jpg" alt="BDMO Logo">
+          </div>
+          <div class="nat-card">
+            <div class="nat-accent"></div>
+            <div class="nat-text">
+              <h3>Bangladesh Mathematical Olympiad (BDMO)</h3>
+              <p class="nat-award-inline">National Winner <span class="nat-year-inline">| 2019, 2020, 2022, 2024</span></p>
+            </div>
+            <div class="nat-year nat-year-desktop">2019<br>2020<br>2022<br>2024</div>
+          </div>
+        </div>
+
+        <div class="nat-row">
+          <div class="nat-node">
+            <img src="https://i.postimg.cc/dVbCtPRd/Screenshot-from-2026-05-19-12-18-42.png" alt="BAO Logo">
+          </div>
+          <div class="nat-card">
+            <div class="nat-accent"></div>
+            <div class="nat-text">
+              <h3>Bangladesh Apex Astro Olympiad (BAO)</h3>
+              <p class="nat-award-inline">National Winner <span class="nat-year-inline">| 2025</span></p>
+            </div>
+            <div class="nat-year nat-year-desktop">2025</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- LEADERSHIP & PAST CHAPTERS — True Edge City style -->
+    <section class="ec-section">
+
+      <div class="academic-heading-wrap ec-heading-wrap">
+        <h2>Past Chapters</h2>
+        <p class="ec-label-sub">Moments carved into memory — from debate stages to math camps, from skychart solving to innational triumphs.</p>
+      </div>
+
+      <br><br><br>
+
+      <div class="ec-wall" id="ec-wall">
+
+        <!-- P1: portrait, left opener -->
+        <div class="ec-photo ec-p1" data-caption="The Birth of the Future">
+          <img src="https://i.postimg.cc/7L2cd5gj/474014443-1609729276347635-412944732129873628-n.jpg" alt="The Birth of the Future">
+        </div>
+
+        <!-- P11: opener companion, right side -->
+        <div class="ec-photo ec-p11" data-caption="Chess Time Before Olympiads">
+          <img src="https://i.postimg.cc/X76N9LqF/photo-6057689297135014415-y.jpg" alt="Chess Time Before Olympiads">
+        </div>
+
+        <!-- P2: mid-center -->
+        <div class="ec-photo ec-p2" data-caption="Far from origin at 43.8 latitude">
+          <img src="https://i.postimg.cc/fbfryxyT/photo-6057689297135014404-y.jpg" alt="Far from origin at 43.8 latitude">
+        </div>
+
+        <!-- P3: solo center -->
+        <div class="ec-photo ec-p3" data-caption="The Tigers in Open World Astronomy Olympiad 2025">
+          <img src="https://i.postimg.cc/WzC9C8Wr/photo-6057689297135014400-y.jpg" alt="The Tigers in Open World Astronomy Olympiad 2025">
+        </div>
+
+        <!-- P4: left of pair -->
+        <div class="ec-photo ec-p4" data-caption="Tree Time Alert!!">
+          <img src="https://i.postimg.cc/tgkBppvy/photo-6057689297135014394-y.jpg" alt="Tree Time Alert!!">
+        </div>
+
+        <!-- P5: right of pair -->
+        <div class="ec-photo ec-p5" data-caption="A Summer of Speeches and Triumphs">
+          <img src="https://i.postimg.cc/CM4FcxHd/debate.jpg" alt="A Summer of Speeches and Triumphs">
+        </div>
+
+        <!-- P6: solo center -->
+        <div class="ec-photo ec-p6" data-caption="From Introvert to Glory on the National Stage">
+          <img src="https://i.postimg.cc/26sPsCKz/098876ac-6c77-40e1-b440-9c7e682f057a.jpg" alt="From Introvert to Glory">
+        </div>
+
+        <!-- P7: portrait, right -->
+        <div class="ec-photo ec-p7" data-caption="Chilling between Olympiad days">
+          <img src="https://i.postimg.cc/dtZNrMDv/photo-6242145970557142589-y.jpg" alt="Chilling between Olympiad days">
+        </div>
+
+        <!-- P8: mid-center -->
+        <div class="ec-photo ec-p8" data-caption="National Math Camp 2022">
+          <img src="https://i.postimg.cc/RZSj5sXr/7534dcb2-b531-4950-b81c-953330611690.jpg" alt="National Math Camp 2022">
+        </div>
+
+        <!-- P9: solo center -->
+        <div class="ec-photo ec-p9" data-caption="Stargazers Beneath the Stars in cloudy Sylhet">
+          <img src="https://i.postimg.cc/y6DcjkTv/upscalemedia-transformed-(4).jpg" alt="Stargazers Beneath the Stars in cloudy Sylhet">
+        </div>
+
+        <!-- P10: left of closure pair -->
+        <div class="ec-photo ec-p10" data-caption="The Birth of the Future">
+          <img src="https://i.postimg.cc/yN6ptD6N/bdoaa.jpg" alt="The Birth of the Future">
+        </div>
+
+        <!-- P12: right-side companion to P10, not solo -->
+        <div class="ec-photo ec-p12" data-caption="From Introvert to Glory on the National Stage">
+          <img src="https://i.postimg.cc/KzcV9x5t/471164437-1590441248276438-4495573882452147356-n.jpg" alt="From Introvert to Glory">
+        </div>
+
+      </div><!-- .ec-wall -->
+    </section>
+
+    <!-- LIGHTBOX -->
+    <div id="cg-lightbox" class="cg-lightbox" role="dialog" aria-modal="true" aria-label="Image lightbox">
+      <button class="cg-lb-close" id="cg-lb-close" aria-label="Close">&times;</button>
+      <div class="cg-lb-inner">
+        <img id="cg-lb-img" src="" alt="">
+        <div class="cg-lb-text">
+          <p id="cg-lb-caption"></p>
+        </div>
+      </div>
     </div>
-  </section>
-</main>
+
+    <style>
+      .ec-section {
+        position: relative;
+        width: 100%;
+        margin-top: 60px;
+      }
+
+      .ec-heading-wrap { margin-bottom: 2.5rem; }
+      .ec-heading-wrap .ec-label-sub {
+        margin-top: 0.5rem;
+        font-family: 'Rajdhani', sans-serif;
+        font-size: 0.9rem;
+        color: rgba(255,255,255,0.45);
+        line-height: 1.7;
+        letter-spacing: 0.02em;
+      }
+
+      .ec-label { display: none; }
+      .ec-label-big {
+        display: block;
+        font-family: 'Orbitron', sans-serif;
+        font-size: clamp(1.3rem, 2.8vw, 2rem);
+        font-weight: 900;
+        color: #fef3c7;
+        letter-spacing: 0.04em;
+        text-shadow: 0 0 40px rgba(251,191,36,0.25);
+        margin-bottom: 0.6rem;
+      }
+      .ec-label-sub {
+        font-family: 'Rajdhani', sans-serif;
+        font-size: 0.78rem;
+        color: rgba(255,255,255,0.35);
+        line-height: 1.7;
+        letter-spacing: 0.02em;
+        margin: 0;
+      }
+
+      /* Antique gold subtitle for section headings (International & National) */
+      .academic-heading-wrap .ec-label-sub {
+        font-family: 'Rajdhani', sans-serif !important;
+        font-size: 0.78rem !important;
+        font-weight: 500 !important;
+        color: rgba(181,155,109,0.65) !important;
+        letter-spacing: 0.18em !important;
+        text-transform: uppercase !important;
+        line-height: 1.7 !important;
+        margin-top: 10px !important;
+        margin-bottom: 0 !important;
+      }
+
+      /* The canvas */
+      .ec-wall {
+        position: relative;
+        width: 100%;
+        height: 4720px;
+        overflow: visible;
+      }
+
+      /* Base photo card */
+      .ec-photo {
+        position: absolute;
+        overflow: hidden;
+        cursor: pointer;
+        background: transparent;
+        border-radius: 12px;
+        box-shadow: 0 4px 32px rgba(0,0,0,0.18);
+      }
+      .ec-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94),
+                    filter 0.5s ease;
+        filter: brightness(0.88) saturate(0.55) contrast(0.92);
+      }
+      .ec-photo:hover img {
+        transform: scale(1.03);
+        filter: brightness(1.0) saturate(0.85) contrast(1.0);
+      }
+      .ec-photo::after {
+        content: attr(data-caption);
+        position: absolute;
+        bottom: 0; left: 0; right: 0;
+        padding: 2.5rem 1.2rem 1rem;
+        background: linear-gradient(to top, rgba(0,0,0,0.82), transparent);
+        color: #fff;
+        font-family: 'Rajdhani', sans-serif;
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        opacity: 0;
+        transition: opacity 0.35s ease;
+        pointer-events: none;
+      }
+      .ec-photo:hover::after { opacity: 1; }
+
+      /* ── DESKTOP LAYOUT ── */
+      .ec-p1  { top: 0px;    left: 0;    width: 30%; height: 560px; z-index: 2; }
+      .ec-p11 { top: 80px;   right: 0;   width: 44%; height: 380px; z-index: 3; }
+      .ec-p2  { top: 680px;  left: 14%;  width: 52%; height: 340px; z-index: 2; }
+      .ec-p3  { top: 1160px; left: 22%;  width: 56%; height: 420px; z-index: 2; }
+      .ec-p4  { top: 1720px; left: 0;    width: 46%; height: 520px; z-index: 2; }
+      .ec-p5  { top: 1780px; right: 0;   width: 34%; height: 300px; z-index: 3; }
+      .ec-p6  { top: 2400px; left: 22%;  width: 56%; height: 460px; z-index: 2; }
+      .ec-p7  { top: 2960px; right: 0;   width: 30%; height: 560px; z-index: 3; }
+      .ec-p8  { top: 3140px; left: 14%;  width: 50%; height: 340px; z-index: 2; }
+      .ec-p9  { top: 3620px; left: 22%;  width: 56%; height: 460px; z-index: 2; }
+      .ec-p10 { top: 4240px; left: 0;    width: 46%; height: 360px; z-index: 2; }
+      .ec-p12 { top: 4300px; right: 0;   width: 34%; height: 300px; z-index: 3; }
+
+      /* ── Lightbox ── */
+      .cg-lightbox {
+        display: none; position: fixed; inset: 0; z-index: 9999;
+        background: rgba(0,0,0,0.94);
+        backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+        align-items: center; justify-content: center; padding: 2rem;
+      }
+      .cg-lightbox.open { display: flex; animation: cgFadeIn 0.22s ease; }
+      @keyframes cgFadeIn {
+        from { opacity: 0; transform: scale(0.97); }
+        to   { opacity: 1; transform: scale(1); }
+      }
+      .cg-lb-inner {
+        max-width: 960px; width: 100%;
+        display: flex; flex-direction: column; gap: 1rem; align-items: center;
+      }
+      .cg-lb-inner img {
+        width: 100%; max-height: 78vh;
+        object-fit: contain; border-radius: 2px;
+        box-shadow: 0 0 80px rgba(0,0,0,0.9);
+      }
+      .cg-lb-text { text-align: center; }
+      .cg-lb-text p {
+        font-family: 'Rajdhani', sans-serif; font-size: 0.9rem;
+        color: rgba(255,255,255,0.5); margin: 0;
+        letter-spacing: 0.07em; text-transform: uppercase;
+      }
+      .cg-lb-close {
+        position: fixed; top: 1.2rem; right: 1.5rem;
+        background: none; border: 1px solid rgba(255,255,255,0.25);
+        color: #fff; font-size: 1.5rem; width: 2.4rem; height: 2.4rem;
+        border-radius: 50%; cursor: pointer; display: flex;
+        align-items: center; justify-content: center;
+        transition: background 0.2s, border-color 0.2s; z-index: 10000;
+      }
+      .cg-lb-close:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.6); }
+
+      /* ── Mobile: preserve staggered absolute layout, scaled down ── */
+      @media (max-width: 768px) {
+        .ec-heading-wrap { padding: 0 1rem; margin-bottom: 1.2rem; }
+
+        .ec-wall { height: 2600px !important; }
+
+        .ec-p1  { top: 0px;    left: 0;    width: 32% !important; height: 300px !important; }
+        .ec-p11 { top: 44px;   right: 0;   width: 46% !important; height: 210px !important; }
+        .ec-p2  { top: 374px;  left: 10%;  width: 58% !important; height: 188px !important; }
+        .ec-p3  { top: 638px;  left: 12%;  width: 62% !important; height: 232px !important; }
+        .ec-p4  { top: 946px;  left: 0;    width: 50% !important; height: 286px !important; }
+        .ec-p5  { top: 979px;  right: 0;   width: 37% !important; height: 165px !important; }
+        .ec-p6  { top: 1320px; left: 12%;  width: 62% !important; height: 253px !important; }
+        .ec-p7  { top: 1628px; right: 0;   width: 32% !important; height: 308px !important; }
+        .ec-p8  { top: 1727px; left: 10%;  width: 55% !important; height: 187px !important; }
+        .ec-p9  { top: 1991px; left: 12%;  width: 62% !important; height: 253px !important; }
+        .ec-p10 { top: 2332px; left: 0;    width: 50% !important; height: 198px !important; }
+        .ec-p12 { top: 2365px; right: 0;   width: 37% !important; height: 165px !important; }
+
+        .ec-photo::after {
+          opacity: 1;
+          font-size: 0.6rem;
+          padding: 1.8rem 0.8rem 0.5rem;
+        }
+
+        .cg-lb-inner img { max-height: 55vh; }
+      }
+    </style>
+
+    <script>
+      (function () {
+        var photos  = document.querySelectorAll('.ec-photo');
+        var lightbox = document.getElementById('cg-lightbox');
+        var lbImg   = document.getElementById('cg-lb-img');
+        var lbCap   = document.getElementById('cg-lb-caption');
+        var lbClose = document.getElementById('cg-lb-close');
+
+        function openLB(el) {
+          var img = el.querySelector('img');
+          if (!img || !img.getAttribute('src')) return;
+          lbImg.src         = img.src;
+          lbImg.alt         = img.alt;
+          lbCap.textContent = el.dataset.caption || '';
+          lightbox.classList.add('open');
+          document.body.style.overflow = 'hidden';
+        }
+        function closeLB() {
+          lightbox.classList.remove('open');
+          document.body.style.overflow = '';
+        }
+
+        photos.forEach(function(p) {
+          p.addEventListener('click', function() { openLB(p); });
+        });
+        lbClose.addEventListener('click', closeLB);
+        lightbox.addEventListener('click', function(e) { if (e.target === lightbox) closeLB(); });
+        document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeLB(); });
+      })();
+    </script>
+
+  </main>
+
+  <footer>© 2026 Radit Raian | All rights reserved</footer>
 
   <script src="script.js"></script>
-
 </body>
-
-<footer>© 2026 Radit Raian | All rights reserved</footer>
-
 </html>

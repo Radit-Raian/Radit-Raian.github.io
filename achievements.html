@@ -49,6 +49,124 @@
       color: rgba(181,155,109,0.65) !important;
     }
 
+    /* ── International Recognition Cards — tall background image style ── */
+    .intl-card {
+      position: relative;
+      width: 100%;
+      min-height: 220px;
+      border-radius: 18px;
+      overflow: hidden;
+      margin-bottom: 18px;
+      cursor: default;
+      transition: transform 0.38s cubic-bezier(0.34,1.56,0.64,1),
+                  box-shadow 0.38s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .intl-card:hover {
+      transform: translateY(-3px);
+    }
+
+    /* Background image layer */
+    .intl-bg-img {
+      position: absolute;
+      inset: 0;
+      background-image: var(--intl-bg);
+      background-size: cover;
+      background-position: center;
+      filter: brightness(0.28) saturate(0.45);
+      transition: filter 0.5s ease, transform 0.6s ease;
+      transform: scale(1.03);
+    }
+    .intl-card:hover .intl-bg-img {
+      filter: brightness(0.38) saturate(0.6);
+      transform: scale(1.06);
+    }
+
+    /* Dark gradient overlay — center-safe */
+    .intl-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(5,4,2,0.45) 0%,
+        rgba(5,4,2,0.25) 50%,
+        rgba(5,4,2,0.55) 100%
+      );
+    }
+
+    /* Text content — fully centered */
+    .intl-content {
+      position: relative;
+      z-index: 2;
+      padding: 44px 60px;
+      text-align: center;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .intl-content h3 {
+      font-family: 'Rajdhani', sans-serif !important;
+      font-size: 1.75rem !important;
+      font-weight: 700 !important;
+      color: rgba(245, 240, 223, 0.95) !important;
+      margin: 0 !important;
+      letter-spacing: 0.02em !important;
+      line-height: 1.2 !important;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.8) !important;
+    }
+
+    /* Thin divider line between title and subtitle */
+    .intl-content::after {
+      content: '';
+      display: block;
+      width: 48px;
+      height: 1px;
+      background: currentColor;
+      opacity: 0.3;
+      margin: 2px auto 0;
+      order: 2;
+    }
+
+    .intl-content p {
+      font-family: 'Rajdhani', sans-serif !important;
+      font-size: 1.05rem !important;
+      font-weight: 500 !important;
+      margin: 0 !important;
+      letter-spacing: 0.12em !important;
+      text-transform: uppercase !important;
+      order: 3;
+    }
+
+    /* Medal color borders & accent glow */
+    .intl-gold  { border: 1px solid rgba(255,210,60,0.4); box-shadow: 0 4px 32px rgba(255,200,30,0.1); }
+    .intl-gold:hover  { box-shadow: 0 8px 48px rgba(255,200,30,0.2); border-color: rgba(255,210,60,0.65); }
+    .intl-gold  .intl-content p { color: rgba(245,197,24,0.82) !important; }
+
+    .intl-silver { border: 1px solid rgba(200,215,230,0.32); box-shadow: 0 4px 28px rgba(180,200,220,0.07); }
+    .intl-silver:hover { box-shadow: 0 8px 42px rgba(180,200,220,0.16); border-color: rgba(200,215,230,0.55); }
+    .intl-silver .intl-content p { color: rgba(184,200,216,0.82) !important; }
+
+    .intl-bronze { border: 1px solid rgba(210,130,60,0.38); box-shadow: 0 4px 28px rgba(200,120,40,0.09); }
+    .intl-bronze:hover { box-shadow: 0 8px 44px rgba(200,120,40,0.18); border-color: rgba(210,130,60,0.6); }
+    .intl-bronze .intl-content p { color: rgba(205,127,50,0.85) !important; }
+
+    .intl-winner { border: 1px solid rgba(154,124,73,0.3); box-shadow: 0 4px 24px rgba(154,124,73,0.07); }
+    .intl-winner:hover { box-shadow: 0 8px 40px rgba(154,124,73,0.16); border-color: rgba(154,124,73,0.5); }
+    .intl-winner .intl-content p { color: rgba(255, 255, 255, 0.78) !important; }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .intl-card { min-height: 140px; border-radius: 12px; margin-bottom: 10px; }
+      .intl-content { padding: 28px 20px; gap: 7px; }
+      .intl-content h3 { font-size: 1.05rem !important; }
+      .intl-content p  { font-size: 0.78rem !important; letter-spacing: 0.08em !important; }
+    }
+
     /* Inline year span — hidden on desktop, shown on mobile */
     .nat-year-inline {
       display: none;
@@ -257,41 +375,46 @@
 
       <br><br>
 
-      <div class="medal-bar-card medal-gold">
-        <div class="medal-accent"></div>
-        <div class="medal-info">
+      <div class="intl-card intl-gold" style="--intl-bg: url('https://i.postimg.cc/YSBR9yQv/Screenshot-from-2026-05-19-13-36-57.png')">
+        <div class="intl-bg-img"></div>
+        <div class="intl-overlay"></div>
+        <div class="intl-content">
           <h3>International Astronomy and Astrophysics Competition (IAAC)</h3>
           <p>Gold Award &nbsp;·&nbsp; Online &nbsp;·&nbsp; 2025</p>
         </div>
       </div>
 
-      <div class="medal-bar-card medal-silver">
-        <div class="medal-accent"></div>
-        <div class="medal-info">
+      <div class="intl-card intl-silver" style="--intl-bg: url('https://i.postimg.cc/pdyWmqvw/photo-6057689297135014409-y.jpg')">
+        <div class="intl-bg-img"></div>
+        <div class="intl-overlay"></div>
+        <div class="intl-content">
           <h3>Open World Astronomy Olympiad (OWAO)</h3>
           <p>Silver Award &nbsp;·&nbsp; Sochi, Russia &nbsp;·&nbsp; 2025</p>
         </div>
       </div>
 
-      <div class="medal-bar-card medal-bronze">
-        <div class="medal-accent"></div>
-        <div class="medal-info">
+      <div class="intl-card intl-bronze" style="--intl-bg: url('https://i.postimg.cc/bNTLJR3x/Screenshot-from-2026-05-19-13-50-44.png')">
+        <div class="intl-bg-img"></div>
+        <div class="intl-overlay"></div>
+        <div class="intl-content">
           <h3>International Astronomy Olympiad (IAO)</h3>
           <p>Bronze Award &nbsp;·&nbsp; Dhaka, Bangladesh &nbsp;·&nbsp; 2025</p>
         </div>
       </div>
 
-      <div class="medal-bar-card medal-winner">
-        <div class="medal-accent"></div>
-        <div class="medal-info">
+      <div class="intl-card intl-winner" style="--intl-bg: url('https://i.postimg.cc/XJ5qHQr4/igo.jpg')">
+        <div class="intl-bg-img"></div>
+        <div class="intl-overlay"></div>
+        <div class="intl-content">
           <h3>Iranian Geometry Olympiad (IGO)</h3>
           <p>Honorable Mention &nbsp;·&nbsp; 2023</p>
         </div>
       </div>
 
-      <div class="medal-bar-card medal-winner">
-        <div class="medal-accent"></div>
-        <div class="medal-info">
+      <div class="intl-card intl-winner" style="--intl-bg: url('https://i.postimg.cc/0NnhgJBc/Gemini-Generated-Image-yun5kbyun5kbyun5.png')">
+        <div class="intl-bg-img"></div>
+        <div class="intl-overlay"></div>
+        <div class="intl-content">
           <h3>STAR Programme by Global Talent Fund</h3>
           <p>STAR Scholar &nbsp;·&nbsp; 2025</p>
         </div>
