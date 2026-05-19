@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact | Radit Raian</title>
+  <title>Outreach | Radit Raian</title>
   
   <link rel="icon" type="image/png" href="https://i.postimg.cc/Qx4C6gTV/orion.png">
 
@@ -288,11 +288,60 @@
       .o-talk-card { grid-template-columns: 1fr; }
       .o-talk-img { min-height: 240px; }
       .o-talk-body { padding: 32px 24px; }
-      .o-exp-inner { grid-template-columns: 1fr; }
-      .o-exp-left { flex-direction: row; flex-wrap: wrap; border-right: none; border-bottom: 1px solid rgba(181,155,109,0.08); padding: 24px; gap: 16px; }
-      .o-exp-right { padding: 24px; }
-      .o-exp-bullets { grid-template-columns: 1fr; }
-      .o-exp-org { font-size: 1.4rem; }
+
+      /* --- Professional Experience card --- */
+      .glass-exp-card {
+        flex-direction: column;
+        padding: 0;
+        border-radius: 16px;
+        text-align: left;
+      }
+      .exp-card-left {
+        margin-right: 0;
+        padding: 16px 18px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        border-bottom: 1px solid rgba(181,155,109,0.12);
+        justify-content: flex-start;
+      }
+      .exp-image-wrap {
+        width: 52px;
+        height: 52px;
+        border-radius: 10px;
+        flex-shrink: 0;
+      }
+      .exp-image-wrap img {
+        object-fit: contain;
+      }
+      .exp-card-right {
+        padding: 16px 18px;
+        text-align: left;
+      }
+      .exp-header-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+        margin-bottom: 6px;
+      }
+      .exp-card-right h3 {
+        font-size: 1.1rem;
+      }
+      .exp-timeframe {
+        font-size: 0.82rem;
+      }
+      .exp-role-title {
+        font-size: 0.85rem;
+        margin-bottom: 14px;
+      }
+      .exp-bullets li {
+        font-size: 0.88rem;
+        padding-left: 20px;
+        text-align: left;
+      }
+      .exp-bullets li::before {
+        display: inline;
+      }
     }
   </style>
 
