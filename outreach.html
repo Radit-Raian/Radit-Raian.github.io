@@ -288,6 +288,9 @@
       .o-talk-card { grid-template-columns: 1fr; }
       .o-talk-img { min-height: 240px; }
       .o-talk-body { padding: 32px 24px; }
+      .outreach-sub-header,
+      .outreach-sub-header h2,
+      .outreach-sub-header.academic-heading-wrap { text-align: left !important; }
 
       /* --- Professional Experience card --- */
       .glass-exp-card {
@@ -350,6 +353,7 @@
       max-width: 1100px;
       margin-left: auto;
       margin-right: auto;
+      text-align: left !important;
     }
 
     .outreach-sub-header h2 {
@@ -435,7 +439,7 @@
 
       <div class="academic-heading-wrap outreach-sub-header">
         <h2>Journal Talks</h2>
-        <p class="ec-label-sub">Presentations &nbsp;·&nbsp; Public Engagement</p>
+        <p class="ec-label-sub">Talking about stars with the star watchers!</p>
       </div>
 
       <div class="o-talk-card">
@@ -467,10 +471,377 @@
         </div>
       </div>
 
+      <!-- ═══════════════════════════════════════ BLOG ═══════════════════════════════════════ -->
+      <style>
+        /* ─── BLOG HEADING (same as Journal Talks) ─── */
+        .blog-section { margin-top: 96px; }
+
+        /* ─── BLOG HEADER ROW ─── */
+        .blog-header-row {
+          margin-bottom: 32px;
+        }
+
+        /* ─── VIEW ALL — centered pill like story-read-more ─── */
+        .blog-view-wrap {
+          display: flex;
+          justify-content: center;
+          margin-top: 36px;
+        }
+        .blog-view-btn {
+          font-family: 'Inter', sans-serif;
+          font-size: 0.75rem;
+          font-weight: 500;
+          color: #fef3c7;
+          text-decoration: none;
+          letter-spacing: 0.1rem;
+          border: 1px solid #b59b6d;
+          padding: 0.5rem 1.6rem;
+          border-radius: 2rem;
+          background: rgba(181,155,109,0.1);
+          cursor: pointer;
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          transition: all 0.3s ease;
+          white-space: nowrap;
+        }
+        .blog-view-btn:hover {
+          background: rgba(181,155,109,0.25);
+          box-shadow: 0 0 12px rgba(181,155,109,0.3);
+        }
+
+        /* ─── THREE CARD GRID ─── */
+        .blog-grid-3 {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 1px;
+          background: rgba(181,155,109,0.1);
+        }
+
+        /* ─── HIDDEN EXTRA CARDS ─── */
+        .blog-extras {
+          display: none;
+          gap: 1px;
+          background: rgba(181,155,109,0.1);
+          margin-top: 1px;
+        }
+        .blog-extras.open { display: grid; grid-template-columns: repeat(3, 1fr); }
+
+        /* ─── CARD ─── */
+        .b-card {
+          background: rgba(7, 6, 4, 0.92);
+          backdrop-filter: blur(16px);
+          position: relative;
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          transition: background 0.3s ease;
+          min-height: 520px;
+        }
+        .b-card:hover { background: rgba(16, 13, 8, 0.98); }
+
+        /* top sweep line */
+        .b-card::before {
+          content: '';
+          position: absolute;
+          top: 0; left: 0; right: 0;
+          height: 1px;
+          background: linear-gradient(90deg, transparent, #b59b6d 50%, transparent);
+          transform: scaleX(0);
+          transform-origin: center;
+          transition: transform 0.5s ease;
+          z-index: 3;
+        }
+        .b-card:hover::before { transform: scaleX(1); }
+
+        /* ── IMAGE UPPER HALF ── */
+        .b-img-wrap {
+          position: relative;
+          height: 180px;
+          overflow: hidden;
+          flex-shrink: 0;
+        }
+        .b-img-wrap img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center;
+          display: block;
+          filter: brightness(0.45) sepia(0.6) saturate(0.8);
+          transition: filter 0.6s ease, transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94);
+        }
+        .b-card:hover .b-img-wrap img {
+          filter: brightness(0.35) sepia(0.8) saturate(1.1);
+          transform: scale(1.04);
+        }
+        /* gold gradient fade from image into card body */
+        .b-img-wrap::after {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(
+            to bottom,
+            rgba(181,155,109,0.08) 0%,
+            rgba(7,6,4,0) 40%,
+            rgba(7,6,4,0.7) 75%,
+            rgba(7,6,4,0.97) 100%
+          );
+          pointer-events: none;
+        }
+        /* category pill floated over image */
+        .b-img-cat {
+          position: absolute;
+          top: 14px; left: 14px;
+          font-family: 'DM Sans', sans-serif;
+          font-size: 0.55rem;
+          letter-spacing: 0.24em;
+          text-transform: uppercase;
+          color: #b59b6d;
+          border: 1px solid rgba(181,155,109,0.4);
+          padding: 4px 10px;
+          background: rgba(0,0,0,0.55);
+          backdrop-filter: blur(6px);
+          z-index: 2;
+        }
+        /* ghost number over image */
+        .b-num {
+          position: absolute;
+          bottom: -8px; right: 10px;
+          font-family: 'Playfair Display', serif;
+          font-size: 5.5rem;
+          font-weight: 900;
+          color: rgba(181,155,109,0.12);
+          line-height: 1;
+          pointer-events: none;
+          letter-spacing: -3px;
+          z-index: 2;
+          transition: color 0.3s ease;
+        }
+        .b-card:hover .b-num { color: rgba(181,155,109,0.2); }
+
+        .b-inner {
+          padding: 24px 26px 26px;
+          display: flex;
+          flex-direction: column;
+          flex: 1;
+          position: relative;
+          z-index: 1;
+        }
+
+        /* date row */
+        .b-date {
+          font-family: 'DM Sans', sans-serif;
+          font-size: 0.6rem;
+          color: rgba(181,155,109,0.35);
+          letter-spacing: 0.1em;
+          margin-bottom: 10px;
+        }
+
+        /* title */
+        .b-title {
+          font-family: 'Playfair Display', serif;
+          font-size: clamp(1rem, 1.4vw, 1.2rem);
+          font-weight: 700;
+          color: #fff;
+          line-height: 1.3;
+          margin: 0 0 14px 0;
+          transition: color 0.2s;
+        }
+        .b-card:hover .b-title { color: #e8d5a3; }
+
+        /* rule */
+        .b-rule {
+          width: 28px;
+          height: 1px;
+          background: rgba(181,155,109,0.28);
+          margin-bottom: 14px;
+          transition: width 0.4s ease;
+        }
+        .b-card:hover .b-rule { width: 56px; }
+
+        /* excerpt */
+        .b-excerpt {
+          font-family: 'DM Sans', sans-serif;
+          font-size: 0.82rem;
+          line-height: 1.82;
+          color: #3a4558;
+          flex: 1;
+          margin-bottom: 20px;
+        }
+
+        /* tags */
+        .b-tags {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 5px;
+          margin-bottom: 18px;
+        }
+        .b-tag {
+          font-family: 'DM Sans', sans-serif;
+          font-size: 0.58rem;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          color: rgba(181,155,109,0.45);
+          background: rgba(181,155,109,0.04);
+          border: 1px solid rgba(181,155,109,0.09);
+          padding: 3px 7px;
+        }
+
+        /* footer */
+        .b-footer {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding-top: 14px;
+          border-top: 1px solid rgba(181,155,109,0.07);
+        }
+        .b-link {
+          font-family: 'DM Sans', sans-serif;
+          font-size: 0.62rem;
+          letter-spacing: 0.18em;
+          text-transform: uppercase;
+          color: #b59b6d;
+          text-decoration: none;
+          display: flex;
+          align-items: center;
+          gap: 7px;
+          transition: gap 0.2s ease;
+        }
+        .b-link:hover { gap: 13px; }
+        .b-link i { font-size: 0.55rem; }
+        .b-readtime {
+          font-family: 'DM Sans', sans-serif;
+          font-size: 0.6rem;
+          color: rgba(181,155,109,0.22);
+        }
+
+        @media (max-width: 768px) {
+          .blog-grid-3 { grid-template-columns: 1fr; }
+          .blog-extras.open { grid-template-columns: 1fr; }
+          .blog-view-wrap { margin-top: 24px; }
+        }
+      </style>
+
+      <div class="blog-section">
+
+        <!-- heading identical to Journal Talks -->
+        <div class="academic-heading-wrap outreach-sub-header">
+          <h2>Musings beyond the Sky</h2>
+          <p class="ec-label-sub">A blog of reflections and responses related to my research and journey</p>
+        </div>
+
+        <!-- 3 featured cards always visible -->
+        <div class="blog-grid-3">
+
+          <div class="b-card">
+            <div class="b-img-wrap">
+              <img src="https://i.postimg.cc/WzC9C8Wr/photo-6057689297135014400-y.jpg" alt="">
+              <span class="b-img-cat">OWAO 2025</span>
+              <span class="b-num">01</span>
+            </div>
+            <div class="b-inner">
+              <span class="b-date">Coming Soon</span>
+              <h3 class="b-title">What Chasing Sirius Taught Me About the Rigor of International Astronomy</h3>
+              <div class="b-rule"></div>
+              <p class="b-excerpt">Preparing for an international astrophysics stage demands a shift from textbook calculations to raw data intuition. This piece documents the training and technical milestones of the Open World Astronomy Olympiad journey, tracing how navigating complex problems under the Sirius transforms a passion for the night sky into a rigorous scientific pursuit.</p>
+              <div class="b-tags">
+                <span class="b-tag">OWAO</span>
+                <span class="b-tag">Astronomy Olympiad</span>
+                <span class="b-tag">International</span>
+              </div>
+              <div class="b-footer">
+                <a href="#" class="b-link">Read Essay <i class="fa-solid fa-arrow-right"></i></a>
+                <span class="b-readtime">8 min read</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="b-card">
+            <div class="b-img-wrap">
+              <img src="https://i.postimg.cc/xTzv7rhr/betelgeuse-star-987396640-afd328ff2f774d769c56ed59ca336eb4.webp" alt="">
+              <span class="b-img-cat">Astrophysics</span>
+              <span class="b-num">02</span>
+            </div>
+            <div class="b-inner">
+              <span class="b-date">Coming Soon</span>
+              <h3 class="b-title">Why the Point Spread Function Dictates Everything We See</h3>
+              <div class="b-rule"></div>
+              <p class="b-excerpt">A single pixel can hold the secrets of a distant supernova, or it can just be a blurred mess. The culprit? The Point Spread Function. Here, we break down why the PSF is the ultimate gatekeeper of image quality in modern sky surveys, how it shapes our view of transient phenomena, and why solving this optical puzzle matters to anyone trying to map the cosmos.</p>
+              <div class="b-tags">
+                <span class="b-tag">PSF</span>
+                <span class="b-tag">Instrumentation</span>
+                <span class="b-tag">Faint Objects</span>
+              </div>
+              <div class="b-footer">
+                <a href="#" class="b-link">Read Essay <i class="fa-solid fa-arrow-right"></i></a>
+                <span class="b-readtime">11 min read</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="b-card">
+            <div class="b-img-wrap">
+              <img src="https://i.postimg.cc/7hdZjQny/471806078-1596412354345994-6105450299167835705-n.jpg" alt="">
+              <span class="b-img-cat">Math Olympiad</span>
+              <span class="b-num">03</span>
+            </div>
+            <div class="b-inner">
+              <span class="b-date">Coming Soon</span>
+              <h3 class="b-title">What Four Years of Math Olympiads Taught Me About Thinking</h3>
+              <div class="b-rule"></div>
+              <p class="b-excerpt">Staring at a blank page for four hours trying to solve a single problem changes how your brain handles frustration. In this retrospective, we look back at four years of Math Olympiads to explore the deep thinking habits the competition builds. We will start from how to love the elegance of a clever counterexample to discovering how to systematically dissect the chaos.</p>
+              <div class="b-tags">
+                <span class="b-tag">Mathematics</span>
+                <span class="b-tag">Problem Solving</span>
+                <span class="b-tag">Reflection</span>
+              </div>
+              <div class="b-footer">
+                <a href="#" class="b-link">Read Essay <i class="fa-solid fa-arrow-right"></i></a>
+                <span class="b-readtime">6 min read</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- 4th card hidden until View All clicked -->
+        <div class="blog-extras" id="blogExtras">
+          <div class="b-card">
+            <div class="b-img-wrap">
+              <img src="https://i.postimg.cc/y6DcjkTv/upscalemedia-transformed-(4).jpg" alt="">
+              <span class="b-img-cat">Astro Community</span>
+              <span class="b-num">04</span>
+            </div>
+            <div class="b-inner">
+              <span class="b-date">Coming Soon</span>
+              <h3 class="b-title">Building Connections Beyond the Telescope Within the Astro Community</h3>
+              <div class="b-rule"></div>
+              <p class="b-excerpt">Looking through a telescope can feel like a profoundly solitary act until you plug into the massive global network of people doing the exact same thing. In this reflection, we take a look at the vital role of the astro community in breaking down institutional barriers, sharing raw scripting pipelines, and creating an accessible, fast-moving space where young researchers can co-author the future of space science.</p>
+              <div class="b-tags">
+                <span class="b-tag">Community</span>
+                <span class="b-tag">Astronomy</span>
+                <span class="b-tag">Collaboration</span>
+              </div>
+              <div class="b-footer">
+                <a href="#" class="b-link">Read Essay <i class="fa-solid fa-arrow-right"></i></a>
+                <span class="b-readtime">5 min read</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Centered pill button -->
+        <div class="blog-view-wrap">
+          <button class="blog-view-btn" id="blogBtn" onclick="toggleBlogs()">
+            VIEW ALL &nbsp;›
+          </button>
+        </div>
+
+      </div>
       <div class="experience-list-container">
         <div class="academic-heading-wrap outreach-sub-header">
           <h2>Professional Experience</h2>
-          <p class="ec-label-sub">Work &nbsp;·&nbsp; Content & Education</p>
+          <p class="ec-label-sub">A tiny journey to the professional field throughout my career.</p>
         </div>
 
     <div class="glass-exp-grid">
@@ -503,6 +874,14 @@
     </section>
   </main>
 
+  <script>
+    function toggleBlogs() {
+      var extras = document.getElementById('blogExtras');
+      var btn = document.getElementById('blogBtn');
+      var open = extras.classList.toggle('open');
+      btn.innerHTML = open ? 'SHOW LESS &nbsp;‹' : 'VIEW ALL &nbsp;›';
+    }
+  </script>
   <script src="script.js"></script>
 
 </body>
