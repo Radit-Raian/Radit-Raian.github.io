@@ -23,7 +23,7 @@
     .outreach-main * { box-sizing: border-box; }
 
     .outreach-main {
-      padding-top: 110px;
+      padding-top: 100px;
       padding-bottom: 120px;
       max-width: 1160px;
       margin: 0 auto;
@@ -343,6 +343,56 @@
         display: inline;
       }
     }
+
+    /* Sub-section left-bar headers */
+    .outreach-sub-header {
+      margin-top: 72px;
+      max-width: 1100px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .outreach-sub-header h2 {
+      font-family: 'Rajdhani', sans-serif !important;
+      font-size: 2.4rem !important;
+      font-weight: 700 !important;
+      color: #fef3c7 !important;
+      letter-spacing: 0.04em !important;
+      text-shadow: 0 0 30px rgba(212,175,55,0.3), 0 2px 8px rgba(0,0,0,0.5) !important;
+      margin: 0 !important;
+    }
+
+    .outreach-sub-header.academic-heading-wrap {
+      border-left: 4px solid transparent !important;
+      border-image: linear-gradient(180deg, #fef3c7, #d4af37 50%, #92743a) 1 !important;
+      padding-left: 22px !important;
+      margin-bottom: 36px !important;
+      text-align: left !important;
+      position: relative !important;
+    }
+
+    .outreach-sub-header.academic-heading-wrap::before {
+      content: '' !important;
+      position: absolute !important;
+      left: 0 !important; top: 0 !important; bottom: 0 !important;
+      width: 4px !important;
+      background: linear-gradient(180deg, #fef3c7, #d4af37 50%, #92743a) !important;
+      border-radius: 4px !important;
+      box-shadow: 0 0 18px rgba(212,175,55,0.45), 0 0 40px rgba(212,175,55,0.15) !important;
+    }
+
+    .ec-label-sub {
+      font-family: 'Rajdhani', sans-serif !important;
+      font-size: 0.78rem !important;
+      font-weight: 500 !important;
+      color: rgba(181,155,109,0.65) !important;
+      letter-spacing: 0.18em !important;
+      text-transform: uppercase !important;
+      line-height: 1.7 !important;
+      margin-top: 8px !important;
+      margin-bottom: 0 !important;
+      display: block !important;
+    }
   </style>
 
   <canvas id="cosmos-engine"></canvas>
@@ -372,13 +422,21 @@
 
 <main class="outreach-main">
     <section id="outreach-content" class="active">
+
       <div class="section-header-center">
         <h2 class="section-title">Outreach & Engagement</h2>
         <div class="hero-underline"></div>
+        <div class="research-intro-box">
+          <p>
+            Science lives beyond the lab. Through journal talks, public engagement, and professional contributions, I work to share the wonder of astrophysics — with researchers, students, and curious minds alike.
+          </p>
+        </div>
       </div>
 
-          <h2 class="experience-header-large">Journal Talks</h2>
-
+      <div class="academic-heading-wrap outreach-sub-header">
+        <h2>Journal Talks</h2>
+        <p class="ec-label-sub">Presentations &nbsp;·&nbsp; Public Engagement</p>
+      </div>
 
       <div class="o-talk-card">
         <div class="o-talk-img">
@@ -400,7 +458,6 @@
             <a href="https://cassa.site/people/interns/" class="btn-research">
               Visit CASSA <i class="fa-solid fa-external-link"></i>
             </a>
-
             <a href="https://docs.google.com/presentation/d/1hngbD-IXiZiw5TRdWGdH4blxKh9ABghS5hDsGbL_DXs/edit?usp=sharing"
                target="_blank"
                class="btn-research">
@@ -409,12 +466,12 @@
           </div>
         </div>
       </div>
-    </div>
 
-      
-
-          <div class="experience-list-container">
-    <h2 class="experience-header-large">Professional Experience</h2>
+      <div class="experience-list-container">
+        <div class="academic-heading-wrap outreach-sub-header">
+          <h2>Professional Experience</h2>
+          <p class="ec-label-sub">Work &nbsp;·&nbsp; Content & Education</p>
+        </div>
 
     <div class="glass-exp-grid">
         
