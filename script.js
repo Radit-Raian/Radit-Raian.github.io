@@ -11,8 +11,14 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   window.addEventListener("resize", resizeCanvas);
-  window.addEventListener("scroll", () => scrollY = window.pageYOffset);
+  window.addEventListener("scroll", () => {
+    scrollY = window.pageYOffset;
+    // side vignette fades in once user scrolls
+    if (scrollY > 40) document.body.classList.add("scrolled");
+    else document.body.classList.remove("scrolled");
+  });
   resizeCanvas();
+
 
   /* ===================== SCIENTIFIC STAR COLORS ===================== */
   const SPECTRAL_CLASSES = [
@@ -38,83 +44,173 @@ document.addEventListener("DOMContentLoaded", () => {
   /* ===================== STARS ===================== */
   const STAR_COUNT = 700;
 
+  /* — hex colour helpers for tinted twinkle (5) — */
+  function hexToRgb(hex) {
+    return {
+      r: parseInt(hex.slice(1,3), 16),
+      g: parseInt(hex.slice(3,5), 16),
+      b: parseInt(hex.slice(5,7), 16)
+    };
+  }
+  function lerpColor(hex, tr, tg, tb, t) {
+    const { r, g, b } = hexToRgb(hex);
+    return `rgb(${Math.round(r+(tr-r)*t)},${Math.round(g+(tg-g)*t)},${Math.round(b+(tb-b)*t)})`;
+  }
+
   class Star {
     constructor(speedMultiplier) {
       this.x = Math.random() * width;
       this.y = Math.random() * height;
       this.radius = Math.random() * 1.2 + 0.2;
-      this.color = getStarColor();
+      this.baseColor = getStarColor();
       this.speed = speedMultiplier;
       this.opacity = Math.random();
       this.twinkleSpeed = Math.random() * 0.008 + 0.004;
+      // 5. each star shifts toward warm or cool at peak brightness
+      this.tintTarget = Math.random() < 0.5
+        ? { r: 255, g: 240, b: 200 }  // warm
+        : { r: 200, g: 220, b: 255 }; // cool
+      // 6. ~1.5% of larger stars can flare
+      this.isVariable = this.radius > 0.9 && Math.random() < 0.015;
+      this.flaring = false;
+      this.flareOpacity = 0;
+      this.flareRadius = 0;
     }
     update() {
       this.opacity += this.twinkleSpeed;
       if (this.opacity > 1 || this.opacity < 0.2) this.twinkleSpeed *= -1;
       this.renderY = (this.y + scrollY * this.speed) % height;
       if (this.renderY < 0) this.renderY += height;
+      // 6. flare decay
+      if (this.flaring) {
+        this.flareOpacity -= 0.012;
+        this.flareRadius  += 0.18;
+        if (this.flareOpacity <= 0) {
+          this.flaring = false;
+          this.flareOpacity = 0;
+          this.flareRadius  = 0;
+        }
+      }
     }
     draw() {
+      // 5. tinted twinkle — colour shifts above 60% opacity
+      const tintT = Math.max(0, this.opacity - 0.6) / 0.4;
+      const drawColor = tintT > 0
+        ? lerpColor(this.baseColor, this.tintTarget.r, this.tintTarget.g, this.tintTarget.b, tintT * 0.35)
+        : this.baseColor;
+
       ctx.globalAlpha = this.opacity;
-      ctx.fillStyle = this.color;
+      ctx.fillStyle = drawColor;
       ctx.beginPath();
       ctx.arc(this.x, this.renderY, this.radius, 0, Math.PI * 2);
+      ctx.fill();
+
+      // glow halo for larger stars
+      if (this.radius > 0.9) {
+        const glowRadius = this.radius * 5;
+        const glow = ctx.createRadialGradient(this.x, this.renderY, 0, this.x, this.renderY, glowRadius);
+        glow.addColorStop(0, this.baseColor + "33");
+        glow.addColorStop(1, "rgba(0,0,0,0)");
+        ctx.globalAlpha = this.opacity * 0.35;
+        ctx.fillStyle = glow;
+        ctx.beginPath();
+        ctx.arc(this.x, this.renderY, glowRadius, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      // 6. flare ring
+      if (this.flaring && this.flareOpacity > 0) {
+        const flare = ctx.createRadialGradient(this.x, this.renderY, 0, this.x, this.renderY, this.flareRadius);
+        flare.addColorStop(0,   `rgba(255,248,220,${this.flareOpacity})`);
+        flare.addColorStop(0.4, `rgba(255,220,150,${this.flareOpacity * 0.5})`);
+        flare.addColorStop(1,   "rgba(0,0,0,0)");
+        ctx.globalAlpha = 1;
+        ctx.fillStyle = flare;
+        ctx.beginPath();
+        ctx.arc(this.x, this.renderY, this.flareRadius, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+    triggerFlare() {
+      this.flaring      = true;
+      this.flareOpacity = 0.75;
+      this.flareRadius  = this.radius * 2;
+    }
+  }
+
+  /* ===================== 2. GIANT STAR CLUSTERS ===================== */
+  const GIANT_COUNT = 10;
+  class GiantStar {
+    constructor() {
+      this.x = Math.random() * width;
+      this.y = Math.random() * height;
+      this.radius = Math.random() * 1.8 + 2.5; // 2.5–4.3px
+      this.baseColor = getStarColor();
+      this.opacity = Math.random() * 0.4 + 0.6;
+      this.twinkleSpeed = Math.random() * 0.005 + 0.002;
+    }
+    update() {
+      this.opacity += this.twinkleSpeed;
+      if (this.opacity > 1 || this.opacity < 0.5) this.twinkleSpeed *= -1;
+      this.renderY = (this.y + scrollY * 0.05) % height;
+      if (this.renderY < 0) this.renderY += height;
+    }
+    draw() {
+      // inner bright core
+      ctx.globalAlpha = this.opacity;
+      ctx.fillStyle = "#ffffff";
+      ctx.beginPath();
+      ctx.arc(this.x, this.renderY, this.radius * 0.4, 0, Math.PI * 2);
+      ctx.fill();
+      // mid glow
+      const mid = ctx.createRadialGradient(this.x, this.renderY, 0, this.x, this.renderY, this.radius * 2);
+      mid.addColorStop(0, this.baseColor + "cc");
+      mid.addColorStop(1, "rgba(0,0,0,0)");
+      ctx.globalAlpha = this.opacity * 0.8;
+      ctx.fillStyle = mid;
+      ctx.beginPath();
+      ctx.arc(this.x, this.renderY, this.radius * 2, 0, Math.PI * 2);
+      ctx.fill();
+      // wide soft halo
+      const halo = ctx.createRadialGradient(this.x, this.renderY, 0, this.x, this.renderY, this.radius * 8);
+      halo.addColorStop(0, this.baseColor + "44");
+      halo.addColorStop(1, "rgba(0,0,0,0)");
+      ctx.globalAlpha = this.opacity * 0.35;
+      ctx.fillStyle = halo;
+      ctx.beginPath();
+      ctx.arc(this.x, this.renderY, this.radius * 8, 0, Math.PI * 2);
       ctx.fill();
     }
   }
 
-  class Meteor {
-    constructor() { this.active = false; }
-    spawn() {
-      this.active = true;
-      this.x = Math.random() * width;
-      this.y = Math.random() * height * 0.3;
-      this.vx = -(Math.random() * 8 + 12);
-      this.vy = Math.random() * 6 + 8;
-      this.length = Math.random() * 25 + 20;
-      this.opacity = 1;
-    }
-    update() {
-      if (!this.active) return;
-      this.x += this.vx; this.y += this.vy; this.opacity -= 0.015;
-      if (this.opacity <= 0) this.active = false;
-    }
-    draw() {
-      if (!this.active) return;
-      ctx.globalAlpha = this.opacity;
-      ctx.strokeStyle = "#ffffff";
-      ctx.lineWidth = 3;
-      ctx.lineCap = "round";
-      ctx.beginPath();
-      ctx.moveTo(this.x, this.y);
-      ctx.lineTo(this.x + this.length, this.y - this.length * 0.5);
-      ctx.stroke();
-    }
-  }
 
-  function drawNebula() {
-    const nebula = ctx.createRadialGradient(width * 0.7, height * 0.3, 0, width * 0.7, height * 0.3, width);
-    nebula.addColorStop(0, "rgba(96, 165, 250, 0.1)");
-    nebula.addColorStop(0.5, "rgba(30,64,175,0.1)");
-    nebula.addColorStop(1, "rgba(0,0,0,0)");
-    ctx.fillStyle = nebula;
-    ctx.fillRect(0, 0, width, height);
-  }
 
   /* ===================== PARALLAX LAYERS ===================== */
   const slowStars = Array.from({ length: STAR_COUNT }, () => new Star(0.05));
   const fastStars = Array.from({ length: STAR_COUNT / 3 }, () => new Star(0.15));
-  const meteor = new Meteor();
+  const giantStars = Array.from({ length: GIANT_COUNT }, () => new GiantStar());
+  const variableStars = [...slowStars, ...fastStars].filter(s => s.isVariable);
 
-  setInterval(() => { if (!meteor.active) meteor.spawn(); }, 8000);
+  /* 6. fire a random variable-star flare every 12–18 s */
+  function scheduleFlare() {
+    setTimeout(() => {
+      if (variableStars.length) {
+        variableStars[Math.floor(Math.random() * variableStars.length)].triggerFlare();
+      }
+      scheduleFlare();
+    }, 12000 + Math.random() * 6000);
+  }
+  scheduleFlare();
 
   /* ===================== ANIMATION LOOP ===================== */
   function animate() {
     ctx.clearRect(0, 0, width, height);
-    drawNebula();
-    slowStars.forEach(s => { s.update(); s.draw(); });
-    fastStars.forEach(s => { s.update(); s.draw(); });
-    meteor.update(); meteor.draw();
+    slowStars.forEach(s => s.update());
+    fastStars.forEach(s => s.update());
+    giantStars.forEach(s => s.update());
+    slowStars.forEach(s => s.draw());
+    fastStars.forEach(s => s.draw());
+    giantStars.forEach(s => s.draw());
     requestAnimationFrame(animate);
   }
   animate();

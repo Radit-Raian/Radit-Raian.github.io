@@ -13,7 +13,7 @@
 html {
     width: 100%; 
     min-height: 100%;
-    background: #050505; 
+    background: #04060f; /* Deep space navy — more atmospheric than pure black */
     font-size: 14px; /* Standard base for rem scaling */
     font-family: 'Inter', sans-serif; 
     scroll-behavior: smooth;
@@ -41,6 +41,60 @@ body {
     display: block;
 }
 
+/* ── 7. FILM GRAIN OVERLAY ── */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23grain)' opacity='0.08'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    opacity: 1;
+    mix-blend-mode: overlay;
+}
+
+/* ── 8. VIGNETTE — sides only, fades in on scroll via JS class ── */
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background: linear-gradient(
+        to right,
+        rgba(1, 2, 8, 0.72) 0%,
+        transparent 18%,
+        transparent 82%,
+        rgba(1, 2, 8, 0.72) 100%
+    );
+    opacity: 0;
+    transition: opacity 0.6s ease;
+}
+body.scrolled::after {
+    opacity: 1;
+}
+
+/* ── 9. HORIZON GLOW ── */
+.horizon-glow {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 280px;
+    pointer-events: none;
+    z-index: 0;
+    background: linear-gradient(
+        to top,
+        rgba(154, 100, 30, 0.13) 0%,
+        rgba(80, 50, 120, 0.07) 40%,
+        transparent 100%
+    );
+    mask-image: linear-gradient(to top, black 0%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to top, black 0%, transparent 100%);
+}
+
 .aurora-wrap {
     position: fixed; 
     top: 0; 
@@ -58,23 +112,26 @@ body {
     left: -25%;
     width: 150%; 
     height: 150%;
-    /* Muted Amber Nebula */
+    /* Multi-tone nebula — blue-violet + amber + teal */
     background: radial-gradient(
-        circle at center,
-        rgba(154, 124, 73, 0.06) 0%,   /* Soft Antique Gold */
-        rgba(101, 87, 53, 0.03) 40%,   /* Faded Sepia */
-        transparent 75%
+        ellipse at 60% 20%,
+        rgba(96, 130, 250, 0.09) 0%,
+        rgba(154, 124, 73, 0.06) 40%,
+        rgba(20, 120, 140, 0.04) 65%,
+        transparent 80%
     );
-    filter: none; 
-    animation: auroraPulse 2000s ease-in-out infinite alternate;
+    filter: blur(40px);
+    animation: auroraPulse 18s ease-in-out infinite alternate;
     will-change: transform, opacity;
     transform: translateZ(0); 
     pointer-events: none;
 }
 
 @keyframes auroraPulse {
-    0% { transform: scale(1); opacity: 0.3; }
-    100% { transform: scale(1.15); opacity: 0.5; }
+    0%   { transform: scale(1) rotate(0deg);     opacity: 0.4; }
+    33%  { transform: scale(1.08) rotate(3deg);  opacity: 0.65; }
+    66%  { transform: scale(0.96) rotate(-2deg); opacity: 0.5; }
+    100% { transform: scale(1.12) rotate(5deg);  opacity: 0.7; }
 }
 
 @keyframes auroraMove {
